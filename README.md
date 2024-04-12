@@ -6,6 +6,7 @@ To cite this work use:
 Serrano, D.E. (2024). Learn Quantum Computing using Python. Retrived from https://www.learn-quantum.github.io
 
 Bibtex:
+```
 @book{learn-quantum,   
     author = {Diego Emilio Serrano},   
     year = {2024},
@@ -13,3 +14,4 @@ Bibtex:
     publisher = {Github},   
     url = {https://www.learn-quantum.github.io},
 }
+```
