@@ -1,22 +1,23 @@
 # Table of contents
-# Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
 root: index
-chapters:
-  - file: book/markdown
-  - file: book/notebooks
-  - file: book/bibliography
-
-# Or you organize the TOC by parts
-
-# parts:
-#   - caption: Chapters
-#     numbered: true
-#     maxdepth: 2
-#     chapters:
-#       - file: book/markdown
-#       - file: book/notebooks
-#   - caption: Appendices
-#     chapters:
-#       - file: book/bibliography
+parts:
+  - caption: Getting Started
+    #numbered: true
+    maxdepth: 3
+    chapters:
+      - file: chapters/00_getting_started/00_00_welcome
+      - file: chapters/00_getting_started/00_01_setting_env
+      - file: chapters/00_getting_started/00_02_qiskit_config
+  - caption: Classical Computing
+    maxdepth: 3
+    chapters:
+      - file: chapters/01_classical_computing/01_01_digital_logic
+      - file: chapters/01_classical_computing/01_02_reversible_computing
+      - file: chapters/01_classical_computing/01_03_bits_to_vectors
+      - file: chapters/01_classical_computing/01_04_probabilistic_circuits
+  - caption: Quantum Computing
+    maxdepth: 3
+    chapters:
+      - file: chapters/02_quantum_computing/02_01_intro_to_qc

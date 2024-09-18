@@ -41,7 +41,7 @@ repository:
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
 html:
-  favicon: "fav.ico"
+  favicon: "LQC.ico"
   baseurl: https://diemilio.github.io/lqc-textbook # The base URL where your book will be hosted.
   use_repository_button: true
   use_issues_button: true
