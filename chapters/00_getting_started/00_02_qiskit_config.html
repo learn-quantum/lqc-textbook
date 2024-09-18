@@ -58,7 +58,7 @@
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/00_getting_started/00_02_qiskit_config';</script>
-    <link rel="canonical" href="https://diemilio.github.io/lqc-textbook/chapters/00_getting_started/00_02_qiskit_config.html" />
+    <link rel="canonical" href="https://learn-quantum.github.io/lqc-textbook/chapters/00_getting_started/00_02_qiskit_config.html" />
     <link rel="icon" href="../../_static/LQC.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -186,10 +186,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../01_classical_computing/01_03_bits_to_vectors.html">Linear Algebra for Reversible Circuits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../01_classical_computing/01_04_probabilistic_circuits.html">Probabilistic Computing</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Computing</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../02_quantum_computing/02_01_intro_to_qc.html">From Bits to Qubits</a></li>
-</ul>
 
     </div>
 </nav></div>
@@ -243,7 +239,7 @@
       
       
       
-      <li><a href="https://mybinder.org/v2/gh/diemilio/lqc-textbook/master?urlpath=tree/chapters/00_getting_started/00_02_qiskit_config.ipynb" target="_blank"
+      <li><a href="https://mybinder.org/v2/gh/learn-quantum/lqc-textbook/master?urlpath=tree/chapters/00_getting_started/00_02_qiskit_config.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -261,7 +257,7 @@
       
       
       
-      <li><a href="https://colab.research.google.com/github/diemilio/lqc-textbook/blob/master/chapters/00_getting_started/00_02_qiskit_config.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/learn-quantum/lqc-textbook/blob/master/chapters/00_getting_started/00_02_qiskit_config.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -292,7 +288,7 @@
       
       
       
-      <li><a href="https://github.com/diemilio/lqc-textbook" target="_blank"
+      <li><a href="https://github.com/learn-quantum/lqc-textbook" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -309,7 +305,7 @@
       
       
       
-      <li><a href="https://github.com/diemilio/lqc-textbook/edit/main/chapters/00_getting_started/00_02_qiskit_config.ipynb" target="_blank"
+      <li><a href="https://github.com/learn-quantum/lqc-textbook/edit/main/chapters/00_getting_started/00_02_qiskit_config.ipynb" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -326,7 +322,7 @@
       
       
       
-      <li><a href="https://github.com/diemilio/lqc-textbook/issues/new?title=Issue%20on%20page%20%2Fchapters/00_getting_started/00_02_qiskit_config.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/learn-quantum/lqc-textbook/issues/new?title=Issue%20on%20page%20%2Fchapters/00_getting_started/00_02_qiskit_config.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -463,7 +459,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="configuring-qiskit">
+  <section id="configuring-qiskit">
 <h1>Configuring Qiskit<a class="headerlink" href="#configuring-qiskit" title="Link to this heading">#</a></h1>
 <hr class="docutils" />
 <p>The steps in this chapter are entirely optional. However, if you want to run your quantum programs in IBM’s quantum processing units (QPUs), you do need to setup your <a class="reference internal" href="#account"><span class="xref myst">IBM Quantum account</span></a>.</p>
@@ -472,10 +468,10 @@ document.write(`
 <h2>1. Setting Up and Linking your IBM Quantum Account <a id='account'></a><a class="headerlink" href="#setting-up-and-linking-your-ibm-quantum-account" title="Link to this heading">#</a></h2>
 <p>If you plan to run your quantum programs in IBM’s QPUs, you need to have an IBM Quantum Account and link it to your local <a class="reference internal" href="00_01_setting_env.html"><span class="std std-doc">Qiskit installation</span></a>. Here’s how:</p>
 <ol class="arabic">
-<li><p>Visit <a class="reference external" href="https://quantum.ibm.com/">https://quantum.ibm.com/</a> and create an account
+<li><p>Visit https://quantum.ibm.com/ and create an account
 <br></br></p></li>
 <li><p>Log into your account, and on the top right corner, copy your API token:
-<img src="images/00_02_01_api_token.png" align = "left" width="700"/>
+<a class="reference internal" href="../../_images/00_02_01_api_token.png"><img alt="../../_images/00_02_01_api_token.png" class="align-left" src="../../_images/00_02_01_api_token.png" style="width: 700px;" /></a>
 <br clear="left"/>
 <br></br></p></li>
 <li><p>On your local machine, open a Jupyter Notebook and run the code below after pasting your API token over the <code class="docutils literal notranslate"><span class="pre">your-token-here</span></code> string. Make sure to <strong>not</strong> remove the single quotes <code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">'</span></code> enclosing it:</p>
