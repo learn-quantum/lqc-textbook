@@ -1,0 +1,1511 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Linear Algebra for Reversible Circuits &#8212; Quantum Computing using Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/01_classical_computing/01_03_bits_to_vectors';</script>
+    <link rel="canonical" href="https://diemilio.github.io/lqc-textbook/chapters/01_classical_computing/01_03_bits_to_vectors.html" />
+    <link rel="icon" href="../../_static/LQC.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Probabilistic Computing" href="01_04_probabilistic_circuits.html" />
+    <link rel="prev" title="Reversible Computing" href="01_02_reversible_computing.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Quantum Computing using Python - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Quantum Computing using Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/00_00_welcome.html">Quantum Computing using Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/00_01_setting_env.html">Setting Up your Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/00_02_qiskit_config.html">Configuring Qiskit</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Computing</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_01_digital_logic.html">Classical Computing and Digital Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_02_reversible_computing.html">Reversible Computing</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Linear Algebra for Reversible Circuits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_04_probabilistic_circuits.html">Probabilistic Computing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Computing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02_quantum_computing/02_01_intro_to_qc.html">From Bits to Qubits</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/diemilio/lqc-textbook/master?urlpath=tree/chapters/01_classical_computing/01_03_bits_to_vectors.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/diemilio/lqc-textbook/blob/master/chapters/01_classical_computing/01_03_bits_to_vectors.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/diemilio/lqc-textbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/diemilio/lqc-textbook/edit/main/chapters/01_classical_computing/01_03_bits_to_vectors.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/diemilio/lqc-textbook/issues/new?title=Issue%20on%20page%20%2Fchapters/01_classical_computing/01_03_bits_to_vectors.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/01_classical_computing/01_03_bits_to_vectors.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Linear Algebra for Reversible Circuits</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#single-bit-systems">1. Single-Bit Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-bit-numbers-as-vectors">1.1 Single-Bit Numbers as Vectors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-bit-gates-as-matrices">1.2 Single-Bit Gates as Matrices</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#note">NOTE</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-bit-systems">2. Multi-Bit Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-bit-numbers-as-vectors">2.1 Multi-Bit Numbers as Vectors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-bit-gates-and-circuits-as-matrices">2.2 Multi-Bit Gates (and Circuits) as Matrices</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="linear-algebra-for-reversible-circuits">
+<h1>Linear Algebra for Reversible Circuits<a class="headerlink" href="#linear-algebra-for-reversible-circuits" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<p>An extremely attractive feature of reversible logic is that it maps very naturally to using vectors to represent boolean values (inputs/outputs), and matrices to express operations (gates and circuits). With very little extra work, reversible circuits can be turned into simple linear algebra relations, where multiplying an input vector by a circuit matrix gives us the corresponding output.</p>
+<section id="single-bit-systems">
+<h2>1. Single-Bit Systems<a class="headerlink" href="#single-bit-systems" title="Link to this heading">#</a></h2>
+<section id="single-bit-numbers-as-vectors">
+<h3>1.1 Single-Bit Numbers as Vectors<a class="headerlink" href="#single-bit-numbers-as-vectors" title="Link to this heading">#</a></h3>
+<p>The first step to transition to a linear algebra representation is to redefine our fundamental unit of information (the bit) as a column vector. We do this by assigning to the two possible values the bit can take (<span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>) the following representations:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\vec{0} = \begin{bmatrix} 1 \\ 0 \end{bmatrix}
+\qquad \qquad
+\vec{1} = \begin{bmatrix} 0 \\ 1 \end{bmatrix} .
+\end{split}\]</div>
+<p>At first glance, this might look silly. Having a vector with two separate elements to represent a single bit seems rather redundant, but the many reasons for doing this will become evident as we progress throughout the next few chapters. In particular, we will soon see that this vector representation is a very convenient way to express the likelihood of finding a bit to be either <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> when we don’t have full knowledge of how our circuits are behaving in the presence of uncertainty.</p>
+<p>An easy way to remember this notation is to think of the <span class="math notranslate nohighlight">\(1\)</span> inside the vectors as the position of a light switch. Having a <span class="math notranslate nohighlight">\(1\)</span> on the top position of the vector can be seen as a switch flipped upwards, which keeps a light bulb OFF (Boolean <span class="math notranslate nohighlight">\(0\)</span>). Similarly, a <span class="math notranslate nohighlight">\(1\)</span> in the bottom of the vector represents the light switch being flipped down, which turns the light bulb ON (Boolean <span class="math notranslate nohighlight">\(1\)</span>):</p>
+<img src="images/01_03_01_light_switches.png" align = "center" width="400"/>
+<p><br></br>
+Now, even though there is nothing stopping us from using arrows on top of <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span> to emphasize that they are vectors, this notation is quite unusual. Instead, we will now introduce a new way to express vectors by using what is known as <a class="reference external" href="https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation">bra-ket</a> or Dirac notation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+|0 \rangle = \begin{bmatrix} 1 \\ 0 \end{bmatrix}
+\qquad \qquad
+|1 \rangle = \begin{bmatrix} 0 \\ 1 \end{bmatrix} .
+\end{split}\]</div>
+<p>Here, the symbol <span class="math notranslate nohighlight">\(| \, \cdot \, \rangle\)</span> is known as a “ket”. For the time being, a ket is simply a representation for a vector in the same way that placing a hat or arrow on top of a variable is; for example, writing <span class="math notranslate nohighlight">\(| b \rangle\)</span> is equivalent to <span class="math notranslate nohighlight">\(\vec{b}\)</span>. Later we will see that kets are typically reserved for specific vectors that belong to a certain type vector space, but the good thing is that the vectors we will work with in this chapter are a subset of this “family”.</p>
+<p>We have therefore upgraded our definition of the bit from being a binary number <span class="math notranslate nohighlight">\(b \in \{0, 1\}\)</span>, to a column vector of the form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} | b \rangle = \begin{bmatrix} \beta_0 \\ \beta_1 \end{bmatrix}, \end{split}\]</div>
+<p>where each element <span class="math notranslate nohighlight">\(\beta_j \in \{0, 1\}\)</span>. The values of <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\beta_1\)</span> must also meet the condition that they can’t simultaneously be <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>.</p>
+<p>A slightly more formal way to formulate this restriction (which will be helpful when we introduce quantum bits) is to say that the magnitude of our vector <span class="math notranslate nohighlight">\(| b \rangle\)</span> should always be equal to <span class="math notranslate nohighlight">\(1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ \|b\| = 1 .\]</div>
+<p>The definition of vector magnitude we will use (for the moment) is the same we’re accustomed to for vectors in geometry. That is, if we have a real-valued vector <span class="math notranslate nohighlight">\(\vec{x} = \begin{bmatrix} x_0 \\ x_1 \end{bmatrix}\)</span>, its magnitude is given by the <a class="reference external" href="https://en.wikipedia.org/wiki/Norm_(mathematics)#Euclidean_norm">Euclidean norm</a>:</p>
+<div class="math notranslate nohighlight">
+\[ \|\vec{x}\| = \sqrt{x_0^2 + x_1^2} .\]</div>
+<p>Enforcing the condition <span class="math notranslate nohighlight">\( \|b\| = 1 \)</span> guarantees that vectors like <span class="math notranslate nohighlight">\(\begin{bmatrix} 0 \\ 0 \end{bmatrix}\)</span> and <span class="math notranslate nohighlight">\(\begin{bmatrix} 1 \\ 1 \end{bmatrix}\)</span> are not valid representations of <span class="math notranslate nohighlight">\(|b\rangle\)</span> because, even though they have <span class="math notranslate nohighlight">\(\beta_j \in \{0, 1\}\)</span>, their magnitudes are <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(\sqrt{2}\)</span>, respectively.</p>
+<p>Let’s go ahead and create some of these vectors in Numpy and find their magnitude to start getting familiarized with how to manipulate arrays. Let’s also use Sympy to display them nicely:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;sympy&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define |0⟩</span>
+<span class="n">ket_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ket_0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1]
+ [0]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We can use SymPy to render our vectors in LaTeX</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">ket_0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}1\\0\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define |1⟩</span>
+<span class="n">ket_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">ket_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0\\1\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find magnitude of vector using numpy&#39;s functions.</span>
+<span class="c1"># 1) square each term, 2) sum vector terms, 3) take square root:</span>
+<span class="n">mag_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">ket_0</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">mag_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">ket_1</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;magnitude of |0⟩: </span><span class="si">{</span><span class="n">mag_0</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;magnitude of |1⟩: </span><span class="si">{</span><span class="n">mag_1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>magnitude of |0⟩: 1.0
+magnitude of |1⟩: 1.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define invalid vectors</span>
+<span class="n">ket_null</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+<span class="n">ket_full</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find magnitude of vectors</span>
+<span class="n">mag_null</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">ket_null</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">mag_full</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">ket_full</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;magnitude of vector with two 0s: </span><span class="si">{</span><span class="n">mag_null</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;magnitude of vector with two 1s: </span><span class="si">{</span><span class="n">mag_full</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>magnitude of vector with two 0s: 0.0
+magnitude of vector with two 1s: 1.4142135623730951
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, in linear algebra, it is also fairly common to express the magnitude of a vector as a function of the <a class="reference external" href="https://en.wikipedia.org/wiki/Dot_product">dot product</a>, which is defined as:</p>
+<div class="math notranslate nohighlight">
+\[\vec{x} \cdot \vec{y} = \vec{x}^\top \vec{y} .\]</div>
+<p>Here, the symbol <span class="math notranslate nohighlight">\(^\top\)</span> denotes the transpose of a vector:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{x}^\top = \begin{bmatrix} x_0 \\ x_1 \end{bmatrix}^\top = \begin{bmatrix} x_0 &amp; x_1 \end{bmatrix} .\end{split}\]</div>
+<p>We can then find the dot product by using the <a class="reference external" href="https://en.wikipedia.org/wiki/Matrix_multiplication#Vector_times_vector">product of vectors</a>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \vec{x} \cdot \vec{y} = \begin{bmatrix} x_0 &amp; x_1 \end{bmatrix} \begin{bmatrix} y_0 \\ y_1 \end{bmatrix} \end{split}\]</div>
+<p>which, by definition results in:</p>
+<div class="math notranslate nohighlight">
+\[ \vec{x} \cdot \vec{y} = x_0 y_0 + x_1 y_1 \]</div>
+<p>Now, to find the magnitude of a vector <span class="math notranslate nohighlight">\(\vec{x}\)</span>, we can take the dot product of the vector with itself:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+\|\vec{x}\|^2 &amp;= \vec{x} \cdot \vec{x} 
+\\
+\\
+\|\vec{x}\|^2 &amp;= \begin{bmatrix} x_0 &amp; x_1 \end{bmatrix} \begin{bmatrix} x_0 \\ x_1 \end{bmatrix} ,
+\\
+\\
+\|\vec{x}\|^2 &amp;= x_0^2 + x_1^2
+\\
+\\
+\|\vec{x}\| &amp;= \sqrt{x_0^2 + x_1^2} ,
+\end{aligned}
+\end{split}\]</div>
+<p>which is the same expression we had previously defined for the magnitude. In the case of column vectors expressed in the ket notation <span class="math notranslate nohighlight">\(|b\rangle\)</span>, their row vector counterparts are important enough that they also get their own label:</p>
+<div class="math notranslate nohighlight">
+\[ \langle b | = \begin{bmatrix} \beta_0 &amp; \beta_1 \end{bmatrix}. \]</div>
+<p>We call the symbol <span class="math notranslate nohighlight">\( \langle \, \cdot \, | \)</span> a “bra”, and again, for the time being, it simply corresponds to the transpose of its corresponding ket. This is because <span class="math notranslate nohighlight">\(\beta_j\)</span> can only take binary values, but we will need to slightly update this definition when dealing with quantum states.</p>
+<p>We can then combine a bra and a ket (into a bracket) to compute the magnitude of a vector:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+\|b\|^2 &amp;= \langle b || b \rangle \simeq \langle b | b \rangle
+\\
+\\
+\langle b | b \rangle &amp;= \begin{bmatrix} \beta_0 &amp; \beta_1 \end{bmatrix} \begin{bmatrix} \beta_0 \\ \beta_1 \end{bmatrix}
+\\
+\\
+\langle b | b \rangle &amp;= \beta_0^2 + \beta_1^2,
+\end{aligned}
+\end{split}\]</div>
+<p>which, as we said, must be equal to <span class="math notranslate nohighlight">\(1\)</span> to represent valid values of <span class="math notranslate nohighlight">\(|b\rangle\)</span> (technically, it’s square-root must be <span class="math notranslate nohighlight">\(1\)</span>, but since <span class="math notranslate nohighlight">\(\sqrt{1} = 1\)</span>, the condition <span class="math notranslate nohighlight">\(\langle b | b \rangle = 1\)</span> is equally valid).</p>
+<p>Just like with the dot product, we can use this bra-ket combination to find the overlap between two vectors. For example:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+\
+\langle 0 | 1 \rangle &amp;= \begin{bmatrix} 1 &amp; 0 \end{bmatrix} \begin{bmatrix} 0 \\ 1 \end{bmatrix}
+\\
+\\
+\langle 0 | 1 \rangle &amp;= 1 \times 0 + 0 \times 1
+\\
+\\
+\langle 0 | 1 \rangle &amp;= 0,
+\end{aligned}
+\end{split}\]</div>
+<p>which makes perfect sense since <span class="math notranslate nohighlight">\(|0\rangle\)</span> and <span class="math notranslate nohighlight">\(|1\rangle\)</span> are orthogonal to each other.
+<br></br></p>
+<p>In Numpy, we can perform the dot product between vectors using the <code class="docutils literal notranslate"><span class="pre">numpy.vdot()</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate dot products between combinations of |0⟩ and |1⟩</span>
+<span class="n">dot_prods</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">vdot</span><span class="p">(</span><span class="n">ket_0</span><span class="p">,</span> <span class="n">ket_0</span><span class="p">),</span>
+             <span class="n">np</span><span class="o">.</span><span class="n">vdot</span><span class="p">(</span><span class="n">ket_0</span><span class="p">,</span> <span class="n">ket_1</span><span class="p">),</span>
+             <span class="n">np</span><span class="o">.</span><span class="n">vdot</span><span class="p">(</span><span class="n">ket_1</span><span class="p">,</span> <span class="n">ket_0</span><span class="p">),</span>
+             <span class="n">np</span><span class="o">.</span><span class="n">vdot</span><span class="p">(</span><span class="n">ket_1</span><span class="p">,</span> <span class="n">ket_1</span><span class="p">)]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;00&#39;</span><span class="p">,</span> <span class="s1">&#39;01&#39;</span><span class="p">,</span> <span class="s1">&#39;10&#39;</span><span class="p">,</span> <span class="s1">&#39;11&#39;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The dot product between |</span><span class="si">{</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">⟩ and |</span><span class="si">{</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">⟩ is </span><span class="si">{</span><span class="n">dot_prods</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">)]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The dot product between |0⟩ and |0⟩ is 1
+The dot product between |0⟩ and |1⟩ is 0
+The dot product between |1⟩ and |0⟩ is 0
+The dot product between |1⟩ and |1⟩ is 1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s now look at how reversible logic gates can be modeled within the framework of linear algebra.</p>
+</section>
+<section id="single-bit-gates-as-matrices">
+<h3>1.2 Single-Bit Gates as Matrices<a class="headerlink" href="#single-bit-gates-as-matrices" title="Link to this heading">#</a></h3>
+<p>Our next step is to figure out how to map logic gates to matrices. As discussed in the previous chapter, in the case of a single bit, the only reversible gate we have available is the <span class="math notranslate nohighlight">\(\text{X}\)</span> gate, which should change a <span class="math notranslate nohighlight">\(|0\rangle\)</span> to a <span class="math notranslate nohighlight">\(|1\rangle\)</span>, and vice versa:</p>
+<div class="math notranslate nohighlight">
+\[
+|0\rangle \xrightarrow{\;\; \text{X} \;\;} |1\rangle
+\xrightarrow{\;\; \text{X} \;\;} |0\rangle,
+\]</div>
+<p>which in vector notation is equivalent to:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix} 1 \\ 0 \end{bmatrix} \xrightarrow{\;\; \text{X} \;\;} \begin{bmatrix} 0 \\ 1 \end{bmatrix}
+\xrightarrow{\;\; \text{X} \;\;} \begin{bmatrix} 1 \\ 0 \end{bmatrix}
+\end{split}\]</div>
+<p>The matrix <span class="math notranslate nohighlight">\(\text{X}\)</span> that produces this “mapping” is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\text{X} = \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix}\end{split}\]</div>
+<p>We can verify this by remembering how <a class="reference external" href="https://en.wikipedia.org/wiki/Matrix_multiplication">matrix multiplication</a> works. If we have a general vector <span class="math notranslate nohighlight">\(\vec{x} = \begin{bmatrix} x_0 \\ x_1 \end{bmatrix}\)</span>, and multiply it with a matrix <span class="math notranslate nohighlight">\(A = \begin{bmatrix} a_{00} &amp; a_{01} \\ a_{10} &amp; a_{11} \end{bmatrix}\)</span> to get the vector <span class="math notranslate nohighlight">\(\vec{y} = \begin{bmatrix} y_0 \\ y_1 \end{bmatrix}\)</span>, we need to perform the following operation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+\vec{y} &amp;= A \vec{x}
+\\
+\\
+\begin{bmatrix} y_0 \\ y_1 \end{bmatrix} &amp;= \begin{bmatrix} a_{00} &amp; a_{01} \\ a_{10} &amp; a_{11} \end{bmatrix} \begin{bmatrix} x_0 \\ x_1 \end{bmatrix}
+\\
+\\
+\begin{bmatrix} y_0 \\ y_1 \end{bmatrix} &amp;= \begin{bmatrix} a_{00} x_0 + a_{01}x_1 \\ a_{10} x_0 + a_{11}x_1 \end{bmatrix}
+\end{aligned}
+\end{split}\]</div>
+<p>In essence, the elements of the resulting vector <span class="math notranslate nohighlight">\(\vec{y}\)</span> are calculated by taking the dot product between each of the rows of <span class="math notranslate nohighlight">\(A\)</span> with the column vector <span class="math notranslate nohighlight">\(\vec{x}\)</span>.</p>
+<p>Let’s now replace <span class="math notranslate nohighlight">\(A\)</span> with <span class="math notranslate nohighlight">\(\text{X}\)</span>, and <span class="math notranslate nohighlight">\(\vec{x}\)</span> with <span class="math notranslate nohighlight">\(|0\rangle\)</span>:
+$<span class="math notranslate nohighlight">\(
+\begin{aligned}
+|y\rangle &amp;= \text{X} |0\rangle
+\\
+\\
+|y\rangle &amp;= \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix} \begin{bmatrix} 1 \\ 0 \end{bmatrix} 
+\\
+\\
+|y\rangle &amp;= \begin{bmatrix} 0 \times 1 + 1 \times 0 \\ 1 \times 1 + 0 \times 0 \end{bmatrix} 
+\\
+\\
+|y\rangle &amp;= \begin{bmatrix} 0 \\ 1 \end{bmatrix}
+\\
+\\
+|y\rangle &amp;= |1\rangle,
+\end{aligned}
+\)</span>$</p>
+<p>which checks out. The same procedure can be followed to show <span class="math notranslate nohighlight">\(|0\rangle = \text{X}|1\rangle\)</span>, but let’s go ahead and actually use NumPy to perform these calculations for us:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define X matrix</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0 &amp; 1\\1 &amp; 0\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<section id="note">
+<h4>NOTE<a class="headerlink" href="#note" title="Link to this heading">#</a></h4>
+<p>If you are not accustomed to using NumPy, here’s a VERY important thing to keep in mind. The multiplication symbol <code class="docutils literal notranslate"><span class="pre">*</span></code> does NOT perform matrix multiplication of NumPy arrays; instead, it performs element-wise multiplication (aka, the <a class="reference external" href="https://en.wikipedia.org/wiki/Hadamard_product_(matrices)">Hadamard Product</a>). To perform matrix multiplication as defined above, we should use the <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.matmul.html"><code class="docutils literal notranslate"><span class="pre">numpy.matmul()</span></code></a> function. However, we can also use the syntactic-sugar symbol <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> as shortcut to perform the same operation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Multiply |0⟩ by X to get |1⟩:</span>
+<span class="n">ket_1</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="n">ket_0</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">ket_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0\\1\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Multiply |1⟩ by X to recover |0⟩:</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">X</span> <span class="o">@</span> <span class="n">ket_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}1\\0\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<p>As can be seen, multiplying <span class="math notranslate nohighlight">\(\text{X}\)</span> by <span class="math notranslate nohighlight">\(|1\rangle\)</span> does indeed produce <span class="math notranslate nohighlight">\(|0\rangle\)</span>. However, at this point, I have to confess that I have been lying, but just a little bit. So far, I have stated that in order to recover our original value after applying the <span class="math notranslate nohighlight">\(\text{X}\)</span> gate once we must reapply <span class="math notranslate nohighlight">\(\text{X}\)</span> again. And although this is in fact true, it is not “formally” correct. The right thing to do when we want to “reverse” the effect of a given gate is to apply the <strong>inverse</strong> of its corresponding matrix.</p>
+<p>The reason for this is that, if we have a general matrix <span class="math notranslate nohighlight">\(A\)</span> acting on a vector <span class="math notranslate nohighlight">\(\vec{x}\)</span>, and we want to apply a matrix <span class="math notranslate nohighlight">\(B\)</span> such that we recover <span class="math notranslate nohighlight">\(x\)</span>, then <span class="math notranslate nohighlight">\(B \, A\)</span> must be equal to a matrix <span class="math notranslate nohighlight">\(I\)</span> that leaves the vector <span class="math notranslate nohighlight">\(\vec{x}\)</span> (or any matrix in acts on) unchanged:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+\vec{x} &amp;= B A \vec{x}
+\\
+\vec{x} &amp;= I \vec{x} 
+\\
+\vec{x} &amp;= \vec{x} .
+\end{aligned}
+\end{split}\]</div>
+<p>The matrix <span class="math notranslate nohighlight">\(I\)</span> is called the identity matrix. From the expression above it is implied that:
+$<span class="math notranslate nohighlight">\(
+\begin{aligned}
+B A &amp;= I
+\\
+B &amp;= I A^{-1},
+\end{aligned}
+\)</span>$</p>
+<p>and since <span class="math notranslate nohighlight">\(I\)</span> leaves elements unchanged:</p>
+<div class="math notranslate nohighlight">
+\[B = A^{-1} .\]</div>
+<p>So we have uncovered a very important property of the matrices that represent reversible gates/circuits: they must be <strong>invertible</strong>. And it the case of the matrix <span class="math notranslate nohighlight">\(\text{X}\)</span>, it turns out that <span class="math notranslate nohighlight">\(\text{X}\)</span> is its own inverse:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{X}^{-1} = \text{X}.
+\]</div>
+<p>This is why we can simply say that applying <span class="math notranslate nohighlight">\(\text{X}\)</span> a second time reverses its effect. For the moment, we won’t go into the details of how to compute the inverse of the matrices we’re working with because we need to introduce a few more of their properties, so for now, let’s confirm that the relationship above is in fact true by using NumPy’s inverse function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find X⁻¹ to verify it is equal to X:</span>
+<span class="n">X_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">X_inv</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0 &amp; 1.0\\1.0 &amp; 0\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<p>An equivalent way to confirm this is simply showing <span class="math notranslate nohighlight">\(I = X X\)</span>, where the identity matrix is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}I = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">I</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="n">X</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}1 &amp; 0\\0 &amp; 1\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<p>Let’s now generalize these concepts for when we are dealing with more than one bit.</p>
+</section>
+</section>
+</section>
+<section id="multi-bit-systems">
+<h2>2. Multi-Bit Systems<a class="headerlink" href="#multi-bit-systems" title="Link to this heading">#</a></h2>
+<section id="multi-bit-numbers-as-vectors">
+<h3>2.1 Multi-Bit Numbers as Vectors<a class="headerlink" href="#multi-bit-numbers-as-vectors" title="Link to this heading">#</a></h3>
+<p>In previous chapters, we expressed an arbitrary binary number <span class="math notranslate nohighlight">\(b\)</span> as:</p>
+<div class="math notranslate nohighlight">
+\[ b = b_{n-1} \dots b_1 b_0 ,\]</div>
+<p>where the <span class="math notranslate nohighlight">\(i^{\text{th}}\)</span> bit <span class="math notranslate nohighlight">\(b_i \in \{0, 1\}\)</span>. Now, in order to expand our vector representation of a single bit to multiple bits, we need to introduce the <a class="reference external" href="https://en.wikipedia.org/wiki/Kronecker_product">Kronecker product</a>. In general, the Kronecker product is a matrix operation, but we will first introduce it for the simplest case: vectors of dimension 2. If we have two vectors <span class="math notranslate nohighlight">\(\vec{x} = \begin{bmatrix} x_0 \\ x_1 \end{bmatrix}\)</span> and <span class="math notranslate nohighlight">\(\vec{y} =  \begin{bmatrix} y_0 \\ y_1 \end{bmatrix}\)</span>, their Kronecker product (denoted by the symbol <span class="math notranslate nohighlight">\(\otimes\)</span>) is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\vec{z} &amp;= \vec{x} \otimes \vec{y}
+\\
+\\
+\vec{z} &amp;= \begin{bmatrix} x_0 \\ x_1 \end{bmatrix} \otimes \begin{bmatrix} y_0 \\ y_1 \end{bmatrix}
+\\
+\\
+\vec{z} &amp;= \begin{bmatrix} x_0 \begin{bmatrix} y_0 \\ y_1 \end{bmatrix} \\ x_1 \begin{bmatrix} y_0 \\ y_1 \end{bmatrix} \end{bmatrix}
+\\
+\\
+\vec{z} &amp;= \begin{bmatrix} x_0 y_0 \\ x_0 y_1 \\ x_1 y_0 \\ x_1 y_1 \end{bmatrix} .
+\end{aligned}
+\end{split}\]</div>
+<p>To put it into words, the Kronecker product is performed by taking each of the elements of vector <span class="math notranslate nohighlight">\(\vec{x}\)</span>, and multiplying them by each of the values of vector <span class="math notranslate nohighlight">\(\vec{y}\)</span>. This will result in a single column vector <span class="math notranslate nohighlight">\(\vec{z}\)</span> with dimensions equal to the sum of the dimensions of <span class="math notranslate nohighlight">\(\vec{x}\)</span> and <span class="math notranslate nohighlight">\(\vec{y}\)</span>. In this case, since both vectors have <span class="math notranslate nohighlight">\(2\)</span> dimensions, <span class="math notranslate nohighlight">\(\vec{z}\)</span> is of dimension <span class="math notranslate nohighlight">\(4\)</span>.</p>
+<p>So let us take, for example, the two-bit binary number <span class="math notranslate nohighlight">\(b = 10\)</span>. In vector representation this will be given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+|b\rangle &amp;= |1\rangle \otimes |0\rangle
+\\
+\\
+|b\rangle &amp;= \begin{bmatrix} 0 \\ 1 \end{bmatrix} \otimes \begin{bmatrix} 1 \\ 0 \end{bmatrix}
+\\
+\\
+|b\rangle &amp;= \begin{bmatrix} 0 \begin{bmatrix} 1 \\ 0 \end{bmatrix} \\ 1 \begin{bmatrix} 1 \\ 0 \end{bmatrix} \end{bmatrix}
+\\
+\\
+|b\rangle &amp;= \begin{bmatrix} 0 \times 1 \\ 0 \times 0 \\ 1 \times 1 \\ 1 \times 0 \end{bmatrix}
+\\
+\\
+|b\rangle &amp;= \begin{bmatrix} 0 \\ 0 \\ 1 \\ 0 \end{bmatrix}
+\end{aligned}
+\end{split}\]</div>
+<p>A general rule is that, when dealing with binary numbers, we will <strong>always</strong> find a <span class="math notranslate nohighlight">\(1\)</span> in the vector index corresponding to the decimal value of that number, and <span class="math notranslate nohighlight">\(0\)</span>s everywhere else. For instance, in the example above, the binary number <span class="math notranslate nohighlight">\(10\)</span>, which is <span class="math notranslate nohighlight">\(2\)</span> in decimal, resulted in a vector with a <span class="math notranslate nohighlight">\(1\)</span> in its second element. Keep in mind that here we are indexing the vector starting form the <span class="math notranslate nohighlight">\(0^{\text{th}}\)</span> element, and increasing the index value from top to bottom. Moreover, the Kronecker product preserves the property that the magnitude of our vector is still equal to <span class="math notranslate nohighlight">\(1\)</span>.</p>
+<p>It is also common notation to place the binary value of <span class="math notranslate nohighlight">\(b\)</span> inside a ket to denote its corresponding vector. For example for <span class="math notranslate nohighlight">\(b = 101\)</span>, we would write: <span class="math notranslate nohighlight">\(|b\rangle = |101 \rangle \)</span>, which corresponds to the vector:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+|101 \rangle &amp;= |1 \rangle \otimes |0 \rangle \otimes |1 \rangle
+\\
+\\
+|101 \rangle &amp;= \begin{bmatrix} 0 \\ 1 \end{bmatrix} \otimes \begin{bmatrix} 1 \\ 0 \end{bmatrix} \otimes \begin{bmatrix} 0 \\ 1 \end{bmatrix}
+\\
+\\
+|101 \rangle &amp;= \begin{bmatrix} 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 1 \\ 0 \\ 0 \end{bmatrix}
+\end{aligned}
+ \end{split}\]</div>
+<p>So, in general, to represent an <span class="math notranslate nohighlight">\(n\)</span>-bit binary value in vector representation we perform the Kronecker product of the vector representation of each of its bits:</p>
+<div class="math notranslate nohighlight">
+\[ |b\rangle = |b_{n-1}\rangle \otimes \dots \otimes \, |b_1\rangle \otimes |b_0\rangle, \]</div>
+<p>where <span class="math notranslate nohighlight">\(|b_{i}\rangle\)</span> is either <span class="math notranslate nohighlight">\(|0\rangle\)</span> or <span class="math notranslate nohighlight">\(|1\rangle\)</span>.  This expression can also be compactly written as:</p>
+<div class="math notranslate nohighlight">
+\[|b\rangle = \bigotimes_{i=1}^{n} |b_{n-i}\rangle. \]</div>
+<p>And, since each <span class="math notranslate nohighlight">\(|b_{i}\rangle\)</span> is of dimension <span class="math notranslate nohighlight">\(2\)</span>, the dimension of vector <span class="math notranslate nohighlight">\(|b\rangle\)</span> will be <span class="math notranslate nohighlight">\(N = 2^n\)</span>, which can be written as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}|b\rangle = \begin{bmatrix} \beta_0 \\ \beta_1 \\ \beta_2 \\ \vdots \\ \beta_{N - 1} \end{bmatrix}, \end{split}\]</div>
+<p>where only one of all <span class="math notranslate nohighlight">\(\beta_j\)</span> is equal to <span class="math notranslate nohighlight">\(1\)</span>, and the rest are equal to <span class="math notranslate nohighlight">\(0\)</span>. More formally: <span class="math notranslate nohighlight">\(\beta_j \in \{0, 1 \}\)</span> with <span class="math notranslate nohighlight">\(\|b\| = 1\)</span>.</p>
+<p>It is also common to write <span class="math notranslate nohighlight">\(|b\rangle \in \{|0\rangle, |1\rangle\}^N\)</span> to express that <span class="math notranslate nohighlight">\(|b\rangle\)</span> belongs to one of the <span class="math notranslate nohighlight">\(N\)</span> possible combinations of <span class="math notranslate nohighlight">\(|0\rangle\)</span> and <span class="math notranslate nohighlight">\(|1\rangle\)</span>. For example, for <span class="math notranslate nohighlight">\(N = 2^3 = 8\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+|b\rangle &amp;\in \{|0\rangle, |1\rangle\}^{8} 
+\\
+\\
+|b\rangle &amp;\in \{|000\rangle, |001\rangle, |010\rangle, |011\rangle, |100\rangle, |101\rangle, |110\rangle,|111\rangle \}
+\end{aligned}
+\end{split}\]</div>
+<p>An important aspect of these <span class="math notranslate nohighlight">\(n\)</span>-bit vectors is that they are all orthogonal to each other. What we mean by this is that, the dot product between any two different <span class="math notranslate nohighlight">\(n\)</span>-bit vectors is always <span class="math notranslate nohighlight">\(0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \langle a | b \rangle = 
+\begin{cases}
+    1, &amp; \text{if } a = b
+    \\
+    0, &amp; \text{if } a \neq b
+\end{cases}
+\end{split}\]</div>
+<p>for <span class="math notranslate nohighlight">\(|a\rangle\)</span> and <span class="math notranslate nohighlight">\(|b\rangle \in \{|0\rangle, |1\rangle\}^{N}.\)</span> This is an important property because, just like the single-bit vectors <span class="math notranslate nohighlight">\(|0\rangle\)</span>, <span class="math notranslate nohighlight">\(|1\rangle\)</span>, the <span class="math notranslate nohighlight">\(n\)</span>-bit vectors form a <a class="reference external" href="https://en.wikipedia.org/wiki/Basis_(linear_algebra)">basis</a>. And later, we will construct quantum states as linear combinations of these basis vectors, just like we can use the <a class="reference external" href="https://en.wikipedia.org/wiki/Unit_vector#Cartesian_coordinates">unit vectors</a> <span class="math notranslate nohighlight">\(( \hat{\imath}, \hat{\jmath},  \hat{\kappa})\)</span> to construct any other vector in a 3-dimensional space.</p>
+<p>Let’s now try a few examples using Python to verify that we do in fact get always get a <span class="math notranslate nohighlight">\(1\)</span> at the index corresponding to the value of <span class="math notranslate nohighlight">\(b\)</span>. In NumPy, we perform the Kronecker product using the <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.kron.html"><code class="docutils literal notranslate"><span class="pre">numpy.kron()</span></code></a> function. So, for the binary number <span class="math notranslate nohighlight">\(10\)</span>, we should get a vector with a <span class="math notranslate nohighlight">\(1\)</span> in second element, and zeros everywhere else (and remember, we start indexing from zero):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ket_1 and ket_1 where defined above</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">ket_1</span><span class="p">,</span> <span class="n">ket_0</span><span class="p">)</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0\\0\\1\\0\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<p>For larger binary numbers, we can iterate over its bits to perform the Kronecker product of the vector representation of each of them. Let’s create a function to do this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bin_to_vec</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+    <span class="c1"># define |0⟩ and |1⟩ within the function:</span>
+    <span class="n">ket_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">]])</span>
+    <span class="n">ket_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">]])</span>
+    
+    <span class="n">b_inv</span> <span class="o">=</span> <span class="n">b</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># Reverse order of b. Like matrix mult,</span>
+                    <span class="c1"># Kronecker prod is performed from right to left.</span>
+    
+    <span class="c1"># iterate over bits</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">bit</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">b_inv</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">bit</span> <span class="o">==</span> <span class="s1">&#39;0&#39;</span><span class="p">:</span>
+            <span class="n">b_i</span> <span class="o">=</span> <span class="n">ket_0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">b_i</span> <span class="o">=</span> <span class="n">ket_1</span>
+
+        <span class="c1"># for first bit, we don&#39;t perform the product</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">ket_b</span> <span class="o">=</span> <span class="n">b_i</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ket_b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">b_i</span><span class="p">,</span><span class="n">ket_b</span><span class="p">)</span>
+            
+    <span class="k">return</span> <span class="n">ket_b</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now lets convert number <span class="math notranslate nohighlight">\(5\)</span> (<span class="math notranslate nohighlight">\(101\)</span> in binary) to a vector. Because this number has 3 bits, we should get a vector of dimension <span class="math notranslate nohighlight">\(2^3 = 8\)</span> with a <span class="math notranslate nohighlight">\(1\)</span> in the fifth element:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="s1">&#39;101&#39;</span> <span class="c1"># 5 in decimal</span>
+<span class="n">b_vec</span> <span class="o">=</span> <span class="n">bin_to_vec</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">b_vec</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0\\0\\0\\0\\0\\1\\0\\0\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<p>For larger numbers, where the vectors become quite long, we can use <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.where.html"><code class="docutils literal notranslate"><span class="pre">numpy.where()</span></code></a> function to verify that we get a one in the index of the value we are converting:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="s1">&#39;10110&#39;</span> <span class="c1"># 22 in decimal</span>
+
+<span class="n">b_int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">bits</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Number </span><span class="si">{</span><span class="n">b_int</span><span class="si">}</span><span class="s1"> in binary (</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1">) has </span><span class="si">{</span><span class="n">bits</span><span class="si">}</span><span class="s1"> bits&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;This should result in a vector of dimension </span><span class="si">{</span><span class="mi">2</span><span class="o">**</span><span class="n">bits</span><span class="si">}</span><span class="s1">, with a </span><span class="se">\&#39;</span><span class="s1">1</span><span class="se">\&#39;</span><span class="s1"> in index </span><span class="si">{</span><span class="n">b_int</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number 22 in binary (10110) has 5 bits
+This should result in a vector of dimension 32, with a &#39;1&#39; in index 22
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b_vec</span> <span class="o">=</span> <span class="n">bin_to_vec</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>                    <span class="c1"># Construct vector using bin_to_vec function</span>
+<span class="n">b_vec_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">b_vec</span><span class="p">)</span>                   <span class="c1"># Find length of vector</span>
+<span class="n">b_vec_one</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">b_vec</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>   <span class="c1"># Find position in vector where entry is equal to 1</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The dimension of the constructed vector is </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">b_vec</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;There is a </span><span class="se">\&#39;</span><span class="s1">1</span><span class="se">\&#39;</span><span class="s1"> in position </span><span class="si">{</span><span class="n">b_vec_one</span><span class="si">}</span><span class="s1"> of this vector&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The dimension of the constructed vector is 32
+There is a &#39;1&#39; in position 22 of this vector
+</pre></div>
+</div>
+</div>
+</div>
+<p>In summary, we can find the vector representation of a binary number by taking the Kronecker product of the vector representation of its individual bits. The dimension of the resulting vector will be <span class="math notranslate nohighlight">\(2^n\)</span> because each bit is expressed by vector of dimension 2, and the Kronecker product produces vectors of dimension equal to the sum of the individual vectors. Additional, the Kronecker product preserves the magnitude of the vector (always equal to <span class="math notranslate nohighlight">\(1\)</span>), so we end up with a vector with <span class="math notranslate nohighlight">\(0\)</span>s in every position except in the index equal to the decimal value of the binary number, in which we get a <span class="math notranslate nohighlight">\(1\)</span>.</p>
+</section>
+<section id="multi-bit-gates-and-circuits-as-matrices">
+<h3>2.2 Multi-Bit Gates (and Circuits) as Matrices<a class="headerlink" href="#multi-bit-gates-and-circuits-as-matrices" title="Link to this heading">#</a></h3>
+<p>The next and final step of this chapter is to figure out how to represent multi-bit gates and full circuits as matrices. Let’s start by looking at the <span class="math notranslate nohighlight">\(\text{CX}\)</span> gate we introduced in the previous chapter:</p>
+<img src="images/01_03_07_cx_gate.png" align = "center" width="180"/>
+<p>which has the following truth table:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><span class="math notranslate nohighlight">\(b_1\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(b_0\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(b_1'\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(b_0'\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Another way to write this table is by specifying the input to output relations we get when we apply this gate:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+00 \xrightarrow{\;\; \text{CX} \;\;} 00
+\\
+01 \xrightarrow{\;\; \text{CX} \;\;} 01
+\\
+10 \xrightarrow{\;\; \text{CX} \;\;} 11
+\\
+11 \xrightarrow{\;\; \text{CX} \;\;} 10
+\end{aligned}
+\end{split}\]</div>
+<p>If we are to treat our binary values as vectors, then the <span class="math notranslate nohighlight">\(\text{CX}\)</span> matrix must have the same number of columns as the dimension of the input vector, and the same number of rows as the output vector. In this case, both input and output have two bits, which makes their vectors of dimension 4. This means <span class="math notranslate nohighlight">\(\text{CX}\)</span> must be a <span class="math notranslate nohighlight">\(4 \times 4\)</span> matrix.</p>
+<p>Let us now make <span class="math notranslate nohighlight">\(\text{CX}\)</span> a general matrix with elements <span class="math notranslate nohighlight">\(c_{ij}\)</span>, and write down the first of these relations in vector form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix} 1 \\ 0 \\ 0 \\ 0 \end{bmatrix} = 
+\begin{bmatrix} c_{00} &amp; c_{01} &amp; c_{02} &amp; c_{03} \\ 
+                c_{10} &amp; c_{11} &amp; c_{12} &amp; c_{13} \\ 
+                c_{20} &amp; c_{21} &amp; c_{22} &amp; c_{23} \\ 
+                c_{30} &amp; c_{31} &amp; c_{32} &amp; c_{33} \end{bmatrix}
+\begin{bmatrix} 1 \\ 0 \\ 0 \\ 0 \end{bmatrix}
+\end{split}\]</div>
+<p>When multiplying <span class="math notranslate nohighlight">\(\text{CX}\)</span> with the input vector, we will get a column vector with elements equal to the first row of <span class="math notranslate nohighlight">\(\text{CX}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix} 1 \\ 0 \\ 0 \\ 0 \end{bmatrix} = 
+\begin{bmatrix} c_{00} \\ c_{01} \\ c_{02} \\ c_{03} \end{bmatrix}
+\end{split}\]</div>
+<p>For these two expressions to match, we then need to satisfy <span class="math notranslate nohighlight">\(c_{00} = 1\)</span> and <span class="math notranslate nohighlight">\(c_{01} = c_{02} = c_{03} = 0\)</span>. We can repeat this process for the remaining 3 expressions, and find all the coefficients of the <span class="math notranslate nohighlight">\(\text{CX}\)</span> matrix, which then results in:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\text{CX} = \begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\ 
+                     0 &amp; 1 &amp; 0 &amp; 0 \\ 
+                     0 &amp; 0 &amp; 0 &amp; 1 \\ 
+                     0 &amp; 0 &amp; 1 &amp; 0 \end{bmatrix}
+\end{split}\]</div>
+<p>And the exact same procedure can be followed to find the matrix for the 3-bit <span class="math notranslate nohighlight">\(\text{CCX}\)</span> (Toffoli) gate:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\text{CCX} = \begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 
+                      0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 
+                      0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 
+                      0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+                      0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+                      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+                      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
+                      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \end{bmatrix}
+\end{split}\]</div>
+<p>But more generally, since gates of reversible circuits always map from input to output vectors of the same length, these matrices are always square matrices of dimension <span class="math notranslate nohighlight">\(2^n \times 2^n\)</span>, with <span class="math notranslate nohighlight">\(n\)</span> being the number of bits. Furthermore, because input and output vectors should represent valid vectors of magnitude <span class="math notranslate nohighlight">\(1\)</span>, gate matrices should be such that they preserve the magnitude of vectors.</p>
+<p>Lastly, we need to specify how to compose the matrices of larger systems. For example, let’s consider the case in which we have a circuit with two bits, where we apply an <span class="math notranslate nohighlight">\(\text{X}\)</span> on the bottom bit, but leave the top bit alone:</p>
+<img src="images/01_03_02_id_and_x.png" align = "center" width="180"/>
+<p>The way we construct the matrix <span class="math notranslate nohighlight">\(Q\)</span> for this circuit, is by taking the Kronecker product of an identity matrix (because the vector of the top bit must remain unchanged) and the <span class="math notranslate nohighlight">\(\text{X}\)</span> gate:</p>
+<div class="math notranslate nohighlight">
+\[Q = I \otimes \text{X}\]</div>
+<p>The Kronecker product for matrices works in a very similar way to that of vectors. For the example above:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+Q &amp;= \begin{bmatrix} 1 &amp; 0  \\ 
+                    0 &amp; 1  \end{bmatrix} 
+                    \otimes 
+     \begin{bmatrix} 0 &amp; 1  \\ 
+                     1 &amp; 0  \end{bmatrix}                
+\\
+\\
+Q &amp;= \begin{bmatrix} 1 \begin{bmatrix} 0 &amp; 1  \\ 1 &amp; 0  \end{bmatrix}  &amp;
+                    0 \begin{bmatrix} 0 &amp; 1  \\ 1 &amp; 0  \end{bmatrix}  \\ 
+                    0 \begin{bmatrix} 0 &amp; 1  \\ 1 &amp; 0  \end{bmatrix}  &amp; 
+                    1 \begin{bmatrix} 0 &amp; 1  \\ 1 &amp; 0  \end{bmatrix} \end{bmatrix} 
+\\
+\\
+Q &amp;= \begin{bmatrix} \begin{bmatrix} 0 &amp; 1  \\ 1 &amp; 0  \end{bmatrix}  &amp;
+                    \begin{bmatrix} 0 &amp; 0  \\ 0 &amp; 0  \end{bmatrix}  \\ 
+                    \begin{bmatrix} 0 &amp; 0  \\ 0 &amp; 0  \end{bmatrix}  &amp; 
+                    \begin{bmatrix} 0 &amp; 1  \\ 1 &amp; 0  \end{bmatrix} \end{bmatrix} 
+\\
+\\
+Q &amp;= \begin{bmatrix} 0 &amp; 1 &amp; 0 &amp; 0 \\
+                    1 &amp; 0 &amp; 0 &amp; 0 \\
+                    0 &amp; 0 &amp; 0 &amp; 1 \\
+                    0 &amp; 0 &amp; 1 &amp; 0 \\
+    \end{bmatrix} 
+\end{aligned}
+\end{split}\]</div>
+<p>And again, we can verify this using Numpy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0 &amp; 1 &amp; 0 &amp; 0\\1 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 1\\0 &amp; 0 &amp; 1 &amp; 0\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<p>In general, we can construct the matrix for an <span class="math notranslate nohighlight">\(n\)</span>-bit system by performing the Kronecker product between the individual matrices acting on each of the bits:</p>
+<div class="math notranslate nohighlight">
+\[ Q = Q_{n-1} \otimes \dots \otimes Q_1 \otimes Q_0, \]</div>
+<p>where, in this case, each <span class="math notranslate nohighlight">\(Q_i\)</span> corresponds to a <span class="math notranslate nohighlight">\(2 \times 2\)</span> matrix.</p>
+<p>For larger circuits where we have several series of gates in each bit line, we can align gates from different bits into “layers”. For example:</p>
+<img src="images/01_03_03_or_1.png" align = "center" width="220"/>
+<br></br>
+<p>We can then compute the Kronecker product of the gates within a given layer, followed by the matrix multiplication of the resulting matrices of the different layers. In the example above, for the fist layer we would have:</p>
+<div class="math notranslate nohighlight">
+\[ Q_1 = \text{X} \otimes \text{X} \otimes I \]</div>
+<p>And since the second layer <span class="math notranslate nohighlight">\(Q_2\)</span> has only a <span class="math notranslate nohighlight">\(\text{CCX}\)</span>, we would compute the total unitary as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+Q &amp;= Q_2 Q_1
+\\
+\\
+Q &amp;= \text{CCX} \left( \text{X} \otimes \text{X} \otimes I \right) .
+\end{aligned}
+\end{split}\]</div>
+<p>Notice how the order in which we perform the matrix multiplication is reverse to that of how the gates get applied in the circuit. That is because inputs to circuits reside on the left, and outputs are on the right. But matrix multiplication occurs from right to left. What we mean by this is that, if our input to our circuit is the vector <span class="math notranslate nohighlight">\(|b\rangle_{in}\)</span>, from the circuit we see that <span class="math notranslate nohighlight">\(O_1\)</span> gets applied first followed by <span class="math notranslate nohighlight">\(Q_2\)</span>. But to calculate the output vector we would do:</p>
+<div class="math notranslate nohighlight">
+\[ |b\rangle_{out} = Q_2 Q_1 |b\rangle_{in} ,\]</div>
+<p>because <span class="math notranslate nohighlight">\(Q_1\)</span> should operate on the input first before <span class="math notranslate nohighlight">\(Q_2\)</span> multiplies that result. Since computing <span class="math notranslate nohighlight">\(Q\)</span> is a long calculation, let’s use Numpy to do this for us:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate CCX matrix</span>
+<span class="n">CCX</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">CCX</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span> <span class="n">CCX</span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span> <span class="n">CCX</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span> <span class="n">CCX</span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">CCX</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute circuit matrix</span>
+<span class="n">Q_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">I</span><span class="p">))</span>
+<span class="n">Q_2</span> <span class="o">=</span> <span class="n">CCX</span>
+
+<span class="n">Q</span> <span class="o">=</span> <span class="n">Q_2</span> <span class="o">@</span> <span class="n">Q_1</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<p>It is also worth noting that the “layering” we selected above is rather arbitrary. We could have chosen a different way to perform the operations, but this will lead to the same result. For we could have selected to organize the circuit with three layers:</p>
+<img src="images/01_03_04_or_2.png" align = "center" width="280"/>
+<br></br>
+<p>We would then compute its matrix as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+Q &amp;= Q_3 Q_2 Q_1
+\\
+\\
+Q &amp;= \text{CCX} \left( I \otimes \text{X} \otimes I \right) \left( \text{X} \otimes I \otimes I \right).
+\end{aligned}
+\end{split}\]</div>
+<p>And to verify we do in fact get the same result, we can again use Numpy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Q_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="n">I</span><span class="p">))</span>
+<span class="n">Q_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">I</span><span class="p">))</span>
+<span class="n">Q_3</span> <span class="o">=</span> <span class="n">CCX</span>
+
+<span class="n">Q</span> <span class="o">=</span> <span class="n">Q_3</span> <span class="o">@</span> <span class="n">Q_2</span> <span class="o">@</span> <span class="n">Q_1</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<p>One important aspect of constructing larger matrices that describe circuits by taking the Kronecker product of magnitude-preserving matrices (such the matrices that describe reversible gates), is that the final matrix will also preserve the magnitude of the input vector. Therefore, we have uncovered three important properties of the matrices that describe reversible circuits:</p>
+<ol class="arabic simple">
+<li><p>They are square</p></li>
+<li><p>They are invertible</p></li>
+<li><p>They preserve the magnitude of the vectors they operate on</p></li>
+</ol>
+<p>One more characteristic we’ve seen from these matrices is that all of their entries are <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>. However, this will soon change when we introduce the concept of probabilistic circuits in the <a class="reference internal" href="#01_04_random_circuits.ipynb"><span class="xref myst">next chapter</span></a>.</p>
+<p>Lastly, I want to discuss an important exception to constructing larger matrices by using the Kronecker product as described above. An issue arises when we have idle bits in between multi-bit operations. For example, consider the following 3-bit circuit where we have a <span class="math notranslate nohighlight">\(\text{CX}\)</span> between the top and bottom bits:</p>
+<img src="images/01_03_06_cx_with_idle.png" align = "center" width="180"/>
+<p>Notice that because the idle bit is in between the <span class="math notranslate nohighlight">\(\text{CX}\)</span> gate (not below or above it), the operations <span class="math notranslate nohighlight">\((I \otimes \text{CX})\)</span> and <span class="math notranslate nohighlight">\((\text{CX} \otimes I)\)</span> will not produce the right matrix. An intuitive way to construct this matrix would be to follow the same procedure we used before where we write down the input to output mappings for every state:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+000 \xrightarrow{\;\; Q \;\;} 000
+\\
+001 \xrightarrow{\;\; Q \;\;} 001
+\\
+\qquad \; \, \vdots \qquad \, \;
+\\[5 pt]
+111 \xrightarrow{\;\; Q \;\;} 110
+\end{aligned}
+\end{split}\]</div>
+<p>and then find all the coefficients of the matrix <span class="math notranslate nohighlight">\(Q\)</span>. However, this is not a very practical procedure when we have several of such gates and very large circuits. We want to be able to compute (or rather have Numpy compute) all final matrices using only Kronecker products and matrix multiplication. The issue here is that the <span class="math notranslate nohighlight">\(\text{CX}\)</span> cannot be express as the Kronecker product of two separate matrices (try it! you really can’t). However, it is possible to express it as the sum of Kronecker products:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+\text{CX} &amp;= \Pi_0 \otimes I + \Pi_1 \otimes X
+\\
+\\
+\text{CX} &amp;=
+\begin{bmatrix} 1 &amp; 0 \\ 
+                0 &amp; 0 \end{bmatrix} \otimes
+\begin{bmatrix} 1 &amp; 0 \\ 
+                0 &amp; 1 \end{bmatrix} +
+\begin{bmatrix} 0 &amp; 0 \\ 
+                0 &amp; 1 \end{bmatrix} \otimes
+\begin{bmatrix} 0 &amp; 1 \\ 
+                1 &amp; 0 \end{bmatrix}
+\end{aligned}
+\end{split}\]</div>
+<p>We will not discuss how we arrived at this decomposition right now. All we need to know is that this is possible and therefore, we can construct the matrix <span class="math notranslate nohighlight">\(Q\)</span> by “sliding in” the identity of the idle bit in between the Kronecker products of the sum above:</p>
+<div class="math notranslate nohighlight">
+\[ Q = \Pi_0 \otimes I \otimes I + \Pi_1 \otimes I \otimes X \]</div>
+<p>Let’s now use Numpy to verify that this decomposition of the <span class="math notranslate nohighlight">\(\text{CX}\)</span> gate works, and the find the matrix <span class="math notranslate nohighlight">\(Q\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Verify CX gate decomposition</span>
+<span class="n">Π0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+<span class="n">Π1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+
+<span class="n">CX</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">Π0</span><span class="p">,</span><span class="n">I</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">Π1</span><span class="p">,</span><span class="n">X</span><span class="p">)</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">CX</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}1 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 1 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 1\\0 &amp; 0 &amp; 1 &amp; 0\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute Q for our circuit</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">Π0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">I</span><span class="p">,</span><span class="n">I</span><span class="p">))</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">Π1</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">I</span><span class="p">,</span><span class="n">X</span><span class="p">))</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<p>We can check if this matrix is indeed working correctly by passing the input <span class="math notranslate nohighlight">\(100\)</span>, which should result in an output of <span class="math notranslate nohighlight">\(101\)</span>. Remember, if the control bit is <span class="math notranslate nohighlight">\(1\)</span>, then the target bit gets inverted. The bit in the middle, which is the idle bit, remains unchanged:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># vector representation of input 100 (4 in decimal),</span>
+<span class="c1"># should be a column vector with a 1 in the 4th element</span>
+<span class="n">b_in</span> <span class="o">=</span> <span class="n">bin_to_vec</span><span class="p">(</span><span class="s1">&#39;100&#39;</span><span class="p">)</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">b_in</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0\\0\\0\\0\\1\\0\\0\\0\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># expected output is 101 (5 in decimal),</span>
+<span class="c1"># so we should get a vector with a 1 in the 5th element.</span>
+<span class="n">b_out</span> <span class="o">=</span> <span class="n">Q</span> <span class="o">@</span> <span class="n">b_in</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">b_out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0\\0\\0\\0\\0\\1\\0\\0\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<p>Try out changing the input value to different numbers to verify that our circuit does indeed work as expected.</p>
+<p>Now that we have established some of the linear algebra concepts needed to deal with reversible circuits, we can move on to the <a class="reference internal" href="#01_04_random_circuits.ipynb"><span class="xref myst">next chapter</span></a> to introduce a critical concept required to understand quantum computing: randomness and probability.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/01_classical_computing"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01_02_reversible_computing.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Reversible Computing</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="01_04_probabilistic_circuits.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Probabilistic Computing</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#single-bit-systems">1. Single-Bit Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-bit-numbers-as-vectors">1.1 Single-Bit Numbers as Vectors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-bit-gates-as-matrices">1.2 Single-Bit Gates as Matrices</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#note">NOTE</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-bit-systems">2. Multi-Bit Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-bit-numbers-as-vectors">2.1 Multi-Bit Numbers as Vectors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-bit-gates-and-circuits-as-matrices">2.2 Multi-Bit Gates (and Circuits) as Matrices</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Diego Emilio Serrano
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

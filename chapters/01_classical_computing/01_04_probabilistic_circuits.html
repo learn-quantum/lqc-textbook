@@ -1,0 +1,1084 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Probabilistic Computing &#8212; Quantum Computing using Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/01_classical_computing/01_04_probabilistic_circuits';</script>
+    <link rel="canonical" href="https://diemilio.github.io/lqc-textbook/chapters/01_classical_computing/01_04_probabilistic_circuits.html" />
+    <link rel="icon" href="../../_static/LQC.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="From Bits to Qubits" href="../02_quantum_computing/02_01_intro_to_qc.html" />
+    <link rel="prev" title="Linear Algebra for Reversible Circuits" href="01_03_bits_to_vectors.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Quantum Computing using Python - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Quantum Computing using Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/00_00_welcome.html">Quantum Computing using Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/00_01_setting_env.html">Setting Up your Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/00_02_qiskit_config.html">Configuring Qiskit</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Computing</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_01_digital_logic.html">Classical Computing and Digital Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_02_reversible_computing.html">Reversible Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_03_bits_to_vectors.html">Linear Algebra for Reversible Circuits</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Probabilistic Computing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Computing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02_quantum_computing/02_01_intro_to_qc.html">From Bits to Qubits</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/diemilio/lqc-textbook/master?urlpath=tree/chapters/01_classical_computing/01_04_probabilistic_circuits.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/diemilio/lqc-textbook/blob/master/chapters/01_classical_computing/01_04_probabilistic_circuits.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/diemilio/lqc-textbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/diemilio/lqc-textbook/edit/main/chapters/01_classical_computing/01_04_probabilistic_circuits.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/diemilio/lqc-textbook/issues/new?title=Issue%20on%20page%20%2Fchapters/01_classical_computing/01_04_probabilistic_circuits.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/01_classical_computing/01_04_probabilistic_circuits.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Probabilistic Computing</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#single-bit-probabilistic-systems">1. Single-Bit Probabilistic Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilistic-single-bit-states-p-bits">1.1 Probabilistic Single-Bit States (p-bits)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilistic-single-bit-gates">1.2 Probabilistic Single-Bit Gates</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-bit-probabilistic-systems">2. Multi-Bit Probabilistic Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilistic-multi-bit-states">2.1 Probabilistic Multi-Bit States</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilistic-multi-bit-gates">2.2 Probabilistic Multi-Bit Gates</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="probabilistic-computing">
+<h1>Probabilistic Computing<a class="headerlink" href="#probabilistic-computing" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<p>The field of probabilistic computing, where the concept of randomness is harnessed to enhance certain computations, is currently experiencing a resurgence driven by the explosion of machine learning and AI algorithms that exploit these effects. However, in the context of classical circuits, randomness is almost always associated with the unwanted effects from noise. Bits stored in magnetic drives can randomly flip when exposed to certain magnetic fields, a <strong>NOT</strong> gate could mistakenly invert its output if there’s a glitch in its power supply, and every so often, a cosmic ray particle can cause enough charge accumulation to modify values in memory.</p>
+<p>Therefore, a natural way to introduce probabilistic effects into digital logic is by “upgrading” the concept of a bit to a probability bit (p-bit). In this context, a convenient way to represent p-bits is by the use of a <a class="reference external" href="https://en.wikipedia.org/wiki/Probability_vector">probability vector</a>, where an element of the vector represents the probability of measuring the binary value given by the vector index of that element.</p>
+<section id="single-bit-probabilistic-systems">
+<h2>1. Single-Bit Probabilistic Systems<a class="headerlink" href="#single-bit-probabilistic-systems" title="Link to this heading">#</a></h2>
+<section id="probabilistic-single-bit-states-p-bits">
+<h3>1.1 Probabilistic Single-Bit States (p-bits)<a class="headerlink" href="#probabilistic-single-bit-states-p-bits" title="Link to this heading">#</a></h3>
+<p>Let us start by considering the case of a noisy <strong>NOT</strong> gate that, whenever its input is supposed to be <span class="math notranslate nohighlight">\(0\)</span>, the output is either <span class="math notranslate nohighlight">\(0\)</span> with probability of <span class="math notranslate nohighlight">\(1/4\)</span>, or a <span class="math notranslate nohighlight">\(1\)</span> with probability of <span class="math notranslate nohighlight">\(3/4\)</span>. Physically, this model could describe a poorly-designed circuit where the stage preceding the <strong>NOT</strong> gate is not supplying low enough of a voltage, causing the gate to toggle down to <span class="math notranslate nohighlight">\(0\)</span> every so often due to noise:</p>
+<img src="images/01_04_03_noisy_not.png" align = "center" width="560"/>
+<p>We could represent the output state of uncertainty of this gate with a column vector, where the top element is the probability of the output being <span class="math notranslate nohighlight">\(0\)</span>, and the bottom element the probability of measuring a <span class="math notranslate nohighlight">\(1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \vec{p} = \begin{bmatrix} \frac{1}{4} \\ \frac{3}{4} \end{bmatrix} .\end{split}\]</div>
+<p>More generally, a probability vector can be expressed as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \vec{p} = \begin{bmatrix} \varrho_{0} \\ \varrho_{1} \end{bmatrix} ,\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\varrho_{0}\)</span> and <span class="math notranslate nohighlight">\(\varrho_{1}\)</span> represent the probabilities associated with the state being <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>, respectively. Like all probabilities, these vector elements must meet the condition of being bounded between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span> (i.e., <span class="math notranslate nohighlight">\(\varrho_{0}, \varrho_{1} \in [0,1]\)</span>), and summing up to <span class="math notranslate nohighlight">\(1\)</span> (i.e., <span class="math notranslate nohighlight">\(\varrho_{0} + \varrho_{1} = 1\)</span>).</p>
+<p>From a practical standpoint, this probability vector encodes information about how likely it is to <strong>measure</strong> a <span class="math notranslate nohighlight">\(0\)</span> or a <span class="math notranslate nohighlight">\(1\)</span> for a given p-bit. Going back to the example of our noisy gate, a measurement could consist of, for example, connecting the output of the gate to a register that stores its value every clock cycle. The register’s history will then look something like this:</p>
+<div class="math notranslate nohighlight">
+\[ \{1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, \dots \}, \]</div>
+<p>where for a large number of measurements <span class="math notranslate nohighlight">\(n\)</span>, the frequency of a given outcome (<span class="math notranslate nohighlight">\(n_0\)</span> for <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(n_1\)</span> for <span class="math notranslate nohighlight">\(1\)</span>) with respect to the total number of outcomes approaches the expected probability (<span class="math notranslate nohighlight">\(\varrho_0\)</span> or <span class="math notranslate nohighlight">\(\varrho_1\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\lim_{n\to\infty}\frac{n_0}{n} &amp;= \varrho_0 = \frac{1}{4}
+\\
+\\
+\lim_{n\to\infty}\frac{n_1}{n} &amp;= \varrho_1 = \frac{3}{4}
+\end{aligned}
+\end{split}\]</div>
+<p>Let’s take a look at how to simulate something like this in Python. We will define a probability vector, and sample <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> using its probability amplitudes. We will use <a class="reference external" href="https://matplotlib.org/">Matplotlib</a> to plot the results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;sympy&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define vector p</span>
+<span class="n">ϱ0</span><span class="p">,</span> <span class="n">ϱ1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">vec_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">ϱ0</span><span class="p">],</span>
+                  <span class="p">[</span><span class="n">ϱ1</span><span class="p">]])</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">vec_p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0.25\\0.75\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_samps</span> <span class="o">=</span> <span class="mi">200</span>                   <span class="c1"># number of samples</span>
+<span class="n">vals</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>                   <span class="c1"># Possible outcomes: 0 or 1</span>
+<span class="n">probs</span> <span class="o">=</span> <span class="p">(</span><span class="n">vec_p</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>     <span class="c1"># Flatten to 1D array with probabilities for 0 and 1</span>
+
+<span class="c1"># sample 0 or 1 a 100 times using probabilities from p̅</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samps</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">probs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1 0 1 1 0 1 1 1 1 1 1 1 1 1 0 1 1 0 1 1 1 1 1 0 1 1 1 1 1 1 1 0 1 1 1 1 0
+ 0 1 1 1 1 0 1 1 0 1 0 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 0 1 1 1 1 1 1 1 1 1 1
+ 1 1 1 1 1 1 0 1 0 1 1 1 0 1 1 1 1 0 0 1 1 1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1 1 1 1 1 1 0 1 1 0 1 1 1 0 1 0 0 1 1 1 1 0 1 1 1 1 0 0 1 1 1 1 0 1 0 1
+ 0 1 1 0 1 1 1 1 1 1 1 1 1 1 0 1 1 0 0 1 0 0 0 1 1 1 1 0 1 1 1 0 1 0 1 0 0
+ 1 1 0 1 0 1 1 1 1 1 1 1 1 0 1]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate frequency of outcomes</span>
+<span class="n">freq_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">samples</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="o">/</span><span class="n">n_samps</span>
+<span class="n">freq_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">samples</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">n_samps</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;For ϱ0 = </span><span class="si">{</span><span class="n">ϱ0</span><span class="si">}</span><span class="s1"> and </span><span class="si">{</span><span class="n">n_samps</span><span class="si">}</span><span class="s1"> samples, the relative frequency of 0s is </span><span class="si">{</span><span class="n">freq_0</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;For ϱ1 = </span><span class="si">{</span><span class="n">ϱ1</span><span class="si">}</span><span class="s1"> and </span><span class="si">{</span><span class="n">n_samps</span><span class="si">}</span><span class="s1"> samples, the relative frequency of 1s is </span><span class="si">{</span><span class="n">freq_1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For ϱ0 = 0.25 and 200 samples, the relative frequency of 0s is 0.23
+For ϱ1 = 0.75 and 200 samples, the relative frequency of 1s is 0.77
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot number of counts for outcomes 0 and 1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:purple&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Outcome&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Counts&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../../_images/c95d54de917c3a58eb3af3a650b51a2e334b33fa750af598b5346ab9c7c3861a.png"><img alt="../../_images/c95d54de917c3a58eb3af3a650b51a2e334b33fa750af598b5346ab9c7c3861a.png" src="../../_images/c95d54de917c3a58eb3af3a650b51a2e334b33fa750af598b5346ab9c7c3861a.png" style="width: 411px; height: 311px;" /></a>
+</div>
+</div>
+<p>Now, note that unlike in the previous chapter, where we relabeled the bit vector <span class="math notranslate nohighlight">\(\vec{b}\)</span> to use ket notation <span class="math notranslate nohighlight">\(|b\rangle\)</span>, here we have opted to denote our probability vector as <span class="math notranslate nohighlight">\(\vec{p}\)</span>. We’ve purposely done this to emphasize that there are some distinctions between some of the properties of p-bits and qubits. For instance, recall from that the magnitude of a real-valued vector is given by its Euclidean norm:</p>
+<div class="math notranslate nohighlight">
+\[ \|\vec{p}\| = \sqrt{\varrho_{0}^2 + \varrho_{1}^2} .\]</div>
+<p>And because probabilities must always add up to <span class="math notranslate nohighlight">\(1\)</span>, the length of our vector will actually changes depending on the values of <span class="math notranslate nohighlight">\(\varrho_{0}\)</span> and <span class="math notranslate nohighlight">\(\varrho_{1}\)</span>. For example, for <span class="math notranslate nohighlight">\(\vec{p} = \begin{bmatrix} 1 \\ 0 \end{bmatrix}\)</span>, we get <span class="math notranslate nohighlight">\(\|\vec{p}\| = 1\)</span>. On the other hand, if <span class="math notranslate nohighlight">\(\vec{p} = \begin{bmatrix} \frac{1}{4} \\ \frac{3}{4} \end{bmatrix}\)</span>, then <span class="math notranslate nohighlight">\(\|\vec{p}\| \approx 0.79\)</span>. The dotted line in the figure below shows how the magnitude of the probability vector changes for different probability values:</p>
+<img src="images/01_04_01_prob_vec_length.png" align = "center" width="200"/>
+<p>This is very different from what we will encounter for qubits, where for quantum vector <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> the sum of the each of its elements <strong>squared</strong> always adds up to <span class="math notranslate nohighlight">\(1\)</span>, which implies <span class="math notranslate nohighlight">\(\|\psi\| = 1\)</span> for all <span class="math notranslate nohighlight">\(|\psi\rangle\)</span>. This is depicted below for the specific case of <span class="math notranslate nohighlight">\(\alpha_0, \alpha_1 \in [0,1]\)</span>.</p>
+<img src="images/01_04_02_prob_amps_vec_length.png" align = "center" width="200"/></section>
+<section id="probabilistic-single-bit-gates">
+<h3>1.2 Probabilistic Single-Bit Gates<a class="headerlink" href="#probabilistic-single-bit-gates" title="Link to this heading">#</a></h3>
+<p>Let’s reconsider the noisy <strong>NOT</strong> gate for which an input of <span class="math notranslate nohighlight">\(0\)</span> results in an output of <span class="math notranslate nohighlight">\(0\)</span> with probability <span class="math notranslate nohighlight">\(1/4\)</span>, and an output of <span class="math notranslate nohighlight">\(1\)</span> with probability <span class="math notranslate nohighlight">\(3/4\)</span>. Now, let’s assume that when the input to this gate is <span class="math notranslate nohighlight">\(1\)</span>, the gate behaves just as expected. This means that its output is <span class="math notranslate nohighlight">\(0\)</span> with probability of <span class="math notranslate nohighlight">\(1\)</span>, and <span class="math notranslate nohighlight">\(1\)</span> with probability <span class="math notranslate nohighlight">\(0\)</span>. We could then construct a matrix <span class="math notranslate nohighlight">\(P\)</span> that relates the inputs and outputs according to this relations:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\begin{bmatrix} 1 \\ 0 \end{bmatrix} &amp;\xrightarrow{\; \; P \; \;} \begin{bmatrix} \frac{1}{4} \\ \frac{3}{4} \end{bmatrix}
+\\
+\\
+\begin{bmatrix} 0 \\ 1 \end{bmatrix} &amp;\xrightarrow{\; \; P \; \;} \begin{bmatrix} 1 \\ 0 \end{bmatrix}
+\end{aligned}
+\end{split}\]</div>
+<p>Allowing <span class="math notranslate nohighlight">\(P\)</span> to be a general matrix with elements <span class="math notranslate nohighlight">\(\rho_{ij}\)</span>, we can write the first of these relations as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\begin{bmatrix} \frac{1}{4} \\ \frac{3}{4} \end{bmatrix} &amp;= 
+\begin{bmatrix} \rho_{00} &amp; \rho_{01} \\ \rho_{10} &amp; \rho_{11} \end{bmatrix} \begin{bmatrix} 1 \\ 0 \end{bmatrix}
+\\
+\\
+\begin{bmatrix} \frac{1}{4} \\ \frac{3}{4} \end{bmatrix} &amp;= \begin{bmatrix} \rho_{00} \\ \rho_{10} \end{bmatrix},
+\end{aligned}
+\end{split}\]</div>
+<p>which implies <span class="math notranslate nohighlight">\(\rho_{00} = \frac{1}{4}\)</span> and <span class="math notranslate nohighlight">\(\rho_{10} = \frac{3}{4}\)</span>. Similarly, for the second relation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\begin{bmatrix} 1 \\ 0 \end{bmatrix} &amp;= 
+\begin{bmatrix} \rho_{00} &amp; \rho_{01} \\ \rho_{10} &amp; \rho_{11} \end{bmatrix} \begin{bmatrix} 0 \\ 1 \end{bmatrix}
+\\
+\\
+\begin{bmatrix} 1 \\ 0 \end{bmatrix} &amp;= \begin{bmatrix} \rho_{01} \\ \rho_{11} \end{bmatrix},
+\end{aligned}
+\end{split}\]</div>
+<p>resulting in <span class="math notranslate nohighlight">\(\rho_{01} = 1\)</span> and <span class="math notranslate nohighlight">\(\rho_{11} = 0\)</span>. We can then put together the matrix:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} P = \begin{bmatrix} \frac{1}{4} &amp; 1 \\ \frac{3}{4} &amp; 0 \end{bmatrix} \end{split}\]</div>
+<p>The most important thing to note about these probability matrices is that their corresponding inverse matrix <span class="math notranslate nohighlight">\(P^{-1}\)</span> is not physically implementable. This means that we cannot associate them with any sort of reversible gates like the ones we presented in previous chapters for deterministic circuits. Intuitively, this makes sense since probabilities are a measure of uncertainty; therefore, it doesn’t make sense to think that the effect of a gate that introduces randomness could be “canceled out” by some other probabilistic gate. Let us, for example, look at the inverse matrix of the example above:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+P^{-1} &amp;= \frac{1}{\rho_{00}\rho_{11} - \rho_{01}\rho_{10}} \begin{bmatrix} \phantom{-}\rho_{11} &amp; -\rho_{01} \\ -\rho_{10} &amp; \phantom{-}\rho_{00} \end{bmatrix}
+\\
+\\
+P^{-1} &amp;= \frac{1}{\frac{1}{4} \times 0 - 1 \times \frac{3}{4}} \begin{bmatrix} \phantom{-}0 &amp; -1 \\ -\frac{3}{4} &amp; \phantom{-}\frac{1}{4} \end{bmatrix}
+\\
+\\
+P^{-1} &amp;= \begin{bmatrix} 0 &amp; \phantom{-}\frac{4}{3} \\ 1 &amp; -\frac{1}{3} \end{bmatrix}
+\end{aligned}
+\end{split}\]</div>
+<p>The issue with <span class="math notranslate nohighlight">\(P^{-1}\)</span> is that its entries must all be values between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span> since they should correspond to probabilities; and here, the entry <span class="math notranslate nohighlight">\( -\frac{1}{3}\)</span> clearly is not. As we will see in the next chapters, this is a major distinction with respect to the matrices associated with quantum circuits, which are always invertible.</p>
+<p>In spite of this drawback, one very nice properties of p-bits is that deterministic reversible circuits do transform probability vectors in the correct manner. In the case of the <span class="math notranslate nohighlight">\(\text{X}\)</span> gate, we can see that when applied to a p-bit, the order of the probabilities in the vector gets flipped:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\vec{p}_{out} &amp;= \text{X } \vec{p}_{in}
+\\
+\\
+\vec{p}_{out} &amp;= \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix} \begin{bmatrix} \varrho_{0} \\ \varrho_{1} \end{bmatrix}
+\\
+\\
+\vec{p}_{out} &amp;= \begin{bmatrix} \varrho_{1} \\ \varrho_{0} \end{bmatrix}.
+\end{aligned}
+\end{split}\]</div>
+<p>This makes complete sense if we consider, for example, passing through an <span class="math notranslate nohighlight">\(\text{X}\)</span> gate a sequence of values that have probability <span class="math notranslate nohighlight">\(\varrho_0\)</span> of being in state <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(\varrho_1\)</span> of being in state <span class="math notranslate nohighlight">\(1\)</span> . The output will then correspond to the inverted version of that sequence, which will then have opposite probabilities for each of the states:</p>
+<img src="images\01_04_04_pbit_thru_x_gate.png" align = "center" width="440"/>
+<p>This also generalizes to multi-bit reversible gates, as we will see in the next section. It is also worth noting that the construction of <a class="reference external" href="https://arxiv.org/pdf/1809.04028">invertible p-bit gates</a> is not trivial, but there have been some recent efforts to develop such technology.</p>
+</section>
+</section>
+<section id="multi-bit-probabilistic-systems">
+<h2>2. Multi-Bit Probabilistic Systems<a class="headerlink" href="#multi-bit-probabilistic-systems" title="Link to this heading">#</a></h2>
+<section id="probabilistic-multi-bit-states">
+<h3>2.1 Probabilistic Multi-Bit States<a class="headerlink" href="#probabilistic-multi-bit-states" title="Link to this heading">#</a></h3>
+<p>A nice property of probability vectors is that, for the case of statistically-independent p-bits, we can still use the Kronecker product to construct the vector that describes a larger system. For example, take the following two p-bits:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\vec{p}_0 = \begin{bmatrix} \frac{1}{4} \\ \frac{3}{4} \end{bmatrix} \qquad 
+\vec{p}_1 = \begin{bmatrix} \frac{2}{3} \\ \frac{1}{3} \end{bmatrix}
+\end{split}\]</div>
+<p>The composite system will have a probability vector given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+\vec{p} &amp;= \vec{p}_1  \otimes \vec{p}_0
+\\
+\\
+\vec{p} &amp;= \begin{bmatrix} \frac{2}{3} \\ \frac{1}{3} \end{bmatrix} \otimes 
+           \begin{bmatrix} \frac{1}{4} \\ \frac{3}{4} \end{bmatrix}
+\\
+\\
+\vec{p} &amp;= \begin{bmatrix} \frac{1}{6} \\ \frac{1}{2} \\ \frac{1}{12} \\ \frac{1}{4} \end{bmatrix} .
+\end{aligned}
+\end{split}\]</div>
+<p>What this is implies is that, the corresponding probabilities of measuring the four possible p-bit states <span class="math notranslate nohighlight">\(\left\{00, 01, 10, 11 \right\}\)</span> are given by <span class="math notranslate nohighlight">\(\left\{\frac{1}{6}, \frac{1}{2}, \frac{1}{12}, \frac{1}{4}\right\}\)</span>, respectively.</p>
+<p>In general:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+\vec{p} &amp;= \vec{p}_{n-1} \otimes \, ... \otimes \, \vec{p}_1 \otimes \vec{p}_0, 
+\\
+\\
+\vec{p} &amp;= \bigotimes_{i=1}^{n} \vec{p}_{n-i}.
+\end{aligned}
+\end{split}\]</div>
+<p>And since each <span class="math notranslate nohighlight">\(\vec{p}_{i}\)</span> is of dimension <span class="math notranslate nohighlight">\(2\)</span>, the dimension of <span class="math notranslate nohighlight">\(\vec{p}\)</span> will be <span class="math notranslate nohighlight">\(N = 2^n\)</span> and can be written as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{p} = \begin{bmatrix} \varrho_0 \\ \varrho_1 \\ \varrho_2 \\ \vdots \\ \varrho_{N - 1} \end{bmatrix}, \end{split}\]</div>
+<p>where each  <span class="math notranslate nohighlight">\(\varrho_j \in [0,1]\)</span>, and must meet the condition that probabilities need to add up to <span class="math notranslate nohighlight">\(1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\sum_{j = 0}^{N-1} \varrho_j = 1\]</div>
+</section>
+<section id="probabilistic-multi-bit-gates">
+<h3>2.2 Probabilistic Multi-Bit Gates<a class="headerlink" href="#probabilistic-multi-bit-gates" title="Link to this heading">#</a></h3>
+<p>Just like with probability vectors, we can use the Kronecker product on single p-bit probability matrices to represent lager systems. In general:</p>
+<div class="math notranslate nohighlight">
+\[ P = P_{n-1} \otimes \dots \otimes P_1 \otimes P_0, \]</div>
+<p>where each <span class="math notranslate nohighlight">\(P_i\)</span> is a <span class="math notranslate nohighlight">\(2 \times 2\)</span> matrix acting on a single p-bit. Let’s take for example the case of the deterministic <span class="math notranslate nohighlight">\(\text{X}\)</span> gate acting on p-bit <span class="math notranslate nohighlight">\(\vec{p}_0\)</span> and a probability matrix <span class="math notranslate nohighlight">\(R\)</span> acting on <span class="math notranslate nohighlight">\(\vec{p}_1\)</span> that represents a circuit whose output is always <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> with probability of <span class="math notranslate nohighlight">\(1/2\)</span> independent of the input. The overall matrix for this system is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+P &amp;= R \otimes X 
+\\
+\\
+P &amp;= \begin{bmatrix} \frac{1}{2} &amp; \frac{1}{2} \\ \frac{1}{2} &amp; \frac{1}{2} \end{bmatrix} \otimes \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix}
+\end{aligned}
+\end{split}\]</div>
+<p>Let’s use Python to calculate the overall matrix for the system:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">]])</span>
+
+<span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+
+<span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0 &amp; 0.5 &amp; 0 &amp; 0.5\\0.5 &amp; 0 &amp; 0.5 &amp; 0\\0 &amp; 0.5 &amp; 0 &amp; 0.5\\0.5 &amp; 0 &amp; 0.5 &amp; 0\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<p>From this result, it is not entirely obvious that the system should act deterministically on <span class="math notranslate nohighlight">\(\vec{p}_0\)</span> and randomly on <span class="math notranslate nohighlight">\(\vec{p}_1\)</span>, so let us, for example, pass an input where both p-bits are <span class="math notranslate nohighlight">\(0\)</span>. We should see a vector at the output that represents <span class="math notranslate nohighlight">\(\vec{p}_0\)</span> being <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(\vec{p}_1\)</span> being <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> each with probability of <span class="math notranslate nohighlight">\(1/2\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># vectors for p0 and p1 being equal to 0</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">p0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span>
+                    <span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+
+<span class="c1"># p vector for composite system</span>
+<span class="n">p_in</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p0</span><span class="p">)</span>
+
+<span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">p_in</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}1\\0\\0\\0\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Multiply p_in by matrix P</span>
+<span class="n">p_out</span> <span class="o">=</span> <span class="n">P</span> <span class="o">@</span> <span class="n">p_in</span>
+
+<span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">p_out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0\\0.5\\0\\0.5\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<p>What this vector represents is finding the total system in state <span class="math notranslate nohighlight">\(01\)</span> with probability of <span class="math notranslate nohighlight">\(1/2\)</span> and state <span class="math notranslate nohighlight">\(11\)</span> with probability of <span class="math notranslate nohighlight">\(1/2\)</span>, which means the p-bit corresponding to <span class="math notranslate nohighlight">\(\vec{p}_0\)</span> is always <span class="math notranslate nohighlight">\(1\)</span> as expected, and <span class="math notranslate nohighlight">\(\vec{p}_1\)</span> is <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> with probability <span class="math notranslate nohighlight">\(1/2\)</span>, as expected. We can do this for inputs where the p-bits are not deterministic, and also check that the math still works.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># p0 is a vector with probabilities 2/3 and 1/3 for 0 and 1</span>
+<span class="n">p0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">]])</span>
+
+<span class="c1"># p1 is a vector with probabilities 1/10 and 9/10 for 0 and 1</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">9</span><span class="o">/</span><span class="mi">10</span><span class="p">]])</span>
+
+<span class="c1"># p vector for composite system</span>
+<span class="n">p_in</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p0</span><span class="p">)</span>
+
+<span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">p_in</span><span class="p">)</span><span class="o">.</span><span class="n">evalf</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0.06667\\0.03333\\0.6\\0.3\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Multiply p_in by matrix P</span>
+<span class="n">p_out</span> <span class="o">=</span> <span class="n">P</span> <span class="o">@</span> <span class="n">p_in</span>
+
+<span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">p_out</span><span class="p">)</span><span class="o">.</span><span class="n">evalf</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0.1667\\0.3333\\0.1667\\0.3333\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<p>This vector implies that the probability of finding state <span class="math notranslate nohighlight">\(00\)</span> is <span class="math notranslate nohighlight">\(1/6\)</span>. This checks out because we initialized <span class="math notranslate nohighlight">\(\vec{p}_0\)</span> to be <span class="math notranslate nohighlight">\(1\)</span> with probability <span class="math notranslate nohighlight">\(1/3\)</span>, so after applying the <span class="math notranslate nohighlight">\(\text{X}\)</span> gate, the output state should be <span class="math notranslate nohighlight">\(0\)</span> with probability of <span class="math notranslate nohighlight">\(1/3\)</span>. In the case of <span class="math notranslate nohighlight">\(\vec{p}_1\)</span>, we always get <span class="math notranslate nohighlight">\(0\)</span> with probability <span class="math notranslate nohighlight">\(1/2\)</span> independent of the input, so the probability of finding <span class="math notranslate nohighlight">\(00\)</span> is <span class="math notranslate nohighlight">\(1/3 \times 1/2 = 1/6\)</span>.</p>
+<p>It is also possible to construct multi p-bit matrices that cannot be expressed as the Kronecker product of individual p-bit matrices. These matrices are known as <a class="reference external" href="https://en.wikipedia.org/wiki/Stochastic_matrix">stochastic matrices</a> and represent the transition from one possible state of a system to another, where the future state of a single p-bit depends on the previous state of all other p-bits in the system. For instance, the matrix below represents a system where the state of p-bit <span class="math notranslate nohighlight">\(\vec{p}_0\)</span> will remain unchanged if <span class="math notranslate nohighlight">\(\vec{p}_1\)</span> is in state <span class="math notranslate nohighlight">\(0\)</span>, but will randomize <span class="math notranslate nohighlight">\(\vec{p}_0\)</span> if <span class="math notranslate nohighlight">\(\vec{p}_1\)</span> is in state <span class="math notranslate nohighlight">\(1\)</span>. It turns out, we cannot decompose this matrix into a Kronecker product of separate single p-bit matrices because the results of the state of a p-bit depend on the state of the other.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} P = \begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\ 
+                       0 &amp; 1 &amp; 0 &amp; 0 \\ 
+                       0 &amp; 0 &amp; \frac{1}{2} &amp; \frac{1}{2} \\ 
+                       0 &amp; 0 &amp; \frac{1}{2} &amp; \frac{1}{2} \end{bmatrix}\end{split}\]</div>
+<p>Let’s check the output state for when the input is <span class="math notranslate nohighlight">\(10\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize p0 in 0 and p1 in 1:</span>
+<span class="n">p0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+
+<span class="n">p1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+
+<span class="c1"># Combine states into single vector</span>
+<span class="n">p_in</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">p0</span><span class="p">)</span>
+
+<span class="c1"># Define stochastic matrix</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">]])</span>
+
+<span class="n">p_out</span> <span class="o">=</span> <span class="n">P</span> <span class="o">@</span> <span class="n">p_in</span>
+
+<span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">p_out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0\\0\\0.5\\0.5\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<p>This shows that, when <span class="math notranslate nohighlight">\(\vec{p}_1\)</span> is <span class="math notranslate nohighlight">\(1\)</span>, the output is <span class="math notranslate nohighlight">\(10\)</span> and <span class="math notranslate nohighlight">\(11\)</span> each with probability of <span class="math notranslate nohighlight">\(1/2\)</span>, which means <span class="math notranslate nohighlight">\(\vec{p}_1\)</span> remains unchanged, but <span class="math notranslate nohighlight">\(\vec{p}_0\)</span> went from being <span class="math notranslate nohighlight">\(0\)</span> to being <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> with equal probability.</p>
+<p>Now, just like with single p-bit probability matrices, stochastic matrices in general are non-invertible, so they do not represent reversible circuits. But as mentioned before, when p-bits are applied to deterministic reversible matrices, their states do get inverted correctly. For instance, let’s look at a general 4 p-bit vector, and pass it through a circuit given by the matrix <span class="math notranslate nohighlight">\(Q = (X \otimes I) \; \text{CX}\)</span>, and then through the circuit corresponding to <span class="math notranslate nohighlight">\(Q^{-1}\)</span>:</p>
+<img src="images/01_04_05_pbit_thru_circuit.png" align = "center" width="220"/>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define general input probability vector</span>
+<span class="n">ϱ0</span><span class="p">,</span> <span class="n">ϱ1</span><span class="p">,</span> <span class="n">ϱ2</span><span class="p">,</span> <span class="n">ϱ3</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;ϱ0, ϱ1, ϱ2, ϱ3&#39;</span><span class="p">)</span>
+<span class="n">p_in</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span><span class="n">ϱ0</span><span class="p">,</span> <span class="n">ϱ1</span><span class="p">,</span> <span class="n">ϱ2</span><span class="p">,</span> <span class="n">ϱ3</span><span class="p">])</span>
+<span class="n">p_in</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}ϱ_{0}\\ϱ_{1}\\ϱ_{2}\\ϱ_{3}\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define CX matrix</span>
+<span class="n">CX</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+<span class="n">CX</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}1 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 1 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 1\\0 &amp; 0 &amp; 1 &amp; 0\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define X ⊗ I matrix</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+
+<span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+
+<span class="n">XI</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">I</span><span class="p">))</span>
+<span class="n">XI</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0 &amp; 0 &amp; 1 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 1\\1 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 1 &amp; 0 &amp; 0\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compose circuit matrix</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="n">XI</span> <span class="o">@</span> <span class="n">CX</span>
+<span class="n">Q</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0 &amp; 0 &amp; 0 &amp; 1\\0 &amp; 0 &amp; 1 &amp; 0\\1 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 1 &amp; 0 &amp; 0\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pass p_in through Q</span>
+<span class="n">p_int</span> <span class="o">=</span> <span class="n">Q</span> <span class="o">@</span> <span class="n">p_in</span>
+<span class="n">p_int</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}ϱ_{3}\\ϱ_{2}\\ϱ_{0}\\ϱ_{1}\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pass p_in through Q⁻¹</span>
+<span class="n">p_out</span> <span class="o">=</span> <span class="n">Q</span><span class="o">.</span><span class="n">inv</span><span class="p">()</span> <span class="o">@</span> <span class="n">p_int</span>
+<span class="n">p_out</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}ϱ_{0}\\ϱ_{1}\\ϱ_{2}\\ϱ_{3}\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<p>As can be seen, after applying <span class="math notranslate nohighlight">\(Q^{-1}\)</span>, we recovered the original vector. This is because the matrices that represent deterministic reversible circuits are <a class="reference external" href="https://en.wikipedia.org/wiki/Permutation_matrix">permutation matrices</a> that simply change the order of the elements of the vectors they act on. And applying the inverse simply places the elements back into their original order.</p>
+<p>Now that we have an understanding of deterministic and probabilistic classical systems, we can dive into the world of quantum systems. In the next chapter we will introduce these ideas, and highlight how they differ from what we have discuss so far.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/01_classical_computing"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01_03_bits_to_vectors.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Linear Algebra for Reversible Circuits</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../02_quantum_computing/02_01_intro_to_qc.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">From Bits to Qubits</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#single-bit-probabilistic-systems">1. Single-Bit Probabilistic Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilistic-single-bit-states-p-bits">1.1 Probabilistic Single-Bit States (p-bits)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilistic-single-bit-gates">1.2 Probabilistic Single-Bit Gates</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-bit-probabilistic-systems">2. Multi-Bit Probabilistic Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilistic-multi-bit-states">2.1 Probabilistic Multi-Bit States</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilistic-multi-bit-gates">2.2 Probabilistic Multi-Bit Gates</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Diego Emilio Serrano
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

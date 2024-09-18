@@ -1,0 +1,1128 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Reversible Computing &#8212; Quantum Computing using Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/01_classical_computing/01_02_reversible_computing';</script>
+    <link rel="canonical" href="https://diemilio.github.io/lqc-textbook/chapters/01_classical_computing/01_02_reversible_computing.html" />
+    <link rel="icon" href="../../_static/LQC.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Linear Algebra for Reversible Circuits" href="01_03_bits_to_vectors.html" />
+    <link rel="prev" title="Classical Computing and Digital Logic" href="01_01_digital_logic.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Quantum Computing using Python - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Quantum Computing using Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/00_00_welcome.html">Quantum Computing using Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/00_01_setting_env.html">Setting Up your Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/00_02_qiskit_config.html">Configuring Qiskit</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Computing</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_01_digital_logic.html">Classical Computing and Digital Logic</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Reversible Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_03_bits_to_vectors.html">Linear Algebra for Reversible Circuits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_04_probabilistic_circuits.html">Probabilistic Computing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Computing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02_quantum_computing/02_01_intro_to_qc.html">From Bits to Qubits</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/diemilio/lqc-textbook/master?urlpath=tree/chapters/01_classical_computing/01_02_reversible_computing.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/diemilio/lqc-textbook/blob/master/chapters/01_classical_computing/01_02_reversible_computing.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/diemilio/lqc-textbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/diemilio/lqc-textbook/edit/main/chapters/01_classical_computing/01_02_reversible_computing.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/diemilio/lqc-textbook/issues/new?title=Issue%20on%20page%20%2Fchapters/01_classical_computing/01_02_reversible_computing.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/01_classical_computing/01_02_reversible_computing.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Reversible Computing</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reversible-logic">1. Reversible Logic</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reversible-not">1.1 Reversible <strong>NOT</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reversible-xor">1.2 Reversible <strong>XOR</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reversible-copy">1.2 Reversible <strong>COPY</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reversible-and">1.3 Reversible <strong>AND</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reversible-or">1.4 Reversible <strong>OR</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reversible-circuits">2. Reversible Circuits</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="reversible-computing">
+<h1>Reversible Computing<a class="headerlink" href="#reversible-computing" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<p>In the <a class="reference internal" href="01_01_digital_logic.html"><span class="std std-doc">previous chapter</span></a>, we introduced the concept of Boolean operators such as the binary operations <strong>AND</strong> and <strong>OR</strong>. A critical aspect of these elements is that they are <strong>not</strong> reversible. In other words, we cannot figure out the value of their inputs based solely on the value of their output.</p>
+<p>In case this is not entirely obvious, let’s look again at the truth table for the <strong>AND</strong> operation:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><span class="math notranslate nohighlight">\(b\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(a\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(b \land a\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Here we can see that if our output is <span class="math notranslate nohighlight">\(1\)</span>, we can confidently affirm that our inputs are <span class="math notranslate nohighlight">\(b = 1\)</span> and <span class="math notranslate nohighlight">\(a = 1\)</span>. However, if the output is <span class="math notranslate nohighlight">\(0\)</span>, it is not possible to predict with certainty what the values of <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> are. This uncertainty is equivalent to a loss of information in our system.</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Reversible_computing">Reversible computing</a> was born from the idea that the loss of information in classical Boolean circuits is associated with power dissipation [<a class="reference external" href="https://www.informationphilosopher.com/solutions/scientists/landauer/Landauer-1961.pdf">Landauer61</a>]. In an effort to find more power-efficient ways to implement circuits, a model of reversible computation emerged [<a class="reference external" href="https://www.dna.caltech.edu/courses/cs191/paperscs191/bennett1973.pdf">Bennett73</a>], and with it, a corresponding set of logical gate abstractions to perform these computations [<a class="reference external" href="http://publications.csail.mit.edu/lcs/pubs/pdf/MIT-LCS-TM-151.pdf">Toffoli80</a>], [<a class="reference external" href="https://dspace.mit.edu/bitstream/handle/1721.1/149008/MIT-LCS-TM-197.pdf?sequence=1">Fredkin81</a>].</p>
+<p>It was very quickly realized that a model of computation at the quantum-mechanical level can be developed following these same rules [<a class="reference external" href="http://www.quantum-dynamic.eu/doc/feynman85_qmc_optics_letters.pdf">Feynman85</a>], and expanded to include non-classical operations such as superposition and entanglement [<a class="reference external" href="http://www.cs.princeton.edu/courses/archive/fall06/cos576/papers/deutsch85.pdf">Deutsch85</a>], [<a class="reference external" href="https://citeseerx.ist.psu.edu/document?repid=rep1&amp;amp;type=pdf&amp;amp;doi=9a1dca1401758d0ddd223f2807762fdd54b83be8">Margolus89</a>]. Therefore, understanding the basic principles of reversible computing is an important step towards a model of quantum computation.</p>
+<section id="reversible-logic">
+<h2>1. Reversible Logic<a class="headerlink" href="#reversible-logic" title="Link to this heading">#</a></h2>
+<p>We begin by analyzing the basic operations we reviewed in the previous chapter in an effort to make them reversible.
+<br></br></p>
+<section id="reversible-not">
+<h3>1.1 Reversible <strong>NOT</strong><a class="headerlink" href="#reversible-not" title="Link to this heading">#</a></h3>
+<p>The first thing to note is that the <strong>NOT</strong> gate <em><strong>is</strong></em> reversible. This because we can confidently predict the input value directly from its output. If the output is <span class="math notranslate nohighlight">\(1\)</span>, we know for a fact the input was <span class="math notranslate nohighlight">\(0\)</span>, and vice versa. Furthermore, we can reverse the computation of a <strong>NOT</strong> gate by applying another <strong>NOT</strong> right after.</p>
+<p>Now, because the symbol for the logic <strong>NOT</strong> gate is not symmetric, Feynman suggested changing it to simply using an X over a wire. However, from now on, we will instead use the symbol commonly utilized in quantum computing circuits, which is an X inside a box<span class="math notranslate nohighlight">\(^*\)</span>:</p>
+<img src="images/01_02_01_not_gates.png" align = "center" width="660"/>
+<p>For this same reason, we will now refer to the <strong>NOT</strong> gate as the <span class="math notranslate nohighlight">\(\text{X}\)</span> gate.</p>
+<p><span style="font-size: smaller;"><span class="math notranslate nohighlight">\(^*\)</span><strong>Aside</strong>: The fact that Feynman used an X to denote the circuit diagram for a reversible <strong>NOT</strong> gate is merely coincidental with the notion of using an X as the symbol for its corresponding quantum gate. The reason why we call the quantum <strong>NOT</strong> an <span class="math notranslate nohighlight">\(\text{X}\)</span> gate has to do with its relationship with the Pauli-X matrix (a topic that we will cover in detail in a later chapter).</span></p>
+</section>
+<section id="reversible-xor">
+<h3>1.2 Reversible <strong>XOR</strong><a class="headerlink" href="#reversible-xor" title="Link to this heading">#</a></h3>
+<p>The reversible version of the <strong>XOR</strong> gate is perhaps the most fundamental 2-bit operation in reversible computing, and one of the most widely used gates in quantum circuits. We can implement this operation by the used of a what is known as a controlled-<span class="math notranslate nohighlight">\(\text{X}\)</span> or <span class="math notranslate nohighlight">\(\text{CX}\)</span> gate. A <span class="math notranslate nohighlight">\(\text{CX}\)</span> gate has a control line and a target line. The value on the control line determines if an <span class="math notranslate nohighlight">\(\text{X}\)</span> gate on the target line gets applied or not:</p>
+<ul class="simple">
+<li><p>If the control line is <span class="math notranslate nohighlight">\(0\)</span>, the target line is left unchanged.</p></li>
+<li><p>If the control is <span class="math notranslate nohighlight">\(1\)</span>, the <span class="math notranslate nohighlight">\(\text{X}\)</span> gate is activated, inverting the value of target line.</p></li>
+</ul>
+<p>The figure below shows the schematic representation of a <span class="math notranslate nohighlight">\(\text{CX}\)</span> gate where the top line is the control, and the bottom line is the target:</p>
+<img src="images/01_02_02_cx_gate.png" align = "center" width="180"/>
+<p>Following this logic, we can make a truth table for what the outputs <span class="math notranslate nohighlight">\(a'\)</span> and <span class="math notranslate nohighlight">\(b'\)</span> look like with respect to the inputs <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, which clearly shows that <span class="math notranslate nohighlight">\(a' = a\)</span>, and more importantly, <span class="math notranslate nohighlight">\(b' = a \oplus b\)</span>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><span class="math notranslate nohighlight">\(a\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(b\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(a'\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(b'\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The output <span class="math notranslate nohighlight">\(b'\)</span> is the same as what would we get with a classical <strong>XOR</strong> gate, but the simple fact of carrying the input <span class="math notranslate nohighlight">\(a\)</span> to the output <span class="math notranslate nohighlight">\(a'\)</span> allows us to be able to always predict the value of both inputs (<span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>) directly from the outputs (<span class="math notranslate nohighlight">\(a'\)</span> and <span class="math notranslate nohighlight">\(b'\)</span>). This should be clear from the fact that for each possible input there is only a single unique possible output.</p>
+<p>Furthermore, the operation of a <span class="math notranslate nohighlight">\(\text{CX}\)</span> gate can be uncomputed (reversed) by applying another <span class="math notranslate nohighlight">\(\text{CX}\)</span> right after! We can verify this with a few lines of code. Let’s first implement a <span class="math notranslate nohighlight">\(\text{CX}\)</span> gate and generate its truth table in Python:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define x gate as a function:</span>
+<span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="n">a_in</span><span class="p">):</span>
+    <span class="n">a_out</span> <span class="o">=</span> <span class="p">(</span><span class="n">a_in</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span>   <span class="c1"># Adding 1 to bit &quot;a&quot; and then taking mod 2 flips &quot;a&quot;.</span>
+    <span class="k">return</span> <span class="n">a_out</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define cx gate as a function:</span>
+<span class="k">def</span> <span class="nf">cx</span><span class="p">(</span><span class="n">a_in</span><span class="p">,</span> <span class="n">b_in</span><span class="p">):</span>
+    
+    <span class="c1"># a&#39; is always equal to a.</span>
+    <span class="n">a_out</span> <span class="o">=</span> <span class="n">a_in</span>
+    
+    <span class="c1"># if control is one (i.e., a == 1): negate target (b&#39; = b̅), else: leave b alone (b&#39; = b).</span>
+    <span class="k">if</span> <span class="n">a_in</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>                
+        <span class="n">b_out</span> <span class="o">=</span> <span class="n">x</span><span class="p">(</span><span class="n">b_in</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">b_out</span> <span class="o">=</span> <span class="n">b_in</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">a_out</span><span class="p">,</span> <span class="n">b_out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print table for CX gate</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;CX gate:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a | b || a</span><span class="se">\&#39;</span><span class="s1"> | b</span><span class="se">\&#39;</span><span class="s1"> |&#39;</span><span class="p">)</span>
+
+<span class="c1"># Iterate over possible combinations of a and b</span>
+<span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)]:</span>
+    <span class="n">ap</span><span class="p">,</span> <span class="n">bp</span> <span class="o">=</span> <span class="n">cx</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1"> || </span><span class="si">{</span><span class="n">ap</span><span class="si">}</span><span class="s1">  | </span><span class="si">{</span><span class="n">bp</span><span class="si">}</span><span class="s1">  |&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CX gate:
+a | b || a&#39; | b&#39; |
+0 | 0 || 0  | 0  |
+0 | 1 || 0  | 1  |
+1 | 0 || 1  | 1  |
+1 | 1 || 1  | 0  |
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see that <span class="math notranslate nohighlight">\(a' = a\)</span> and <span class="math notranslate nohighlight">\(b' = a \oplus b\)</span>, so our <span class="math notranslate nohighlight">\(\text{CX}\)</span> function seems to be working correctly. Let’s now apply it twice:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print table for applying two CX gates</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Two CX gates:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a | b || a</span><span class="se">\&#39;\&#39;</span><span class="s1"> | b</span><span class="se">\&#39;\&#39;</span><span class="s1"> |&#39;</span><span class="p">)</span>
+
+<span class="c1"># Apply CX twice for all combination of inputs a, b.</span>
+<span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)]:</span>
+    <span class="n">ai</span><span class="p">,</span> <span class="n">bi</span> <span class="o">=</span> <span class="n">cx</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+    <span class="n">ap</span><span class="p">,</span> <span class="n">bp</span> <span class="o">=</span> <span class="n">cx</span><span class="p">(</span><span class="n">ai</span><span class="p">,</span><span class="n">bi</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1"> || </span><span class="si">{</span><span class="n">ap</span><span class="si">}</span><span class="s1">   | </span><span class="si">{</span><span class="n">bp</span><span class="si">}</span><span class="s1">   |&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Two CX gates:
+a | b || a&#39;&#39; | b&#39;&#39; |
+0 | 0 || 0   | 0   |
+0 | 1 || 0   | 1   |
+1 | 0 || 1   | 0   |
+1 | 1 || 1   | 1   |
+</pre></div>
+</div>
+</div>
+</div>
+<p>It is clear that, after applying to <span class="math notranslate nohighlight">\(\text{CX}\)</span> gates in a row, the inputs <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> now match the ouputs <span class="math notranslate nohighlight">\(a''\)</span> and <span class="math notranslate nohighlight">\(b''\)</span>, which means the computation has been reversed.</p>
+</section>
+<section id="reversible-copy">
+<h3>1.2 Reversible <strong>COPY</strong><a class="headerlink" href="#reversible-copy" title="Link to this heading">#</a></h3>
+<p>A reversible implementation of the <strong>COPY</strong> or <strong>FANOUT</strong> operation can be easily implemented by simply taking a <span class="math notranslate nohighlight">\(\text{CX}\)</span> and always setting the input of the target line to <span class="math notranslate nohighlight">\(0\)</span>:</p>
+<img src="images/01_02_03_copy_gate.png" align = "center" width="180"/>
+<p>We can see from the <span class="math notranslate nohighlight">\(\text{CX}\)</span> truth table that if <span class="math notranslate nohighlight">\(b = 0\)</span>, then <span class="math notranslate nohighlight">\(b' = a' = a\)</span>.</p>
+</section>
+<section id="reversible-and">
+<h3>1.3 Reversible <strong>AND</strong><a class="headerlink" href="#reversible-and" title="Link to this heading">#</a></h3>
+<p>Recall that for an <strong>AND</strong> gate, three of the four possible outputs are equal to <span class="math notranslate nohighlight">\(0\)</span>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><span class="math notranslate nohighlight">\(a\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(b\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(a \land b\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This poses a challenge because it is then not possible to predict <strong>both</strong> of the input values using just the output (<span class="math notranslate nohighlight">\(a \land b\)</span>) and only one of the inputs (<span class="math notranslate nohighlight">\(a\)</span> or <span class="math notranslate nohighlight">\(b\)</span>). The consequence of this is that we need a 3-bit gate in order to construct a reversible <strong>AND</strong> operation. The way to do this is by the use of a controlled-controlled-X or <span class="math notranslate nohighlight">\(\text{CCX}\)</span> gate, also often referred as a <a class="reference external" href="https://en.wikipedia.org/wiki/Toffoli_gate">Toffoli gate</a>.</p>
+<p>The <span class="math notranslate nohighlight">\(\text{CCX}\)</span> gate operates in a similar fashion to the <span class="math notranslate nohighlight">\(\text{CX}\)</span> gate, except that we now have two control lines and one target line, where an <span class="math notranslate nohighlight">\(\text{X}\)</span> gate is apply iff <strong>both</strong> of the control lines are equal to <span class="math notranslate nohighlight">\(1\)</span>:</p>
+<img src="images/01_02_04_ccx_gate.png" align = "center" width="180"/>
+<p>Using this condition, the truth table for the <span class="math notranslate nohighlight">\(\text{CCX}\)</span> is given by:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><span class="math notranslate nohighlight">\(a\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(b\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(c\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(a'\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(b'\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(c'\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Even though there are a lot of numbers in this table, the results are simple. the outputs <span class="math notranslate nohighlight">\(a'\)</span> and <span class="math notranslate nohighlight">\(b'\)</span> are always equal to the inputs <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, respectively. And the output <span class="math notranslate nohighlight">\(c'\)</span> is equal to the input <span class="math notranslate nohighlight">\(c\)</span> unless <span class="math notranslate nohighlight">\(a = b = 1\)</span>, in which case <span class="math notranslate nohighlight">\(c' = \bar{c}\)</span>.</p>
+<p>Now, for the specific case in which we set the input <span class="math notranslate nohighlight">\(c\)</span> always equal to <span class="math notranslate nohighlight">\(0\)</span>, we get expected behavior for an <strong>AND</strong> gate where <span class="math notranslate nohighlight">\(c' = (a \land b)\)</span>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><span class="math notranslate nohighlight">\(a\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(b\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(c\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(a'\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(b'\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(c'\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>It is also worth noting that, if we were to set <span class="math notranslate nohighlight">\(c = 1\)</span> instead, then we get the response of a <strong>NAND</strong> gate: <span class="math notranslate nohighlight">\(c' = (\overline{a \land b})\)</span>.</p>
+<p>And once again, just like with the <span class="math notranslate nohighlight">\(\text{CX}\)</span> gate, the <span class="math notranslate nohighlight">\(\text{CCX}\)</span> gate is reversible. Let’s verify this in Python by first creating a <span class="math notranslate nohighlight">\(\text{CCX}\)</span> and then applying it twice:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define ccx gate as a function:</span>
+<span class="k">def</span> <span class="nf">ccx</span><span class="p">(</span><span class="n">a_in</span><span class="p">,</span> <span class="n">b_in</span><span class="p">,</span> <span class="n">c_in</span><span class="p">):</span>
+    
+    <span class="c1"># a&#39; and b&#39; are always equal to a and b.</span>
+    <span class="n">a_out</span> <span class="o">=</span> <span class="n">a_in</span>                 
+    <span class="n">b_out</span> <span class="o">=</span> <span class="n">b_in</span>
+    
+    <span class="c1"># if both controls are 1: negate target (c&#39; = c̅), else: leave b alone (c&#39; = c).</span>
+    <span class="k">if</span> <span class="n">a_in</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">b_in</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>                
+        <span class="n">c_out</span> <span class="o">=</span> <span class="n">x</span><span class="p">(</span><span class="n">c_in</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">c_out</span> <span class="o">=</span> <span class="n">c_in</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">a_out</span><span class="p">,</span> <span class="n">b_out</span><span class="p">,</span> <span class="n">c_out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print table for CCX gate when input c is zero</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;CCX gate (with c = 0):&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a | b | c || a</span><span class="se">\&#39;</span><span class="s1"> | b</span><span class="se">\&#39;</span><span class="s1"> | c</span><span class="se">\&#39;</span><span class="s1"> |&#39;</span><span class="p">)</span>
+
+<span class="c1"># Iterate over possible combinations of a and b (c is always 0)</span>
+<span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)]:</span>
+    <span class="n">ap</span><span class="p">,</span> <span class="n">bp</span><span class="p">,</span> <span class="n">cp</span> <span class="o">=</span> <span class="n">ccx</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1"> | 0 || </span><span class="si">{</span><span class="n">ap</span><span class="si">}</span><span class="s1">  | </span><span class="si">{</span><span class="n">bp</span><span class="si">}</span><span class="s1">  | </span><span class="si">{</span><span class="n">cp</span><span class="si">}</span><span class="s1">  |&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CCX gate (with c = 0):
+a | b | c || a&#39; | b&#39; | c&#39; |
+0 | 0 | 0 || 0  | 0  | 0  |
+0 | 1 | 0 || 0  | 1  | 0  |
+1 | 0 | 0 || 1  | 0  | 0  |
+1 | 1 | 0 || 1  | 1  | 1  |
+</pre></div>
+</div>
+</div>
+</div>
+<p>As expected, we see that <span class="math notranslate nohighlight">\(a' = a\)</span>, <span class="math notranslate nohighlight">\(b' = b\)</span> and <span class="math notranslate nohighlight">\(c' = a \land b\)</span>. Let’s now apply the <span class="math notranslate nohighlight">\(\text{CCX}\)</span> twice and verify we can reverse the computation by checking all outputs match out original inputs:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print table for applying two CCX gates when input c is zero</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Two CCX gates (with c = 0):&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a | b | c || a</span><span class="se">\&#39;\&#39;</span><span class="s1"> | b</span><span class="se">\&#39;\&#39;</span><span class="s1"> | c</span><span class="se">\&#39;\&#39;</span><span class="s1"> |&#39;</span><span class="p">)</span>
+
+<span class="c1"># Apply CX twice for all combination of inputs a, b.</span>
+<span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)]:</span>
+    <span class="n">ai</span><span class="p">,</span> <span class="n">bi</span><span class="p">,</span> <span class="n">ci</span> <span class="o">=</span> <span class="n">ccx</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ap</span><span class="p">,</span> <span class="n">bp</span><span class="p">,</span> <span class="n">cp</span> <span class="o">=</span> <span class="n">ccx</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">ci</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1"> | 0 || </span><span class="si">{</span><span class="n">ap</span><span class="si">}</span><span class="s1">   | </span><span class="si">{</span><span class="n">bp</span><span class="si">}</span><span class="s1">   | </span><span class="si">{</span><span class="n">cp</span><span class="si">}</span><span class="s1">   |&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Two CCX gates (with c = 0):
+a | b | c || a&#39;&#39; | b&#39;&#39; | c&#39;&#39; |
+0 | 0 | 0 || 0   | 0   | 0   |
+0 | 1 | 0 || 0   | 1   | 0   |
+1 | 0 | 0 || 1   | 0   | 0   |
+1 | 1 | 0 || 1   | 1   | 0   |
+</pre></div>
+</div>
+</div>
+</div>
+<p>An important aspect to keep in mind is that the <span class="math notranslate nohighlight">\(\text{CCX}\)</span> gate (not the <strong>AND</strong> gate) is the one that’s reversible. The <strong>AND</strong> implementation is just a special case where we set one of its inputs to be a constant value, but we can do the same exercise for when <span class="math notranslate nohighlight">\(c\)</span> can take an arbitrary value.</p>
+</section>
+<section id="reversible-or">
+<h3>1.4 Reversible <strong>OR</strong><a class="headerlink" href="#reversible-or" title="Link to this heading">#</a></h3>
+<p>To implement a reversible <strong>OR</strong> gate, we can use the following Boolean algebra identity:</p>
+<div class="math notranslate nohighlight">
+\[a \lor b = \overline{(\bar{a} \land \bar{b})} .\]</div>
+<p>This expression basically says that we can implement an <strong>OR</strong> gate if we negate both of the inputs to an <strong>NAND</strong> gate:</p>
+<img src="images/01_02_06_or_with_and.png" align = "center" width="500"/>
+<p>So, for the reversible case of an <strong>OR</strong>, we can use two <span class="math notranslate nohighlight">\(\text{CCX}\)</span> gates to negate the inputs <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, and use a <span class="math notranslate nohighlight">\(\text{CCX}\)</span> gate with <span class="math notranslate nohighlight">\(c = 1\)</span> as our <strong>NAND</strong> gate:</p>
+<img src="images/01_02_07_reversible_or.png" align = "center" width="220"/>
+<p>Now, to show the reversibility of this composite gate, we might be tempted to think that, just like with the previous examples, applying it twice will reverse the operation (which actually gives the right answer in this particular case). However, what we want to do to “uncompute” the result is use the inverse of our circuit. In other words, we want to apply each of the gates in the reverse order:</p>
+<img src="images/01_02_08_reverse_ors.png" align = "center" width="360"/>
+<p>It is worth highlighting that, when we switch from working with classical circuits to quantum circuits, we will still need to apply our gates in reverse to invert a result. However, because in some cases we will be dealing with complex numbers, there will be an additional requirement to perform this uncomputation for certain gates, but we do not need to worry about this condition quite yet.</p>
+<p>To check the reversibility of the circuit above, we can first check the results for the <strong>OR</strong> gate by using the <span class="math notranslate nohighlight">\(\text{CX}\)</span> and <span class="math notranslate nohighlight">\(\text{CCX}\)</span> we defined above:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print table for a reversible OR gate</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Reversible OR:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a | b | c || a</span><span class="se">\&#39;</span><span class="s1"> | b</span><span class="se">\&#39;</span><span class="s1"> | c</span><span class="se">\&#39;</span><span class="s1"> |&#39;</span><span class="p">)</span>
+
+<span class="c1"># Iterate over possible combinations of a and b (c is always 1)</span>
+<span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)]:</span>
+    <span class="n">an</span> <span class="o">=</span> <span class="n">x</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">bn</span> <span class="o">=</span> <span class="n">x</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> 
+    <span class="n">ap</span><span class="p">,</span> <span class="n">bp</span><span class="p">,</span> <span class="n">cp</span> <span class="o">=</span> <span class="n">ccx</span><span class="p">(</span><span class="n">an</span><span class="p">,</span><span class="n">bn</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1"> | 1 || </span><span class="si">{</span><span class="n">ap</span><span class="si">}</span><span class="s1">  | </span><span class="si">{</span><span class="n">bp</span><span class="si">}</span><span class="s1">  | </span><span class="si">{</span><span class="n">cp</span><span class="si">}</span><span class="s1">  |&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Reversible OR:
+a | b | c || a&#39; | b&#39; | c&#39; |
+0 | 0 | 1 || 1  | 1  | 0  |
+0 | 1 | 1 || 1  | 0  | 1  |
+1 | 0 | 1 || 0  | 1  | 1  |
+1 | 1 | 1 || 0  | 0  | 1  |
+</pre></div>
+</div>
+</div>
+</div>
+<p>The results above match out expectation of having <span class="math notranslate nohighlight">\(c' = a \lor b\)</span>. Let’s now apply the <strong>OR</strong> gate followed by their corresponding gates in reverse:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print table for applying an reversible OR gate followed by its inverse</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Apply OR, then apply all gates in reverse:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a | b | c || a</span><span class="se">\&#39;\&#39;</span><span class="s1"> | b</span><span class="se">\&#39;\&#39;</span><span class="s1"> | c</span><span class="se">\&#39;\&#39;</span><span class="s1"> |&#39;</span><span class="p">)</span>
+
+<span class="c1"># Iterate over possible combinations of a and b (c is always 1)</span>
+<span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)]:</span>
+    <span class="n">an</span> <span class="o">=</span> <span class="n">x</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">bn</span> <span class="o">=</span> <span class="n">x</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+    <span class="n">ai</span><span class="p">,</span> <span class="n">bi</span><span class="p">,</span> <span class="n">ci</span> <span class="o">=</span> <span class="n">ccx</span><span class="p">(</span><span class="n">an</span><span class="p">,</span><span class="n">bn</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ap</span><span class="p">,</span> <span class="n">bp</span><span class="p">,</span> <span class="n">cp</span> <span class="o">=</span> <span class="n">ccx</span><span class="p">(</span><span class="n">ai</span><span class="p">,</span><span class="n">bi</span><span class="p">,</span><span class="n">ci</span><span class="p">)</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">x</span><span class="p">(</span><span class="n">ap</span><span class="p">)</span>
+    <span class="n">bpp</span> <span class="o">=</span> <span class="n">x</span><span class="p">(</span><span class="n">bp</span><span class="p">)</span>
+    <span class="n">cpp</span> <span class="o">=</span> <span class="n">cp</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1"> | 1 || </span><span class="si">{</span><span class="n">app</span><span class="si">}</span><span class="s1">   | </span><span class="si">{</span><span class="n">bpp</span><span class="si">}</span><span class="s1">   | </span><span class="si">{</span><span class="n">cpp</span><span class="si">}</span><span class="s1">   |&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Apply OR, then apply all gates in reverse:
+a | b | c || a&#39;&#39; | b&#39;&#39; | c&#39;&#39; |
+0 | 0 | 1 || 0   | 0   | 1   |
+0 | 1 | 1 || 0   | 1   | 1   |
+1 | 0 | 1 || 1   | 0   | 1   |
+1 | 1 | 1 || 1   | 1   | 1   |
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="reversible-circuits">
+<h2>2. Reversible Circuits<a class="headerlink" href="#reversible-circuits" title="Link to this heading">#</a></h2>
+<p>In the previous section, we constructed a reversible <strong>OR</strong> gate by using other gates: two <span class="math notranslate nohighlight">\(\text{X}\)</span> gates and a <span class="math notranslate nohighlight">\(\text{CCX}\)</span> gate. We can use this same idea to compose more complex circuits. And, since we have now shown that we have the basic gates we had for non-reversible logic, we should be able to basically implement any circuit we want.</p>
+<p>For example, we could construct a one-to-one replacement of the full adder we showed in the previous chapter:</p>
+<img src="images/01_02_09_reversible_adder.png" align = "center" width="800"/>
+<p>One thing to note about the reversible version of this circuit is that, it will be fairly common to require several “auxiliary” lines to carry out our computation and provide a result. In this particular example, we managed to get the sum output <span class="math notranslate nohighlight">\(s\)</span> using only the lines connected to our inputs, but to compute the output carry <span class="math notranslate nohighlight">\(c_{out}\)</span> we needed three additional lines initialized to some specific value.</p>
+<p>Lastly, just to verify that the circuit above does indeed act as a full adder, we can use the <span class="math notranslate nohighlight">\(\text{X}\)</span>, <span class="math notranslate nohighlight">\(\text{CX}\)</span> and <span class="math notranslate nohighlight">\(\text{CCX}\)</span> Python functions we defined above to implement this circuit. We will only display the relevant outputs <span class="math notranslate nohighlight">\(s\)</span> and <span class="math notranslate nohighlight">\(c_{out}\)</span>, but the code makes all five outputs available in case we wanted to reverse the computation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print table for a reversible Full Adder</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Reversible Full Adder&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a | b | cin || s | cout |&#39;</span><span class="p">)</span>
+
+<span class="c1"># Iterate over possible combinations of a, b and cin</span>
+<span class="n">inputs</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
+          <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span>
+
+<span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">:</span>
+    <span class="n">a1</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">d1</span> <span class="o">=</span> <span class="n">ccx</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>      <span class="c1"># AND1</span>
+    <span class="n">a2</span><span class="p">,</span> <span class="n">b2</span> <span class="o">=</span> <span class="n">cx</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">b1</span><span class="p">)</span>            <span class="c1"># XOR1</span>
+    <span class="n">a3</span><span class="p">,</span> <span class="n">c3</span><span class="p">,</span> <span class="n">e3</span> <span class="o">=</span> <span class="n">ccx</span><span class="p">(</span><span class="n">b2</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>     <span class="c1"># AND2</span>
+    <span class="n">b4</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="n">cx</span><span class="p">(</span><span class="n">b2</span><span class="p">,</span> <span class="n">c3</span><span class="p">)</span>             <span class="c1"># XOR2</span>
+    
+    <span class="n">d5</span> <span class="o">=</span> <span class="n">x</span><span class="p">(</span><span class="n">d1</span><span class="p">)</span>                     <span class="c1"># OR ...</span>
+    <span class="n">e5</span> <span class="o">=</span> <span class="n">x</span><span class="p">(</span><span class="n">e3</span><span class="p">)</span>                     <span class="c1"># </span>
+    <span class="n">d6</span><span class="p">,</span> <span class="n">e6</span><span class="p">,</span> <span class="n">cout</span> <span class="o">=</span> <span class="n">ccx</span><span class="p">(</span><span class="n">d5</span><span class="p">,</span> <span class="n">e5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1">#</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1">   || </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="n">cout</span><span class="si">}</span><span class="s1">    |&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Reversible Full Adder
+a | b | cin || s | cout |
+0 | 0 | 0   || 0 | 0    |
+0 | 0 | 1   || 1 | 0    |
+0 | 1 | 0   || 1 | 0    |
+0 | 1 | 1   || 0 | 1    |
+1 | 0 | 0   || 1 | 0    |
+1 | 0 | 1   || 0 | 1    |
+1 | 1 | 0   || 0 | 1    |
+1 | 1 | 1   || 1 | 1    |
+</pre></div>
+</div>
+</div>
+</div>
+<p>As expected, the output above matches the truth table for a full adder we showed in the previous chapter. If we wanted to “uncompute” these results, we will then apply each an every gate in our circuit but in reverse order.
+<br></br></p>
+<p>Now, as our circuits grow in complexity, keeping track of line using truth tables becomes rather complicated. However, a very nice property of reversible circuits is that, their input-to-output response can be perfectly mapped onto a matrix. Therefore, we can use linear algebra to perform all of our computations.</p>
+<p>Understanding this mapping is a core principle in quantum computing, so we will dedicate the <a class="reference internal" href="#./01_03_linear_algebra.ipynb"><span class="xref myst">next chapter </span></a> to explain how this is done.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/01_classical_computing"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01_01_digital_logic.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Classical Computing and Digital Logic</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="01_03_bits_to_vectors.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Linear Algebra for Reversible Circuits</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reversible-logic">1. Reversible Logic</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reversible-not">1.1 Reversible <strong>NOT</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reversible-xor">1.2 Reversible <strong>XOR</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reversible-copy">1.2 Reversible <strong>COPY</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reversible-and">1.3 Reversible <strong>AND</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reversible-or">1.4 Reversible <strong>OR</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reversible-circuits">2. Reversible Circuits</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Diego Emilio Serrano
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

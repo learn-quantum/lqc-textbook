@@ -1,0 +1,1235 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Classical Computing and Digital Logic &#8212; Quantum Computing using Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/01_classical_computing/01_01_digital_logic';</script>
+    <link rel="canonical" href="https://diemilio.github.io/lqc-textbook/chapters/01_classical_computing/01_01_digital_logic.html" />
+    <link rel="icon" href="../../_static/LQC.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Reversible Computing" href="01_02_reversible_computing.html" />
+    <link rel="prev" title="Configuring Qiskit" href="../00_getting_started/00_02_qiskit_config.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Quantum Computing using Python - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Quantum Computing using Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/00_00_welcome.html">Quantum Computing using Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/00_01_setting_env.html">Setting Up your Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/00_02_qiskit_config.html">Configuring Qiskit</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Computing</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Classical Computing and Digital Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_02_reversible_computing.html">Reversible Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_03_bits_to_vectors.html">Linear Algebra for Reversible Circuits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_04_probabilistic_circuits.html">Probabilistic Computing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Computing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02_quantum_computing/02_01_intro_to_qc.html">From Bits to Qubits</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/diemilio/lqc-textbook/master?urlpath=tree/chapters/01_classical_computing/01_01_digital_logic.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/diemilio/lqc-textbook/blob/master/chapters/01_classical_computing/01_01_digital_logic.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/diemilio/lqc-textbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/diemilio/lqc-textbook/edit/main/chapters/01_classical_computing/01_01_digital_logic.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/diemilio/lqc-textbook/issues/new?title=Issue%20on%20page%20%2Fchapters/01_classical_computing/01_01_digital_logic.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/01_classical_computing/01_01_digital_logic.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Classical Computing and Digital Logic</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-numbers">1. Binary Numbers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boolean-logic">2. Boolean Logic</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#digital-circuits">3. Digital Circuits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-implementation-of-circuits">4. Physical Implementation of Circuits</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="classical-computing-and-digital-logic">
+<h1>Classical Computing and Digital Logic<a class="headerlink" href="#classical-computing-and-digital-logic" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<p>Before diving into the world of quantum computing, it is helpful to do a quick review of some of the basics of classical computation. This will allow us to gradually introduce some of the most important concepts that make quantum information different from its classical counterpart.</p>
+<p>Even if you understand digital systems fairly well, it is still worth skimming through the following few chapters since we will be discussing how the model of computation can be expanded to incorporate randomness into our systems, and how logic gates can be modified to make operations reversible.</p>
+<section id="binary-numbers">
+<h2>1. Binary Numbers<a class="headerlink" href="#binary-numbers" title="Link to this heading">#</a></h2>
+<p>All modern computers and communication systems rely on the use of binary numbers. The fundamental unit of a binary number is the <span style="color:#a883f7"><strong>bit</strong></span>, which can only take one of two values: <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>. But just like with decimal numbers, we can express larger binary values by concatenating bits together. For example, with 3 bits, we can express up to 8 different binary numbers:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Binary</p></th>
+<th class="head text-center"><p>Decimal</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(000\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(001\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(010\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(011\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(100\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(4\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(101\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(5\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(110\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(6\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(111\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(7\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In general, <span class="math notranslate nohighlight">\(n\)</span> bits allow us to express up to <span class="math notranslate nohighlight">\(2^n\)</span> different values. So, an <span class="math notranslate nohighlight">\(n\)</span>-bit binary number <span class="math notranslate nohighlight">\(b\)</span> can be represented as:</p>
+<div class="math notranslate nohighlight">
+\[ b = b_{n-1} ... b_1 b_0 ,\]</div>
+<p>where each bit <span class="math notranslate nohighlight">\(b_i\)</span> can take the value <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>. We will often write this as <span class="math notranslate nohighlight">\(b_i \in \{0, 1\}\)</span>.</p>
+<p>In this definition of a binary number <span class="math notranslate nohighlight">\(b\)</span>, the bit most to the left, <span class="math notranslate nohighlight">\(b_0\)</span>, is known as the least significant bit (LSB). The bit most to the right, <span class="math notranslate nohighlight">\(b_{n-1}\)</span>, is known as the most significant bit (MSB).</p>
+<p>To convert a binary number <span class="math notranslate nohighlight">\(b\)</span> to a decimal integer <span class="math notranslate nohighlight">\(x\)</span>, we simply take each of the individual bits, and multiply them by <span class="math notranslate nohighlight">\(2\)</span> exponentiated to the bit’s significance, and then sum them up:</p>
+<div class="math notranslate nohighlight">
+\[ x =  2^{n-1} b_{n-1} + ... + 2^{1} b_{1} + 2^{0} b_{0}, \]</div>
+<p>which we can write more compactly as using big-sum notation:</p>
+<div class="math notranslate nohighlight">
+\[ x = \sum_{i = 0}^{n-1} 2^{i} b_i .\]</div>
+<p>So, to represent, for example, the binary value <span class="math notranslate nohighlight">\(b = b_3 b_2 b_1 b_0 = 1101\)</span> in decimal, we write:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+x &amp;=  2^{3} b_{3} + 2^{2} b_{2} + 2^{1} b_{1} + 2^{0} b_{0}
+\\
+\\
+x &amp;=  8 \times 1 + 4 \times 1 + 2 \times 0 + 1 \times 1
+\\
+\\
+x &amp;=  13
+\end{aligned}
+\end{split}\]</div>
+<p>Doing this manually is a tedious process. Luckily we can use Python to do this conversion for us. In Python we can represent binary numbers by using the prefix <code class="docutils literal notranslate"><span class="pre">0b</span></code>. These values still get treated like other integers, so if we, for example, print them, the output displays the corresponding decimal value:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mb">0b1101</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using this notation, we can also perform the same arithmetic operations we use for decimal integers:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mb">0b1011</span> <span class="o">+</span> <span class="mb">0b1001</span>  <span class="c1"># in decimal: 11 + 9 = 20</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20
+</pre></div>
+</div>
+</div>
+</div>
+<p>On the other hand, to convert a decimal integer <span class="math notranslate nohighlight">\(x\)</span> into a binary number <span class="math notranslate nohighlight">\(b\)</span>, we can find the <span class="math notranslate nohighlight">\(i^{\text{th}}\)</span> bit of <span class="math notranslate nohighlight">\(b\)</span> using the following expression:</p>
+<div class="math notranslate nohighlight">
+\[ b_i = \left\lfloor\frac{x}{2^i}\right\rfloor \text{mod } 2 . \]</div>
+<p>If this expression looks intimidating, don’t worry, it really isn’t. Here, <span class="math notranslate nohighlight">\(\lfloor \, \cdot \, \rfloor\)</span> is the <a class="reference external" href="https://en.wikipedia.org/wiki/Floor_and_ceiling_functions">floor function</a>, which returns the integer part of its input. For example <span class="math notranslate nohighlight">\(\lfloor 2.71828 \rfloor = 2\)</span>. Furthermore, <span class="math notranslate nohighlight">\(a \text{ mod } m\)</span> represents the <a class="reference external" href="https://en.wikipedia.org/wiki/Modulo">modulo operation</a>, which returns the remainder of diving <span class="math notranslate nohighlight">\(a\)</span> by <span class="math notranslate nohighlight">\(m\)</span>. For instance, <span class="math notranslate nohighlight">\(5 \text{ mod } 2 = 1\)</span> because <span class="math notranslate nohighlight">\(5/2 = 2\)</span> with a remainder of <span class="math notranslate nohighlight">\(1\)</span>. The example below should clarify this further.</p>
+<p>The full binary representation of <span class="math notranslate nohighlight">\(x\)</span> can then be found by multiplying each <span class="math notranslate nohighlight">\(b_i\)</span> by its corresponding power of <span class="math notranslate nohighlight">\(10\)</span>, and adding them up:</p>
+<div class="math notranslate nohighlight">
+\[ b = \sum_{i = 0}^{n-1} 10^{i} \left(\left\lfloor\frac{x}{2^i}\right\rfloor \text{mod } 2 \right).\]</div>
+<p>As an example, to convert the decimal integer <span class="math notranslate nohighlight">\(13\)</span> into a 4-bit binary number, we would take:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+b &amp;= 10^{3} \left(\left\lfloor\frac{13}{2^3}\right\rfloor \text{mod } 2 \right) +
+     10^{2} \left(\left\lfloor\frac{13}{2^2}\right\rfloor \text{mod } 2 \right) +
+     10^{1} \left(\left\lfloor\frac{13}{2^1}\right\rfloor \text{mod } 2 \right) +
+     10^{0} \left(\left\lfloor\frac{13}{2^0}\right\rfloor \text{mod } 2 \right)
+\\
+\\
+b &amp;= 10^{3} \left(1 \text{ mod } 2 \right) +
+     10^{2} \left(3 \text{ mod } 2 \right) +
+     10^{1} \left(6 \text{ mod } 2 \right) +
+     10^{0} \left(13 \text{ mod } 2 \right)
+\\ 
+\\
+b &amp;= 1000 \times 1 +
+     100 \times 1 +
+     10 \times 0 +
+     1 \times 1
+\\  
+\\
+b &amp;= 1101
+\\
+\end{aligned}
+\end{split}\]</div>
+<p>One important note here is that, in this example, we picked the exact number of bits to get the correct binary representation for <span class="math notranslate nohighlight">\(13\)</span>. However, if we would have picked <span class="math notranslate nohighlight">\(n\)</span> to be <span class="math notranslate nohighlight">\(3\)</span> or less, we would have ended up with the incorrect representation. So, to guarantee we can correctly express a decimal integer (greater than <span class="math notranslate nohighlight">\(0\)</span>) in binary, we need to make sure to pick <span class="math notranslate nohighlight">\(n\)</span> to be:</p>
+<div class="math notranslate nohighlight">
+\[ n \geq \lfloor \log_2 (x) + 1 \rfloor , \]</div>
+<p>where again, <span class="math notranslate nohighlight">\(\lfloor \, \cdot \, \rfloor\)</span> is the floor function. So, to accurately represent <span class="math notranslate nohighlight">\(13\)</span> in binary, we need:</p>
+<div class="math notranslate nohighlight">
+\[ n \geq \lfloor \log_2 (13) + 1 \rfloor = 4 . \]</div>
+<p>Again, the concepts above are important to deepen our understanding, but we don’t need to go through the pain of calculating every one of these steps when we can simply rely on Python. So, to convert a decimal integer to binary, we can use the <code class="docutils literal notranslate"><span class="pre">bin()</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="nb">bin</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0b1101
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, one thing to note here is that the <code class="docutils literal notranslate"><span class="pre">bin()</span></code> function does not return an integer value, but rather a string of characters that represents our number in binary. For example, as we saw before, representing number <span class="math notranslate nohighlight">\(13\)</span> as <code class="docutils literal notranslate"><span class="pre">0b1101</span></code> returns an integer (in Python denoted as <code class="docutils literal notranslate"><span class="pre">int</span></code>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="mb">0b1101</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;int&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>whereas expressing <span class="math notranslate nohighlight">\(13\)</span> in binary using <code class="docutils literal notranslate"><span class="pre">bin</span></code> returns a string (<code class="docutils literal notranslate"><span class="pre">str</span></code>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="nb">bin</span><span class="p">(</span><span class="mi">13</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;str&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>This means that we can’t really perform arithmetic operations directly on these objects and get the right result. For example, if we try to “add” two binary strings, Python treats the symbol <code class="docutils literal notranslate"><span class="pre">+</span></code> as a concatenation operator rather than numerical addition:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="nb">bin</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="o">+</span> <span class="nb">bin</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>  <span class="c1"># in decimal: 11 + 9 = 20</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The result in b: </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1"> is not the correct representation for the number 20: </span><span class="si">{</span><span class="nb">bin</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The result in b: 0b10110b1001 is not the correct representation for the number 20: 0b10100
+</pre></div>
+</div>
+</div>
+</div>
+<p>Therefore, we need to be careful when dealing with binary strings and always make sure they are in the right format when we want to perform certain operations. Now, luckily, we can always convert back a binary string into an integer in Python by using the <code class="docutils literal notranslate"><span class="pre">int()</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="nb">bin</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span>  <span class="c1"># converts 13 into a binary string</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;value in binary: </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># converts the binary string back to an integer</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;value in decimal: </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>value in binary: 0b1101
+value in decimal: 13
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that when we did <code class="docutils literal notranslate"><span class="pre">int(b,</span> <span class="pre">2)</span></code>, we not only passed the value <code class="docutils literal notranslate"><span class="pre">b</span></code> which we want to convert back to decimal, but also base that number is expressed in (in this case, base <code class="docutils literal notranslate"><span class="pre">2</span></code> for binary). So, if we have binary strings and want to perform certain operations on them, we can always convert them back to decimal integers using this function, and then convert them back to binary strings.</p>
+<p>It is also worth noting that the strings we pass to the <code class="docutils literal notranslate"><span class="pre">int</span></code> function do not necessarily have to have the prefix <code class="docutils literal notranslate"><span class="pre">0b</span></code>. For instance:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="s1">&#39;1101&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13
+</pre></div>
+</div>
+</div>
+</div>
+<p>This means that we can often drop the <code class="docutils literal notranslate"><span class="pre">0b</span></code> prefix of a binary representation without having to worry about adding it again if we need to convert the value back to decimal. Since strings in Python are indexable, we can easily do this by simply storing the portion of string after the first two characters:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="nb">bin</span><span class="p">(</span><span class="mi">13</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1101
+</pre></div>
+</div>
+</div>
+</div>
+<p>Another important aspect of using the <code class="docutils literal notranslate"><span class="pre">bin()</span></code> function is that it always returns a string using the minimum number of bits required to represent the input number. For instance, notice how the number of bits changes below from 1 to 3 as we increase the decimal value:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="nb">bin</span><span class="p">(</span><span class="n">i</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0: 0
+1: 1
+2: 10
+3: 11
+4: 100
+5: 101
+6: 110
+7: 111
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, we will often want to express different binary numbers using a fix number of bits. For this, we can pad our string with zeros by using the <code class="docutils literal notranslate"><span class="pre">zfill()</span></code> method:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">4</span>  <span class="c1"># number of bits to use</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="nb">bin</span><span class="p">(</span><span class="n">i</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0: 0000
+1: 0001
+2: 0010
+3: 0011
+4: 0100
+5: 0101
+6: 0110
+7: 0111
+</pre></div>
+</div>
+</div>
+</div>
+<p>Alternatively, we can make use of the first library we will introduce in this textbook: <a class="reference external" href="https://numpy.org/">NumPy</a>. NumPy is a Python library optimized for numerical computation of multi-dimensional arrays and matrices. NumPy also counts with a large number of useful functions, including one to convert decimal numbers to binary strings of an arbitrary length.</p>
+<p>Below, we first import NumPy using the alias <code class="docutils literal notranslate"><span class="pre">np</span></code>, and the make use of the function <code class="docutils literal notranslate"><span class="pre">binary_repr()</span></code> which takes as an input the decimal integer we want to convert, and the number of bits to represent it. For example, if we want the number <span class="math notranslate nohighlight">\(13\)</span> represented in <span class="math notranslate nohighlight">\(5\)</span> bits, we get <span class="math notranslate nohighlight">\(01101\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">binary_repr</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>01101
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we have developed an understanding of how to use binary numbers in Python, we can discuss the types of operations we can perform on them and how are these implemented in the form of digital circuits.</p>
+</section>
+<section id="boolean-logic">
+<h2>2. Boolean Logic<a class="headerlink" href="#boolean-logic" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Boolean_algebra">Boolean logic</a> is the type of algebra used to operate on binary numbers. In Boolean logic, variables can take one of two possible values: <strong>True</strong> or <strong>False</strong>, which are commonly represented with the values we previously assigned for the <span style="color:#a883f7"><strong>bit</strong></span>: <span class="math notranslate nohighlight">\(1\)</span> or <span class="math notranslate nohighlight">\(0\)</span>, respectively.</p>
+<p>There are three basic operations associated with Boolean algebra: <a class="reference external" href="https://en.wikipedia.org/wiki/Negation">Negation</a> (<strong>NOT</strong>), <a class="reference external" href="https://en.wikipedia.org/wiki/Logical_disjunction">Conjunction</a> (<strong>OR</strong>), and <a class="reference external" href="https://en.wikipedia.org/wiki/Logical_conjunction">Disjunction</a> (<strong>AND</strong>).</p>
+<p><br></br>
+The <strong>NOT</strong> operation is unary, meaning that it operates only on one variable by negating its value. There are many different symbols used to represent negation, but here we will denote it by using a bar over the variable being negated. A convenient way to express Boolean operations is by the use for Truth tables; the one below corresponds to that of the <strong>NOT</strong> operation:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><span class="math notranslate nohighlight">\(a\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(\bar{a}\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><br></br></p></td>
+<td class="text-center"><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The <strong>OR</strong> operation is binary (operates on two variables), and results in a <strong>True</strong> statement when either of the variables are <strong>True</strong> (i.e., either of them is equal to <span class="math notranslate nohighlight">\(1\)</span>). Again, there are many different symbols to represent conjunction, but here we will use <span class="math notranslate nohighlight">\((a \lor b)\)</span> to denote <span class="math notranslate nohighlight">\(a\)</span> <strong>OR</strong> <span class="math notranslate nohighlight">\(b\)</span>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><span class="math notranslate nohighlight">\(a\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(b\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(a \lor b\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br></br>
+The <strong>AND</strong> operation is also binary, but only results in a <strong>True</strong> statement if both of the variables are <strong>True</strong>. We express this operation as <span class="math notranslate nohighlight">\((a \land b)\)</span>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><span class="math notranslate nohighlight">\(a\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(b\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(a \land b\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><br></br></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>We can then combine these three basic operations to generate any possible logical statement between an arbitrary number of bits. For example, the 3-bit truth table below describes a statement that is <strong>True</strong> only when the majority of the bits are <strong>False</strong>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><span class="math notranslate nohighlight">\(a\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(b\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(c\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\((\bar{a} \land \bar{b}) \lor (\bar{a} \land \bar{c}) \lor (\bar{b} \land \bar{c}) \)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><br></br></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>It is worth pointing out that Boolean statements can always be simplified to use the least amount of literals as possible by using a combination of <a class="reference external" href="https://en.wikipedia.org/wiki/Boolean_algebra#Laws">Boolean Algebra laws</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/De_Morgan%27s_laws">De Morgan’s laws</a>, but we will not go into these details herein.
+<br></br></p>
+<p>A very important composite Boolean operation that we will use aplenty throughout the textbook is the <a class="reference external" href="https://en.wikipedia.org/wiki/Exclusive_or">Exclusive Disjunction</a>, or Exclusive OR (<strong>XOR</strong>). The <strong>XOR</strong> operation is <strong>True</strong> if only one of the two variables is <strong>True</strong>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><span class="math notranslate nohighlight">\(a\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(b\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(a \oplus b\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><br></br></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The  <strong>XOR</strong> is a composite operation is because it can be expressed in terms of <strong>NOT</strong>, <strong>OR</strong> and <strong>AND</strong> operations as follows:</p>
+<div class="math notranslate nohighlight">
+\[ a \oplus b = (a \land \bar{b}) \lor (\bar{a} \land b) .\]</div>
+<p>However, when using binary values, the <strong>XOR</strong> operation is also equivalent to the addition operation modulo <span class="math notranslate nohighlight">\(2\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ a \oplus b = (a + b) \text{ mod } 2. \]</div>
+<p><br></br></p>
+<p>When dealing with binary numbers of more than one bit, we will assume Boolean logic operators act bitwise (i.e., on a bit-by-bit basis). So, for example, if we have two 3-bit numbers <span class="math notranslate nohighlight">\(a = a_2 a_1 a_0\)</span> and <span class="math notranslate nohighlight">\(b = b_2 b_1 b_0\)</span>, the operation <span class="math notranslate nohighlight">\(a \oplus b\)</span> represents the bitwise <strong>XOR</strong> between the two:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+c &amp;= a \oplus b
+\\
+c_2 c_1 c_0 &amp;= (a_2 a_1 a_0) \oplus (b_2 b_1 b_0) ,
+\end{aligned}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(c_i = a_i \oplus b_i\)</span>.</p>
+<p>The table below summarizes the bitwise operator symbols used in Python, followed by some examples:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Operator</p></th>
+<th class="head text-center"><p>Python</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>AND</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">&amp;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>OR</p></td>
+<td class="text-center"><p>`</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>XOR</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">^</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mb">0b11010</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mb">0b10110</span>
+
+<span class="n">c_and</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">binary_repr</span><span class="p">(</span><span class="n">a</span> <span class="o">&amp;</span> <span class="n">b</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1"># Bitwise AND: 11010 &amp; 10110 = 10010</span>
+<span class="n">c_or</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">binary_repr</span><span class="p">(</span><span class="n">a</span> <span class="o">|</span> <span class="n">b</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>   <span class="c1"># Bitwise OR:  11010 | 10110 = 11110</span>
+<span class="n">c_xor</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">binary_repr</span><span class="p">(</span><span class="n">a</span> <span class="o">^</span> <span class="n">b</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1"># Bitwise XOR: 11010 ^ 10110 = 01100</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a AND b = </span><span class="si">{</span><span class="n">c_and</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a OR  b = </span><span class="si">{</span><span class="n">c_or</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a XOR b = </span><span class="si">{</span><span class="n">c_xor</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a AND b = 10010
+a OR  b = 11110
+a XOR b = 01100
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>NOTE:</strong> Something very important to highlight is that, the Python logical operators <code class="docutils literal notranslate"><span class="pre">and</span></code> and <code class="docutils literal notranslate"><span class="pre">or</span></code> are <strong>not</strong> equivalent to the bitwise operators <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> and <code class="docutils literal notranslate"><span class="pre">^</span></code> when applied to binary integers of more than one bit. Understanding how these operators act on binary integers is irrelevant to the current discussion, but if you’re curious about it, you can check this <a class="reference external" href="https://stackoverflow.com/questions/49658308/how-does-the-logical-and-operator-work-with-integers">Stack Overflow post</a>.</p>
+</section>
+<section id="digital-circuits">
+<h2>3. Digital Circuits<a class="headerlink" href="#digital-circuits" title="Link to this heading">#</a></h2>
+<p>Digital circuits are a diagrammatic representation of Boolean logic operations that can be directly translated into a physical implementation using electronic hardware. Understanding circuits is of great interest to us because different computational problems can be mapped onto this model, facilitating their classification into different complexity classes by using <a class="reference external" href="https://en.wikipedia.org/wiki/Circuit_complexity">circuit complexity theory</a>. As we will see in later chapters, this approach is widely used to analyze the type of advantage quantum algorithms can offer over a classical approach.</p>
+<p>Classical circuits are constructed by interconnecting fundamental <a class="reference external" href="https://en.wikipedia.org/wiki/Boolean_algebra#Digital_logic_gates">logic gates</a> associated with the three basic Boolean operations: <strong>NOT</strong>, <strong>OR</strong>, <strong>AND</strong>. The figure below shows the gate symbols for these three operators (from left to right):</p>
+<img src="images/01_01_01_basic_logic_gates.png" align = "center" width="750"/>
+<p>Similarly, the <strong>XOR</strong> operator is so widely used that it has its own symbol, even though it can be constructed out of <strong>NOT</strong>, <strong>OR</strong> and <strong>AND</strong> gates:</p>
+<img src="images/01_01_02_xor.png" align = "center" width="180"/>
+<p>Another schematic simplification is to use a circle at the inputs or output of the binary gates to “absorb” a negation. For example, a <strong>AND</strong> / <strong>OR</strong> / <strong>XOR</strong> gate immediately followed by a <strong>NOT</strong> gate can be represented as:</p>
+<img src="images/01_01_03_negated_logic_gates.png" align = "center" width="790"/>
+<p>These three gates are common enough that receive the names <strong>NAND</strong> / <strong>NOR</strong> / <strong>XNOR</strong>.
+<br></br></p>
+<p>Using only these fundamental gates, we can then compose digital circuits for more complicated Boolean operations. For example, let’s say we want to construct a circuit that takes two bits <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, and an input carry <span class="math notranslate nohighlight">\(c_{in}\)</span>, and adds them into an output <span class="math notranslate nohighlight">\(s\)</span> and an output carry <span class="math notranslate nohighlight">\(c_{out}\)</span>. We can express this in the form of a truth table:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><span class="math notranslate nohighlight">\(a\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(b\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(c_{in}\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(s\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(c_{out}\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><br></br></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>It is not difficult to show that <span class="math notranslate nohighlight">\(s = a \oplus b \oplus c_{in}\)</span>, which is expected since the <strong>XOR</strong> operation is equivalent to  addition modulo <span class="math notranslate nohighlight">\(2\)</span>. Finding the expression for <span class="math notranslate nohighlight">\(c_{out}\)</span> is slightly more involved since it requires synthesizing a Boolean expression by using methods like the <a class="reference external" href="https://en.wikipedia.org/wiki/Disjunctive_normal_form#Conversion_to_DNF">sum of products conversion</a> or <a class="reference external" href="https://en.wikipedia.org/wiki/Karnaugh_map">Karnaugh maps</a>, which we will not cover here. It suffices to say that it can be shown that <span class="math notranslate nohighlight">\(c_{out} = ((a \oplus b) \land c_{in}) \lor (a \land b) \)</span>, which results in the circuit shown below:</p>
+<img src="images/01_01_04_adder.png" align = "center" width="420"/>
+<p>A concept that we have not yet discussed but is commonly utilized in circuit complexity analysis is that of the <strong>COPY</strong> or <strong>FAN-OUT</strong> operation. In the circuit above, we see that, for example, the variable <span class="math notranslate nohighlight">\(a\)</span> is used as an input on two separate gates. This variable was copied (or fanned-out) when a single wire turned into two separate ones:</p>
+<img src="images/01_01_05_fanout.png" align = "center" width="80"/>
+<p>From a schematic standpoint, this might seem trivial considering that this will only require connecting an additional wire. However, from the point of complexity analysis this is an important operation because, as we will see later, there is no equivalent to the <strong>COPY</strong> operation in quantum circuits.
+<br></br></p>
+<p>The key insight of being able to implement more complex Boolean circuits out of fundamental logic gates is that we can follow this process to construct all the building blocks of modern classical computing systems. Using only these gates, we can not only develop all the <a class="reference external" href="https://en.wikipedia.org/wiki/Combinational_logic">combinatorial logic</a> used to build, for example, the core <a class="reference external" href="https://en.wikipedia.org/wiki/Arithmetic_logic_unit">arithmetic logic unit (ALU)</a> in a <a class="reference external" href="https://en.wikipedia.org/wiki/Central_processing_unit">central processing unit (CPU)</a>, but also all <a class="reference external" href="https://en.wikipedia.org/wiki/Sequential_logic">sequential logic</a> (latches, flip-flops, registers) required to store and parse its data.</p>
+</section>
+<section id="physical-implementation-of-circuits">
+<h2>4. Physical Implementation of Circuits<a class="headerlink" href="#physical-implementation-of-circuits" title="Link to this heading">#</a></h2>
+<p>At a physical level, digital logic gates are not fundamental. Instead, they are implemented using transistors. The idea of this section is not to go into the details of how these devices work, but to provide some basic understanding on how they can be used to process Boolean information. This will later help us understand how quantum processors differ from classical devices at the hardware level.</p>
+<p>Most modern integrated circuits are implemented using what is known as <a class="reference external" href="https://en.wikipedia.org/wiki/CMOS">CMOS</a> technology, where CMOS stands for complementary metal–oxide–semiconductor. CMOS circuits are implemented using two types of transistors: <a class="reference external" href="https://en.wikipedia.org/wiki/Field-effect_transistor#n-channel_FET">NMOS</a> transistors, and <a class="reference external" href="https://en.wikipedia.org/wiki/Field-effect_transistor#p-channel_FET">PMOS</a> transistors. For the current discussion, all we need to know is that transistors work like switches with two possible states: <strong>ON</strong> or <strong>OFF</strong>. NMOS and PMOS transistors are complementary devices, meaning that the level of voltage that turns one of these devices <strong>ON</strong>, turns the other one <strong>OFF</strong>, and vice versa. This is best exemplified by looking at the circuit used to construct a <strong>NOT</strong> gate:</p>
+<img src="images/01_01_06_not_wi_transistors.png" align = "center" width="660"/>
+<p>In this circuit, every node can take one of two possible voltages, <span class="math notranslate nohighlight">\(+v\)</span> and <span class="math notranslate nohighlight">\(-v\)</span>, which we associate with a logical <span class="math notranslate nohighlight">\(1\)</span> and a logical <span class="math notranslate nohighlight">\(0\)</span>, respectively. When the input voltage <span class="math notranslate nohighlight">\(v_{in}\)</span> is equal to <span class="math notranslate nohighlight">\(+v\)</span> (logical <span class="math notranslate nohighlight">\(1\)</span>), the NMOS transistor turns <strong>ON</strong> and the PMOS transistor turns <strong>OFF</strong>. This creates a direct connection between the negative power supply at <span class="math notranslate nohighlight">\(-v\)</span> (logical <span class="math notranslate nohighlight">\(0\)</span>) and the output, therefore effectively <em>negating</em> the logical value of the input:</p>
+<img src="images/01_01_07_not_at_p.png" align = "center" width="180"/>
+<p>Similarly,  when the input voltage <span class="math notranslate nohighlight">\(v_{in}\)</span> is equal to <span class="math notranslate nohighlight">\(-v\)</span> (logical <span class="math notranslate nohighlight">\(0\)</span>), the PMOS transistor turns <strong>ON</strong> and the NMOS transistor turns <strong>OFF</strong>, creating a direct connection between the positive power supply at <span class="math notranslate nohighlight">\(+v\)</span> (logical <span class="math notranslate nohighlight">\(1\)</span>) and the output, once again <em>negating</em> the logical value of the input:</p>
+<img src="images/01_01_08_not_at_n.png" align = "center" width="180"/>
+<p>We can then use this same idea to construct other fundamental gates. For example, a <strong>NAND</strong> can be easily implemented using only 4 transistors:</p>
+<img src="images/01_01_09_nand_wi_transistors.png" align = "center" width="500"/>
+<p>Same is true for a <strong>NOR</strong> circuit. A good exercise is to verify that the circuit above does in fact implement the <strong>NAND</strong> operation, and then try to implement the circuit for a <strong>NOR</strong>.</p>
+<p>With these basic blocks, we can then interconnect them together to create any circuit we want. For example, we can implement an <strong>AND</strong> gate by connecting the input of a <strong>NOT</strong> circuit to the output of a <strong>NAND</strong> circuit:</p>
+<img src="images/01_01_10_and_wi_transistors.png" align = "center" width="620"/>
+<p>The main takeaway is that, at the hardware level, the binary values <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span> are nothing other than two discrete voltage levels (here denoted as <span class="math notranslate nohighlight">\(-v\)</span> and <span class="math notranslate nohighlight">\(+v\)</span>). Transistors can then be arranged in circuits where input voltages turn them <strong>ON</strong> and <strong>OFF</strong> (like switches). This in turn modifies the voltage of an output node in a way that the input/output relation corresponds to a logic operation.</p>
+<p>In the next chapter, we will continue to build our understanding towards quantum computing. An important step in this process is to introduce a different model of computation known as <a class="reference external" href="https://en.wikipedia.org/wiki/Reversible_computing">reversible computing</a>. This is an important step in this process because the physical implementation of quantum hardware relies on quantum mechanics, which in principle is a reversible theory and therefore its model of computation should be reversible too.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/01_classical_computing"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../00_getting_started/00_02_qiskit_config.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Configuring Qiskit</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="01_02_reversible_computing.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Reversible Computing</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-numbers">1. Binary Numbers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boolean-logic">2. Boolean Logic</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#digital-circuits">3. Digital Circuits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-implementation-of-circuits">4. Physical Implementation of Circuits</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Diego Emilio Serrano
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
