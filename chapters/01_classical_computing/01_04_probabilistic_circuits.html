@@ -57,7 +57,8 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/01_classical_computing/01_04_probabilistic_circuits';</script>
     <link rel="canonical" href="https://learn-quantum.github.io/lqc-textbook/chapters/01_classical_computing/01_04_probabilistic_circuits.html" />
     <link rel="icon" href="../../_static/LQC.ico"/>
@@ -467,7 +468,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="probabilistic-computing">
+  <section class="tex2jax_ignore mathjax_ignore" id="probabilistic-computing">
 <h1>Probabilistic Computing<a class="headerlink" href="#probabilistic-computing" title="Link to this heading">#</a></h1>
 <hr class="docutils" />
 <p>The field of probabilistic computing, where the concept of randomness is harnessed to enhance certain computations, is currently experiencing a resurgence driven by the explosion of machine learning and AI algorithms that exploit these effects. However, in the context of classical circuits, randomness is almost always associated with the unwanted effects from noise. Bits stored in magnetic drives can randomly flip when exposed to certain magnetic fields, a <strong>NOT</strong> gate could mistakenly invert its output if there’s a glitch in its power supply, and every so often, a cosmic ray particle can cause enough charge accumulation to modify values in memory.</p>
@@ -476,25 +477,29 @@ document.write(`
 <h2>1. Single-Bit Probabilistic Systems<a class="headerlink" href="#single-bit-probabilistic-systems" title="Link to this heading">#</a></h2>
 <section id="probabilistic-single-bit-states-p-bits">
 <h3>1.1 Probabilistic Single-Bit States (p-bits)<a class="headerlink" href="#probabilistic-single-bit-states-p-bits" title="Link to this heading">#</a></h3>
-<p>Let us start by considering the case of a noisy <strong>NOT</strong> gate that, whenever its input is supposed to be $0$, the output is either $0$ with probability of $1/4$, or a $1$ with probability of $3/4$. Physically, this model could describe a poorly-designed circuit where the stage preceding the <strong>NOT</strong> gate is not supplying low enough of a voltage, causing the gate to toggle down to $0$ every so often due to noise:</p>
-<a class="reference internal image-reference" href="../../_images/01_04_03_noisy_not.png"><img alt="../../_images/01_04_03_noisy_not.png" class="align-center" src="../../_images/01_04_03_noisy_not.png" style="width: 560px;" /></a>
-<p>We could represent the output state of uncertainty of this gate with a column vector, where the top element is the probability of the output being $0$, and the bottom element the probability of measuring a $1$:</p>
-<p>$$ \vec{p} = \begin{bmatrix} \frac{1}{4} \ \frac{3}{4} \end{bmatrix} .$$</p>
+<p>Let us start by considering the case of a noisy <strong>NOT</strong> gate that, whenever its input is supposed to be <span class="math notranslate nohighlight">\(0\)</span>, the output is either <span class="math notranslate nohighlight">\(0\)</span> with probability of <span class="math notranslate nohighlight">\(1/4\)</span>, or a <span class="math notranslate nohighlight">\(1\)</span> with probability of <span class="math notranslate nohighlight">\(3/4\)</span>. Physically, this model could describe a poorly-designed circuit where the stage preceding the <strong>NOT</strong> gate is not supplying low enough of a voltage, causing the gate to toggle down to <span class="math notranslate nohighlight">\(0\)</span> every so often due to noise:</p>
+<img src="images/01_04_03_noisy_not.png" align = "center" width="560"/>
+<p>We could represent the output state of uncertainty of this gate with a column vector, where the top element is the probability of the output being <span class="math notranslate nohighlight">\(0\)</span>, and the bottom element the probability of measuring a <span class="math notranslate nohighlight">\(1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \vec{p} = \begin{bmatrix} \frac{1}{4} \\ \frac{3}{4} \end{bmatrix} .\end{split}\]</div>
 <p>More generally, a probability vector can be expressed as:</p>
-<p>$$ \vec{p} = \begin{bmatrix} \varrho_{0} \ \varrho_{1} \end{bmatrix} ,$$</p>
-<p>where $\varrho_{0}$ and $\varrho_{1}$ represent the probabilities associated with the state being $0$ or $1$, respectively. Like all probabilities, these vector elements must meet the condition of being bounded between $0$ and $1$ (i.e., $\varrho_{0}, \varrho_{1} \in [0,1]$), and summing up to $1$ (i.e., $\varrho_{0} + \varrho_{1} = 1$).</p>
-<p>From a practical standpoint, this probability vector encodes information about how likely it is to <strong>measure</strong> a $0$ or a $1$ for a given p-bit. Going back to the example of our noisy gate, a measurement could consist of, for example, connecting the output of the gate to a register that stores its value every clock cycle. The register’s history will then look something like this:</p>
-<p>$$ {1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, \dots }, $$</p>
-<p>where for a large number of measurements $n$, the frequency of a given outcome ($n_0$ for $0$ or $n_1$ for $1$) with respect to the total number of outcomes approaches the expected probability ($\varrho_0$ or $\varrho_1$):</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[\begin{split} \vec{p} = \begin{bmatrix} \varrho_{0} \\ \varrho_{1} \end{bmatrix} ,\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\varrho_{0}\)</span> and <span class="math notranslate nohighlight">\(\varrho_{1}\)</span> represent the probabilities associated with the state being <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>, respectively. Like all probabilities, these vector elements must meet the condition of being bounded between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span> (i.e., <span class="math notranslate nohighlight">\(\varrho_{0}, \varrho_{1} \in [0,1]\)</span>), and summing up to <span class="math notranslate nohighlight">\(1\)</span> (i.e., <span class="math notranslate nohighlight">\(\varrho_{0} + \varrho_{1} = 1\)</span>).</p>
+<p>From a practical standpoint, this probability vector encodes information about how likely it is to <strong>measure</strong> a <span class="math notranslate nohighlight">\(0\)</span> or a <span class="math notranslate nohighlight">\(1\)</span> for a given p-bit. Going back to the example of our noisy gate, a measurement could consist of, for example, connecting the output of the gate to a register that stores its value every clock cycle. The register’s history will then look something like this:</p>
+<div class="math notranslate nohighlight">
+\[ \{1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, \dots \}, \]</div>
+<p>where for a large number of measurements <span class="math notranslate nohighlight">\(n\)</span>, the frequency of a given outcome (<span class="math notranslate nohighlight">\(n_0\)</span> for <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(n_1\)</span> for <span class="math notranslate nohighlight">\(1\)</span>) with respect to the total number of outcomes approaches the expected probability (<span class="math notranslate nohighlight">\(\varrho_0\)</span> or <span class="math notranslate nohighlight">\(\varrho_1\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{aligned}
 \lim_{n\to\infty}\frac{n_0}{n} &amp;= \varrho_0 = \frac{1}{4}
-\
-\
+\\
+\\
 \lim_{n\to\infty}\frac{n_1}{n} &amp;= \varrho_1 = \frac{3}{4}
 \end{aligned}
-$$</p>
-<p>Let’s take a look at how to simulate something like this in Python. We will define a probability vector, and sample $0$ or $1$ using its probability amplitudes. We will use <a class="reference external" href="https://matplotlib.org/">Matplotlib</a> to plot the results.</p>
+\end{split}\]</div>
+<p>Let’s take a look at how to simulate something like this in Python. We will define a probability vector, and sample <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> using its probability amplitudes. We will use <a class="reference external" href="https://matplotlib.org/">Matplotlib</a> to plot the results.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -587,73 +592,79 @@ For ϱ1 = 0.75 and 200 samples, the relative frequency of 1s is 0.77
 <a class="reference internal image-reference" href="../../_images/c95d54de917c3a58eb3af3a650b51a2e334b33fa750af598b5346ab9c7c3861a.png"><img alt="../../_images/c95d54de917c3a58eb3af3a650b51a2e334b33fa750af598b5346ab9c7c3861a.png" src="../../_images/c95d54de917c3a58eb3af3a650b51a2e334b33fa750af598b5346ab9c7c3861a.png" style="width: 411px; height: 311px;" /></a>
 </div>
 </div>
-<p>Now, note that unlike in the previous chapter, where we relabeled the bit vector $\vec{b}$ to use ket notation $|b\rangle$, here we have opted to denote our probability vector as $\vec{p}$. We’ve purposely done this to emphasize that there are some distinctions between some of the properties of p-bits and qubits. For instance, recall from that the magnitude of a real-valued vector is given by its Euclidean norm:</p>
-<p>$$ |\vec{p}| = \sqrt{\varrho_{0}^2 + \varrho_{1}^2} .$$</p>
-<p>And because probabilities must always add up to $1$, the length of our vector will actually changes depending on the values of $\varrho_{0}$ and $\varrho_{1}$. For example, for $\vec{p} = \begin{bmatrix} 1 \ 0 \end{bmatrix}$, we get $|\vec{p}| = 1$. On the other hand, if $\vec{p} = \begin{bmatrix} \frac{1}{4} \ \frac{3}{4} \end{bmatrix}$, then $|\vec{p}| \approx 0.79$. The dotted line in the figure below shows how the magnitude of the probability vector changes for different probability values:</p>
-<a class="reference internal image-reference" href="../../_images/01_04_01_prob_vec_length.png"><img alt="../../_images/01_04_01_prob_vec_length.png" class="align-center" src="../../_images/01_04_01_prob_vec_length.png" style="width: 200px;" /></a>
-<p>This is very different from what we will encounter for qubits, where for quantum vector $|\psi\rangle$ the sum of the each of its elements <strong>squared</strong> always adds up to $1$, which implies $|\psi| = 1$ for all $|\psi\rangle$. This is depicted below for the specific case of $\alpha_0, \alpha_1 \in [0,1]$.</p>
-<a class="reference internal image-reference" href="../../_images/01_04_02_prob_amps_vec_length.png"><img alt="../../_images/01_04_02_prob_amps_vec_length.png" class="align-center" src="../../_images/01_04_02_prob_amps_vec_length.png" style="width: 200px;" /></a>
-</section>
+<p>Now, note that unlike in the previous chapter, where we relabeled the bit vector <span class="math notranslate nohighlight">\(\vec{b}\)</span> to use ket notation <span class="math notranslate nohighlight">\(|b\rangle\)</span>, here we have opted to denote our probability vector as <span class="math notranslate nohighlight">\(\vec{p}\)</span>. We’ve purposely done this to emphasize that there are some distinctions between some of the properties of p-bits and qubits. For instance, recall from that the magnitude of a real-valued vector is given by its Euclidean norm:</p>
+<div class="math notranslate nohighlight">
+\[ \|\vec{p}\| = \sqrt{\varrho_{0}^2 + \varrho_{1}^2} .\]</div>
+<p>And because probabilities must always add up to <span class="math notranslate nohighlight">\(1\)</span>, the length of our vector will actually changes depending on the values of <span class="math notranslate nohighlight">\(\varrho_{0}\)</span> and <span class="math notranslate nohighlight">\(\varrho_{1}\)</span>. For example, for <span class="math notranslate nohighlight">\(\vec{p} = \begin{bmatrix} 1 \\ 0 \end{bmatrix}\)</span>, we get <span class="math notranslate nohighlight">\(\|\vec{p}\| = 1\)</span>. On the other hand, if <span class="math notranslate nohighlight">\(\vec{p} = \begin{bmatrix} \frac{1}{4} \\ \frac{3}{4} \end{bmatrix}\)</span>, then <span class="math notranslate nohighlight">\(\|\vec{p}\| \approx 0.79\)</span>. The dotted line in the figure below shows how the magnitude of the probability vector changes for different probability values:</p>
+<img src="images/01_04_01_prob_vec_length.png" align = "center" width="200"/>
+<p>This is very different from what we will encounter for qubits, where for quantum vector <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> the sum of the each of its elements <strong>squared</strong> always adds up to <span class="math notranslate nohighlight">\(1\)</span>, which implies <span class="math notranslate nohighlight">\(\|\psi\| = 1\)</span> for all <span class="math notranslate nohighlight">\(|\psi\rangle\)</span>. This is depicted below for the specific case of <span class="math notranslate nohighlight">\(\alpha_0, \alpha_1 \in [0,1]\)</span>.</p>
+<img src="images/01_04_02_prob_amps_vec_length.png" align = "center" width="200"/></section>
 <section id="probabilistic-single-bit-gates">
 <h3>1.2 Probabilistic Single-Bit Gates<a class="headerlink" href="#probabilistic-single-bit-gates" title="Link to this heading">#</a></h3>
-<p>Let’s reconsider the noisy <strong>NOT</strong> gate for which an input of $0$ results in an output of $0$ with probability $1/4$, and an output of $1$ with probability $3/4$. Now, let’s assume that when the input to this gate is $1$, the gate behaves just as expected. This means that its output is $0$ with probability of $1$, and $1$ with probability $0$. We could then construct a matrix $P$ that relates the inputs and outputs according to this relations:</p>
-<p>$$
+<p>Let’s reconsider the noisy <strong>NOT</strong> gate for which an input of <span class="math notranslate nohighlight">\(0\)</span> results in an output of <span class="math notranslate nohighlight">\(0\)</span> with probability <span class="math notranslate nohighlight">\(1/4\)</span>, and an output of <span class="math notranslate nohighlight">\(1\)</span> with probability <span class="math notranslate nohighlight">\(3/4\)</span>. Now, let’s assume that when the input to this gate is <span class="math notranslate nohighlight">\(1\)</span>, the gate behaves just as expected. This means that its output is <span class="math notranslate nohighlight">\(0\)</span> with probability of <span class="math notranslate nohighlight">\(1\)</span>, and <span class="math notranslate nohighlight">\(1\)</span> with probability <span class="math notranslate nohighlight">\(0\)</span>. We could then construct a matrix <span class="math notranslate nohighlight">\(P\)</span> that relates the inputs and outputs according to this relations:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{aligned}
-\begin{bmatrix} 1 \ 0 \end{bmatrix} &amp;\xrightarrow{; ; P ; ;} \begin{bmatrix} \frac{1}{4} \ \frac{3}{4} \end{bmatrix}
-\
-\
-\begin{bmatrix} 0 \ 1 \end{bmatrix} &amp;\xrightarrow{; ; P ; ;} \begin{bmatrix} 1 \ 0 \end{bmatrix}
+\begin{bmatrix} 1 \\ 0 \end{bmatrix} &amp;\xrightarrow{\; \; P \; \;} \begin{bmatrix} \frac{1}{4} \\ \frac{3}{4} \end{bmatrix}
+\\
+\\
+\begin{bmatrix} 0 \\ 1 \end{bmatrix} &amp;\xrightarrow{\; \; P \; \;} \begin{bmatrix} 1 \\ 0 \end{bmatrix}
 \end{aligned}
-$$</p>
-<p>Allowing $P$ to be a general matrix with elements $\rho_{ij}$, we can write the first of these relations as:</p>
-<p>$$
+\end{split}\]</div>
+<p>Allowing <span class="math notranslate nohighlight">\(P\)</span> to be a general matrix with elements <span class="math notranslate nohighlight">\(\rho_{ij}\)</span>, we can write the first of these relations as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{aligned}
-\begin{bmatrix} \frac{1}{4} \ \frac{3}{4} \end{bmatrix} &amp;=
-\begin{bmatrix} \rho_{00} &amp; \rho_{01} \ \rho_{10} &amp; \rho_{11} \end{bmatrix} \begin{bmatrix} 1 \ 0 \end{bmatrix}
-\
-\
-\begin{bmatrix} \frac{1}{4} \ \frac{3}{4} \end{bmatrix} &amp;= \begin{bmatrix} \rho_{00} \ \rho_{10} \end{bmatrix},
+\begin{bmatrix} \frac{1}{4} \\ \frac{3}{4} \end{bmatrix} &amp;= 
+\begin{bmatrix} \rho_{00} &amp; \rho_{01} \\ \rho_{10} &amp; \rho_{11} \end{bmatrix} \begin{bmatrix} 1 \\ 0 \end{bmatrix}
+\\
+\\
+\begin{bmatrix} \frac{1}{4} \\ \frac{3}{4} \end{bmatrix} &amp;= \begin{bmatrix} \rho_{00} \\ \rho_{10} \end{bmatrix},
 \end{aligned}
-$$</p>
-<p>which implies $\rho_{00} = \frac{1}{4}$ and $\rho_{10} = \frac{3}{4}$. Similarly, for the second relation:</p>
-<p>$$
+\end{split}\]</div>
+<p>which implies <span class="math notranslate nohighlight">\(\rho_{00} = \frac{1}{4}\)</span> and <span class="math notranslate nohighlight">\(\rho_{10} = \frac{3}{4}\)</span>. Similarly, for the second relation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{aligned}
-\begin{bmatrix} 1 \ 0 \end{bmatrix} &amp;=
-\begin{bmatrix} \rho_{00} &amp; \rho_{01} \ \rho_{10} &amp; \rho_{11} \end{bmatrix} \begin{bmatrix} 0 \ 1 \end{bmatrix}
-\
-\
-\begin{bmatrix} 1 \ 0 \end{bmatrix} &amp;= \begin{bmatrix} \rho_{01} \ \rho_{11} \end{bmatrix},
+\begin{bmatrix} 1 \\ 0 \end{bmatrix} &amp;= 
+\begin{bmatrix} \rho_{00} &amp; \rho_{01} \\ \rho_{10} &amp; \rho_{11} \end{bmatrix} \begin{bmatrix} 0 \\ 1 \end{bmatrix}
+\\
+\\
+\begin{bmatrix} 1 \\ 0 \end{bmatrix} &amp;= \begin{bmatrix} \rho_{01} \\ \rho_{11} \end{bmatrix},
 \end{aligned}
-$$</p>
-<p>resulting in $\rho_{01} = 1$ and $\rho_{11} = 0$. We can then put together the matrix:</p>
-<p>$$ P = \begin{bmatrix} \frac{1}{4} &amp; 1 \ \frac{3}{4} &amp; 0 \end{bmatrix} $$</p>
-<p>The most important thing to note about these probability matrices is that their corresponding inverse matrix $P^{-1}$ is not physically implementable. This means that we cannot associate them with any sort of reversible gates like the ones we presented in previous chapters for deterministic circuits. Intuitively, this makes sense since probabilities are a measure of uncertainty; therefore, it doesn’t make sense to think that the effect of a gate that introduces randomness could be “canceled out” by some other probabilistic gate. Let us, for example, look at the inverse matrix of the example above:</p>
-<p>$$
+\end{split}\]</div>
+<p>resulting in <span class="math notranslate nohighlight">\(\rho_{01} = 1\)</span> and <span class="math notranslate nohighlight">\(\rho_{11} = 0\)</span>. We can then put together the matrix:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} P = \begin{bmatrix} \frac{1}{4} &amp; 1 \\ \frac{3}{4} &amp; 0 \end{bmatrix} \end{split}\]</div>
+<p>The most important thing to note about these probability matrices is that their corresponding inverse matrix <span class="math notranslate nohighlight">\(P^{-1}\)</span> is not physically implementable. This means that we cannot associate them with any sort of reversible gates like the ones we presented in previous chapters for deterministic circuits. Intuitively, this makes sense since probabilities are a measure of uncertainty; therefore, it doesn’t make sense to think that the effect of a gate that introduces randomness could be “canceled out” by some other probabilistic gate. Let us, for example, look at the inverse matrix of the example above:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{aligned}
-P^{-1} &amp;= \frac{1}{\rho_{00}\rho_{11} - \rho_{01}\rho_{10}} \begin{bmatrix} \phantom{-}\rho_{11} &amp; -\rho_{01} \ -\rho_{10} &amp; \phantom{-}\rho_{00} \end{bmatrix}
-\
-\
-P^{-1} &amp;= \frac{1}{\frac{1}{4} \times 0 - 1 \times \frac{3}{4}} \begin{bmatrix} \phantom{-}0 &amp; -1 \ -\frac{3}{4} &amp; \phantom{-}\frac{1}{4} \end{bmatrix}
-\
-\
-P^{-1} &amp;= \begin{bmatrix} 0 &amp; \phantom{-}\frac{4}{3} \ 1 &amp; -\frac{1}{3} \end{bmatrix}
+P^{-1} &amp;= \frac{1}{\rho_{00}\rho_{11} - \rho_{01}\rho_{10}} \begin{bmatrix} \phantom{-}\rho_{11} &amp; -\rho_{01} \\ -\rho_{10} &amp; \phantom{-}\rho_{00} \end{bmatrix}
+\\
+\\
+P^{-1} &amp;= \frac{1}{\frac{1}{4} \times 0 - 1 \times \frac{3}{4}} \begin{bmatrix} \phantom{-}0 &amp; -1 \\ -\frac{3}{4} &amp; \phantom{-}\frac{1}{4} \end{bmatrix}
+\\
+\\
+P^{-1} &amp;= \begin{bmatrix} 0 &amp; \phantom{-}\frac{4}{3} \\ 1 &amp; -\frac{1}{3} \end{bmatrix}
 \end{aligned}
-$$</p>
-<p>The issue with $P^{-1}$ is that its entries must all be values between $0$ and $1$ since they should correspond to probabilities; and here, the entry $ -\frac{1}{3}$ clearly is not. As we will see in the next chapters, this is a major distinction with respect to the matrices associated with quantum circuits, which are always invertible.</p>
-<p>In spite of this drawback, one very nice properties of p-bits is that deterministic reversible circuits do transform probability vectors in the correct manner. In the case of the $\text{X}$ gate, we can see that when applied to a p-bit, the order of the probabilities in the vector gets flipped:</p>
-<p>$$
+\end{split}\]</div>
+<p>The issue with <span class="math notranslate nohighlight">\(P^{-1}\)</span> is that its entries must all be values between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span> since they should correspond to probabilities; and here, the entry <span class="math notranslate nohighlight">\( -\frac{1}{3}\)</span> clearly is not. As we will see in the next chapters, this is a major distinction with respect to the matrices associated with quantum circuits, which are always invertible.</p>
+<p>In spite of this drawback, one very nice properties of p-bits is that deterministic reversible circuits do transform probability vectors in the correct manner. In the case of the <span class="math notranslate nohighlight">\(\text{X}\)</span> gate, we can see that when applied to a p-bit, the order of the probabilities in the vector gets flipped:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{aligned}
-\vec{p}<em>{out} &amp;= \text{X } \vec{p}</em>{in}
-\
-\
-\vec{p}<em>{out} &amp;= \begin{bmatrix} 0 &amp; 1 \ 1 &amp; 0 \end{bmatrix} \begin{bmatrix} \varrho</em>{0} \ \varrho_{1} \end{bmatrix}
-\
-\
-\vec{p}<em>{out} &amp;= \begin{bmatrix} \varrho</em>{1} \ \varrho_{0} \end{bmatrix}.
+\vec{p}_{out} &amp;= \text{X } \vec{p}_{in}
+\\
+\\
+\vec{p}_{out} &amp;= \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix} \begin{bmatrix} \varrho_{0} \\ \varrho_{1} \end{bmatrix}
+\\
+\\
+\vec{p}_{out} &amp;= \begin{bmatrix} \varrho_{1} \\ \varrho_{0} \end{bmatrix}.
 \end{aligned}
-$$</p>
-<p>This makes complete sense if we consider, for example, passing through an $\text{X}$ gate a sequence of values that have probability $\varrho_0$ of being in state $0$ and $\varrho_1$ of being in state $1$ . The output will then correspond to the inverted version of that sequence, which will then have opposite probabilities for each of the states:</p>
-<a class="reference internal image-reference" href="../../_images/01_04_04_pbit_thru_x_gate.png"><img alt="../../_images/01_04_04_pbit_thru_x_gate.png" class="align-center" src="../../_images/01_04_04_pbit_thru_x_gate.png" style="width: 440px;" /></a>
+\end{split}\]</div>
+<p>This makes complete sense if we consider, for example, passing through an <span class="math notranslate nohighlight">\(\text{X}\)</span> gate a sequence of values that have probability <span class="math notranslate nohighlight">\(\varrho_0\)</span> of being in state <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(\varrho_1\)</span> of being in state <span class="math notranslate nohighlight">\(1\)</span> . The output will then correspond to the inverted version of that sequence, which will then have opposite probabilities for each of the states:</p>
+<img src="images/01_04_04_pbit_thru_x_gate.png" align = "center" width="440"/>
 <p>This also generalizes to multi-bit reversible gates, as we will see in the next section. It is also worth noting that the construction of <a class="reference external" href="https://arxiv.org/pdf/1809.04028">invertible p-bit gates</a> is not trivial, but there have been some recent efforts to develop such technology.</p>
 </section>
 </section>
@@ -662,51 +673,58 @@ $$</p>
 <section id="probabilistic-multi-bit-states">
 <h3>2.1 Probabilistic Multi-Bit States<a class="headerlink" href="#probabilistic-multi-bit-states" title="Link to this heading">#</a></h3>
 <p>A nice property of probability vectors is that, for the case of statistically-independent p-bits, we can still use the Kronecker product to construct the vector that describes a larger system. For example, take the following two p-bits:</p>
-<p>$$
-\vec{p}_0 = \begin{bmatrix} \frac{1}{4} \ \frac{3}{4} \end{bmatrix} \qquad
-\vec{p}_1 = \begin{bmatrix} \frac{2}{3} \ \frac{1}{3} \end{bmatrix}
-$$</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\vec{p}_0 = \begin{bmatrix} \frac{1}{4} \\ \frac{3}{4} \end{bmatrix} \qquad 
+\vec{p}_1 = \begin{bmatrix} \frac{2}{3} \\ \frac{1}{3} \end{bmatrix}
+\end{split}\]</div>
 <p>The composite system will have a probability vector given by:</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[\begin{split} 
 \begin{aligned}
 \vec{p} &amp;= \vec{p}_1  \otimes \vec{p}_0
-\
-\
-\vec{p} &amp;= \begin{bmatrix} \frac{2}{3} \ \frac{1}{3} \end{bmatrix} \otimes
-\begin{bmatrix} \frac{1}{4} \ \frac{3}{4} \end{bmatrix}
-\
-\
-\vec{p} &amp;= \begin{bmatrix} \frac{1}{6} \ \frac{1}{2} \ \frac{1}{12} \ \frac{1}{4} \end{bmatrix} .
+\\
+\\
+\vec{p} &amp;= \begin{bmatrix} \frac{2}{3} \\ \frac{1}{3} \end{bmatrix} \otimes 
+           \begin{bmatrix} \frac{1}{4} \\ \frac{3}{4} \end{bmatrix}
+\\
+\\
+\vec{p} &amp;= \begin{bmatrix} \frac{1}{6} \\ \frac{1}{2} \\ \frac{1}{12} \\ \frac{1}{4} \end{bmatrix} .
 \end{aligned}
-$$</p>
-<p>What this is implies is that, the corresponding probabilities of measuring the four possible p-bit states $\left{00, 01, 10, 11 \right}$ are given by $\left{\frac{1}{6}, \frac{1}{2}, \frac{1}{12}, \frac{1}{4}\right}$, respectively.</p>
+\end{split}\]</div>
+<p>What this is implies is that, the corresponding probabilities of measuring the four possible p-bit states <span class="math notranslate nohighlight">\(\left\{00, 01, 10, 11 \right\}\)</span> are given by <span class="math notranslate nohighlight">\(\left\{\frac{1}{6}, \frac{1}{2}, \frac{1}{12}, \frac{1}{4}\right\}\)</span>, respectively.</p>
 <p>In general:</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[\begin{split} 
 \begin{aligned}
-\vec{p} &amp;= \vec{p}_{n-1} \otimes , … \otimes , \vec{p}<em>1 \otimes \vec{p}<em>0,
-\
-\
-\vec{p} &amp;= \bigotimes</em>{i=1}^{n} \vec{p}</em>{n-i}.
+\vec{p} &amp;= \vec{p}_{n-1} \otimes \, ... \otimes \, \vec{p}_1 \otimes \vec{p}_0, 
+\\
+\\
+\vec{p} &amp;= \bigotimes_{i=1}^{n} \vec{p}_{n-i}.
 \end{aligned}
-$$</p>
-<p>And since each $\vec{p}_{i}$ is of dimension $2$, the dimension of $\vec{p}$ will be $N = 2^n$ and can be written as:</p>
-<p>$$\vec{p} = \begin{bmatrix} \varrho_0 \ \varrho_1 \ \varrho_2 \ \vdots \ \varrho_{N - 1} \end{bmatrix}, $$</p>
-<p>where each  $\varrho_j \in [0,1]$, and must meet the condition that probabilities need to add up to $1$:</p>
-<p>$$\sum_{j = 0}^{N-1} \varrho_j = 1$$</p>
+\end{split}\]</div>
+<p>And since each <span class="math notranslate nohighlight">\(\vec{p}_{i}\)</span> is of dimension <span class="math notranslate nohighlight">\(2\)</span>, the dimension of <span class="math notranslate nohighlight">\(\vec{p}\)</span> will be <span class="math notranslate nohighlight">\(N = 2^n\)</span> and can be written as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{p} = \begin{bmatrix} \varrho_0 \\ \varrho_1 \\ \varrho_2 \\ \vdots \\ \varrho_{N - 1} \end{bmatrix}, \end{split}\]</div>
+<p>where each  <span class="math notranslate nohighlight">\(\varrho_j \in [0,1]\)</span>, and must meet the condition that probabilities need to add up to <span class="math notranslate nohighlight">\(1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\sum_{j = 0}^{N-1} \varrho_j = 1\]</div>
 </section>
 <section id="probabilistic-multi-bit-gates">
 <h3>2.2 Probabilistic Multi-Bit Gates<a class="headerlink" href="#probabilistic-multi-bit-gates" title="Link to this heading">#</a></h3>
 <p>Just like with probability vectors, we can use the Kronecker product on single p-bit probability matrices to represent lager systems. In general:</p>
-<p>$$ P = P_{n-1} \otimes \dots \otimes P_1 \otimes P_0, $$</p>
-<p>where each $P_i$ is a $2 \times 2$ matrix acting on a single p-bit. Let’s take for example the case of the deterministic $\text{X}$ gate acting on p-bit $\vec{p}_0$ and a probability matrix $R$ acting on $\vec{p}_1$ that represents a circuit whose output is always $0$ or $1$ with probability of $1/2$ independent of the input. The overall matrix for this system is given by:</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[ P = P_{n-1} \otimes \dots \otimes P_1 \otimes P_0, \]</div>
+<p>where each <span class="math notranslate nohighlight">\(P_i\)</span> is a <span class="math notranslate nohighlight">\(2 \times 2\)</span> matrix acting on a single p-bit. Let’s take for example the case of the deterministic <span class="math notranslate nohighlight">\(\text{X}\)</span> gate acting on p-bit <span class="math notranslate nohighlight">\(\vec{p}_0\)</span> and a probability matrix <span class="math notranslate nohighlight">\(R\)</span> acting on <span class="math notranslate nohighlight">\(\vec{p}_1\)</span> that represents a circuit whose output is always <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> with probability of <span class="math notranslate nohighlight">\(1/2\)</span> independent of the input. The overall matrix for this system is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
 \begin{aligned}
-P &amp;= R \otimes X
-\
-\
-P &amp;= \begin{bmatrix} \frac{1}{2} &amp; \frac{1}{2} \ \frac{1}{2} &amp; \frac{1}{2} \end{bmatrix} \otimes \begin{bmatrix} 0 &amp; 1 \ 1 &amp; 0 \end{bmatrix}
+P &amp;= R \otimes X 
+\\
+\\
+P &amp;= \begin{bmatrix} \frac{1}{2} &amp; \frac{1}{2} \\ \frac{1}{2} &amp; \frac{1}{2} \end{bmatrix} \otimes \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix}
 \end{aligned}
-$$</p>
+\end{split}\]</div>
 <p>Let’s use Python to calculate the overall matrix for the system:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -726,7 +744,7 @@ $$</p>
 \[\begin{split}\displaystyle \left[\begin{matrix}0 &amp; 0.5 &amp; 0 &amp; 0.5\\0.5 &amp; 0 &amp; 0.5 &amp; 0\\0 &amp; 0.5 &amp; 0 &amp; 0.5\\0.5 &amp; 0 &amp; 0.5 &amp; 0\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
-<p>From this result, it is not entirely obvious that the system should act deterministically on $\vec{p}_0$ and randomly on $\vec{p}_1$, so let us, for example, pass an input where both p-bits are $0$. We should see a vector at the output that represents $\vec{p}_0$ being $1$ and $\vec{p}_1$ being $0$ or $1$ each with probability of $1/2$:</p>
+<p>From this result, it is not entirely obvious that the system should act deterministically on <span class="math notranslate nohighlight">\(\vec{p}_0\)</span> and randomly on <span class="math notranslate nohighlight">\(\vec{p}_1\)</span>, so let us, for example, pass an input where both p-bits are <span class="math notranslate nohighlight">\(0\)</span>. We should see a vector at the output that represents <span class="math notranslate nohighlight">\(\vec{p}_0\)</span> being <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(\vec{p}_1\)</span> being <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> each with probability of <span class="math notranslate nohighlight">\(1/2\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># vectors for p0 and p1 being equal to 0</span>
@@ -759,7 +777,7 @@ $$</p>
 \[\begin{split}\displaystyle \left[\begin{matrix}0\\0.5\\0\\0.5\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
-<p>What this vector represents is finding the total system in state $01$ with probability of $1/2$ and state $11$ with probability of $1/2$, which means the p-bit corresponding to $\vec{p}_0$ is always $1$ as expected, and $\vec{p}_1$ is $0$ or $1$ with probability $1/2$, as expected. We can do this for inputs where the p-bits are not deterministic, and also check that the math still works.</p>
+<p>What this vector represents is finding the total system in state <span class="math notranslate nohighlight">\(01\)</span> with probability of <span class="math notranslate nohighlight">\(1/2\)</span> and state <span class="math notranslate nohighlight">\(11\)</span> with probability of <span class="math notranslate nohighlight">\(1/2\)</span>, which means the p-bit corresponding to <span class="math notranslate nohighlight">\(\vec{p}_0\)</span> is always <span class="math notranslate nohighlight">\(1\)</span> as expected, and <span class="math notranslate nohighlight">\(\vec{p}_1\)</span> is <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> with probability <span class="math notranslate nohighlight">\(1/2\)</span>, as expected. We can do this for inputs where the p-bits are not deterministic, and also check that the math still works.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># p0 is a vector with probabilities 2/3 and 1/3 for 0 and 1</span>
@@ -796,13 +814,14 @@ $$</p>
 \[\begin{split}\displaystyle \left[\begin{matrix}0.1667\\0.3333\\0.1667\\0.3333\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
-<p>This vector implies that the probability of finding state $00$ is $1/6$. This checks out because we initialized $\vec{p}_0$ to be $1$ with probability $1/3$, so after applying the $\text{X}$ gate, the output state should be $0$ with probability of $1/3$. In the case of $\vec{p}_1$, we always get $0$ with probability $1/2$ independent of the input, so the probability of finding $00$ is $1/3 \times 1/2 = 1/6$.</p>
-<p>It is also possible to construct multi p-bit matrices that cannot be expressed as the Kronecker product of individual p-bit matrices. These matrices are known as <a class="reference external" href="https://en.wikipedia.org/wiki/Stochastic_matrix">stochastic matrices</a> and represent the transition from one possible state of a system to another, where the future state of a single p-bit depends on the previous state of all other p-bits in the system. For instance, the matrix below represents a system where the state of p-bit $\vec{p}_0$ will remain unchanged if $\vec{p}_1$ is in state $0$, but will randomize $\vec{p}_0$ if $\vec{p}_1$ is in state $1$. It turns out, we cannot decompose this matrix into a Kronecker product of separate single p-bit matrices because the results of the state of a p-bit depend on the state of the other.</p>
-<p>$$ P = \begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \
-0 &amp; 1 &amp; 0 &amp; 0 \
-0 &amp; 0 &amp; \frac{1}{2} &amp; \frac{1}{2} \
-0 &amp; 0 &amp; \frac{1}{2} &amp; \frac{1}{2} \end{bmatrix}$$</p>
-<p>Let’s check the output state for when the input is $10$:</p>
+<p>This vector implies that the probability of finding state <span class="math notranslate nohighlight">\(00\)</span> is <span class="math notranslate nohighlight">\(1/6\)</span>. This checks out because we initialized <span class="math notranslate nohighlight">\(\vec{p}_0\)</span> to be <span class="math notranslate nohighlight">\(1\)</span> with probability <span class="math notranslate nohighlight">\(1/3\)</span>, so after applying the <span class="math notranslate nohighlight">\(\text{X}\)</span> gate, the output state should be <span class="math notranslate nohighlight">\(0\)</span> with probability of <span class="math notranslate nohighlight">\(1/3\)</span>. In the case of <span class="math notranslate nohighlight">\(\vec{p}_1\)</span>, we always get <span class="math notranslate nohighlight">\(0\)</span> with probability <span class="math notranslate nohighlight">\(1/2\)</span> independent of the input, so the probability of finding <span class="math notranslate nohighlight">\(00\)</span> is <span class="math notranslate nohighlight">\(1/3 \times 1/2 = 1/6\)</span>.</p>
+<p>It is also possible to construct multi p-bit matrices that cannot be expressed as the Kronecker product of individual p-bit matrices. These matrices are known as <a class="reference external" href="https://en.wikipedia.org/wiki/Stochastic_matrix">stochastic matrices</a> and represent the transition from one possible state of a system to another, where the future state of a single p-bit depends on the previous state of all other p-bits in the system. For instance, the matrix below represents a system where the state of p-bit <span class="math notranslate nohighlight">\(\vec{p}_0\)</span> will remain unchanged if <span class="math notranslate nohighlight">\(\vec{p}_1\)</span> is in state <span class="math notranslate nohighlight">\(0\)</span>, but will randomize <span class="math notranslate nohighlight">\(\vec{p}_0\)</span> if <span class="math notranslate nohighlight">\(\vec{p}_1\)</span> is in state <span class="math notranslate nohighlight">\(1\)</span>. It turns out, we cannot decompose this matrix into a Kronecker product of separate single p-bit matrices because the results of the state of a p-bit depend on the state of the other.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} P = \begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\ 
+                       0 &amp; 1 &amp; 0 &amp; 0 \\ 
+                       0 &amp; 0 &amp; \frac{1}{2} &amp; \frac{1}{2} \\ 
+                       0 &amp; 0 &amp; \frac{1}{2} &amp; \frac{1}{2} \end{bmatrix}\end{split}\]</div>
+<p>Let’s check the output state for when the input is <span class="math notranslate nohighlight">\(10\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize p0 in 0 and p1 in 1:</span>
@@ -832,9 +851,9 @@ $$</p>
 \[\begin{split}\displaystyle \left[\begin{matrix}0\\0\\0.5\\0.5\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
-<p>This shows that, when $\vec{p}_1$ is $1$, the output is $10$ and $11$ each with probability of $1/2$, which means $\vec{p}_1$ remains unchanged, but $\vec{p}_0$ went from being $0$ to being $0$ or $1$ with equal probability.</p>
-<p>Now, just like with single p-bit probability matrices, stochastic matrices in general are non-invertible, so they do not represent reversible circuits. But as mentioned before, when p-bits are applied to deterministic reversible matrices, their states do get inverted correctly. For instance, let’s look at a general 4 p-bit vector, and pass it through a circuit given by the matrix $Q = (X \otimes I) ; \text{CX}$, and then through the circuit corresponding to $Q^{-1}$:</p>
-<a class="reference internal image-reference" href="../../_images/01_04_05_pbit_thru_circuit.png"><img alt="../../_images/01_04_05_pbit_thru_circuit.png" class="align-center" src="../../_images/01_04_05_pbit_thru_circuit.png" style="width: 220px;" /></a>
+<p>This shows that, when <span class="math notranslate nohighlight">\(\vec{p}_1\)</span> is <span class="math notranslate nohighlight">\(1\)</span>, the output is <span class="math notranslate nohighlight">\(10\)</span> and <span class="math notranslate nohighlight">\(11\)</span> each with probability of <span class="math notranslate nohighlight">\(1/2\)</span>, which means <span class="math notranslate nohighlight">\(\vec{p}_1\)</span> remains unchanged, but <span class="math notranslate nohighlight">\(\vec{p}_0\)</span> went from being <span class="math notranslate nohighlight">\(0\)</span> to being <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> with equal probability.</p>
+<p>Now, just like with single p-bit probability matrices, stochastic matrices in general are non-invertible, so they do not represent reversible circuits. But as mentioned before, when p-bits are applied to deterministic reversible matrices, their states do get inverted correctly. For instance, let’s look at a general 4 p-bit vector, and pass it through a circuit given by the matrix <span class="math notranslate nohighlight">\(Q = (X \otimes I) \; \text{CX}\)</span>, and then through the circuit corresponding to <span class="math notranslate nohighlight">\(Q^{-1}\)</span>:</p>
+<img src="images/01_04_05_pbit_thru_circuit.png" align = "center" width="220"/>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define general input probability vector</span>
@@ -923,7 +942,7 @@ $$</p>
 \[\begin{split}\displaystyle \left[\begin{matrix}ϱ_{0}\\ϱ_{1}\\ϱ_{2}\\ϱ_{3}\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
-<p>As can be seen, after applying $Q^{-1}$, we recovered the original vector. This is because the matrices that represent deterministic reversible circuits are <a class="reference external" href="https://en.wikipedia.org/wiki/Permutation_matrix">permutation matrices</a> that simply change the order of the elements of the vectors they act on. And applying the inverse simply places the elements back into their original order.</p>
+<p>As can be seen, after applying <span class="math notranslate nohighlight">\(Q^{-1}\)</span>, we recovered the original vector. This is because the matrices that represent deterministic reversible circuits are <a class="reference external" href="https://en.wikipedia.org/wiki/Permutation_matrix">permutation matrices</a> that simply change the order of the elements of the vectors they act on. And applying the inverse simply places the elements back into their original order.</p>
 <p>Now that we have an understanding of deterministic and probabilistic classical systems, we can dive into the world of quantum systems. In the next chapter we will introduce these ideas, and highlight how they differ from what we have discuss so far.</p>
 </section>
 </section>
