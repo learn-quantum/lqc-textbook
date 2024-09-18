@@ -27,25 +27,32 @@ execute:
   allow_errors: false # If `False`, when a code cell raises an error the execution is stopped, otherwise all cells are always run.
   stderr_output: show # One of 'show', 'remove', 'remove-warn', 'warn', 'error', 'severe'
 
-launch_buttons:
-  colab_url: "https://colab.research.google.com"
-  notebook_interface: "jupyterlab"
-  binderhub_url: "https://mybinder.org"
+#launch_buttons:
+  #colab_url: "https://colab.research.google.com"
+  #notebook_interface: "jupyterlab"
+  #binderhub_url: "https://mybinder.org"
 
 # Information about where the book exists on the web
 repository:
-  url: https://github.com/diemilio/lqc-textbook # Online location of your book
+  url: https://github.com/learn-quantum/lqc-textbook # Online location of your book
   # path_to_book: docs # Optional path to your book, relative to the repository root
   branch: main # Which branch of the repository should be used when creating links (optional)
+
+# Parse and render settings
+parse:
+  myst_enable_extensions:
+    # don't forget to list any other extensions you want enabled,
+    # including those that are enabled by default! See here: https://jupyterbook.org/en/stable/customize/config.html
+    - html_image
 
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
 html:
   favicon: "LQC.ico"
-  baseurl: https://diemilio.github.io/lqc-textbook # The base URL where your book will be hosted.
+  baseurl: https://learn-quantum.github.io/lqc-textbook # The base URL where your book will be hosted.
   use_repository_button: true
   use_issues_button: true
-  use_edit_page_button: true
+  use_edit_page_button: false
   use_download_button: true
   # thebe: true
   # google_analytics_id: G-XXXXXXX
@@ -55,7 +62,7 @@ sphinx:
     # html_extra_path: ["CNAME", "robots.txt"]
     html_theme_options:
       use_download_button: true
-      repository_url: https://github.com/diemilio/lqc-textbook
+      repository_url: https://github.com/learn-quantum/lqc-textbook
       use_issues_button: true
       use_repository_button: true
       use_edit_page_button: true
@@ -65,7 +72,6 @@ sphinx:
           colab_url: "https://colab.research.google.com",
         }
     bibtex_reference_style: author_year
-
 
 # Define the name of the latex output file for PDF builds
 # latex:
