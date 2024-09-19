@@ -3,7 +3,7 @@
 format: jb-book
 root: index
 parts:
-  - caption: About the Textbook
+  - caption: Getting Started
     #numbered: true
     maxdepth: 3
     chapters:
