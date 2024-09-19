@@ -258,23 +258,6 @@
       
       
       
-      <li><a href="https://github.com/learn-quantum/lqc-textbook/edit/main/chapters/01_classical_computing/01_01_digital_logic.ipynb" target="_blank"
-   class="btn btn-sm btn-source-edit-button dropdown-item"
-   title="Suggest edit"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-pencil-alt"></i>
-  </span>
-<span class="btn__text-container">Suggest edit</span>
-</a>
-</li>
-      
-      
-      
-      
       <li><a href="https://github.com/learn-quantum/lqc-textbook/issues/new?title=Issue%20on%20page%20%2Fchapters/01_classical_computing/01_01_digital_logic.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
@@ -934,11 +917,11 @@ a XOR b = 01100
 <h2>3. Digital Circuits<a class="headerlink" href="#digital-circuits" title="Link to this heading">#</a></h2>
 <p>Digital circuits are a diagrammatic representation of Boolean logic operations that can be directly translated into a physical implementation using electronic hardware. Understanding circuits is of great interest to us because different computational problems can be mapped onto this model, facilitating their classification into different complexity classes by using <a class="reference external" href="https://en.wikipedia.org/wiki/Circuit_complexity">circuit complexity theory</a>. As we will see in later chapters, this approach is widely used to analyze the type of advantage quantum algorithms can offer over a classical approach.</p>
 <p>Classical circuits are constructed by interconnecting fundamental <a class="reference external" href="https://en.wikipedia.org/wiki/Boolean_algebra#Digital_logic_gates">logic gates</a> associated with the three basic Boolean operations: <strong>NOT</strong>, <strong>OR</strong>, <strong>AND</strong>. The figure below shows the gate symbols for these three operators (from left to right):</p>
-<img src="images/01_01_01_basic_logic_gates.png" align = "center" width="750"/>
+<a class="reference internal image-reference" href="../../_images/01_01_01_basic_logic_gates.png"><img alt="../../_images/01_01_01_basic_logic_gates.png" class="align-center" src="../../_images/01_01_01_basic_logic_gates.png" style="width: 750px;" /></a>
 <p>Similarly, the <strong>XOR</strong> operator is so widely used that it has its own symbol, even though it can be constructed out of <strong>NOT</strong>, <strong>OR</strong> and <strong>AND</strong> gates:</p>
-<img src="images/01_01_02_xor.png" align = "center" width="180"/>
+<a class="reference internal image-reference" href="../../_images/01_01_02_xor.png"><img alt="../../_images/01_01_02_xor.png" class="align-center" src="../../_images/01_01_02_xor.png" style="width: 180px;" /></a>
 <p>Another schematic simplification is to use a circle at the inputs or output of the binary gates to “absorb” a negation. For example, a <strong>AND</strong> / <strong>OR</strong> / <strong>XOR</strong> gate immediately followed by a <strong>NOT</strong> gate can be represented as:</p>
-<img src="images/01_01_03_negated_logic_gates.png" align = "center" width="790"/>
+<a class="reference internal image-reference" href="../../_images/01_01_03_negated_logic_gates.png"><img alt="../../_images/01_01_03_negated_logic_gates.png" class="align-center" src="../../_images/01_01_03_negated_logic_gates.png" style="width: 790px;" /></a>
 <p>These three gates are common enough that receive the names <strong>NAND</strong> / <strong>NOR</strong> / <strong>XNOR</strong>.</p>
 <p>Using only these fundamental gates, we can then compose digital circuits for more complicated Boolean operations. For example, let’s say we want to construct a circuit that takes two bits <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, and an input carry <span class="math notranslate nohighlight">\(c_{in}\)</span>, and adds them into an output <span class="math notranslate nohighlight">\(s\)</span> and an output carry <span class="math notranslate nohighlight">\(c_{out}\)</span>. We can express this in the form of a truth table:</p>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -1003,9 +986,9 @@ a XOR b = 01100
 </table>
 </div>
 <p>It is not difficult to show that <span class="math notranslate nohighlight">\(s = a \oplus b \oplus c_{in}\)</span>, which is expected since the <strong>XOR</strong> operation is equivalent to  addition modulo <span class="math notranslate nohighlight">\(2\)</span>. Finding the expression for <span class="math notranslate nohighlight">\(c_{out}\)</span> is slightly more involved since it requires synthesizing a Boolean expression by using methods like the <a class="reference external" href="https://en.wikipedia.org/wiki/Disjunctive_normal_form#Conversion_to_DNF">sum of products conversion</a> or <a class="reference external" href="https://en.wikipedia.org/wiki/Karnaugh_map">Karnaugh maps</a>, which we will not cover here. It suffices to say that it can be shown that <span class="math notranslate nohighlight">\(c_{out} = ((a \oplus b) \land c_{in}) \lor (a \land b) \)</span>, which results in the circuit shown below:</p>
-<img src="images/01_01_04_adder.png" align = "center" width="420"/>
+<a class="reference internal image-reference" href="../../_images/01_01_04_adder.png"><img alt="../../_images/01_01_04_adder.png" class="align-center" src="../../_images/01_01_04_adder.png" style="width: 420px;" /></a>
 <p>A concept that we have not yet discussed but is commonly utilized in circuit complexity analysis is that of the <strong>COPY</strong> or <strong>FAN-OUT</strong> operation. In the circuit above, we see that, for example, the variable <span class="math notranslate nohighlight">\(a\)</span> is used as an input on two separate gates. This variable was copied (or fanned-out) when a single wire turned into two separate ones:</p>
-<img src="images/01_01_05_fanout.png" align = "center" width="80"/>
+<a class="reference internal image-reference" href="../../_images/01_01_05_fanout.png"><img alt="../../_images/01_01_05_fanout.png" class="align-center" src="../../_images/01_01_05_fanout.png" style="width: 80px;" /></a>
 <p>From a schematic standpoint, this might seem trivial considering that this will only require connecting an additional wire. However, from the point of complexity analysis this is an important operation because, as we will see later, there is no equivalent to the <strong>COPY</strong> operation in quantum circuits.</p>
 <p>The key insight of being able to implement more complex Boolean circuits out of fundamental logic gates is that we can follow this process to construct all the building blocks of modern classical computing systems. Using only these gates, we can not only develop all the <a class="reference external" href="https://en.wikipedia.org/wiki/Combinational_logic">combinatorial logic</a> used to build, for example, the core <a class="reference external" href="https://en.wikipedia.org/wiki/Arithmetic_logic_unit">arithmetic logic unit (ALU)</a> in a <a class="reference external" href="https://en.wikipedia.org/wiki/Central_processing_unit">central processing unit (CPU)</a>, but also all <a class="reference external" href="https://en.wikipedia.org/wiki/Sequential_logic">sequential logic</a> (latches, flip-flops, registers) required to store and parse its data.</p>
 </section>
@@ -1013,16 +996,16 @@ a XOR b = 01100
 <h2>4. Physical Implementation of Circuits<a class="headerlink" href="#physical-implementation-of-circuits" title="Link to this heading">#</a></h2>
 <p>At a physical level, digital logic gates are not fundamental. Instead, they are implemented using transistors. The idea of this section is not to go into the details of how these devices work, but to provide some basic understanding on how they can be used to process Boolean information. This will later help us understand how quantum processors differ from classical devices at the hardware level.</p>
 <p>Most modern integrated circuits are implemented using what is known as <a class="reference external" href="https://en.wikipedia.org/wiki/CMOS">CMOS</a> technology, where CMOS stands for complementary metal–oxide–semiconductor. CMOS circuits are implemented using two types of transistors: <a class="reference external" href="https://en.wikipedia.org/wiki/Field-effect_transistor#n-channel_FET">NMOS</a> transistors, and <a class="reference external" href="https://en.wikipedia.org/wiki/Field-effect_transistor#p-channel_FET">PMOS</a> transistors. For the current discussion, all we need to know is that transistors work like switches with two possible states: <strong>ON</strong> or <strong>OFF</strong>. NMOS and PMOS transistors are complementary devices, meaning that the level of voltage that turns one of these devices <strong>ON</strong>, turns the other one <strong>OFF</strong>, and vice versa. This is best exemplified by looking at the circuit used to construct a <strong>NOT</strong> gate:</p>
-<img src="images/01_01_06_not_wi_transistors.png" align = "center" width="660"/>
+<a class="reference internal image-reference" href="../../_images/01_01_06_not_wi_transistors.png"><img alt="../../_images/01_01_06_not_wi_transistors.png" class="align-center" src="../../_images/01_01_06_not_wi_transistors.png" style="width: 660px;" /></a>
 <p>In this circuit, every node can take one of two possible voltages, <span class="math notranslate nohighlight">\(+v\)</span> and <span class="math notranslate nohighlight">\(-v\)</span>, which we associate with a logical <span class="math notranslate nohighlight">\(1\)</span> and a logical <span class="math notranslate nohighlight">\(0\)</span>, respectively. When the input voltage <span class="math notranslate nohighlight">\(v_{in}\)</span> is equal to <span class="math notranslate nohighlight">\(+v\)</span> (logical <span class="math notranslate nohighlight">\(1\)</span>), the NMOS transistor turns <strong>ON</strong> and the PMOS transistor turns <strong>OFF</strong>. This creates a direct connection between the negative power supply at <span class="math notranslate nohighlight">\(-v\)</span> (logical <span class="math notranslate nohighlight">\(0\)</span>) and the output, therefore effectively <em>negating</em> the logical value of the input:</p>
-<img src="images/01_01_07_not_at_p.png" align = "center" width="180"/>
+<a class="reference internal image-reference" href="../../_images/01_01_07_not_at_p.png"><img alt="../../_images/01_01_07_not_at_p.png" class="align-center" src="../../_images/01_01_07_not_at_p.png" style="width: 180px;" /></a>
 <p>Similarly,  when the input voltage <span class="math notranslate nohighlight">\(v_{in}\)</span> is equal to <span class="math notranslate nohighlight">\(-v\)</span> (logical <span class="math notranslate nohighlight">\(0\)</span>), the PMOS transistor turns <strong>ON</strong> and the NMOS transistor turns <strong>OFF</strong>, creating a direct connection between the positive power supply at <span class="math notranslate nohighlight">\(+v\)</span> (logical <span class="math notranslate nohighlight">\(1\)</span>) and the output, once again <em>negating</em> the logical value of the input:</p>
-<img src="images/01_01_08_not_at_n.png" align = "center" width="180"/>
+<a class="reference internal image-reference" href="../../_images/01_01_08_not_at_n.png"><img alt="../../_images/01_01_08_not_at_n.png" class="align-center" src="../../_images/01_01_08_not_at_n.png" style="width: 180px;" /></a>
 <p>We can then use this same idea to construct other fundamental gates. For example, a <strong>NAND</strong> can be easily implemented using only 4 transistors:</p>
-<img src="images/01_01_09_nand_wi_transistors.png" align = "center" width="500"/>
+<a class="reference internal image-reference" href="../../_images/01_01_09_nand_wi_transistors.png"><img alt="../../_images/01_01_09_nand_wi_transistors.png" class="align-center" src="../../_images/01_01_09_nand_wi_transistors.png" style="width: 500px;" /></a>
 <p>Same is true for a <strong>NOR</strong> circuit. A good exercise is to verify that the circuit above does in fact implement the <strong>NAND</strong> operation, and then try to implement the circuit for a <strong>NOR</strong>.</p>
 <p>With these basic blocks, we can then interconnect them together to create any circuit we want. For example, we can implement an <strong>AND</strong> gate by connecting the input of a <strong>NOT</strong> circuit to the output of a <strong>NAND</strong> circuit:</p>
-<img src="images/01_01_10_and_wi_transistors.png" align = "center" width="620"/>
+<a class="reference internal image-reference" href="../../_images/01_01_10_and_wi_transistors.png"><img alt="../../_images/01_01_10_and_wi_transistors.png" class="align-center" src="../../_images/01_01_10_and_wi_transistors.png" style="width: 620px;" /></a>
 <p>The main takeaway is that, at the hardware level, the binary values <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span> are nothing other than two discrete voltage levels (here denoted as <span class="math notranslate nohighlight">\(-v\)</span> and <span class="math notranslate nohighlight">\(+v\)</span>). Transistors can then be arranged in circuits where input voltages turn them <strong>ON</strong> and <strong>OFF</strong> (like switches). This in turn modifies the voltage of an output node in a way that the input/output relation corresponds to a logic operation.</p>
 <p>In the next chapter, we will continue to build our understanding towards quantum computing. An important step in this process is to introduce a different model of computation known as <a class="reference external" href="https://en.wikipedia.org/wiki/Reversible_computing">reversible computing</a>. This is an important step in this process because the physical implementation of quantum hardware relies on quantum mechanics, which in principle is a reversible theory and therefore its model of computation should be reversible too.</p>
 </section>

@@ -257,23 +257,6 @@
       
       
       
-      <li><a href="https://github.com/learn-quantum/lqc-textbook/edit/main/chapters/01_classical_computing/01_04_probabilistic_circuits.ipynb" target="_blank"
-   class="btn btn-sm btn-source-edit-button dropdown-item"
-   title="Suggest edit"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-pencil-alt"></i>
-  </span>
-<span class="btn__text-container">Suggest edit</span>
-</a>
-</li>
-      
-      
-      
-      
       <li><a href="https://github.com/learn-quantum/lqc-textbook/issues/new?title=Issue%20on%20page%20%2Fchapters/01_classical_computing/01_04_probabilistic_circuits.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
@@ -429,7 +412,7 @@ document.write(`
 <section id="probabilistic-single-bit-states-p-bits">
 <h3>1.1 Probabilistic Single-Bit States (p-bits)<a class="headerlink" href="#probabilistic-single-bit-states-p-bits" title="Link to this heading">#</a></h3>
 <p>Let us start by considering the case of a noisy <strong>NOT</strong> gate that, whenever its input is supposed to be <span class="math notranslate nohighlight">\(0\)</span>, the output is either <span class="math notranslate nohighlight">\(0\)</span> with probability of <span class="math notranslate nohighlight">\(1/4\)</span>, or a <span class="math notranslate nohighlight">\(1\)</span> with probability of <span class="math notranslate nohighlight">\(3/4\)</span>. Physically, this model could describe a poorly-designed circuit where the stage preceding the <strong>NOT</strong> gate is not supplying low enough of a voltage, causing the gate to toggle down to <span class="math notranslate nohighlight">\(0\)</span> every so often due to noise:</p>
-<img src="images/01_04_03_noisy_not.png" align = "center" width="560"/>
+<a class="reference internal image-reference" href="../../_images/01_04_03_noisy_not.png"><img alt="../../_images/01_04_03_noisy_not.png" class="align-center" src="../../_images/01_04_03_noisy_not.png" style="width: 560px;" /></a>
 <p>We could represent the output state of uncertainty of this gate with a column vector, where the top element is the probability of the output being <span class="math notranslate nohighlight">\(0\)</span>, and the bottom element the probability of measuring a <span class="math notranslate nohighlight">\(1\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} \vec{p} = \begin{bmatrix} \frac{1}{4} \\ \frac{3}{4} \end{bmatrix} .\end{split}\]</div>
@@ -547,9 +530,10 @@ For ϱ1 = 0.75 and 200 samples, the relative frequency of 1s is 0.74
 <div class="math notranslate nohighlight">
 \[ \|\vec{p}\| = \sqrt{\varrho_{0}^2 + \varrho_{1}^2} .\]</div>
 <p>And because probabilities must always add up to <span class="math notranslate nohighlight">\(1\)</span>, the length of our vector will actually changes depending on the values of <span class="math notranslate nohighlight">\(\varrho_{0}\)</span> and <span class="math notranslate nohighlight">\(\varrho_{1}\)</span>. For example, for <span class="math notranslate nohighlight">\(\vec{p} = \begin{bmatrix} 1 \\ 0 \end{bmatrix}\)</span>, we get <span class="math notranslate nohighlight">\(\|\vec{p}\| = 1\)</span>. On the other hand, if <span class="math notranslate nohighlight">\(\vec{p} = \begin{bmatrix} \frac{1}{4} \\ \frac{3}{4} \end{bmatrix}\)</span>, then <span class="math notranslate nohighlight">\(\|\vec{p}\| \approx 0.79\)</span>. The dotted line in the figure below shows how the magnitude of the probability vector changes for different probability values:</p>
-<img src="images/01_04_01_prob_vec_length.png" align = "center" width="200"/>
+<a class="reference internal image-reference" href="../../_images/01_04_01_prob_vec_length.png"><img alt="../../_images/01_04_01_prob_vec_length.png" class="align-center" src="../../_images/01_04_01_prob_vec_length.png" style="width: 200px;" /></a>
 <p>This is very different from what we will encounter for qubits, where for quantum vector <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> the sum of the each of its elements <strong>squared</strong> always adds up to <span class="math notranslate nohighlight">\(1\)</span>, which implies <span class="math notranslate nohighlight">\(\|\psi\| = 1\)</span> for all <span class="math notranslate nohighlight">\(|\psi\rangle\)</span>. This is depicted below for the specific case of <span class="math notranslate nohighlight">\(\alpha_0, \alpha_1 \in [0,1]\)</span>.</p>
-<img src="images/01_04_02_prob_amps_vec_length.png" align = "center" width="200"/></section>
+<a class="reference internal image-reference" href="../../_images/01_04_02_prob_amps_vec_length.png"><img alt="../../_images/01_04_02_prob_amps_vec_length.png" class="align-center" src="../../_images/01_04_02_prob_amps_vec_length.png" style="width: 200px;" /></a>
+</section>
 <section id="probabilistic-single-bit-gates">
 <h3>1.2 Probabilistic Single-Bit Gates<a class="headerlink" href="#probabilistic-single-bit-gates" title="Link to this heading">#</a></h3>
 <p>Let’s reconsider the noisy <strong>NOT</strong> gate for which an input of <span class="math notranslate nohighlight">\(0\)</span> results in an output of <span class="math notranslate nohighlight">\(0\)</span> with probability <span class="math notranslate nohighlight">\(1/4\)</span>, and an output of <span class="math notranslate nohighlight">\(1\)</span> with probability <span class="math notranslate nohighlight">\(3/4\)</span>. Now, let’s assume that when the input to this gate is <span class="math notranslate nohighlight">\(1\)</span>, the gate behaves just as expected. This means that its output is <span class="math notranslate nohighlight">\(0\)</span> with probability of <span class="math notranslate nohighlight">\(1\)</span>, and <span class="math notranslate nohighlight">\(1\)</span> with probability <span class="math notranslate nohighlight">\(0\)</span>. We could then construct a matrix <span class="math notranslate nohighlight">\(P\)</span> that relates the inputs and outputs according to this relations:</p>
@@ -615,7 +599,7 @@ P^{-1} &amp;= \begin{bmatrix} 0 &amp; \phantom{-}\frac{4}{3} \\ 1 &amp; -\frac{1
 \end{aligned}
 \end{split}\]</div>
 <p>This makes complete sense if we consider, for example, passing through an <span class="math notranslate nohighlight">\(\text{X}\)</span> gate a sequence of values that have probability <span class="math notranslate nohighlight">\(\varrho_0\)</span> of being in state <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(\varrho_1\)</span> of being in state <span class="math notranslate nohighlight">\(1\)</span> . The output will then correspond to the inverted version of that sequence, which will then have opposite probabilities for each of the states:</p>
-<img src="images/01_04_04_pbit_thru_x_gate.png" align = "center" width="440"/>
+<a class="reference internal image-reference" href="../../_images/01_04_04_pbit_thru_x_gate.png"><img alt="../../_images/01_04_04_pbit_thru_x_gate.png" class="align-center" src="../../_images/01_04_04_pbit_thru_x_gate.png" style="width: 440px;" /></a>
 <p>This also generalizes to multi-bit reversible gates, as we will see in the next section. It is also worth noting that the construction of <a class="reference external" href="https://arxiv.org/pdf/1809.04028">invertible p-bit gates</a> is not trivial, but there have been some recent efforts to develop such technology.</p>
 </section>
 </section>
@@ -804,7 +788,7 @@ P &amp;= \begin{bmatrix} \frac{1}{2} &amp; \frac{1}{2} \\ \frac{1}{2} &amp; \fra
 </div>
 <p>This shows that, when <span class="math notranslate nohighlight">\(\vec{p}_1\)</span> is <span class="math notranslate nohighlight">\(1\)</span>, the output is <span class="math notranslate nohighlight">\(10\)</span> and <span class="math notranslate nohighlight">\(11\)</span> each with probability of <span class="math notranslate nohighlight">\(1/2\)</span>, which means <span class="math notranslate nohighlight">\(\vec{p}_1\)</span> remains unchanged, but <span class="math notranslate nohighlight">\(\vec{p}_0\)</span> went from being <span class="math notranslate nohighlight">\(0\)</span> to being <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> with equal probability.</p>
 <p>Now, just like with single p-bit probability matrices, stochastic matrices in general are non-invertible, so they do not represent reversible circuits. But as mentioned before, when p-bits are applied to deterministic reversible matrices, their states do get inverted correctly. For instance, let’s look at a general 4 p-bit vector, and pass it through a circuit given by the matrix <span class="math notranslate nohighlight">\(Q = (X \otimes I) \; \text{CX}\)</span>, and then through the circuit corresponding to <span class="math notranslate nohighlight">\(Q^{-1}\)</span>:</p>
-<img src="images/01_04_05_pbit_thru_circuit.png" align = "center" width="220"/>
+<a class="reference internal image-reference" href="../../_images/01_04_05_pbit_thru_circuit.png"><img alt="../../_images/01_04_05_pbit_thru_circuit.png" class="align-center" src="../../_images/01_04_05_pbit_thru_circuit.png" style="width: 220px;" /></a>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define general input probability vector</span>

@@ -258,23 +258,6 @@
       
       
       
-      <li><a href="https://github.com/learn-quantum/lqc-textbook/edit/main/chapters/01_classical_computing/01_02_reversible_computing.ipynb" target="_blank"
-   class="btn btn-sm btn-source-edit-button dropdown-item"
-   title="Suggest edit"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-pencil-alt"></i>
-  </span>
-<span class="btn__text-container">Suggest edit</span>
-</a>
-</li>
-      
-      
-      
-      
       <li><a href="https://github.com/learn-quantum/lqc-textbook/issues/new?title=Issue%20on%20page%20%2Fchapters/01_classical_computing/01_02_reversible_computing.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
@@ -460,7 +443,7 @@ document.write(`
 <h3>1.1 Reversible <strong>NOT</strong><a class="headerlink" href="#reversible-not" title="Link to this heading">#</a></h3>
 <p>The first thing to note is that the <strong>NOT</strong> gate <em><strong>is</strong></em> reversible. This because we can confidently predict the input value directly from its output. If the output is <span class="math notranslate nohighlight">\(1\)</span>, we know for a fact the input was <span class="math notranslate nohighlight">\(0\)</span>, and vice versa. Furthermore, we can reverse the computation of a <strong>NOT</strong> gate by applying another <strong>NOT</strong> right after.</p>
 <p>Now, because the symbol for the logic <strong>NOT</strong> gate is not symmetric, Feynman suggested changing it to simply using an X over a wire. However, from now on, we will instead use the symbol commonly utilized in quantum computing circuits, which is an X inside a box<span class="math notranslate nohighlight">\(^*\)</span>:</p>
-<img src="images/01_02_01_not_gates.png" align = "center" width="660"/>
+<a class="reference internal image-reference" href="../../_images/01_02_01_not_gates.png"><img alt="../../_images/01_02_01_not_gates.png" class="align-center" src="../../_images/01_02_01_not_gates.png" style="width: 660px;" /></a>
 <p>For this same reason, we will now refer to the <strong>NOT</strong> gate as the <span class="math notranslate nohighlight">\(\text{X}\)</span> gate.</p>
 <p><span style="font-size: smaller;"><span class="math notranslate nohighlight">\(^*\)</span><strong>Aside</strong>: The fact that Feynman used an X to denote the circuit diagram for a reversible <strong>NOT</strong> gate is merely coincidental with the notion of using an X as the symbol for its corresponding quantum gate. The reason why we call the quantum <strong>NOT</strong> an <span class="math notranslate nohighlight">\(\text{X}\)</span> gate has to do with its relationship with the Pauli-X matrix (a topic that we will cover in detail in a later chapter).</span></p>
 </section>
@@ -472,7 +455,7 @@ document.write(`
 <li><p>If the control is <span class="math notranslate nohighlight">\(1\)</span>, the <span class="math notranslate nohighlight">\(\text{X}\)</span> gate is activated, inverting the value of target line.</p></li>
 </ul>
 <p>The figure below shows the schematic representation of a <span class="math notranslate nohighlight">\(\text{CX}\)</span> gate where the top line is the control, and the bottom line is the target:</p>
-<img src="images/01_02_02_cx_gate.png" align = "center" width="180"/>
+<a class="reference internal image-reference" href="../../_images/01_02_02_cx_gate.png"><img alt="../../_images/01_02_02_cx_gate.png" class="align-center" src="../../_images/01_02_02_cx_gate.png" style="width: 180px;" /></a>
 <p>Following this logic, we can make a truth table for what the outputs <span class="math notranslate nohighlight">\(a'\)</span> and <span class="math notranslate nohighlight">\(b'\)</span> look like with respect to the inputs <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, which clearly shows that <span class="math notranslate nohighlight">\(a' = a\)</span>, and more importantly, <span class="math notranslate nohighlight">\(b' = a \oplus b\)</span>:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -592,7 +575,7 @@ a | b || a&#39;&#39; | b&#39;&#39; |
 <section id="reversible-copy">
 <h3>1.2 Reversible <strong>COPY</strong><a class="headerlink" href="#reversible-copy" title="Link to this heading">#</a></h3>
 <p>A reversible implementation of the <strong>COPY</strong> or <strong>FANOUT</strong> operation can be easily implemented by simply taking a <span class="math notranslate nohighlight">\(\text{CX}\)</span> and always setting the input of the target line to <span class="math notranslate nohighlight">\(0\)</span>:</p>
-<img src="images/01_02_03_copy_gate.png" align = "center" width="180"/>
+<a class="reference internal image-reference" href="../../_images/01_02_03_copy_gate.png"><img alt="../../_images/01_02_03_copy_gate.png" class="align-center" src="../../_images/01_02_03_copy_gate.png" style="width: 180px;" /></a>
 <p>We can see from the <span class="math notranslate nohighlight">\(\text{CX}\)</span> truth table that if <span class="math notranslate nohighlight">\(b = 0\)</span>, then <span class="math notranslate nohighlight">\(b' = a' = a\)</span>.</p>
 </section>
 <section id="reversible-and">
@@ -627,7 +610,7 @@ a | b || a&#39;&#39; | b&#39;&#39; |
 </div>
 <p>This poses a challenge because it is then not possible to predict <strong>both</strong> of the input values using just the output (<span class="math notranslate nohighlight">\(a \land b\)</span>) and only one of the inputs (<span class="math notranslate nohighlight">\(a\)</span> or <span class="math notranslate nohighlight">\(b\)</span>). The consequence of this is that we need a 3-bit gate in order to construct a reversible <strong>AND</strong> operation. The way to do this is by the use of a controlled-controlled-X or <span class="math notranslate nohighlight">\(\text{CCX}\)</span> gate, also often referred as a <a class="reference external" href="https://en.wikipedia.org/wiki/Toffoli_gate">Toffoli gate</a>.</p>
 <p>The <span class="math notranslate nohighlight">\(\text{CCX}\)</span> gate operates in a similar fashion to the <span class="math notranslate nohighlight">\(\text{CX}\)</span> gate, except that we now have two control lines and one target line, where an <span class="math notranslate nohighlight">\(\text{X}\)</span> gate is apply iff <strong>both</strong> of the control lines are equal to <span class="math notranslate nohighlight">\(1\)</span>:</p>
-<img src="images/01_02_04_ccx_gate.png" align = "center" width="180"/>
+<a class="reference internal image-reference" href="../../_images/01_02_04_ccx_gate.png"><img alt="../../_images/01_02_04_ccx_gate.png" class="align-center" src="../../_images/01_02_04_ccx_gate.png" style="width: 180px;" /></a>
 <p>Using this condition, the truth table for the <span class="math notranslate nohighlight">\(\text{CCX}\)</span> is given by:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -823,11 +806,11 @@ a | b | c || a&#39;&#39; | b&#39;&#39; | c&#39;&#39; |
 <div class="math notranslate nohighlight">
 \[a \lor b = \overline{(\bar{a} \land \bar{b})} .\]</div>
 <p>This expression basically says that we can implement an <strong>OR</strong> gate if we negate both of the inputs to an <strong>NAND</strong> gate:</p>
-<img src="images/01_02_06_or_with_and.png" align = "center" width="500"/>
+<a class="reference internal image-reference" href="../../_images/01_02_06_or_with_and.png"><img alt="../../_images/01_02_06_or_with_and.png" class="align-center" src="../../_images/01_02_06_or_with_and.png" style="width: 500px;" /></a>
 <p>So, for the reversible case of an <strong>OR</strong>, we can use two <span class="math notranslate nohighlight">\(\text{CCX}\)</span> gates to negate the inputs <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, and use a <span class="math notranslate nohighlight">\(\text{CCX}\)</span> gate with <span class="math notranslate nohighlight">\(c = 1\)</span> as our <strong>NAND</strong> gate:</p>
-<img src="images/01_02_07_reversible_or.png" align = "center" width="220"/>
+<a class="reference internal image-reference" href="../../_images/01_02_07_reversible_or.png"><img alt="../../_images/01_02_07_reversible_or.png" class="align-center" src="../../_images/01_02_07_reversible_or.png" style="width: 220px;" /></a>
 <p>Now, to show the reversibility of this composite gate, we might be tempted to think that, just like with the previous examples, applying it twice will reverse the operation (which actually gives the right answer in this particular case). However, what we want to do to “uncompute” the result is use the inverse of our circuit. In other words, we want to apply each of the gates in the reverse order:</p>
-<img src="images/01_02_08_reverse_ors.png" align = "center" width="360"/>
+<a class="reference internal image-reference" href="../../_images/01_02_08_reverse_ors.png"><img alt="../../_images/01_02_08_reverse_ors.png" class="align-center" src="../../_images/01_02_08_reverse_ors.png" style="width: 360px;" /></a>
 <p>It is worth highlighting that, when we switch from working with classical circuits to quantum circuits, we will still need to apply our gates in reverse to invert a result. However, because in some cases we will be dealing with complex numbers, there will be an additional requirement to perform this uncomputation for certain gates, but we do not need to worry about this condition quite yet.</p>
 <p>To check the reversibility of the circuit above, we can first check the results for the <strong>OR</strong> gate by using the <span class="math notranslate nohighlight">\(\text{CX}\)</span> and <span class="math notranslate nohighlight">\(\text{CCX}\)</span> we defined above:</p>
 <div class="cell docutils container">
@@ -894,7 +877,7 @@ a | b | c || a&#39;&#39; | b&#39;&#39; | c&#39;&#39; |
 <h2>2. Reversible Circuits<a class="headerlink" href="#reversible-circuits" title="Link to this heading">#</a></h2>
 <p>In the previous section, we constructed a reversible <strong>OR</strong> gate by using other gates: two <span class="math notranslate nohighlight">\(\text{X}\)</span> gates and a <span class="math notranslate nohighlight">\(\text{CCX}\)</span> gate. We can use this same idea to compose more complex circuits. And, since we have now shown that we have the basic gates we had for non-reversible logic, we should be able to basically implement any circuit we want.</p>
 <p>For example, we could construct a one-to-one replacement of the full adder we showed in the previous chapter:</p>
-<img src="images/01_02_09_reversible_adder.png" align = "center" width="800"/>
+<a class="reference internal image-reference" href="../../_images/01_02_09_reversible_adder.png"><img alt="../../_images/01_02_09_reversible_adder.png" class="align-center" src="../../_images/01_02_09_reversible_adder.png" style="width: 800px;" /></a>
 <p>One thing to note about the reversible version of this circuit is that, it will be fairly common to require several “auxiliary” lines to carry out our computation and provide a result. In this particular example, we managed to get the sum output <span class="math notranslate nohighlight">\(s\)</span> using only the lines connected to our inputs, but to compute the output carry <span class="math notranslate nohighlight">\(c_{out}\)</span> we needed three additional lines initialized to some specific value.</p>
 <p>Lastly, just to verify that the circuit above does indeed act as a full adder, we can use the <span class="math notranslate nohighlight">\(\text{X}\)</span>, <span class="math notranslate nohighlight">\(\text{CX}\)</span> and <span class="math notranslate nohighlight">\(\text{CCX}\)</span> Python functions we defined above to implement this circuit. We will only display the relevant outputs <span class="math notranslate nohighlight">\(s\)</span> and <span class="math notranslate nohighlight">\(c_{out}\)</span>, but the code makes all five outputs available in case we wanted to reverse the computation.</p>
 <div class="cell docutils container">
