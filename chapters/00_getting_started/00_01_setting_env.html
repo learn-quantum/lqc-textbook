@@ -65,7 +65,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Configuring Qiskit" href="00_02_qiskit_config.html" />
-    <link rel="prev" title="Quantum Computing using Python" href="00_00_welcome.html" />
+    <link rel="prev" title="Getting Started" href="00_00_welcome.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,9 +175,9 @@
  </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">About the Textbook</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="00_00_welcome.html">Quantum Computing using Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="00_00_welcome.html">Getting Started</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Setting Up your Environment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="00_02_qiskit_config.html">Configuring Qiskit</a></li>
 </ul>
@@ -466,9 +466,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="setting-up-your-environment">
 <h1>Setting Up your Environment<a class="headerlink" href="#setting-up-your-environment" title="Link to this heading">#</a></h1>
-<hr class="docutils" />
-<p>If you want to follow the textbook by running the code presented in here but don’t know how to get started, you are in luck! Below is a step by step description of how to get started.
-<br></br></p>
+<hr></hr><p>If you want to follow the textbook by running the code presented in here but don’t know how to get started, you are in luck! Below is a step by step description of how to get started.</p>
 <p>If you’re comfortable working on a terminal, the <a class="reference internal" href="#TLDR"><span class="xref myst">TL;DR</span></a> section gives the minimal necessary steps. For more details, see sections below.</p>
 <section id="tl-dr">
 <h2>0. TL;DR <a id='TLDR'></a><a class="headerlink" href="#tl-dr" title="Link to this heading">#</a></h2>
@@ -603,18 +601,18 @@ If you have a recent version of <span style="color:#a883f7"><strong>macOS</stron
 <span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">rx</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Statevector&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Statevector:&quot;</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">Statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">))</span>
 
 <span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Circuit&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Circuit:&quot;</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">))</span>
 
 <span class="n">qc_t</span> <span class="o">=</span> <span class="n">transpile</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">simulator</span><span class="p">)</span>
 <span class="n">counts</span> <span class="o">=</span> <span class="n">simulator</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">shots</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Probability Distribution&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Probability Distribution:&quot;</span><span class="p">)</span>
 <span class="n">plot_distribution</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -674,7 +672,7 @@ If you have a recent version of <span style="color:#a883f7"><strong>macOS</stron
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Quantum Computing using Python</p>
+        <p class="prev-next-title">Getting Started</p>
       </div>
     </a>
     <a class="right-next"
