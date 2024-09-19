@@ -66,11 +66,11 @@ sphinx:
       use_issues_button: true
       use_repository_button: true
       use_edit_page_button: true
-      launch_buttons:
-        {
-          binderhub_url: "https://mybinder.org",
-          colab_url: "https://colab.research.google.com",
-        }
+      #launch_buttons:
+        #{
+          #binderhub_url: "https://mybinder.org",
+          #colab_url: "https://colab.research.google.com",
+        #}
     bibtex_reference_style: author_year
 
 # Define the name of the latex output file for PDF builds
