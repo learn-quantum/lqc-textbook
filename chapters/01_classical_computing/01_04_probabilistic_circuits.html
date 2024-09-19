@@ -182,7 +182,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Computing</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="01_01_digital_logic.html">Classical Computing and Digital Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_digital_logic.html">Bits and Digital Logic</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_02_reversible_computing.html">Reversible Computing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_03_bits_to_vectors.html">Linear Algebra for Reversible Circuits</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Probabilistic Computing</a></li>
@@ -500,12 +500,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1 0 1 1 0 1 1 1 1 1 1 1 1 1 0 1 1 0 1 1 1 1 1 0 1 1 1 1 1 1 1 0 1 1 1 1 0
- 0 1 1 1 1 0 1 1 0 1 0 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 0 1 1 1 1 1 1 1 1 1 1
- 1 1 1 1 1 1 0 1 0 1 1 1 0 1 1 1 1 0 0 1 1 1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1
- 1 1 1 1 1 1 1 0 1 1 0 1 1 1 0 1 0 0 1 1 1 1 0 1 1 1 1 0 0 1 1 1 1 0 1 0 1
- 0 1 1 0 1 1 1 1 1 1 1 1 1 1 0 1 1 0 0 1 0 0 0 1 1 1 1 0 1 1 1 0 1 0 1 0 0
- 1 1 0 1 0 1 1 1 1 1 1 1 1 0 1]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1
+ 0 1 1 1 0 1 0 1 0 0 1 1 0 1 1 0 1 1 1 0 1 0 1 1 0 0 1 1 0 1 0 1 1 1 1 1 1
+ 1 1 0 1 0 1 1 1 0 1 1 0 1 1 1 1 0 0 1 1 1 1 0 1 1 1 1 0 1 1 1 0 1 1 0 0 1
+ 1 1 1 0 0 1 1 1 1 1 1 1 1 0 1 1 0 1 0 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 1 1
+ 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 1 1 0 1 0 1 0 1 1 1 1 1 1 1 1 1 1 0 1
+ 1 0 1 1 1 0 0 1 1 1 1 0 1 1 0]
 </pre></div>
 </div>
 </div>
@@ -522,8 +522,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For ϱ0 = 0.25 and 200 samples, the relative frequency of 0s is 0.23
-For ϱ1 = 0.75 and 200 samples, the relative frequency of 1s is 0.77
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For ϱ0 = 0.25 and 200 samples, the relative frequency of 0s is 0.26
+For ϱ1 = 0.75 and 200 samples, the relative frequency of 1s is 0.74
 </pre></div>
 </div>
 </div>
@@ -540,7 +540,7 @@ For ϱ1 = 0.75 and 200 samples, the relative frequency of 1s is 0.77
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../../_images/c95d54de917c3a58eb3af3a650b51a2e334b33fa750af598b5346ab9c7c3861a.png"><img alt="../../_images/c95d54de917c3a58eb3af3a650b51a2e334b33fa750af598b5346ab9c7c3861a.png" src="../../_images/c95d54de917c3a58eb3af3a650b51a2e334b33fa750af598b5346ab9c7c3861a.png" style="width: 411px; height: 311px;" /></a>
+<a class="reference internal image-reference" href="../../_images/6d1e59da18cb4876903c4c50fa5651fe8c0cb655b8192002e3b97952f13db700.png"><img alt="../../_images/6d1e59da18cb4876903c4c50fa5651fe8c0cb655b8192002e3b97952f13db700.png" src="../../_images/6d1e59da18cb4876903c4c50fa5651fe8c0cb655b8192002e3b97952f13db700.png" style="width: 411px; height: 310px;" /></a>
 </div>
 </div>
 <p>Now, note that unlike in the previous chapter, where we relabeled the bit vector <span class="math notranslate nohighlight">\(\vec{b}\)</span> to use ket notation <span class="math notranslate nohighlight">\(|b\rangle\)</span>, here we have opted to denote our probability vector as <span class="math notranslate nohighlight">\(\vec{p}\)</span>. We’ve purposely done this to emphasize that there are some distinctions between some of the properties of p-bits and qubits. For instance, recall from that the magnitude of a real-valued vector is given by its Euclidean norm:</p>

@@ -62,7 +62,7 @@
     <link rel="icon" href="../../_static/LQC.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Classical Computing and Digital Logic" href="../01_classical_computing/01_01_digital_logic.html" />
+    <link rel="next" title="Bits and Digital Logic" href="../01_classical_computing/01_01_digital_logic.html" />
     <link rel="prev" title="Setting Up your Environment" href="00_01_setting_env.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -181,7 +181,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Computing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../01_classical_computing/01_01_digital_logic.html">Classical Computing and Digital Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_classical_computing/01_01_digital_logic.html">Bits and Digital Logic</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../01_classical_computing/01_02_reversible_computing.html">Reversible Computing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../01_classical_computing/01_03_bits_to_vectors.html">Linear Algebra for Reversible Circuits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../01_classical_computing/01_04_probabilistic_circuits.html">Probabilistic Computing</a></li>
@@ -418,12 +418,14 @@ document.write(`
 <h2>1. Setting Up and Linking your IBM Quantum Account <a id='account'></a><a class="headerlink" href="#setting-up-and-linking-your-ibm-quantum-account" title="Link to this heading">#</a></h2>
 <p>If you plan to run your quantum programs in IBM’s QPUs, you need to have an IBM Quantum Account and link it to your local <a class="reference internal" href="00_01_setting_env.html"><span class="std std-doc">Qiskit installation</span></a>. Here’s how:</p>
 <ol class="arabic">
-<li><p>Visit <a class="reference external" href="https://quantum.ibm.com/">https://quantum.ibm.com/</a> and create an account
-<br></br></p></li>
+<li><p>Visit <a class="reference external" href="https://quantum.ibm.com/">https://quantum.ibm.com/</a> and create an account</p>
+ <p></p>
+</li>
 <li><p>Log into your account, and on the top right corner, copy your API token:
 <img src="images/00_02_01_api_token.png" align = "left" width="700"/>
-<br clear="left"/>
-<br></br></p></li>
+<br clear="left"/></p>
+ <p></p>
+</li>
 <li><p>On your local machine, open a Jupyter Notebook and run the code below after pasting your API token over the <code class="docutils literal notranslate"><span class="pre">your-token-here</span></code> string. Make sure to <strong>not</strong> remove the single quotes <code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">'</span></code> enclosing it:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit_ibm_runtime</span> <span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
 <span class="n">QiskitRuntimeService</span><span class="o">.</span><span class="n">save_account</span><span class="p">(</span><span class="s1">&#39;your-token-here&#39;</span><span class="p">)</span>
@@ -528,7 +530,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Classical Computing and Digital Logic</p>
+        <p class="prev-next-title">Bits and Digital Logic</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

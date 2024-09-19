@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Classical Computing and Digital Logic &#8212; Quantum Computing using Python</title>
+    <title>Bits and Digital Logic &#8212; Quantum Computing using Python</title>
   
   
   
@@ -183,7 +183,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Computing</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Classical Computing and Digital Logic</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Bits and Digital Logic</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_02_reversible_computing.html">Reversible Computing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_03_bits_to_vectors.html">Linear Algebra for Reversible Circuits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_04_probabilistic_circuits.html">Probabilistic Computing</a></li>
@@ -389,7 +389,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Classical Computing and Digital Logic</h1>
+    <h1>Bits and Digital Logic</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -414,10 +414,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="classical-computing-and-digital-logic">
-<h1>Classical Computing and Digital Logic<a class="headerlink" href="#classical-computing-and-digital-logic" title="Link to this heading">#</a></h1>
-<hr class="docutils" />
-<p>Before diving into the world of quantum computing, it is helpful to do a quick review of some of the basics of classical computation. This will allow us to gradually introduce some of the most important concepts that make quantum information different from its classical counterpart.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="bits-and-digital-logic">
+<h1>Bits and Digital Logic<a class="headerlink" href="#bits-and-digital-logic" title="Link to this heading">#</a></h1>
+<hr></hr><p>Before diving into the world of quantum computing, it is helpful to do a quick review of some of the basics of classical computation. This will allow us to gradually introduce some of the most important concepts that make quantum information different from its classical counterpart.</p>
 <p>Even if you understand digital systems fairly well, it is still worth skimming through the following few chapters since we will be discussing how the model of computation can be expanded to incorporate randomness into our systems, and how logic gates can be modified to make operations reversible.</p>
 <section id="binary-numbers">
 <h2>1. Binary Numbers<a class="headerlink" href="#binary-numbers" title="Link to this heading">#</a></h2>
@@ -715,8 +714,7 @@ value in decimal: 13
 <h2>2. Boolean Logic<a class="headerlink" href="#boolean-logic" title="Link to this heading">#</a></h2>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Boolean_algebra">Boolean logic</a> is the type of algebra used to operate on binary numbers. In Boolean logic, variables can take one of two possible values: <strong>True</strong> or <strong>False</strong>, which are commonly represented with the values we previously assigned for the <span style="color:#a883f7"><strong>bit</strong></span>: <span class="math notranslate nohighlight">\(1\)</span> or <span class="math notranslate nohighlight">\(0\)</span>, respectively.</p>
 <p>There are three basic operations associated with Boolean algebra: <a class="reference external" href="https://en.wikipedia.org/wiki/Negation">Negation</a> (<strong>NOT</strong>), <a class="reference external" href="https://en.wikipedia.org/wiki/Logical_disjunction">Conjunction</a> (<strong>OR</strong>), and <a class="reference external" href="https://en.wikipedia.org/wiki/Logical_conjunction">Disjunction</a> (<strong>AND</strong>).</p>
-<p><br></br>
-The <strong>NOT</strong> operation is unary, meaning that it operates only on one variable by negating its value. There are many different symbols used to represent negation, but here we will denote it by using a bar over the variable being negated. A convenient way to express Boolean operations is by the use for Truth tables; the one below corresponds to that of the <strong>NOT</strong> operation:</p>
+<p>The <strong>NOT</strong> operation is unary, meaning that it operates only on one variable by negating its value. There are many different symbols used to represent negation, but here we will denote it by using a bar over the variable being negated. A convenient way to express Boolean operations is by the use for Truth tables; the one below corresponds to that of the <strong>NOT</strong> operation:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-center"><p><span class="math notranslate nohighlight">\(a\)</span></p></th>
@@ -729,9 +727,6 @@ The <strong>NOT</strong> operation is unary, meaning that it operates only on on
 </tr>
 <tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
 <td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
-</tr>
-<tr class="row-even"><td class="text-center"><p><br></br></p></td>
-<td class="text-center"><p></p></td>
 </tr>
 </tbody>
 </table>
@@ -764,8 +759,7 @@ The <strong>NOT</strong> operation is unary, meaning that it operates only on on
 </tbody>
 </table>
 </div>
-<p><br></br>
-The <strong>AND</strong> operation is also binary, but only results in a <strong>True</strong> statement if both of the variables are <strong>True</strong>. We express this operation as <span class="math notranslate nohighlight">\((a \land b)\)</span>:</p>
+<p>The <strong>AND</strong> operation is also binary, but only results in a <strong>True</strong> statement if both of the variables are <strong>True</strong>. We express this operation as <span class="math notranslate nohighlight">\((a \land b)\)</span>:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-center"><p><span class="math notranslate nohighlight">\(a\)</span></p></th>
@@ -789,10 +783,6 @@ The <strong>AND</strong> operation is also binary, but only results in a <strong
 <tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
 <td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
 <td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
-</tr>
-<tr class="row-even"><td class="text-center"><p><br></br></p></td>
-<td class="text-center"><p></p></td>
-<td class="text-center"><p></p></td>
 </tr>
 </tbody>
 </table>
@@ -847,16 +837,10 @@ The <strong>AND</strong> operation is also binary, but only results in a <strong
 <td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
 <td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p><br></br></p></td>
-<td class="text-center"><p></p></td>
-<td class="text-center"><p></p></td>
-<td class="text-center"><p></p></td>
-</tr>
 </tbody>
 </table>
 </div>
-<p>It is worth pointing out that Boolean statements can always be simplified to use the least amount of literals as possible by using a combination of <a class="reference external" href="https://en.wikipedia.org/wiki/Boolean_algebra#Laws">Boolean Algebra laws</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/De_Morgan%27s_laws">De Morgan’s laws</a>, but we will not go into these details herein.
-<br></br></p>
+<p>It is worth pointing out that Boolean statements can always be simplified to use the least amount of literals as possible by using a combination of <a class="reference external" href="https://en.wikipedia.org/wiki/Boolean_algebra#Laws">Boolean Algebra laws</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/De_Morgan%27s_laws">De Morgan’s laws</a>, but we will not go into these details herein.</p>
 <p>A very important composite Boolean operation that we will use aplenty throughout the textbook is the <a class="reference external" href="https://en.wikipedia.org/wiki/Exclusive_or">Exclusive Disjunction</a>, or Exclusive OR (<strong>XOR</strong>). The <strong>XOR</strong> operation is <strong>True</strong> if only one of the two variables is <strong>True</strong>.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -882,10 +866,6 @@ The <strong>AND</strong> operation is also binary, but only results in a <strong
 <td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
 <td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p><br></br></p></td>
-<td class="text-center"><p></p></td>
-<td class="text-center"><p></p></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -895,7 +875,6 @@ The <strong>AND</strong> operation is also binary, but only results in a <strong
 <p>However, when using binary values, the <strong>XOR</strong> operation is also equivalent to the addition operation modulo <span class="math notranslate nohighlight">\(2\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[ a \oplus b = (a + b) \text{ mod } 2. \]</div>
-<p><br></br></p>
 <p>When dealing with binary numbers of more than one bit, we will assume Boolean logic operators act bitwise (i.e., on a bit-by-bit basis). So, for example, if we have two 3-bit numbers <span class="math notranslate nohighlight">\(a = a_2 a_1 a_0\)</span> and <span class="math notranslate nohighlight">\(b = b_2 b_1 b_0\)</span>, the operation <span class="math notranslate nohighlight">\(a \oplus b\)</span> represents the bitwise <strong>XOR</strong> between the two:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -960,8 +939,7 @@ a XOR b = 01100
 <img src="images/01_01_02_xor.png" align = "center" width="180"/>
 <p>Another schematic simplification is to use a circle at the inputs or output of the binary gates to “absorb” a negation. For example, a <strong>AND</strong> / <strong>OR</strong> / <strong>XOR</strong> gate immediately followed by a <strong>NOT</strong> gate can be represented as:</p>
 <img src="images/01_01_03_negated_logic_gates.png" align = "center" width="790"/>
-<p>These three gates are common enough that receive the names <strong>NAND</strong> / <strong>NOR</strong> / <strong>XNOR</strong>.
-<br></br></p>
+<p>These three gates are common enough that receive the names <strong>NAND</strong> / <strong>NOR</strong> / <strong>XNOR</strong>.</p>
 <p>Using only these fundamental gates, we can then compose digital circuits for more complicated Boolean operations. For example, let’s say we want to construct a circuit that takes two bits <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, and an input carry <span class="math notranslate nohighlight">\(c_{in}\)</span>, and adds them into an output <span class="math notranslate nohighlight">\(s\)</span> and an output carry <span class="math notranslate nohighlight">\(c_{out}\)</span>. We can express this in the form of a truth table:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -1021,12 +999,6 @@ a XOR b = 01100
 <td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
 <td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p><br></br></p></td>
-<td class="text-center"><p></p></td>
-<td class="text-center"><p></p></td>
-<td class="text-center"><p></p></td>
-<td class="text-center"><p></p></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -1034,8 +1006,7 @@ a XOR b = 01100
 <img src="images/01_01_04_adder.png" align = "center" width="420"/>
 <p>A concept that we have not yet discussed but is commonly utilized in circuit complexity analysis is that of the <strong>COPY</strong> or <strong>FAN-OUT</strong> operation. In the circuit above, we see that, for example, the variable <span class="math notranslate nohighlight">\(a\)</span> is used as an input on two separate gates. This variable was copied (or fanned-out) when a single wire turned into two separate ones:</p>
 <img src="images/01_01_05_fanout.png" align = "center" width="80"/>
-<p>From a schematic standpoint, this might seem trivial considering that this will only require connecting an additional wire. However, from the point of complexity analysis this is an important operation because, as we will see later, there is no equivalent to the <strong>COPY</strong> operation in quantum circuits.
-<br></br></p>
+<p>From a schematic standpoint, this might seem trivial considering that this will only require connecting an additional wire. However, from the point of complexity analysis this is an important operation because, as we will see later, there is no equivalent to the <strong>COPY</strong> operation in quantum circuits.</p>
 <p>The key insight of being able to implement more complex Boolean circuits out of fundamental logic gates is that we can follow this process to construct all the building blocks of modern classical computing systems. Using only these gates, we can not only develop all the <a class="reference external" href="https://en.wikipedia.org/wiki/Combinational_logic">combinatorial logic</a> used to build, for example, the core <a class="reference external" href="https://en.wikipedia.org/wiki/Arithmetic_logic_unit">arithmetic logic unit (ALU)</a> in a <a class="reference external" href="https://en.wikipedia.org/wiki/Central_processing_unit">central processing unit (CPU)</a>, but also all <a class="reference external" href="https://en.wikipedia.org/wiki/Sequential_logic">sequential logic</a> (latches, flip-flops, registers) required to store and parse its data.</p>
 </section>
 <section id="physical-implementation-of-circuits">

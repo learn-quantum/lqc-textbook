@@ -183,7 +183,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Computing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../01_classical_computing/01_01_digital_logic.html">Classical Computing and Digital Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_classical_computing/01_01_digital_logic.html">Bits and Digital Logic</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../01_classical_computing/01_02_reversible_computing.html">Reversible Computing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../01_classical_computing/01_03_bits_to_vectors.html">Linear Algebra for Reversible Circuits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../01_classical_computing/01_04_probabilistic_circuits.html">Probabilistic Computing</a></li>
@@ -399,11 +399,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tl-dr">0. TL;DR <a id="TLDR"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">0. Summary</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-minicoda">1. Install Minicoda</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-activate-a-virtual-environment">2. Create and Activate a Virtual Environment</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-necessary-python-packages">3. Install Necessary Python Packages</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-your-environment">Verify your Environment <a id="verify"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-your-environment">4. Verify your Environment</a></li>
 </ul>
             </nav>
         </div>
@@ -418,12 +418,14 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="setting-up-your-environment">
 <h1>Setting Up your Environment<a class="headerlink" href="#setting-up-your-environment" title="Link to this heading">#</a></h1>
 <hr></hr><p>If you want to follow the textbook by running the code presented in here but don’t know how to get started, you are in luck! Below is a step by step description of how to get started.</p>
-<p>If you’re comfortable working on a terminal, the <a class="reference internal" href="#TLDR"><span class="xref myst">TL;DR</span></a> section gives the minimal necessary steps. For more details, see sections below.</p>
-<section id="tl-dr">
-<h2>0. TL;DR <a id='TLDR'></a><a class="headerlink" href="#tl-dr" title="Link to this heading">#</a></h2>
+<p>If you’re comfortable working on a terminal window, the <a class="reference internal" href="#0.-Summary"><span class="xref myst">Summary</span></a> section below gives the minimal necessary steps. For more details, see sections 1-3 below.</p>
+<section id="summary">
+<h2>0. Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Install <a class="reference external" href="https://docs.anaconda.com/free/miniconda/#latest-miniconda-installer-links">Miniconda</a></p></li>
+</ul>
+<p></p>
 <ul>
-<li><p>Install <a class="reference external" href="https://docs.anaconda.com/free/miniconda/#latest-miniconda-installer-links">Miniconda</a>
-<br></br></p></li>
 <li><p>In a terminal window, create a new environment</p>
 <p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">--name</span> <span class="pre">&lt;my-env&gt;</span></code></p>
 </li>
@@ -449,7 +451,7 @@ document.write(`
 <li><p>Install Qiskit’s IBM Runtime</p>
 <p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">qiskit-ibm-runtime</span></code></p>
 </li>
-<li><p><a class="reference internal" href="#verify"><span class="xref myst">Verify your Environment</span></a></p></li>
+<li><p><a class="reference internal" href="#4.-Verify-your-Environment"><span class="xref myst">Verify your Environment</span></a></p></li>
 </ul>
 </section>
 <section id="install-minicoda">
@@ -529,7 +531,7 @@ If you have a recent version of <span style="color:#a883f7"><strong>macOS</stron
 </ol>
 </section>
 <section id="verify-your-environment">
-<h2>Verify your Environment <a id='verify'></a><a class="headerlink" href="#verify-your-environment" title="Link to this heading">#</a></h2>
+<h2>4. Verify your Environment<a class="headerlink" href="#verify-your-environment" title="Link to this heading">#</a></h2>
 <p>To verify everything was installed properly, open a Jupyter Notebook by running in the terminal prompt:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span> <span class="n">notebook</span>
 </pre></div>
@@ -651,11 +653,11 @@ If you have a recent version of <span style="color:#a883f7"><strong>macOS</stron
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tl-dr">0. TL;DR <a id="TLDR"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">0. Summary</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-minicoda">1. Install Minicoda</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-activate-a-virtual-environment">2. Create and Activate a Virtual Environment</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-necessary-python-packages">3. Install Necessary Python Packages</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-your-environment">Verify your Environment <a id="verify"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-your-environment">4. Verify your Environment</a></li>
 </ul>
   </nav></div>
 

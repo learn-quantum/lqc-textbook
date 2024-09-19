@@ -183,7 +183,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Computing</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="01_01_digital_logic.html">Classical Computing and Digital Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_digital_logic.html">Bits and Digital Logic</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_02_reversible_computing.html">Reversible Computing</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Linear Algebra for Reversible Circuits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_04_probabilistic_circuits.html">Probabilistic Computing</a></li>
@@ -441,8 +441,7 @@ document.write(`
 <p>At first glance, this might look silly. Having a vector with two separate elements to represent a single bit seems rather redundant, but the many reasons for doing this will become evident as we progress throughout the next few chapters. In particular, we will soon see that this vector representation is a very convenient way to express the likelihood of finding a bit to be either <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> when we don’t have full knowledge of how our circuits are behaving in the presence of uncertainty.</p>
 <p>An easy way to remember this notation is to think of the <span class="math notranslate nohighlight">\(1\)</span> inside the vectors as the position of a light switch. Having a <span class="math notranslate nohighlight">\(1\)</span> on the top position of the vector can be seen as a switch flipped upwards, which keeps a light bulb OFF (Boolean <span class="math notranslate nohighlight">\(0\)</span>). Similarly, a <span class="math notranslate nohighlight">\(1\)</span> in the bottom of the vector represents the light switch being flipped down, which turns the light bulb ON (Boolean <span class="math notranslate nohighlight">\(1\)</span>):</p>
 <img src="images/01_03_01_light_switches.png" align = "center" width="400"/>
-<p><br></br>
-Now, even though there is nothing stopping us from using arrows on top of <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span> to emphasize that they are vectors, this notation is quite unusual. Instead, we will now introduce a new way to express vectors by using what is known as <a class="reference external" href="https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation">bra-ket</a> or Dirac notation:</p>
+<p>Now, even though there is nothing stopping us from using arrows on top of <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span> to emphasize that they are vectors, this notation is quite unusual. Instead, we will now introduce a new way to express vectors by using what is known as <a class="reference external" href="https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation">bra-ket</a> or Dirac notation:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} 
 |0 \rangle = \begin{bmatrix} 1 \\ 0 \end{bmatrix}
@@ -629,8 +628,7 @@ magnitude of vector with two 1s: 1.4142135623730951
 \langle 0 | 1 \rangle &amp;= 0,
 \end{aligned}
 \end{split}\]</div>
-<p>which makes perfect sense since <span class="math notranslate nohighlight">\(|0\rangle\)</span> and <span class="math notranslate nohighlight">\(|1\rangle\)</span> are orthogonal to each other.
-<br></br></p>
+<p>which makes perfect sense since <span class="math notranslate nohighlight">\(|0\rangle\)</span> and <span class="math notranslate nohighlight">\(|1\rangle\)</span> are orthogonal to each other.</p>
 <p>In Numpy, we can perform the dot product between vectors using the <code class="docutils literal notranslate"><span class="pre">numpy.vdot()</span></code> function:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1136,7 +1134,6 @@ Q &amp;= \begin{bmatrix} 0 &amp; 1 &amp; 0 &amp; 0 \\
 <p>where, in this case, each <span class="math notranslate nohighlight">\(Q_i\)</span> corresponds to a <span class="math notranslate nohighlight">\(2 \times 2\)</span> matrix.</p>
 <p>For larger circuits where we have several series of gates in each bit line, we can align gates from different bits into “layers”. For example:</p>
 <img src="images/01_03_03_or_1.png" align = "center" width="220"/>
-<br></br>
 <p>We can then compute the Kronecker product of the gates within a given layer, followed by the matrix multiplication of the resulting matrices of the different layers. In the example above, for the fist layer we would have:</p>
 <div class="math notranslate nohighlight">
 \[ Q_1 = \text{X} \otimes \text{X} \otimes I \]</div>
@@ -1186,7 +1183,6 @@ Q &amp;= \text{CCX} \left( \text{X} \otimes \text{X} \otimes I \right) .
 </div>
 <p>It is also worth noting that the “layering” we selected above is rather arbitrary. We could have chosen a different way to perform the operations, but this will lead to the same result. For we could have selected to organize the circuit with three layers:</p>
 <img src="images/01_03_04_or_2.png" align = "center" width="280"/>
-<br></br>
 <p>We would then compute its matrix as:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} 

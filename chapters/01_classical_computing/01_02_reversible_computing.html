@@ -65,7 +65,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Linear Algebra for Reversible Circuits" href="01_03_bits_to_vectors.html" />
-    <link rel="prev" title="Classical Computing and Digital Logic" href="01_01_digital_logic.html" />
+    <link rel="prev" title="Bits and Digital Logic" href="01_01_digital_logic.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -183,7 +183,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Computing</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="01_01_digital_logic.html">Classical Computing and Digital Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_digital_logic.html">Bits and Digital Logic</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Reversible Computing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_03_bits_to_vectors.html">Linear Algebra for Reversible Circuits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_04_probabilistic_circuits.html">Probabilistic Computing</a></li>
@@ -421,8 +421,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="reversible-computing">
 <h1>Reversible Computing<a class="headerlink" href="#reversible-computing" title="Link to this heading">#</a></h1>
-<hr class="docutils" />
-<p>In the <a class="reference internal" href="01_01_digital_logic.html"><span class="std std-doc">previous chapter</span></a>, we introduced the concept of Boolean operators such as the binary operations <strong>AND</strong> and <strong>OR</strong>. A critical aspect of these elements is that they are <strong>not</strong> reversible. In other words, we cannot figure out the value of their inputs based solely on the value of their output.</p>
+<hr></hr><p>In the <a class="reference internal" href="01_01_digital_logic.html"><span class="std std-doc">previous chapter</span></a>, we introduced the concept of Boolean operators such as the binary operations <strong>AND</strong> and <strong>OR</strong>. A critical aspect of these elements is that they are <strong>not</strong> reversible. In other words, we cannot figure out the value of their inputs based solely on the value of their output.</p>
 <p>In case this is not entirely obvious, let’s look again at the truth table for the <strong>AND</strong> operation:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -456,8 +455,7 @@ document.write(`
 <p>It was very quickly realized that a model of computation at the quantum-mechanical level can be developed following these same rules [<a class="reference external" href="http://www.quantum-dynamic.eu/doc/feynman85_qmc_optics_letters.pdf">Feynman85</a>], and expanded to include non-classical operations such as superposition and entanglement [<a class="reference external" href="http://www.cs.princeton.edu/courses/archive/fall06/cos576/papers/deutsch85.pdf">Deutsch85</a>], [<a class="reference external" href="https://citeseerx.ist.psu.edu/document?repid=rep1&amp;amp;type=pdf&amp;amp;doi=9a1dca1401758d0ddd223f2807762fdd54b83be8">Margolus89</a>]. Therefore, understanding the basic principles of reversible computing is an important step towards a model of quantum computation.</p>
 <section id="reversible-logic">
 <h2>1. Reversible Logic<a class="headerlink" href="#reversible-logic" title="Link to this heading">#</a></h2>
-<p>We begin by analyzing the basic operations we reviewed in the previous chapter in an effort to make them reversible.
-<br></br></p>
+<p>We begin by analyzing the basic operations we reviewed in the previous chapter in an effort to make them reversible.</p>
 <section id="reversible-not">
 <h3>1.1 Reversible <strong>NOT</strong><a class="headerlink" href="#reversible-not" title="Link to this heading">#</a></h3>
 <p>The first thing to note is that the <strong>NOT</strong> gate <em><strong>is</strong></em> reversible. This because we can confidently predict the input value directly from its output. If the output is <span class="math notranslate nohighlight">\(1\)</span>, we know for a fact the input was <span class="math notranslate nohighlight">\(0\)</span>, and vice versa. Furthermore, we can reverse the computation of a <strong>NOT</strong> gate by applying another <strong>NOT</strong> right after.</p>
@@ -938,8 +936,7 @@ a | b | cin || s | cout |
 </div>
 </div>
 </div>
-<p>As expected, the output above matches the truth table for a full adder we showed in the previous chapter. If we wanted to “uncompute” these results, we will then apply each an every gate in our circuit but in reverse order.
-<br></br></p>
+<p>As expected, the output above matches the truth table for a full adder we showed in the previous chapter. If we wanted to “uncompute” these results, we will then apply each an every gate in our circuit but in reverse order.</p>
 <p>Now, as our circuits grow in complexity, keeping track of line using truth tables becomes rather complicated. However, a very nice property of reversible circuits is that, their input-to-output response can be perfectly mapped onto a matrix. Therefore, we can use linear algebra to perform all of our computations.</p>
 <p>Understanding this mapping is a core principle in quantum computing, so we will dedicate the <a class="reference internal" href="#./01_03_linear_algebra.ipynb"><span class="xref myst">next chapter </span></a> to explain how this is done.</p>
 </section>
@@ -981,7 +978,7 @@ a | b | cin || s | cout |
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Classical Computing and Digital Logic</p>
+        <p class="prev-next-title">Bits and Digital Logic</p>
       </div>
     </a>
     <a class="right-next"
