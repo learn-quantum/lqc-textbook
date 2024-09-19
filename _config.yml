@@ -39,11 +39,21 @@ repository:
   branch: main # Which branch of the repository should be used when creating links (optional)
 
 # Parse and render settings
-#parse:
-  #myst_enable_extensions:
+parse:
+  myst_enable_extensions:
     # don't forget to list any other extensions you want enabled,
     # including those that are enabled by default! See here: https://jupyterbook.org/en/stable/customize/config.html
-    #- html_image
+    # - amsmath
+    - colon_fence
+    # - deflist
+    - dollarmath
+    # - html_admonition
+    - html_image
+    - linkify
+    # - replacements
+    # - smartquotes
+    - substitution
+    - tasklist
 
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
@@ -65,7 +75,7 @@ sphinx:
       repository_url: https://github.com/learn-quantum/lqc-textbook
       use_issues_button: true
       use_repository_button: true
-      use_edit_page_button: true
+      use_edit_page_button: false
       #launch_buttons:
         #{
           #binderhub_url: "https://mybinder.org",
