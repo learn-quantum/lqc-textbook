@@ -1,10 +1,12 @@
-# textbook
-An online textbook on quantum computing
+# Learn Quantum Computing using Python
+An online textbook on applied quantum computing with Python using qiskit.
+
+For more information visit the website: [learnquantum.io](learnquantum.io)
 
 # Citation
 To cite this work use:
 
-Serrano, D.E. (2024). Learn Quantum Computing using Python. Retrived from learnquantum.io
+Serrano, D.E. (2024). Learn Quantum Computing using Python. Retrived from https://learnquantum.io.
 
 ### Bibtex:
 ```
@@ -13,6 +15,6 @@ Serrano, D.E. (2024). Learn Quantum Computing using Python. Retrived from learnq
     year = {2024},
     title = {Learn Quantum Computing using Python},   
     publisher = {Github},   
-    url = {https://www.learn-quantum.github.io},
+    url = {learnquantum.io},
 }
 ```
