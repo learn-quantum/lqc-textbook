@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Bits and Digital Logic &#8212; Quantum Computing using Python</title>
+    <title>Bits and Digital Circuits &#8212; Quantum Computing using Python</title>
   
   
   
@@ -59,8 +59,8 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/01_classical_computing/01_01_digital_logic';</script>
-    <link rel="canonical" href="https://learn-quantum.github.io/lqc-textbook/chapters/01_classical_computing/01_01_digital_logic.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/01_classical_computing/01_01_bits_and_circuits';</script>
+    <link rel="canonical" href="https://learn-quantum.github.io/lqc-textbook/chapters/01_classical_computing/01_01_bits_and_circuits.html" />
     <link rel="icon" href="../../_static/LQC.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -183,10 +183,14 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Computing</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Bits and Digital Logic</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Bits and Digital Circuits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_02_reversible_computing.html">Reversible Computing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_03_bits_to_vectors.html">Linear Algebra for Reversible Circuits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_04_probabilistic_circuits.html">Probabilistic Computing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Computing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02_quantum_computing/02_01_bits_to_qubits.html">Qubits and Quantum Circuits</a></li>
 </ul>
 
     </div>
@@ -258,7 +262,7 @@
       
       
       
-      <li><a href="https://github.com/learn-quantum/lqc-textbook/issues/new?title=Issue%20on%20page%20%2Fchapters/01_classical_computing/01_01_digital_logic.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/learn-quantum/lqc-textbook/issues/new?title=Issue%20on%20page%20%2Fchapters/01_classical_computing/01_01_bits_and_circuits.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -288,7 +292,7 @@
       
       
       
-      <li><a href="../../_sources/chapters/01_classical_computing/01_01_digital_logic.ipynb" target="_blank"
+      <li><a href="../../_sources/chapters/01_classical_computing/01_01_bits_and_circuits.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -372,7 +376,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Bits and Digital Logic</h1>
+    <h1>Bits and Digital Circuits</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -397,8 +401,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="bits-and-digital-logic">
-<h1>Bits and Digital Logic<a class="headerlink" href="#bits-and-digital-logic" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="bits-and-digital-circuits">
+<h1>Bits and Digital Circuits<a class="headerlink" href="#bits-and-digital-circuits" title="Link to this heading">#</a></h1>
 <hr></hr><p>Before diving into the world of quantum computing, it is helpful to do a quick review of some of the basics of classical computation. This will allow us to gradually introduce some of the most important concepts that make quantum information different from its classical counterpart.</p>
 <p>Even if you understand digital systems fairly well, it is still worth skimming through the following few chapters since we will be discussing how the model of computation can be expanded to incorporate randomness into our systems, and how logic gates can be modified to make operations reversible.</p>
 <section id="binary-numbers">

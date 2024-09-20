@@ -183,10 +183,14 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Computing</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="01_01_digital_logic.html">Bits and Digital Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_01_bits_and_circuits.html">Bits and Digital Circuits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_02_reversible_computing.html">Reversible Computing</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Linear Algebra for Reversible Circuits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_04_probabilistic_circuits.html">Probabilistic Computing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Computing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02_quantum_computing/02_01_bits_to_qubits.html">Qubits and Quantum Circuits</a></li>
 </ul>
 
     </div>
@@ -384,10 +388,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#single-bit-systems">1. Single-Bit Systems</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-bit-numbers-as-vectors">1.1 Single-Bit Numbers as Vectors</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-bit-gates-as-matrices">1.2 Single-Bit Gates as Matrices</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#note">NOTE</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-bit-gates-as-matrices">1.2 Single-Bit Gates as Matrices</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-bit-systems">2. Multi-Bit Systems</a><ul class="nav section-nav flex-column">
@@ -408,8 +409,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="linear-algebra-for-reversible-circuits">
 <h1>Linear Algebra for Reversible Circuits<a class="headerlink" href="#linear-algebra-for-reversible-circuits" title="Link to this heading">#</a></h1>
-<hr class="docutils" />
-<p>An extremely attractive feature of reversible logic is that it maps very naturally to using vectors to represent boolean values (inputs/outputs), and matrices to express operations (gates and circuits). With very little extra work, reversible circuits can be turned into simple linear algebra relations, where multiplying an input vector by a circuit matrix gives us the corresponding output.</p>
+<hr></hr><p>An extremely attractive feature of reversible logic is that it maps very naturally to using vectors to represent boolean values (inputs/outputs), and matrices to express operations (gates and circuits). With very little extra work, reversible circuits can be turned into simple linear algebra relations, where multiplying an input vector by a circuit matrix gives us the corresponding output.</p>
 <section id="single-bit-systems">
 <h2>1. Single-Bit Systems<a class="headerlink" href="#single-bit-systems" title="Link to this heading">#</a></h2>
 <section id="single-bit-numbers-as-vectors">
@@ -431,7 +431,7 @@ document.write(`
 \qquad \qquad
 |1 \rangle = \begin{bmatrix} 0 \\ 1 \end{bmatrix} .
 \end{split}\]</div>
-<p>Here, the symbol <span class="math notranslate nohighlight">\(| \, \cdot \, \rangle\)</span> is known as a “ket”. For the time being, a ket is simply a representation for a vector in the same way that placing a hat or arrow on top of a variable is; for example, writing <span class="math notranslate nohighlight">\(| b \rangle\)</span> is equivalent to <span class="math notranslate nohighlight">\(\vec{b}\)</span>. Later we will see that kets are typically reserved for specific vectors that belong to a certain type vector space, but the good thing is that the vectors we will work with in this chapter are a subset of this “family”.</p>
+<p>Here, the symbol <span class="math notranslate nohighlight">\(| \, \cdot \, \rangle\)</span> is known as a “ket”. For the time being, a ket is simply a representation for a vector in the same way that placing a hat or arrow on top of a variable is; for example, writing <span class="math notranslate nohighlight">\(| b \rangle\)</span> is equivalent to <span class="math notranslate nohighlight">\(\vec{b}\)</span>. Later we will see that kets are typically reserved for specific vectors that belong to a certain type vector space that has some nice properties, but the good thing is that the vectors we will work with in this chapter are a subset of this “family”.</p>
 <p>We have therefore upgraded our definition of the bit from being a binary number <span class="math notranslate nohighlight">\(b \in \{0, 1\}\)</span>, to a column vector of the form:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} | b \rangle = \begin{bmatrix} \beta_0 \\ \beta_1 \end{bmatrix}, \end{split}\]</div>
@@ -701,8 +701,7 @@ $<span class="math notranslate nohighlight">\(
 \[\begin{split}\displaystyle \left[\begin{matrix}0 &amp; 1\\1 &amp; 0\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
-<section id="note">
-<h4>NOTE<a class="headerlink" href="#note" title="Link to this heading">#</a></h4>
+<p><strong>NOTE</strong></p>
 <p>If you are not accustomed to using NumPy, here’s a VERY important thing to keep in mind. The multiplication symbol <code class="docutils literal notranslate"><span class="pre">*</span></code> does NOT perform matrix multiplication of NumPy arrays; instead, it performs element-wise multiplication (aka, the <a class="reference external" href="https://en.wikipedia.org/wiki/Hadamard_product_(matrices)">Hadamard Product</a>). To perform matrix multiplication as defined above, we should use the <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.matmul.html"><code class="docutils literal notranslate"><span class="pre">numpy.matmul()</span></code></a> function. However, we can also use the syntactic-sugar symbol <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> as shortcut to perform the same operation:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -787,7 +786,6 @@ B &amp;= I A^{-1},
 </div>
 </div>
 <p>Let’s now generalize these concepts for when we are dealing with more than one bit.</p>
-</section>
 </section>
 </section>
 <section id="multi-bit-systems">
@@ -1369,10 +1367,7 @@ Q &amp;= \text{CCX} \left( I \otimes \text{X} \otimes I \right) \left( \text{X} 
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#single-bit-systems">1. Single-Bit Systems</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-bit-numbers-as-vectors">1.1 Single-Bit Numbers as Vectors</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-bit-gates-as-matrices">1.2 Single-Bit Gates as Matrices</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#note">NOTE</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-bit-gates-as-matrices">1.2 Single-Bit Gates as Matrices</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-bit-systems">2. Multi-Bit Systems</a><ul class="nav section-nav flex-column">
