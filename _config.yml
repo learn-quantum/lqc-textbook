@@ -8,7 +8,7 @@
 title: Quantum Computing using Python # The title of the book. Will be placed in the left navbar.
 author: Diego Emilio Serrano # The author of the book
 copyright: "2024" # Copyright year to be placed in the footer
-logo: logo.png # A path to the book logo
+logo: logo.svg # A path to the book logo
 # Patterns to skip when building the book. Can be glob-style (e.g. "*skip.ipynb")
 exclude_patterns: [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints"]
 # Auto-exclude files not in the toc
@@ -58,7 +58,7 @@ parse:
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
 html:
-  favicon: "LQC.ico"
+  favicon: "nabla.ico"
   baseurl: https://learn-quantum.github.io/lqc-textbook # The base URL where your book will be hosted.
   use_repository_button: true
   use_issues_button: true
