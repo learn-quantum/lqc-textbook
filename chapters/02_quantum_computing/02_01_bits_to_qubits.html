@@ -392,6 +392,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quantum-circuits">2. Quantum Circuits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#footnotes">Footnotes</a></li>
 </ul>
             </nav>
         </div>
@@ -406,8 +407,8 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="qubits-and-quantum-circuits">
 <h1>Qubits and Quantum Circuits<a class="headerlink" href="#qubits-and-quantum-circuits" title="Link to this heading">#</a></h1>
 <hr class="docutils" />
-<p>Quantum computers, or more precisely, quantum processing units (QPUs), are devices that exploit quantum-mechanical effects to perform certain computations using a reduced number of steps when compared to conventional (classical) computers. In order to understand how these devices work, we must familiarize ourselves with the quantum phenomena that enables this added computational advantage. In particular, we must understand the concepts of <a class="reference external" href="https://en.wikipedia.org/wiki/Quantum_superposition">superposition</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Quantum_entanglement">entanglement</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Wave_interference#Quantum_interference">quantum interference</a>.</p>
-<p>For this reason, in this chapter we will follow a bottom-up approach. Instead of starting our discussion about quantum computing by describing how QPUs can outperform classical devices in certain tasks, we will first introduce the concept of a qubit by showing how this fundamental element of computation emerges from some of the physical properties of particles like electrons.</p>
+<p>Quantum computers, or more precisely, quantum processing units (QPUs), are devices that exploit quantum-mechanical effects to speed up certain computational tasks when compared to conventional (classical) computers. In order to understand how these devices work, we must familiarize ourselves with the quantum phenomena that enables this added computational advantage. In particular, we must understand the concepts of <a class="reference external" href="https://en.wikipedia.org/wiki/Quantum_superposition">superposition</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Quantum_entanglement">entanglement</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Wave_interference#Quantum_interference">quantum interference</a>.</p>
+<p>Therefore, in this chapter, we will first introduce the concept of a qubit by showing how this fundamental element of computation emerges from some of the physical properties of particles like electrons. This way, we can lay the foundations needed to later discuss how QPUs can outperform classical devices when executing some specific computational routines.</p>
 <section id="quantum-bits-qubits">
 <h2>1. Quantum Bits (Qubits)<a class="headerlink" href="#quantum-bits-qubits" title="Link to this heading">#</a></h2>
 <p>From a computational standpoint, qubits are a generalization of classical bits and are the fundamental unit in quantum computing. There are many different ways in which we can introduce the concept of a qubit. Here, we will follow a relatively intuitive approach by looking at how electrons behave under the influence of an external magnetic field.</p>
@@ -550,26 +551,26 @@ To see why, let's first write what the probability vectors for a spin-up and spi
 \begin{bmatrix} \sqrt{2} \\ 0 \end{bmatrix} - \begin{bmatrix} \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \end{bmatrix} &amp;= \begin{bmatrix} s_0 \\ s_1 \end{bmatrix}
 \\
 \\
-\begin{bmatrix} \phantom{\text{-}}\frac{1}{\sqrt{2}} \\ \text{-}\frac{1}{\sqrt{2}} \end{bmatrix} &amp;= \begin{bmatrix} s_0 \\ s_1 \end{bmatrix} .
+\begin{bmatrix} \phantom{-}\frac{1}{\sqrt{2}} \\ -\frac{1}{\sqrt{2}} \end{bmatrix} &amp;= \begin{bmatrix} s_0 \\ s_1 \end{bmatrix} .
 \end{aligned}
 \end{split}\]</div>
 <p>Hence, we end up with the following vector:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} 
-|s_{\texttt{-}x} \rangle = \begin{bmatrix} \phantom{\texttt{-}}\frac{1}{\sqrt{2}} \\ \texttt{-}\frac{1}{\sqrt{2}} \end{bmatrix}
+|s_{\texttt{-}x} \rangle = \begin{bmatrix} \phantom{-}\frac{1}{\sqrt{2}} \\ -\frac{1}{\sqrt{2}} \end{bmatrix}
 \end{split}\]</div>
 <p>From the expression above, we have that for the an electron with spin pointing in the <span class="math notranslate nohighlight">\(\texttt{-}x\)</span> direction, the probability amplitudes are given by:</p>
 <div class="math notranslate nohighlight">
-\[s_0 = \frac{1}{\sqrt{2}} \quad \text{and} \quad  s_1 = \texttt{-}\frac{1}{\sqrt{2}},\]</div>
+\[s_0 = \frac{1}{\sqrt{2}} \quad \text{and} \quad  s_1 = -\frac{1}{\sqrt{2}},\]</div>
 <p>which gives us the correct probabilities of measurement:</p>
 <div class="math notranslate nohighlight">
-\[p_{\texttt{+}z} = s_0^2 = \left(\frac{1}{\sqrt{2}}\right)^2 = \frac{1}{2} \quad \text{and} \quad  p_{\texttt{-}z} = s_1^2 = \left(\texttt{-}\frac{1}{\sqrt{2}}\right)^2 = \frac{1}{2}.\]</div>
+\[p_{\texttt{+}z} = s_0^2 = \left(\frac{1}{\sqrt{2}}\right)^2 = \frac{1}{2} \quad \text{and} \quad  p_{\texttt{-}z} = s_1^2 = \left(-\frac{1}{\sqrt{2}}\right)^2 = \frac{1}{2}.\]</div>
 <p>In summary, the vectors that represent an electron with spins in the <span class="math notranslate nohighlight">\(\texttt{+}z\)</span> and <span class="math notranslate nohighlight">\(\texttt{-}z\)</span> direction are respectively given by:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} |s_{\texttt{+}z} \rangle = \begin{bmatrix} 1 \\ 0 \end{bmatrix} \quad \text{and} \quad |s_{\texttt{-}z} \rangle = \begin{bmatrix} 0 \\ 1 \end{bmatrix}. \end{split}\]</div>
 <p>Similarly, for electrons with spin in the <span class="math notranslate nohighlight">\(\texttt{+}x\)</span> and <span class="math notranslate nohighlight">\(\texttt{-}x\)</span> directions we have:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split} |s_{\texttt{-}x} \rangle = \begin{bmatrix} \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \end{bmatrix} \quad \text{and} \quad |s_{\texttt{-}x} \rangle = \begin{bmatrix} \phantom{\texttt{-}}\frac{1}{\sqrt{2}} \\ \texttt{-}\frac{1}{\sqrt{2}} \end{bmatrix}, \end{split}\]</div>
+\[\begin{split} |s_{\texttt{-}x} \rangle = \begin{bmatrix} \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \end{bmatrix} \quad \text{and} \quad |s_{\texttt{-}x} \rangle = \begin{bmatrix} \phantom{-}\frac{1}{\sqrt{2}} \\ -\frac{1}{\sqrt{2}} \end{bmatrix}, \end{split}\]</div>
 <p>respectively. Furthermore, <span class="math notranslate nohighlight">\(|s_{\texttt{+}x} \rangle\)</span> can be expressed as a linear combination of the <span class="math notranslate nohighlight">\(|s_{\texttt{+}z} \rangle\)</span> and <span class="math notranslate nohighlight">\(|s_{\texttt{-}z} \rangle\)</span> as follows:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} 
@@ -588,7 +589,7 @@ To see why, let's first write what the probability vectors for a spin-up and spi
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
-|s_{\texttt{-}x} \rangle &amp;= \begin{bmatrix} \phantom{\texttt{-}} \frac{1}{\sqrt{2}} \\ \texttt{-}\frac{1}{\sqrt{2}} \end{bmatrix} 
+|s_{\texttt{-}x} \rangle &amp;= \begin{bmatrix} \phantom{-} \frac{1}{\sqrt{2}} \\ -\frac{1}{\sqrt{2}} \end{bmatrix} 
 \\
 \\
 |s_{\texttt{-}x} \rangle &amp;= \frac{1}{\sqrt{2}} \begin{bmatrix} 1 \\ 0 \end{bmatrix} - \frac{1}{\sqrt{2}} \begin{bmatrix} 0 \\ 1 \end{bmatrix}
@@ -615,7 +616,7 @@ To see why, let's first write what the probability vectors for a spin-up and spi
 |+ \rangle &amp;= \begin{bmatrix} \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \end{bmatrix} = \frac{1}{\sqrt{2}}|0 \rangle + \frac{1}{\sqrt{2}}|1 \rangle 
 \\
 \\
-|- \rangle &amp;= \begin{bmatrix} \phantom{\texttt{-}} \frac{1}{\sqrt{2}} \\ \texttt{-}\frac{1}{\sqrt{2}} \end{bmatrix} = \frac{1}{\sqrt{2}}|0 \rangle - \frac{1}{\sqrt{2}}|1 \rangle 
+|- \rangle &amp;= \begin{bmatrix} \phantom{-} \frac{1}{\sqrt{2}} \\ -\frac{1}{\sqrt{2}} \end{bmatrix} = \frac{1}{\sqrt{2}}|0 \rangle - \frac{1}{\sqrt{2}}|1 \rangle 
 \end{aligned}
 \end{split}\]</div>
 <p>But more generally, we had that, for a classical bit vector representation given by the following expression:</p>
@@ -709,15 +710,54 @@ To see why, let's first write what the probability vectors for a spin-up and spi
 \end{split}\]</div>
 </div>
 </div>
-<p>One thing to note is that in Qiskit, column vectors are actually displayed as row vectors, but these should not be confused with the bra vectors we discussed before.</p>
-<p>We will discuss a few alternative ways of creating statevectors in the next chapter after we formally generalize the concept of a qubit.</p>
+<p>One thing to note is that in Qiskit, column vectors are actually displayed as row vectors, but these should not be confused with the bra vectors we discussed before. So, when we see something like this being displayed:</p>
+<div class="math notranslate nohighlight">
+\[ |- \rangle = 
+\begin{bmatrix}
+\frac{\sqrt{2}}{2} &amp; -\frac{\sqrt{2}}{2}
+ \end{bmatrix}, \]</div>
+<p>it actually represents:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+|- \rangle &amp;= \begin{bmatrix} \frac{\sqrt{2}}{2} &amp; -\frac{\sqrt{2}}{2} \end{bmatrix}^{\top} 
+\\
+\\
+|- \rangle &amp;= \begin{bmatrix} \phantom{-}\frac{\sqrt{2}}{2} \\ -\frac{\sqrt{2}}{2} \end{bmatrix}. 
+ \end{aligned}
+ \end{split}\]</div>
+<p>There are many other ways to create/initialize and display statevectors in Qiskit, but we will uncover these as we expand on the concept of a qubit in future chapters.</p>
+<p>Before moving forward, one important thing to clarify is that the the spin of an electron is not the only physical property that can be viewed or used to implement a qubit. We have used this physical model (and will stick with it for a bit longer) because it maps very nicely to the vector representations we have discussed so far, but it is important to keep in mind that there are many other quantum systems that can be used to build universal quantum computing systems, such as <a class="reference external" href="https://en.wikipedia.org/wiki/Superconducting_quantum_computing">superconducting circuits</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Trapped-ion_quantum_computer">ion traps</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Neutral_atom_quantum_computer">neutral atoms</a>, amongst <a class="reference external" href="https://en.wikipedia.org/wiki/List_of_proposed_quantum_registers">many others</a>.</p>
+<p>Let us now turn our attention at how we manipulate qubits using quantum circuits, which will be the next step towards understanding how these units of information bring an advantage when compared to their classical counterparts.</p>
 </section>
 </section>
 <section id="quantum-circuits">
 <h2>2. Quantum Circuits<a class="headerlink" href="#quantum-circuits" title="Link to this heading">#</a></h2>
+<p>Just like classical digital circuits, quantum circuits are an abstraction of physical operations that modify the state of a set of qubits. And, just like in the classical side, quantum circuits can be distilled into some basic operations represented by what we call <strong>quantum gates</strong>. Now, to understand this a bit better, it is useful to draw a parallel between the physical operations we apply to, let’s say, the spin of an electron that represents our qubit, and the diagrammatic abstraction of our circuit.</p>
+<p>So, let’s describe step by step what is shown in the figure below:</p>
+<a class="reference internal image-reference" href="../../_images/02_01_10_spin_vs_qubit_x.png"><img alt="../../_images/02_01_10_spin_vs_qubit_x.png" class="align-center" src="../../_images/02_01_10_spin_vs_qubit_x.png" style="width: 700px;" /></a>
+<ul class="simple">
+<li><p>We start at time <span class="math notranslate nohighlight">\(t_0\)</span> with an electron for which we do not where its spin is pointing to. In the circuit diagram we represent this state with with an arbitrary ket symbol: <span class="math notranslate nohighlight">\(|?\rangle\)</span>.</p></li>
+<li><p>At time <span class="math notranslate nohighlight">\(t_1\)</span>, the electron goes through a Stern-Gerlach apparatus (labeled SG1). We know that due to the probabilistic nature of the spin of the electron, only spin-up or spin-down electrons will come out of SG1, each with some probability of occurrence. We can then set our experiment to have a screen that only detects spin-down electrons, in which case we will ignore the outcome and repeat the experiment. In the cases were we don’t measure anything on the screen, we know we will have a spin-up electron coming out of this setup. In our circuit, we represent this operation with a block known as a post-selection gate (labeled as <span class="math notranslate nohighlight">\(|0\rangle \langle 0|\)</span>). All this gate represents is that, no matter what state goes into it, it only “spits out” state <span class="math notranslate nohighlight">\(|0\rangle\)</span>.</p></li>
+<li><p>Therefore, at <span class="math notranslate nohighlight">\(t_2\)</span>, we have only spin-up electrons in our physical setup, which in our circuit diagram we represent with a qubit in state <span class="math notranslate nohighlight">\(|0\rangle\)</span>. This step is commonly known as ground-state or zero-state <strong>preparation</strong>, and it is often assumed that it will take place before executing our algorithms, so we usually don’t need to manually specify it in our circuits.</p></li>
+<li><p><a name="back4"></a>At time <span class="math notranslate nohighlight">\(t_3\)</span>, we have our electron go through another apparatus that applies a constant magnetic field to the electron, causing the direction of its spin to rotate. The details of how this works are not important for our current discussion, all we need to know is that, by varying the strength, direction and duration of this field, we can have the spin point in any direction we want<a class="reference internal" href="#footnote4"><span class="xref myst"><span class="math notranslate nohighlight">\(^§\)</span></span></a>. In this particular example, we have had the electron spin to flip from spin-up all the way to spin-down. In our circuit, this is represented with an <span class="math notranslate nohighlight">\(X\)</span> gate, which should not be a surprise since we <a class="reference internal" href="../01_classical_computing/01_02_reversible_computing.html#1.1-Reversible-NOT"><span class="std std-ref">already discussed</span></a> that this is equivalent to a <strong>NOT</strong> gate for classical reversible circuits.</p></li>
+<li><p>So, at time <span class="math notranslate nohighlight">\(t_4\)</span> we have spin-down electrons, which in our circuit we represent with a qubit in state <span class="math notranslate nohighlight">\(|1\rangle\)</span>.</p></li>
+<li><p>Lastly, at <span class="math notranslate nohighlight">\(t_5\)</span> we send our electron through another Stern-Gerlach device (SG2) but this time we have a full screen to detect if electrons are being deflected upwards or downwards. In our circuit, this is represented with what is known as a measurement gate, which takes as an input a quantum state, and provides as an output a classical bit corresponding to the state that was probabilistically measured.</p></li>
+<li><p>So, at time <span class="math notranslate nohighlight">\(t_6\)</span>, we will only <strong>measure</strong> on the screen electrons hitting the lower part of the screen, since all electrons coming into SG2 were spin-down. And in our circuit, we will see bit <span class="math notranslate nohighlight">\(1\)</span> come out as a result every time we execute it.</p></li>
+</ul>
+<p>In summary, a quantum circuit will consist of three steps:</p>
+<ol class="arabic simple">
+<li><p><strong>State preparation</strong>, which almost always corresponds to state <span class="math notranslate nohighlight">\(|0\rangle\)</span>.</p></li>
+<li><p><strong>State transformation</strong>, which in the example above corresponded to applying an <span class="math notranslate nohighlight">\(X\)</span> gate, but in general this will be a combination of different gates.</p></li>
+<li><p><strong>State measurement</strong>, where our quantum state will be probabilistically projected into classical information (bits) that we can interpret.</p></li>
+</ol>
+</section>
+<section id="footnotes">
+<h2>Footnotes<a class="headerlink" href="#footnotes" title="Link to this heading">#</a></h2>
 <p><a name="footnote1"></a><span style="font-size: smaller;"><span class="math notranslate nohighlight">\(^*\)</span>Technically, we can’t really perform the standard Stern-Gerlach experiment using just electrons. Since electrons are charged particles, accelerating them into the apparatus will cause a classical <a class="reference external" href="https://en.wikipedia.org/wiki/Lorentz_force">Lorentz force</a> that will dominate over the effect the magnetic field has on spin. Instead, in the <a class="reference external" href="https://en.wikipedia.org/wiki/Stern%E2%80%93Gerlach_experiment#Description">original experiment</a>, silver atoms where used because they are electrically neutral but still have the same spin behavior as electrons (spin-1/2) due to the presence of an unpaired electron in the outermost orbital. (<a class="reference internal" href="#back1"><span class="xref myst">go back</span></a>)</p>
 <p><a name="footnote2"></a><span style="font-size: smaller;"><span class="math notranslate nohighlight">\(^{\dagger}\)</span>The choice of having <span class="math notranslate nohighlight">\(s_0^2\)</span> and <span class="math notranslate nohighlight">\(s_1^2\)</span> be the probabilities of measuring spin-up and spin-down is completely arbitrary. We could’ve equally selected them to be the probabilities of measuring spin-left or spin-right. The only restriction is that, once we pick what we want them to be, we need to stay consistent with this selection of axis of measurement when defining each and every vector. (<a class="reference internal" href="#back2"><span class="xref myst">go back</span></a>)</p>
 <p><a name="footnote3"></a><span style="font-size: smaller;"><span class="math notranslate nohighlight">\(^{\ddagger}\)</span>Later we will see that, more generally, our vector components are complex numbers, so instead of just squaring them to find probabilities we must find the value of their norm squared, i.e., <span class="math notranslate nohighlight">\(|\alpha|^2 =  \alpha \cdot \alpha^*, \, \alpha \in \mathbb{C}\)</span>. (<a class="reference internal" href="#back3"><span class="xref myst">go back</span></a>)</p>
+<p><a name="footnote4"></a><span style="font-size: smaller;"><span class="math notranslate nohighlight">\(^{§}\)</span>The feasibility of physically implementing such apparatus are of course debatable since in our setup we have the electron traveling in with some velocity but we would have to trap it, apply the magnetic field in the direction of interest, and then send it out it’s way, which is not an easy task. But again, as mentioned before, we can’t even perform a Stern-Gerlach experiment with a moving electron. At this point, the idea is to gain some intuition about what could be happening to the spin of an electron without having to worry to much about how exactly this could be realized. (<a class="reference internal" href="#back4"><span class="xref myst">go back</span></a>)</p>
 </section>
 </section>
 
@@ -783,6 +823,7 @@ To see why, let's first write what the probability vectors for a spin-up and spi
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quantum-circuits">2. Quantum Circuits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#footnotes">Footnotes</a></li>
 </ul>
   </nav></div>
 
