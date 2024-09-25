@@ -192,6 +192,21 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../02_quantum_computing/02_01_bits_to_qubits.html">Qubits and Quantum Circuits</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Protocols</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../03_quantum_protocols/03_01_CHSH_inequality.html">CHSH Inequality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_quantum_protocols/03_02_BB4_protocol.html">BB84 Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_quantum_protocols/03_03_teleportation.html">Quantum Teleportation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_quantum_protocols/03_04_superdense_coding.html">Superdense Coding</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Algorithms</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../04_quantum_algorithms/04_02_bernstein-vazirani.html">Bernstein–Vazirani Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_quantum_algorithms/04_03_simons.html">Simon’s Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_quantum_algorithms/04_04_grover.html">Grover’s Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_quantum_algorithms/04_05_amp_amp.html">Amplitude Amplification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_quantum_algorithms/04_06_qft.html">Quantum Fourier Transform</a></li>
+</ul>
 
     </div>
 </nav></div>
@@ -409,8 +424,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="probabilistic-computing">
 <h1>Probabilistic Computing<a class="headerlink" href="#probabilistic-computing" title="Link to this heading">#</a></h1>
-<hr class="docutils" />
-<p>The field of probabilistic computing, where the concept of randomness is harnessed to enhance certain computations, is currently experiencing a resurgence driven by the explosion of machine learning and AI algorithms that exploit these effects. However, in the context of classical circuits, randomness is almost always associated with the unwanted effects from noise. Bits stored in magnetic drives can randomly flip when exposed to certain magnetic fields, a <strong>NOT</strong> gate could mistakenly invert its output if there’s a glitch in its power supply, and every so often, a cosmic ray particle can cause enough charge accumulation to modify values in memory.</p>
+<hr></hr><p>The field of probabilistic computing, where the concept of randomness is harnessed to enhance certain computations, is currently experiencing a resurgence driven by the explosion of machine learning and AI algorithms that exploit these effects. However, in the context of classical circuits, randomness is almost always associated with the unwanted effects from noise. Bits stored in magnetic drives can randomly flip when exposed to certain magnetic fields, a <strong>NOT</strong> gate could mistakenly invert its output if there’s a glitch in its power supply, and every so often, a cosmic ray particle can cause enough charge accumulation to modify values in memory.</p>
 <p>Therefore, a natural way to introduce probabilistic effects into digital logic is by “upgrading” the concept of a bit to a probability bit (p-bit). In this context, a convenient way to represent p-bits is by the use of a <a class="reference external" href="https://en.wikipedia.org/wiki/Probability_vector">probability vector</a>, where an element of the vector represents the probability of measuring the binary value given by the vector index of that element.</p>
 <section id="single-bit-probabilistic-systems">
 <h2>1. Single-Bit Probabilistic Systems<a class="headerlink" href="#single-bit-probabilistic-systems" title="Link to this heading">#</a></h2>
@@ -476,12 +490,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1 0 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 0 0 0 1 1 0 1 1 1 0 1 0 1 0 0 1 0 1 0
- 1 1 1 1 0 1 0 0 0 1 0 1 1 1 0 1 1 1 1 1 1 0 1 1 0 1 0 1 0 1 1 1 1 1 0 1 1
- 0 0 1 1 1 1 1 1 1 0 1 0 1 1 0 1 1 1 0 1 1 1 1 0 0 1 1 0 1 1 1 1 1 1 1 1 1
- 1 0 0 1 0 1 1 0 1 1 0 1 1 1 1 0 0 1 1 1 0 0 1 1 0 1 0 1 1 1 1 0 1 1 1 1 1
- 1 0 1 0 1 1 0 1 1 1 1 1 1 1 1 1 1 0 0 1 0 0 0 1 1 0 1 0 1 1 1 1 1 1 1 1 1
- 1 0 1 0 1 1 1 1 1 0 1 1 0 0 1]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1 0 1 1 0 1 1 1 0 1 1 1 1 1 1 0 0 1 0 0 1 1 1 0 1 1 1 1 1 1 1 1 0 1 0 1 0
+ 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 1 1 0 1 1 0 1 1 1 0 1
+ 1 1 0 1 1 1 1 0 1 1 0 1 1 0 1 1 1 0 1 1 1 0 1 0 1 1 1 1 1 1 1 1 1 1 1 1 0
+ 0 1 1 1 1 0 0 0 1 1 1 0 0 1 1 1 1 0 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 0 0 1 1
+ 0 1 1 1 1 1 1 0 1 0 1 1 0 0 1 1 0 1 1 0 0 0 0 1 1 1 0 1 0 1 1 1 1 1 0 1 0
+ 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1]
 </pre></div>
 </div>
 </div>
@@ -498,8 +512,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For ϱ0 = 0.25 and 200 samples, the relative frequency of 0s is 0.295
-For ϱ1 = 0.75 and 200 samples, the relative frequency of 1s is 0.705
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For ϱ0 = 0.25 and 200 samples, the relative frequency of 0s is 0.265
+For ϱ1 = 0.75 and 200 samples, the relative frequency of 1s is 0.735
 </pre></div>
 </div>
 </div>
@@ -516,7 +530,7 @@ For ϱ1 = 0.75 and 200 samples, the relative frequency of 1s is 0.705
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/66d1d7e3f6b7bd31dd2de908b63c9fa8cfb0b88ce8c7a35bcd09f9683abfb923.png" src="../../_images/66d1d7e3f6b7bd31dd2de908b63c9fa8cfb0b88ce8c7a35bcd09f9683abfb923.png" />
+<img alt="../../_images/f572dcbbb7523e6ceef3d3e3ddf5baebca0f1a318809c568a30710e8a78cda04.png" src="../../_images/f572dcbbb7523e6ceef3d3e3ddf5baebca0f1a318809c568a30710e8a78cda04.png" />
 </div>
 </div>
 <p>Now, note that unlike in the previous chapter, where we relabeled the bit vector <span class="math notranslate nohighlight">\(\vec{b}\)</span> to use ket notation <span class="math notranslate nohighlight">\(|b\rangle\)</span>, here we have opted to denote our probability vector as <span class="math notranslate nohighlight">\(\vec{p}\)</span>. We’ve purposely done this to emphasize that there are some distinctions between some of the properties of p-bits and qubits. For instance, recall from that the magnitude of a real-valued vector is given by its Euclidean norm:</p>
