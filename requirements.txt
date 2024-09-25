@@ -1,5 +1,11 @@
 jupyter-book
 jupytext
 matplotlib
+pylatexenc
 numpy
+sympy
 ghp-import
+qiskit
+qiskit-aer
+qiskit-ibm-runtime
+
