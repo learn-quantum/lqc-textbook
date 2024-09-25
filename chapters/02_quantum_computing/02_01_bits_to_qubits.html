@@ -624,7 +624,7 @@ To see why, let's first write what the probability vectors for a spin-up and spi
 \quad \text{ and } \quad
 |1 \rangle = \begin{bmatrix} 0 \\ 1 \end{bmatrix} .
 \end{split}\]</div>
-<p>Well, it is not hard to see that these are exactly the same vectors we associated with the spin of an electron pointing in the <span class="math notranslate nohighlight">\(\texttt{+}z\)</span> and <span class="math notranslate nohighlight">\(\texttt{-}z\)</span> directions. But of course, we also saw that electrons can point in more than just these two directions. Specifically, we looked into the vector representation of the spin pointing in the <span class="math notranslate nohighlight">\(\texttt{+}x\)</span> and <span class="math notranslate nohighlight">\(\texttt{-}x\)</span> directions, which have no analog in the classical representation of binary systems (or even probability vectors). Instead, the elements of the spin vectors correspond probability amplitudes, which are a uniquely quantum effect. Therefore, we call these new type of vectors <strong>qubits</strong>. So we are going to stick to the idea of spin representing a qubit, but we are going to make a few notational replacements. From now on, we will associate the spin-up of our electron with the vector symbol <span class="math notranslate nohighlight">\(|0 \rangle\)</span> (referred as “state zero”), and spin-down with <span class="math notranslate nohighlight">\(|1 \rangle\)</span> (“state one”). Similarly, we will express the spin-left and spin-right using two new symbols: <span class="math notranslate nohighlight">\(|+ \rangle\)</span> and <span class="math notranslate nohighlight">\(|- \rangle\)</span>, which we call “state plus” and state minus”, respectively. And like before, these two vectors correspond to <strong>superposition</strong> states of the states <span class="math notranslate nohighlight">\(|0 \rangle\)</span>, and <span class="math notranslate nohighlight">\(|1 \rangle\)</span>:</p>
+<p>Well, it is not hard to see that these are exactly the same vectors we associated with the spin of an electron pointing in the <span class="math notranslate nohighlight">\(\texttt{+}z\)</span> and <span class="math notranslate nohighlight">\(\texttt{-}z\)</span> directions. But of course, we also saw that electrons can point in more than just these two directions. Specifically, we looked into the vector representation of the spin pointing in the <span class="math notranslate nohighlight">\(\texttt{+}x\)</span> and <span class="math notranslate nohighlight">\(\texttt{-}x\)</span> directions, which have no analog in the classical representation of binary systems (or even probability vectors). Instead, the elements of the spin vectors correspond probability amplitudes, which are a uniquely quantum effect. Therefore, we call these new type of vectors <strong>qubits</strong>. So we are going to stick to the idea of spin representing a qubit, but we are going to make a few notational replacements. From now on, we will associate the spin-up of our electron with the vector symbol <span class="math notranslate nohighlight">\(|0 \rangle\)</span> (referred as “state zero”), and spin-down with <span class="math notranslate nohighlight">\(|1 \rangle\)</span> (“state one”). Similarly, we will express the along the <span class="math notranslate nohighlight">\(\texttt{+}x\)</span> and <span class="math notranslate nohighlight">\(\texttt{-}x\)</span> directions using two new symbols: <span class="math notranslate nohighlight">\(|+ \rangle\)</span> and <span class="math notranslate nohighlight">\(|- \rangle\)</span>, which we call “state plus” and state minus”, respectively. And like before, these two vectors correspond to <strong>superposition</strong> states of the states <span class="math notranslate nohighlight">\(|0 \rangle\)</span>, and <span class="math notranslate nohighlight">\(|1 \rangle\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} 
 \begin{aligned}
@@ -738,8 +738,8 @@ To see why, let's first write what the probability vectors for a spin-up and spi
 <section id="quantum-circuits">
 <h2>2. Quantum Circuits<a class="headerlink" href="#quantum-circuits" title="Link to this heading">#</a></h2>
 <p>Just like classical digital circuits, quantum circuits are an abstraction of physical operations that modify the state of a set of qubits. And, just like in the classical side, quantum circuits can be distilled into some basic operations represented by what we call <strong>quantum gates</strong>. Now, to understand this a bit better, it is useful to draw a parallel between the physical operations we apply to, let’s say, the spin of an electron that represents our qubit, and the diagrammatic abstraction of our circuit.</p>
-<p>So, let’s describe step by step what is shown in the figure below:</p>
-<a class="reference internal image-reference" href="../../_images/02_01_10_spin_vs_qubit_x.png"><img alt="../../_images/02_01_10_spin_vs_qubit_x.png" class="align-center" src="../../_images/02_01_10_spin_vs_qubit_x.png" style="width: 700px;" /></a>
+<p>So, let’s look at the example below and describe step by step the relation between what happens to the spin of an electron, and the operation it would correspond to in a quantum circuit:</p>
+<a class="reference internal image-reference" href="../../_images/02_01_10_spin_vs_qubit_x.png"><img alt="../../_images/02_01_10_spin_vs_qubit_x.png" class="align-center" src="../../_images/02_01_10_spin_vs_qubit_x.png" style="width: 750px;" /></a>
 <ul class="simple">
 <li><p>We start at time <span class="math notranslate nohighlight">\(t_0\)</span> with an electron for which we do not know where its spin is pointing to. In the circuit diagram we represent this state with with an arbitrary ket symbol <span class="math notranslate nohighlight">\(|?\rangle\)</span>.</p></li>
 <li><p>At time <span class="math notranslate nohighlight">\(t_1\)</span>, the electron goes through a Stern-Gerlach apparatus (labeled SG1). We know that due to the probabilistic nature of the spin of the electron, only spin-up or spin-down electrons will come out of SG1, each with some probability of occurrence. We can then set our experiment to have a screen that only detects spin-down electrons, in which case we will ignore the outcome and repeat the experiment. In the cases were we don’t measure anything on the screen, we know we will have a spin-up electron coming out of this setup. In our circuit, we represent this operation with a block known as a post-selection gate (labeled as <span class="math notranslate nohighlight">\(|0\rangle \langle 0|\)</span>). All this gate represents is that, no matter what state goes into it, it only “spits out” state <span class="math notranslate nohighlight">\(|0\rangle\)</span>.</p></li>
@@ -753,14 +753,33 @@ To see why, let's first write what the probability vectors for a spin-up and spi
 <p><span style="color:#a883f7"><strong>1. State preparation</strong></span>, which almost always corresponds to preparing the ground state <span class="math notranslate nohighlight">\(|0\rangle\)</span>.</p>
 <p><span style="color:#a883f7"><strong>2. State transformation</strong></span>, which in the example above corresponded to applying an <span class="math notranslate nohighlight">\(X\)</span> gate, but in general this will be a applying a combination of different quantum gates.</p>
 <p><span style="color:#a883f7"><strong>3. State measurement</strong></span>, where our quantum state gets probabilistically projected into classical information (bits) that we can interpret.</p>
-<p>Let us now go ahead and create a quantum circuit using Qiskit, and evolve a quantum state through it:</p>
+<p>Let us now go ahead and create and display a quantum circuit that resembles what we have above using Qiskit:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumCircuit</span>
 
-<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Create circuit object with 1 qubit and 1 classical bit</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>               <span class="c1"># Add state preparation gate (reset) to qubit 0</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>                   <span class="c1"># Add X gate to circuit to qubit 0</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>           <span class="c1"># Add measurement gate between qubit 0 and bit 0</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="word-wrap: normal;white-space: pre;background: #fff0;line-height: 1.1;font-family: &quot;Courier New&quot;,Courier,monospace">          ┌───┐┌─┐
+  q: ─|0>─┤ X ├┤M├
+          └───┘└╥┘
+c: 1/═══════════╩═
+                0 </pre></div></div>
+</div>
+<p>As before, we have a gate to prepare our zero state (here denote with the symbol <span class="math notranslate nohighlight">\(|0\rangle\)</span>), an <span class="math notranslate nohighlight">\(X\)</span> and a measurement gate. The only small difference is that we see that we have separate lines for our qubit <span class="math notranslate nohighlight">\(q\)</span> and the measured bit <span class="math notranslate nohighlight">\(c\)</span>, which is denoted with double lines. This is just to keep the quantum and classical lines of information separate.</p>
+<p>Let’s first focus our attention on the <span class="math notranslate nohighlight">\(X\)</span> gate alone. As described in the chapter on reversible computing, this gate corresponds to matrix that maps state <span class="math notranslate nohighlight">\(|0\rangle\)</span> to state <span class="math notranslate nohighlight">\(|1\rangle\)</span> and vice-versa. So let’s extract the matrix for this particular gate in Qiskit using the <code class="docutils literal notranslate"><span class="pre">Operator</span></code> class:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc_x</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Create circuit object with 1 qubitt</span>
+<span class="n">qc_x</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>                   <span class="c1"># Add X gate to circuit</span>
+<span class="n">qc_x</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -769,6 +788,227 @@ To see why, let's first write what the probability vectors for a spin-up and spi
 q: ┤ X ├
    └───┘</pre></div></div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">Operator</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">Operator</span><span class="p">(</span><span class="n">qc_x</span><span class="p">)</span>
+<span class="n">X</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;X =&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+X =
+\begin{bmatrix}
+0 &amp; 1  \\
+ 1 &amp; 0  \\
+ \end{bmatrix}
+\end{split}\]</div>
+</div>
+</div>
+<p>As expected, we get the right matrix representation for this gate. We can also apply this gate to the quantum states we defined above over the gate as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Evolution of state |0⟩ over an X gate results in:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">zero</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">qc_x</span><span class="p">))</span>  <span class="c1"># Evolving state |0⟩ over X should result in State |1⟩</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Evolution of state |1⟩ over an X gate results in:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">one</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">qc_x</span><span class="p">))</span>  <span class="c1"># Evolving state |1⟩ over X should result in State |0⟩</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evolution of state |0⟩ over an X gate results in:
+Statevector([0.+0.j, 1.+0.j],
+            dims=(2,))
+Evolution of state |1⟩ over an X gate results in:
+Statevector([1.+0.j, 0.+0.j],
+            dims=(2,))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, let’s go back to our experiment and, instead of applying a magnetic field to flip the spin of the electron from spin-up to spin-down, let’s assume we apply a different field that takes the spin from pointing in the <span class="math notranslate nohighlight">\(\text{+}z\)</span> direction to the <span class="math notranslate nohighlight">\(\text{+}x\)</span> direction:</p>
+<a class="reference internal image-reference" href="../../_images/02_01_11_spin_vs_qubit_h.png"><img alt="../../_images/02_01_11_spin_vs_qubit_h.png" class="align-center" src="../../_images/02_01_11_spin_vs_qubit_h.png" style="width: 750px;" /></a>
+<p>The first portion of the experiment/circuit, where we prepare the spin-up electron remains the same (from <span class="math notranslate nohighlight">\(t_0\)</span> to <span class="math notranslate nohighlight">\(t_2\)</span>). However, since we have now modified the field applied at <span class="math notranslate nohighlight">\(t_3\)</span>, we represent this in a circuit with a different gate. In this particular case, we have what is known as a <strong>Hadamard gate</strong>, which is one of the most important transformations we will find in quantum computing.</p>
+<p>The Hadamard gate is special because it not only maps state <span class="math notranslate nohighlight">\(|0\rangle\)</span> to state <span class="math notranslate nohighlight">\(|+\rangle\)</span> (as we see at <span class="math notranslate nohighlight">\(t_4\)</span>, but it also does the reverse: maps state <span class="math notranslate nohighlight">\(|+\rangle\)</span> to state <span class="math notranslate nohighlight">\(|0\rangle\)</span>. Similarly, it maps state <span class="math notranslate nohighlight">\(|1\rangle\)</span> to state <span class="math notranslate nohighlight">\(|-\rangle\)</span>, and vice-versa. The matrix that performs these transformation is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} H = \frac{1}{\sqrt{2}} \begin{bmatrix} 1 &amp; \phantom{-}1 \\ 1 &amp; -1 \end{bmatrix}. \end{split}\]</div>
+<p>Now, continuing with our experiment/circuit, at <span class="math notranslate nohighlight">\(t_5\)</span> we have the electron going into SG2, and as we saw before, gives us a <span class="math notranslate nohighlight">\(50\%\)</span> chance of seeing the electron deflect upwards or downwards. In our circuit, this will be equivalent to measuring either a <span class="math notranslate nohighlight">\(0\)</span> or a <span class="math notranslate nohighlight">\(1\)</span>, each with <span class="math notranslate nohighlight">\(50\%\)</span> probability.</p>
+<p>Let’s again create a circuit in Qiskit, check it’s matrix and the evolution of different states:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc_h</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Create circuit object with 1 qubitt</span>
+<span class="n">qc_h</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>                 <span class="c1"># Add H gate to circuit</span>
+<span class="n">qc_h</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="word-wrap: normal;white-space: pre;background: #fff0;line-height: 1.1;font-family: &quot;Courier New&quot;,Courier,monospace">   ┌───┐
+q: ┤ H ├
+   └───┘</pre></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H</span> <span class="o">=</span> <span class="n">Operator</span><span class="p">(</span><span class="n">qc_h</span><span class="p">)</span>
+<span class="n">H</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;H =&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+H =
+\begin{bmatrix}
+\frac{\sqrt{2}}{2} &amp; \frac{\sqrt{2}}{2}  \\
+ \frac{\sqrt{2}}{2} &amp; - \frac{\sqrt{2}}{2}  \\
+ \end{bmatrix}
+\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Evolution of state |0⟩ over an X gate results in:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">zero</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">qc_h</span><span class="p">))</span>  <span class="c1"># Evolving state |0⟩ over X should result in State |+⟩</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Evolution of state |1⟩ over an X gate results in:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">one</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">qc_h</span><span class="p">))</span>  <span class="c1"># Evolving state |1⟩ over X should result in State |-⟩</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evolution of state |0⟩ over an X gate results in:
+Statevector([0.70710678+0.j, 0.70710678+0.j],
+            dims=(2,))
+Evolution of state |1⟩ over an X gate results in:
+Statevector([ 0.70710678+0.j, -0.70710678+0.j],
+            dims=(2,))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Before wrapping up this section, let’s see a couple of different ways in which we can perform measurements using Qiskit.</p>
+<p>First, if we already have a <code class="docutils literal notranslate"><span class="pre">Statevector</span></code> object, we can use the <code class="docutils literal notranslate"><span class="pre">sample_counts</span></code> method to “emulate” as if the state was being measured. Here’s an example we were sample state <span class="math notranslate nohighlight">\(|+\rangle\)</span> 100 times. We should get <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> roughly half of the time each:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plus_counts</span> <span class="o">=</span> <span class="n">plus</span><span class="o">.</span><span class="n">sample_counts</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">plus_counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(55), np.str_(&#39;1&#39;): np.int64(45)}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Alternatively, if instead of just getting the number of times we got <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>, we actually wanted the string of values obtained after each measurement, we can use the <code class="docutils literal notranslate"><span class="pre">sample_memory</span></code> method:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plus_samples</span> <span class="o">=</span> <span class="n">plus</span><span class="o">.</span><span class="n">sample_memory</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">plus_samples</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39;
+ &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39;
+ &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39;
+ &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39;
+ &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39;
+ &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>And if we were to do this for, let’s say, state <span class="math notranslate nohighlight">\(|0\rangle\)</span>, we should obviously see <span class="math notranslate nohighlight">\(0\)</span> <span class="math notranslate nohighlight">\(100\%\)</span> of the time:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zero_counts</span> <span class="o">=</span> <span class="n">zero</span><span class="o">.</span><span class="n">sample_counts</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">zero_counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(100)}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zero_samples</span> <span class="o">=</span> <span class="n">zero</span><span class="o">.</span><span class="n">sample_memory</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">zero_samples</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39;
+ &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39;
+ &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39;
+ &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39;
+ &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39;
+ &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, using these <code class="docutils literal notranslate"><span class="pre">Statevector</span></code> methods is a convenient way to emulate the results, but if we want to simulate a circuit similar to what would be executed in real hardware, we need to add a measurement gate to our circuit as we did before, and run a simulation. Here’s a simple way to do this in qiskit:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc_hm</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Create circuit object with 1 qubitt</span>
+<span class="n">qc_hm</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>                   <span class="c1"># Add H gate to circuit</span>
+<span class="n">qc_hm</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>           <span class="c1"># Add measurement gate between qubit 0 and bit 0</span>
+<span class="n">qc_hm</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="word-wrap: normal;white-space: pre;background: #fff0;line-height: 1.1;font-family: &quot;Courier New&quot;,Courier,monospace">     ┌───┐┌─┐
+  q: ┤ H ├┤M├
+     └───┘└╥┘
+c: 1/══════╩═
+           0 </pre></div></div>
+</div>
+<p>Notice how we did not add a <code class="docutils literal notranslate"><span class="pre">reset</span></code> gate like we did before. This is because in Qiskit, it is assumed that we always want to start a simulation with the state initialized at <span class="math notranslate nohighlight">\(|0\rangle\)</span>, therefore adding this gate is redundant.</p>
+<p>Now, to run our simulation, we need to import a simulator and execute the circuit a given number of “shots” (i.e., the number of times we want to run the simulation). For this, we will use the <code class="docutils literal notranslate"><span class="pre">BasicSimulator</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit.providers.basic_provider</span> <span class="kn">import</span> <span class="n">BasicSimulator</span>
+
+<span class="n">simulator</span> <span class="o">=</span> <span class="n">BasicSimulator</span><span class="p">()</span>           <span class="c1"># define simulator object</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">simulator</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc_hm</span><span class="p">,</span> <span class="n">shots</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>  <span class="c1"># use run method to execute our circuit some number of shots</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>                  <span class="c1"># extract our results</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>           <span class="c1"># get the counts from the experiment</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;1&#39;: 54, &#39;0&#39;: 46}
+</pre></div>
+</div>
+</div>
+</div>
+<p>And to visualize these results in a slightly nicer way, we can use the <code class="docutils literal notranslate"><span class="pre">plot_histogram</span></code> or function in Qiskit:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit.visualization</span> <span class="kn">import</span> <span class="n">plot_histogram</span>
+
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/80ee7ef16de2b044fa9a26eac5d5f30b36fad4039d5d8fd41aaf5ec9161d8c62.png" src="../../_images/80ee7ef16de2b044fa9a26eac5d5f30b36fad4039d5d8fd41aaf5ec9161d8c62.png" />
+</div>
+</div>
+<p>As expected, we get <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> about half of the time because, we started with state <span class="math notranslate nohighlight">\(|0\rangle\)</span>, applied a Hadamard gate, turning it into state <span class="math notranslate nohighlight">\(|+\rangle\)</span>, and then measured the qubit a 100 times.</p>
+<p>Now that we have a basic idea of how what the physical representation of qubits and gates are, and how we can execute some simple simulations in Qiskit, in the next chapter we will generalize and present these ideas in a more formal way.</p>
 </section>
 <section id="footnotes">
 <h2>Footnotes<a class="headerlink" href="#footnotes" title="Link to this heading">#</a></h2>
