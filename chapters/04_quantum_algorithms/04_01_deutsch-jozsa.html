@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Simon’s Algorithm &#8212; Quantum Computing using Python</title>
+    <title>Deutsch-Jozsa Algorithm &#8212; Quantum Computing using Python</title>
   
   
   
@@ -58,13 +58,13 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/04_quantum_algorithms/04_03_simons';</script>
-    <link rel="canonical" href="https://learn-quantum.github.io/lqc-textbook/chapters/04_quantum_algorithms/04_03_simons.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/04_quantum_algorithms/04_01_deutsch-jozsa';</script>
+    <link rel="canonical" href="https://learn-quantum.github.io/lqc-textbook/chapters/04_quantum_algorithms/04_01_deutsch-jozsa.html" />
     <link rel="icon" href="../../_static/nabla.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Grover’s Algorithm" href="04_04_grover.html" />
-    <link rel="prev" title="Bernstein–Vazirani Algorithm" href="04_02_bernstein-vazirani.html" />
+    <link rel="next" title="Bernstein–Vazirani Algorithm" href="04_02_bernstein-vazirani.html" />
+    <link rel="prev" title="Superdense Coding" href="../03_quantum_protocols/03_04_superdense_coding.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -200,9 +200,9 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Algorithms</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="04_01_deutsch-jozsa.html">Deutsch-Jozsa Algorithm</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Deutsch-Jozsa Algorithm</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04_02_bernstein-vazirani.html">Bernstein–Vazirani Algorithm</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Simon’s Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_03_simons.html">Simon’s Algorithm</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04_04_grover.html">Grover’s Algorithm</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04_05_amp_amp.html">Amplitude Amplification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04_06_qft.html">Quantum Fourier Transform</a></li>
@@ -277,7 +277,7 @@
       
       
       
-      <li><a href="https://github.com/learn-quantum/lqc-textbook/issues/new?title=Issue%20on%20page%20%2Fchapters/04_quantum_algorithms/04_03_simons.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/learn-quantum/lqc-textbook/issues/new?title=Issue%20on%20page%20%2Fchapters/04_quantum_algorithms/04_01_deutsch-jozsa.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -307,7 +307,7 @@
       
       
       
-      <li><a href="../../_sources/chapters/04_quantum_algorithms/04_03_simons.ipynb" target="_blank"
+      <li><a href="../../_sources/chapters/04_quantum_algorithms/04_01_deutsch-jozsa.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -389,7 +389,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Simon’s Algorithm</h1>
+    <h1>Deutsch-Jozsa Algorithm</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -403,8 +403,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="simon-s-algorithm">
-<h1>Simon’s Algorithm<a class="headerlink" href="#simon-s-algorithm" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="deutsch-jozsa-algorithm">
+<h1>Deutsch-Jozsa Algorithm<a class="headerlink" href="#deutsch-jozsa-algorithm" title="Link to this heading">#</a></h1>
 <hr></hr></section>
 
     <script type="text/x-thebe-config">
@@ -438,20 +438,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="04_02_bernstein-vazirani.html"
+       href="../03_quantum_protocols/03_04_superdense_coding.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Bernstein–Vazirani Algorithm</p>
+        <p class="prev-next-title">Superdense Coding</p>
       </div>
     </a>
     <a class="right-next"
-       href="04_04_grover.html"
+       href="04_02_bernstein-vazirani.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Grover’s Algorithm</p>
+        <p class="prev-next-title">Bernstein–Vazirani Algorithm</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
