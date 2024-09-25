@@ -21,3 +21,21 @@ parts:
     maxdepth: 3
     chapters:
       - file: chapters/02_quantum_computing/02_01_bits_to_qubits
+
+  - caption: Quantum Protocols
+    maxdepth: 3
+    chapters:
+      - file: chapters/03_quantum_protocols/03_01_CHSH_inequality
+      - file: chapters/03_quantum_protocols/03_02_BB4_protocol
+      - file: chapters/03_quantum_protocols/03_03_teleportation
+      - file: chapters/03_quantum_protocols/03_04_superdense_coding
+
+  - caption: Quantum Algorithms
+    maxdepth: 3
+    chapters:
+      - file: chapters/04_quantum_algorithms/04_01_deutsch-josza
+      - file: chapters/04_quantum_algorithms/04_02_bernstein-vazirani
+      - file: chapters/04_quantum_algorithms/04_03_simons
+      - file: chapters/04_quantum_algorithms/04_04_grover
+      - file: chapters/04_quantum_algorithms/04_05_amp_amp
+      - file: chapters/04_quantum_algorithms/04_06_qft
