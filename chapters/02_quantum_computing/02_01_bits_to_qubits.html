@@ -443,6 +443,8 @@ document.write(`
 <p>However, for the case of an electron with their spin pointing in, for example, the <span class="math notranslate nohighlight">\(\texttt{+}x\)</span> (or <span class="math notranslate nohighlight">\(\texttt{-}x\)</span>) direction, something interesting happens. Instead of traveling in a straight line (like in the case of the bar magnet), the electron ends up deflecting upwards or downwards each with <span class="math notranslate nohighlight">\(50 \%\)</span> probability:
 <a class="reference internal" href="../../_images/02_01_06_stern-gerlach_right_elec.png"><img alt="../../_images/02_01_06_stern-gerlach_right_elec.png" class="align-center" src="../../_images/02_01_06_stern-gerlach_right_elec.png" style="width: 360px;" /></a></p>
 <p>In other words, in an experiment where the electron is prepared to have spin in the <span class="math notranslate nohighlight">\(\texttt{±}x\)</span> direction is performed many times, it has been verified that roughly half of the time the electron deflects upwards, and half of the time it deflects downwards and <strong>never</strong> somewhere in between.</p>
+<p>And more generally, when an electron with its spin at an angle <span class="math notranslate nohighlight">\(\theta\)</span> with respect to the <span class="math notranslate nohighlight">\(\texttt{+}z\)</span> direction is sent into a Stern-Gerlach apparatus, the electron still only deflects either upwards or downwards with complimentary probabilities <span class="math notranslate nohighlight">\(p{\texttt{+}z}\)</span> and <span class="math notranslate nohighlight">\(p{\texttt{-}z}\)</span> that depend on this angle:</p>
+<a class="reference internal image-reference" href="../../_images/02_01_07_stern-gerlach_angle_elec.png"><img alt="../../_images/02_01_07_stern-gerlach_angle_elec.png" class="align-center" src="../../_images/02_01_07_stern-gerlach_angle_elec.png" style="width: 320px;" /></a>
 <p>The reason why electrons show this probabilistic behavior is partially related to what is perhaps the most debated question in all quantum mechanics: <a class="reference external" href="https://en.wikipedia.org/wiki/Measurement_problem">the measurement problem</a>. Since discussions about the measurement problem are outside the scope of this textbook, we will simply use the empirical evidence from these experiments to build a model for how to describe these particles.</p>
 <p>So, given this observed behavior, it is then very tempting to assign a probability vector (like the ones described in the <a class="reference internal" href="../01_classical_computing/01_04_probabilistic_circuits.html"><span class="std std-doc">previous chapter</span></a>) to describe the state of the spin of an electron, where to first element in the vector represents the probability of the electron being spin up, and the second element the probability of being spin down:</p>
 <div class="math notranslate nohighlight">
@@ -900,7 +902,7 @@ Statevector([ 0.70710678+0.j, -0.70710678+0.j],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(55), np.str_(&#39;1&#39;): np.int64(45)}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(43), np.str_(&#39;1&#39;): np.int64(57)}
 </pre></div>
 </div>
 </div>
@@ -914,12 +916,12 @@ Statevector([ 0.70710678+0.j, -0.70710678+0.j],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39;
- &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39;
- &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39;
- &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39;
- &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39;
- &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39;
+ &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39;
+ &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39;
+ &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39;
+ &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39;
+ &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39;]
 </pre></div>
 </div>
 </div>
@@ -989,7 +991,7 @@ c: 1/══════╩═
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;1&#39;: 54, &#39;0&#39;: 46}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;0&#39;: 53, &#39;1&#39;: 47}
 </pre></div>
 </div>
 </div>
@@ -1004,7 +1006,7 @@ c: 1/══════╩═
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/80ee7ef16de2b044fa9a26eac5d5f30b36fad4039d5d8fd41aaf5ec9161d8c62.png" src="../../_images/80ee7ef16de2b044fa9a26eac5d5f30b36fad4039d5d8fd41aaf5ec9161d8c62.png" />
+<img alt="../../_images/c7332fca1130897b86c6eaec1abc1c96f4ed45bf9f8ef789939284d10888002f.png" src="../../_images/c7332fca1130897b86c6eaec1abc1c96f4ed45bf9f8ef789939284d10888002f.png" />
 </div>
 </div>
 <p>As expected, we get <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> about half of the time because, we started with state <span class="math notranslate nohighlight">\(|0\rangle\)</span>, applied a Hadamard gate, turning it into state <span class="math notranslate nohighlight">\(|+\rangle\)</span>, and then measured the qubit a 100 times.</p>
