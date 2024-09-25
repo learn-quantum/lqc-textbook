@@ -57,6 +57,8 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/00_getting_started/00_01_setting_env';</script>
     <link rel="canonical" href="https://learn-quantum.github.io/lqc-textbook/chapters/00_getting_started/00_01_setting_env.html" />
     <link rel="icon" href="../../_static/nabla.ico"/>
@@ -550,17 +552,19 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">transpile</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">Statevector</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">qiskit.visualization</span> <span class="kn">import</span> <span class="n">plot_distribution</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;qiskit&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statevector:
 </pre></div>
 </div>
+<div class="output text_latex math notranslate nohighlight">
+\[\frac{\sqrt{2}}{2} |00\rangle- \frac{\sqrt{2} i}{2} |11\rangle\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Circuit:
+</pre></div>
+</div>
+<img alt="../../_images/dab5d97b0da3948a3dfa89e105dbf0bae96c708f23679385483e28bf718fae22.png" src="../../_images/dab5d97b0da3948a3dfa89e105dbf0bae96c708f23679385483e28bf718fae22.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Probability Distribution:
+</pre></div>
+</div>
+<img alt="../../_images/cb5933ba7f42e211f8c19be0f637663fe382546c9326024bc359dacbbb682475.png" src="../../_images/cb5933ba7f42e211f8c19be0f637663fe382546c9326024bc359dacbbb682475.png" />
 </div>
 </div>
 </section>

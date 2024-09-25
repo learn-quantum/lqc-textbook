@@ -640,17 +640,6 @@ To see why, let's first write what the probability vectors for a spin-up and spi
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">Statevector</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;qiskit&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -681,6 +670,14 @@ To see why, let's first write what the probability vectors for a spin-up and spi
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|0⟩ = Statevector([1.+0.j, 0.+0.j],
+            dims=(2,))
+|1⟩ = Statevector([0.+0.j, 1.+0.j],
+            dims=(2,))
+</pre></div>
+</div>
+</div>
 </div>
 <p>Or display it’s Bra-Ket or column vector representation it <span class="math notranslate nohighlight">\(\LaTeX\)</span>:</p>
 <div class="cell docutils container">
@@ -689,6 +686,17 @@ To see why, let's first write what the probability vectors for a spin-up and spi
 <span class="n">display</span><span class="p">(</span><span class="n">minus</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;|- </span><span class="se">\\</span><span class="s1">rangle = &#39;</span><span class="p">,</span> <span class="n">convention</span><span class="o">=</span><span class="s1">&#39;vector&#39;</span><span class="p">))</span> <span class="c1"># display vector representation of |-⟩</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[|+ \rangle = \frac{\sqrt{2}}{2} |0\rangle+\frac{\sqrt{2}}{2} |1\rangle\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+|- \rangle = 
+\begin{bmatrix}
+\frac{\sqrt{2}}{2} &amp; - \frac{\sqrt{2}}{2}  \\
+ \end{bmatrix}
+\end{split}\]</div>
 </div>
 </div>
 <p>One thing to note is that in Qiskit, column vectors are actually displayed as row vectors, but these should not be confused with the bra vectors we discussed before. So, when we see something like this being displayed:</p>
@@ -741,6 +749,10 @@ To see why, let's first write what the probability vectors for a spin-up and spi
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="word-wrap: normal;white-space: pre;background: #fff0;line-height: 1.1;font-family: &quot;Courier New&quot;,Courier,monospace">   ┌───┐
+q: ┤ X ├
+   └───┘</pre></div></div>
 </div>
 </section>
 <section id="footnotes">

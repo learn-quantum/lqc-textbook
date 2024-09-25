@@ -451,17 +451,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;sympy&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -469,6 +458,12 @@ document.write(`
 <span class="n">ket_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span>
                   <span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">ket_0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1]
+ [0]]
 </pre></div>
 </div>
 </div>
@@ -480,6 +475,10 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}1\\0\end{matrix}\right]\end{split}\]</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -490,6 +489,10 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0\\1\end{matrix}\right]\end{split}\]</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -499,6 +502,12 @@ document.write(`
 <span class="n">mag_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">ket_1</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;magnitude of |0⟩: </span><span class="si">{</span><span class="n">mag_0</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;magnitude of |1⟩: </span><span class="si">{</span><span class="n">mag_1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>magnitude of |0⟩: 1.0
+magnitude of |1⟩: 1.0
 </pre></div>
 </div>
 </div>
@@ -521,6 +530,12 @@ document.write(`
 <span class="n">mag_full</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">ket_full</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;magnitude of vector with two 0s: </span><span class="si">{</span><span class="n">mag_null</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;magnitude of vector with two 1s: </span><span class="si">{</span><span class="n">mag_full</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>magnitude of vector with two 0s: 0.0
+magnitude of vector with two 1s: 1.4142135623730951
 </pre></div>
 </div>
 </div>
@@ -600,6 +615,14 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The dot product between |0⟩ and |0⟩ is 1
+The dot product between |0⟩ and |1⟩ is 0
+The dot product between |1⟩ and |0⟩ is 0
+The dot product between |1⟩ and |1⟩ is 1
+</pre></div>
+</div>
+</div>
 </div>
 <p>Let’s now look at how reversible logic gates can be modeled within the framework of linear algebra.</p>
 </section>
@@ -662,6 +685,10 @@ $<span class="math notranslate nohighlight">\(
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0 &amp; 1\\1 &amp; 0\end{matrix}\right]\end{split}\]</div>
+</div>
 </div>
 <p><strong>NOTE</strong></p>
 <p>If you are not accustomed to using NumPy, here’s a VERY important thing to keep in mind. The multiplication symbol <code class="docutils literal notranslate"><span class="pre">*</span></code> does NOT perform matrix multiplication of NumPy arrays; instead, it performs element-wise multiplication (aka, the <a class="reference external" href="https://en.wikipedia.org/wiki/Hadamard_product_(matrices)">Hadamard Product</a>). To perform matrix multiplication as defined above, we should use the <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.matmul.html"><code class="docutils literal notranslate"><span class="pre">numpy.matmul()</span></code></a> function. However, we can also use the syntactic-sugar symbol <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> as shortcut to perform the same operation:</p>
@@ -673,6 +700,10 @@ $<span class="math notranslate nohighlight">\(
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0\\1\end{matrix}\right]\end{split}\]</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -680,6 +711,10 @@ $<span class="math notranslate nohighlight">\(
 <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">X</span> <span class="o">@</span> <span class="n">ket_1</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}1\\0\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
 <p>As can be seen, multiplying <span class="math notranslate nohighlight">\(\text{X}\)</span> by <span class="math notranslate nohighlight">\(|1\rangle\)</span> does indeed produce <span class="math notranslate nohighlight">\(|0\rangle\)</span>. However, at this point, I have to confess that I have been lying, but just a little bit. So far, I have stated that in order to recover our original value after applying the <span class="math notranslate nohighlight">\(\text{X}\)</span> gate once we must reapply <span class="math notranslate nohighlight">\(\text{X}\)</span> again. And although this is in fact true, it is not “formally” correct. The right thing to do when we want to “reverse” the effect of a given gate is to apply the <strong>inverse</strong> of its corresponding matrix.</p>
@@ -719,6 +754,10 @@ B &amp;= I A^{-1},
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0.0 &amp; 1.0\\1.0 &amp; 0.0\end{matrix}\right]\end{split}\]</div>
+</div>
 </div>
 <p>An equivalent way to confirm this is simply showing <span class="math notranslate nohighlight">\(I = X X\)</span>, where the identity matrix is given by:</p>
 <div class="math notranslate nohighlight">
@@ -729,6 +768,10 @@ B &amp;= I A^{-1},
 <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}1 &amp; 0\\0 &amp; 1\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
 <p>Let’s now generalize these concepts for when we are dealing with more than one bit.</p>
@@ -830,6 +873,10 @@ B &amp;= I A^{-1},
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0\\0\\1\\0\end{matrix}\right]\end{split}\]</div>
+</div>
 </div>
 <p>For larger binary numbers, we can iterate over its bits to perform the Kronecker product of the vector representation of each of them. Let’s create a function to do this:</p>
 <div class="cell docutils container">
@@ -869,6 +916,10 @@ B &amp;= I A^{-1},
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0\\0\\0\\0\\0\\1\\0\\0\end{matrix}\right]\end{split}\]</div>
+</div>
 </div>
 <p>For larger numbers, where the vectors become quite long, we can use <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.where.html"><code class="docutils literal notranslate"><span class="pre">numpy.where()</span></code></a> function to verify that we get a one in the index of the value we are converting:</p>
 <div class="cell docutils container">
@@ -883,6 +934,12 @@ B &amp;= I A^{-1},
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number 22 in binary (10110) has 5 bits
+This should result in a vector of dimension 32, with a &#39;1&#39; in index 22
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -893,6 +950,12 @@ B &amp;= I A^{-1},
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The dimension of the constructed vector is </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">b_vec</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;There is a </span><span class="se">\&#39;</span><span class="s1">1</span><span class="se">\&#39;</span><span class="s1"> in position </span><span class="si">{</span><span class="n">b_vec_one</span><span class="si">}</span><span class="s1"> of this vector&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The dimension of the constructed vector is 32
+There is a &#39;1&#39; in position 22 of this vector
 </pre></div>
 </div>
 </div>
@@ -1030,6 +1093,10 @@ Q &amp;= \begin{bmatrix} 0 &amp; 1 &amp; 0 &amp; 0 \\
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0 &amp; 1 &amp; 0 &amp; 0\\1 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 1\\0 &amp; 0 &amp; 1 &amp; 0\end{matrix}\right]\end{split}\]</div>
+</div>
 </div>
 <p>In general, we can construct the matrix for an <span class="math notranslate nohighlight">\(n\)</span>-bit system by performing the Kronecker product between the individual matrices acting on each of the bits:</p>
 <div class="math notranslate nohighlight">
@@ -1063,6 +1130,10 @@ Q &amp;= \text{CCX} \left( \text{X} \otimes \text{X} \otimes I \right) .
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0\end{matrix}\right]\end{split}\]</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1074,6 +1145,10 @@ Q &amp;= \text{CCX} \left( \text{X} \otimes \text{X} \otimes I \right) .
 <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
 <p>It is also worth noting that the “layering” we selected above is rather arbitrary. We could have chosen a different way to perform the operations, but this will lead to the same result. For we could have selected to organize the circuit with three layers:</p>
@@ -1099,6 +1174,10 @@ Q &amp;= \text{CCX} \left( I \otimes \text{X} \otimes I \right) \left( \text{X} 
 <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
 <p>One important aspect of constructing larger matrices that describe circuits by taking the Kronecker product of magnitude-preserving matrices (such the matrices that describe reversible gates), is that the final matrix will also preserve the magnitude of the input vector. Therefore, we have uncovered three important properties of the matrices that describe reversible circuits:</p>
@@ -1158,6 +1237,10 @@ Q &amp;= \text{CCX} \left( I \otimes \text{X} \otimes I \right) \left( \text{X} 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}1 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 1 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 1\\0 &amp; 0 &amp; 1 &amp; 0\end{matrix}\right]\end{split}\]</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1166,6 +1249,10 @@ Q &amp;= \text{CCX} \left( I \otimes \text{X} \otimes I \right) \left( \text{X} 
 <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
 <p>We can check if this matrix is indeed working correctly by passing the input <span class="math notranslate nohighlight">\(100\)</span>, which should result in an output of <span class="math notranslate nohighlight">\(101\)</span>. Remember, if the control bit is <span class="math notranslate nohighlight">\(1\)</span>, then the target bit gets inverted. The bit in the middle, which is the idle bit, remains unchanged:</p>
@@ -1178,6 +1265,10 @@ Q &amp;= \text{CCX} \left( I \otimes \text{X} \otimes I \right) \left( \text{X} 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0\\0\\0\\0\\1\\0\\0\\0\end{matrix}\right]\end{split}\]</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1187,6 +1278,10 @@ Q &amp;= \text{CCX} \left( I \otimes \text{X} \otimes I \right) \left( \text{X} 
 <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">b_out</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0\\0\\0\\0\\0\\1\\0\\0\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
 <p>Try out changing the input value to different numbers to verify that our circuit does indeed work as expected.</p>
