@@ -681,14 +681,6 @@ To see why, let's first write what the probability vectors for a spin-up and spi
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|0⟩ = Statevector([1.+0.j, 0.+0.j],
-            dims=(2,))
-|1⟩ = Statevector([0.+0.j, 1.+0.j],
-            dims=(2,))
-</pre></div>
-</div>
-</div>
 </div>
 <p>Or display it’s Bra-Ket or column vector representation it <span class="math notranslate nohighlight">\(\LaTeX\)</span>:</p>
 <div class="cell docutils container">
@@ -697,17 +689,6 @@ To see why, let's first write what the probability vectors for a spin-up and spi
 <span class="n">display</span><span class="p">(</span><span class="n">minus</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;|- </span><span class="se">\\</span><span class="s1">rangle = &#39;</span><span class="p">,</span> <span class="n">convention</span><span class="o">=</span><span class="s1">&#39;vector&#39;</span><span class="p">))</span> <span class="c1"># display vector representation of |-⟩</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[|+ \rangle = \frac{\sqrt{2}}{2} |0\rangle+\frac{\sqrt{2}}{2} |1\rangle\]</div>
-<div class="output text_latex math notranslate nohighlight">
-\[\begin{split}
-|- \rangle = 
-\begin{bmatrix}
-\frac{\sqrt{2}}{2} &amp; - \frac{\sqrt{2}}{2}  \\
- \end{bmatrix}
-\end{split}\]</div>
 </div>
 </div>
 <p>One thing to note is that in Qiskit, column vectors are actually displayed as row vectors, but these should not be confused with the bra vectors we discussed before. So, when we see something like this being displayed:</p>
@@ -746,11 +727,21 @@ To see why, let's first write what the probability vectors for a spin-up and spi
 <li><p>So, at time <span class="math notranslate nohighlight">\(t_6\)</span>, we will only <strong>measure</strong> on the screen electrons hitting the lower part of the screen, since all electrons coming into SG2 were spin-down. And in our circuit, we will see bit <span class="math notranslate nohighlight">\(1\)</span> come out as a result every time we execute it.</p></li>
 </ul>
 <p>In summary, a quantum circuit will consist of three steps:</p>
-<ol class="arabic simple">
-<li><p><strong>State preparation</strong>, which almost always corresponds to state <span class="math notranslate nohighlight">\(|0\rangle\)</span>.</p></li>
-<li><p><strong>State transformation</strong>, which in the example above corresponded to applying an <span class="math notranslate nohighlight">\(X\)</span> gate, but in general this will be a combination of different gates.</p></li>
-<li><p><strong>State measurement</strong>, where our quantum state will be probabilistically projected into classical information (bits) that we can interpret.</p></li>
-</ol>
+<p><span style="color:#a883f7"><strong>1. State preparation</strong></span>, which almost always corresponds to preparing the ground state <span class="math notranslate nohighlight">\(|0\rangle\)</span>.</p>
+<p><span style="color:#a883f7"><strong>2. State transformation</strong></span>, which in the example above corresponded to applying an <span class="math notranslate nohighlight">\(X\)</span> gate, but in general this will be a applying a combination of different quantum gates.</p>
+<p><span style="color:#a883f7"><strong>3. State measurement</strong></span>, where our quantum state gets probabilistically projected into classical information (bits) that we can interpret.</p>
+<p>Let us now go ahead and create a quantum circuit using Qiskit, and evolve a quantum state through it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumCircuit</span>
+
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="footnotes">
 <h2>Footnotes<a class="headerlink" href="#footnotes" title="Link to this heading">#</a></h2>
