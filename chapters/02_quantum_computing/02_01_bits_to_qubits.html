@@ -769,11 +769,8 @@ To see why, let's first write what the probability vectors for a spin-up and spi
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><pre style="word-wrap: normal;white-space: pre;background: #fff0;line-height: 1.1;font-family: &quot;Courier New&quot;,Courier,monospace">          ┌───┐┌─┐
-  q: ─|0>─┤ X ├┤M├
-          └───┘└╥┘
-c: 1/═══════════╩═
-                0 </pre></div></div>
+<a class="reference internal image-reference" href="../../_images/43f061ff9b527cd519f71c2c9d1fc5157629a0306b81647678e2ab6ff2d8a09b.png"><img alt="../../_images/43f061ff9b527cd519f71c2c9d1fc5157629a0306b81647678e2ab6ff2d8a09b.png" src="../../_images/43f061ff9b527cd519f71c2c9d1fc5157629a0306b81647678e2ab6ff2d8a09b.png" style="width: 209px; height: 125px;" /></a>
+</div>
 </div>
 <p>As before, we have a gate to prepare our zero state (here denote with the symbol <span class="math notranslate nohighlight">\(|0\rangle\)</span>), an <span class="math notranslate nohighlight">\(X\)</span> and a measurement gate. The only small difference is that we see that we have separate lines for our qubit <span class="math notranslate nohighlight">\(q\)</span> and the measured bit <span class="math notranslate nohighlight">\(c\)</span>, which is denoted with double lines. This is just to keep the quantum and classical lines of information separate.</p>
 <p>Let’s first focus our attention on the <span class="math notranslate nohighlight">\(X\)</span> gate alone. As described in the chapter on reversible computing, this gate corresponds to matrix that maps state <span class="math notranslate nohighlight">\(|0\rangle\)</span> to state <span class="math notranslate nohighlight">\(|1\rangle\)</span> and vice-versa. So let’s extract the matrix for this particular gate in Qiskit using the <code class="docutils literal notranslate"><span class="pre">Operator</span></code> class:</p>
@@ -786,9 +783,8 @@ c: 1/═══════════╩═
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><pre style="word-wrap: normal;white-space: pre;background: #fff0;line-height: 1.1;font-family: &quot;Courier New&quot;,Courier,monospace">   ┌───┐
-q: ┤ X ├
-   └───┘</pre></div></div>
+<a class="reference internal image-reference" href="../../_images/9e8174312d6211c6151521a260437080192c7324d3ece05ca4fb272e724b7e5b.png"><img alt="../../_images/9e8174312d6211c6151521a260437080192c7324d3ece05ca4fb272e724b7e5b.png" src="../../_images/9e8174312d6211c6151521a260437080192c7324d3ece05ca4fb272e724b7e5b.png" style="width: 117px; height: 79px;" /></a>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -823,13 +819,15 @@ X =
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evolution of state |0⟩ over an X gate results in:
-Statevector([0.+0.j, 1.+0.j],
-            dims=(2,))
-Evolution of state |1⟩ over an X gate results in:
-Statevector([1.+0.j, 0.+0.j],
-            dims=(2,))
 </pre></div>
 </div>
+<div class="output text_latex math notranslate nohighlight">
+\[ |1\rangle\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evolution of state |1⟩ over an X gate results in:
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[ |0\rangle\]</div>
 </div>
 </div>
 <p>Now, let’s go back to our experiment and, instead of applying a magnetic field to flip the spin of the electron from spin-up to spin-down, let’s assume we apply a different field that takes the spin from pointing in the <span class="math notranslate nohighlight">\(\text{+}z\)</span> direction to the <span class="math notranslate nohighlight">\(\text{+}x\)</span> direction:</p>
@@ -849,9 +847,8 @@ Statevector([1.+0.j, 0.+0.j],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><pre style="word-wrap: normal;white-space: pre;background: #fff0;line-height: 1.1;font-family: &quot;Courier New&quot;,Courier,monospace">   ┌───┐
-q: ┤ H ├
-   └───┘</pre></div></div>
+<a class="reference internal image-reference" href="../../_images/bb54ad75c733dc02541501614f086edda867c87fe1be611dc5a84481ff82b0a6.png"><img alt="../../_images/bb54ad75c733dc02541501614f086edda867c87fe1be611dc5a84481ff82b0a6.png" src="../../_images/bb54ad75c733dc02541501614f086edda867c87fe1be611dc5a84481ff82b0a6.png" style="width: 117px; height: 79px;" /></a>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -883,13 +880,15 @@ H =
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evolution of state |0⟩ over an X gate results in:
-Statevector([0.70710678+0.j, 0.70710678+0.j],
-            dims=(2,))
-Evolution of state |1⟩ over an X gate results in:
-Statevector([ 0.70710678+0.j, -0.70710678+0.j],
-            dims=(2,))
 </pre></div>
 </div>
+<div class="output text_latex math notranslate nohighlight">
+\[\frac{\sqrt{2}}{2} |0\rangle+\frac{\sqrt{2}}{2} |1\rangle\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evolution of state |1⟩ over an X gate results in:
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\frac{\sqrt{2}}{2} |0\rangle- \frac{\sqrt{2}}{2} |1\rangle\]</div>
 </div>
 </div>
 <p>Before wrapping up this section, let’s see a couple of different ways in which we can perform measurements using Qiskit.</p>
@@ -902,7 +901,7 @@ Statevector([ 0.70710678+0.j, -0.70710678+0.j],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(43), np.str_(&#39;1&#39;): np.int64(57)}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;0&#39;: 47, &#39;1&#39;: 53}
 </pre></div>
 </div>
 </div>
@@ -916,12 +915,12 @@ Statevector([ 0.70710678+0.j, -0.70710678+0.j],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39;
- &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39;
- &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39;
- &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39;
- &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39;
- &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39;
+ &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39;
+ &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39;
+ &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39;
+ &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39;
+ &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39;]
 </pre></div>
 </div>
 </div>
@@ -935,7 +934,7 @@ Statevector([ 0.70710678+0.j, -0.70710678+0.j],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(100)}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;0&#39;: 100}
 </pre></div>
 </div>
 </div>
@@ -969,11 +968,8 @@ Statevector([ 0.70710678+0.j, -0.70710678+0.j],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><pre style="word-wrap: normal;white-space: pre;background: #fff0;line-height: 1.1;font-family: &quot;Courier New&quot;,Courier,monospace">     ┌───┐┌─┐
-  q: ┤ H ├┤M├
-     └───┘└╥┘
-c: 1/══════╩═
-           0 </pre></div></div>
+<a class="reference internal image-reference" href="../../_images/db424c3404f487b29b5d26ee873ccfb9ceede1c75f780e45893ab8833b27d774.png"><img alt="../../_images/db424c3404f487b29b5d26ee873ccfb9ceede1c75f780e45893ab8833b27d774.png" src="../../_images/db424c3404f487b29b5d26ee873ccfb9ceede1c75f780e45893ab8833b27d774.png" style="width: 163px; height: 125px;" /></a>
+</div>
 </div>
 <p>Notice how we did not add a <code class="docutils literal notranslate"><span class="pre">reset</span></code> gate like we did before. This is because in Qiskit, it is assumed that we always want to start a simulation with the state initialized at <span class="math notranslate nohighlight">\(|0\rangle\)</span>, therefore adding this gate is redundant.</p>
 <p>Now, to run our simulation, we need to import a simulator and execute the circuit a given number of “shots” (i.e., the number of times we want to run the simulation). For this, we will use the <code class="docutils literal notranslate"><span class="pre">BasicSimulator</span></code>.</p>
@@ -991,7 +987,7 @@ c: 1/══════╩═
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;0&#39;: 53, &#39;1&#39;: 47}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;0&#39;: 51, &#39;1&#39;: 49}
 </pre></div>
 </div>
 </div>
@@ -1006,7 +1002,7 @@ c: 1/══════╩═
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/c7332fca1130897b86c6eaec1abc1c96f4ed45bf9f8ef789939284d10888002f.png" src="../../_images/c7332fca1130897b86c6eaec1abc1c96f4ed45bf9f8ef789939284d10888002f.png" />
+<a class="reference internal image-reference" href="../../_images/78d89a291f33767b9ecaf5dd4ec0944170884ac2648eb261013fe3d03891be22.png"><img alt="../../_images/78d89a291f33767b9ecaf5dd4ec0944170884ac2648eb261013fe3d03891be22.png" src="../../_images/78d89a291f33767b9ecaf5dd4ec0944170884ac2648eb261013fe3d03891be22.png" style="width: 409px; height: 296px;" /></a>
 </div>
 </div>
 <p>As expected, we get <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> about half of the time because, we started with state <span class="math notranslate nohighlight">\(|0\rangle\)</span>, applied a Hadamard gate, turning it into state <span class="math notranslate nohighlight">\(|+\rangle\)</span>, and then measured the qubit a 100 times.</p>
