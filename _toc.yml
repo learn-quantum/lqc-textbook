@@ -21,6 +21,7 @@ parts:
     maxdepth: 3
     chapters:
       - file: chapters/02_quantum_computing/02_01_bits_to_qubits
+      - file: chapters/02_quantum_computing/02_02_entanglement
 
   - caption: Quantum Protocols
     maxdepth: 3

@@ -65,7 +65,7 @@ html:
   use_edit_page_button: false
   use_download_button: true
   # thebe: true
-  # google_analytics_id: G-XXXXXXX
+  google_analytics_id: G-NJ7CMQP4Z7
 
 sphinx:
   config:
@@ -85,7 +85,7 @@ sphinx:
           #binderhub_url: "https://mybinder.org",
           #colab_url: "https://colab.research.google.com",
         #}
-    bibtex_reference_style: author_year
+    #bibtex_reference_style: author_year
 
 # Define the name of the latex output file for PDF builds
 # latex:
