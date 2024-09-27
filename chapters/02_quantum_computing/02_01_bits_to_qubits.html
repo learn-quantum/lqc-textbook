@@ -838,7 +838,13 @@ X =
 <p>The first portion of the experiment/circuit, where we prepare the spin-up electron remains the same (from <span class="math notranslate nohighlight">\(t_0\)</span> to <span class="math notranslate nohighlight">\(t_2\)</span>). However, since we have now modified the field applied at <span class="math notranslate nohighlight">\(t_3\)</span>, we represent this in a circuit with a different gate. In this particular case, we have what is known as a <strong>Hadamard gate</strong>, which is one of the most important transformations we will find in quantum computing.</p>
 <p>The Hadamard gate is special because it not only maps state <span class="math notranslate nohighlight">\(|0\rangle\)</span> to state <span class="math notranslate nohighlight">\(|+\rangle\)</span> (as we see at <span class="math notranslate nohighlight">\(t_4\)</span>, but it also does the reverse: maps state <span class="math notranslate nohighlight">\(|+\rangle\)</span> to state <span class="math notranslate nohighlight">\(|0\rangle\)</span>. Similarly, it maps state <span class="math notranslate nohighlight">\(|1\rangle\)</span> to state <span class="math notranslate nohighlight">\(|-\rangle\)</span>, and vice-versa. The matrix that performs these transformation is given by:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split} H = \frac{1}{\sqrt{2}} \begin{bmatrix} 1 &amp; \phantom{-}1 \\ 1 &amp; -1 \end{bmatrix}. \end{split}\]</div>
+\[\begin{split} 
+H = \frac{1}{\sqrt{2}} \begin{bmatrix} 1 &amp; \phantom{-}1 \\ 1 &amp; -1 \end{bmatrix},
+\end{split}\]</div>
+<p>which is equivalent to:
+$<span class="math notranslate nohighlight">\(
+H = \begin{bmatrix} \frac{\sqrt{2}}{2}  &amp; \phantom{-}\frac{\sqrt{2}}{2}  \\ \frac{\sqrt{2}}{2}  &amp; -\frac{\sqrt{2}}{\sqrt{2}}  \end{bmatrix}.
+\)</span>$</p>
 <p>Now, continuing with our experiment/circuit, at <span class="math notranslate nohighlight">\(t_5\)</span> we have the electron going into SG2, and as we saw before, gives us a <span class="math notranslate nohighlight">\(50\%\)</span> chance of seeing the electron deflect upwards or downwards. In our circuit, this will be equivalent to measuring either a <span class="math notranslate nohighlight">\(0\)</span> or a <span class="math notranslate nohighlight">\(1\)</span>, each with <span class="math notranslate nohighlight">\(50\%\)</span> probability.</p>
 <p>Let’s again create a circuit in Qiskit, check it’s matrix and the evolution of different states:</p>
 <div class="cell docutils container">
