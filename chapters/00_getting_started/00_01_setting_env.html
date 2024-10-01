@@ -432,7 +432,7 @@ document.write(`
 <p></p>
 <ul>
 <li><p>In a terminal window, create a new environment</p>
-<p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">--name</span> <span class="pre">&lt;my-env&gt;</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">--name</span> <span class="pre">&lt;my-env&gt;</span> <span class="pre">python=3</span></code></p>
 </li>
 <li><p>Activate new environment</p>
 <p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">&lt;my-env&gt;</span></code></p>
@@ -480,7 +480,7 @@ document.write(`
 <p>The command line should display that you’re on the <code class="docutils literal notranslate"><span class="pre">base</span></code> environment:</p>
 <a class="reference internal image-reference" href="../../_images/00_01_01_terminal_window_base.png"><img alt="../../_images/00_01_01_terminal_window_base.png" class="align-center" src="../../_images/00_01_01_terminal_window_base.png" style="width: 350px;" /></a>
 <p>To create a new virtual environment type and run:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">--</span><span class="n">name</span> <span class="o">&lt;</span><span class="n">my</span><span class="o">-</span><span class="n">env</span><span class="o">&gt;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">--</span><span class="n">name</span> <span class="o">&lt;</span><span class="n">my</span><span class="o">-</span><span class="n">env</span><span class="o">&gt;</span> <span class="n">python</span><span class="o">=</span><span class="mi">3</span>
 </pre></div>
 </div>
 <p>Replace <code class="docutils literal notranslate"><span class="pre">&lt;my-env&gt;</span></code> with whatever name you want to use for your environment.</p>
