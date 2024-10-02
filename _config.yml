@@ -64,7 +64,8 @@ html:
   use_issues_button: true
   use_edit_page_button: false
   use_download_button: true
-  google_analytics_id: "G-NJ7CMQP4Z7"
+  analytics:
+    google_analytics_id: G-NJ7CMQP4Z7
   # thebe: true
 
 sphinx:
