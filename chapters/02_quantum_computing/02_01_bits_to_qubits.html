@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Qubits and Quantum Circuits &#8212; Quantum Computing using Python</title>
+    <title>Qubits and Quantum Circuits (an Introduction) &#8212; Quantum Computing using Python</title>
   
   
   
@@ -191,7 +191,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Computing</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Qubits and Quantum Circuits</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Qubits and Quantum Circuits (an Introduction)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_02_entanglement.html">Quantum Entanglement</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Protocols</span></p>
@@ -394,7 +394,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Qubits and Quantum Circuits</h1>
+    <h1>Qubits and Quantum Circuits (an Introduction)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -423,8 +423,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="qubits-and-quantum-circuits">
-<h1>Qubits and Quantum Circuits<a class="headerlink" href="#qubits-and-quantum-circuits" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="qubits-and-quantum-circuits-an-introduction">
+<h1>Qubits and Quantum Circuits (an Introduction)<a class="headerlink" href="#qubits-and-quantum-circuits-an-introduction" title="Link to this heading">#</a></h1>
 <hr></hr><p>Quantum computers, or more precisely, quantum processing units (QPUs), are devices that exploit quantum-mechanical effects to speed up certain computational tasks when compared to conventional (classical) computers. In order to understand how these devices work, we must familiarize ourselves with the quantum phenomena that enables this added computational advantage. In particular, we must understand the concepts of <a class="reference external" href="https://en.wikipedia.org/wiki/Quantum_superposition">superposition</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Quantum_entanglement">entanglement</a>.</p>
 <p>Therefore, in this chapter we will first introduce the concept of a qubit by showing how this fundamental element of computation emerges from some of the physical properties of particles like electrons. This will lay the foundations needed to later discuss how QPUs can outperform classical devices when executing algorithms designed to exploit quantum effects.</p>
 <section id="quantum-bits-qubits">
@@ -653,7 +653,7 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[ |q_0|^2 + |q_1|^2 = 1 .\]</div>
 <p>In words, the coeffients of our qubit <span class="math notranslate nohighlight">\(| q \rangle\)</span> are complex values whose norm squared must add up to <span class="math notranslate nohighlight">\(1\)</span>. At this point, this might seem like a lot to unpack because we have only seen these coefficients take positive and negative values (not complex), but in the next section we will see that there is a logical explanation of why they must be complex, and what this all means.</p>
-<p>For now, let’s keep focusing in the four states we’ve described so far and use Qiskit to start implementing qubits in Python. To do so, we will use a specific module within Qiskit called <code class="docutils literal notranslate"><span class="pre">quantum_info</span></code>, which has some easy-to-use classes to create and manipulate qubits, which we will refer to as Statevectors.</p>
+<p>For now, let’s keep focusing in the four states we’ve described so far and start implementing qubits in Python. In  previous chapters, we relied on NumPy arrays to implement vectors and matrices. And although we could do the same for qubits, let us now switch to Qiskit, which provides a much more convenient way to deal with these elements. Specifically, we will use a module within Qiskit called <code class="docutils literal notranslate"><span class="pre">quantum_info</span></code>, which has some easy-to-use classes to create and manipulate qubits, which we will refer to as Statevectors.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
