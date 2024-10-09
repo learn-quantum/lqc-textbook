@@ -493,12 +493,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0 0 1 0 1 1 1 0 1 1 0 0 0 0 1 1 0 1 1 1 1 0 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1
- 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 0 1 1 0 1 1 1 1 1 1 0 1 1 1 1 1 1 1 0 1 0
- 1 1 1 1 0 1 1 1 1 1 1 1 0 1 1 1 0 1 1 0 0 1 1 1 1 0 1 1 1 0 1 0 1 1 1 1 0
- 1 0 1 0 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 0 0 1 1 0 1 1 1 1 1
- 1 0 1 0 1 1 1 1 0 0 1 1 1 1 1 1 0 0 1 1 1 1 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1
- 1 1 1 1 1 0 1 1 0 0 0 1 0 1 1]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 0 0 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 0 1
+ 1 0 1 1 0 1 1 1 0 1 1 0 0 1 0 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 1 1 1 1 1 1
+ 0 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 1 1 0 1 0 1 1 1 1 1 1 1 0 1 1 1 1
+ 0 1 1 1 1 1 1 1 0 1 1 1 0 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 0 1 1 1 1 1 0 1 1
+ 1 1 1 0 0 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 0 0 0 1 1 1 1 0 1 0 1 1 1 0 0 0
+ 1 1 0 1 1 0 1 1 1 1 0 1 0 1 1]
 </pre></div>
 </div>
 </div>
@@ -515,8 +515,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For ϱ0 = 0.25 and 200 samples, the relative frequency of 0s is 0.27
-For ϱ1 = 0.75 and 200 samples, the relative frequency of 1s is 0.73
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For ϱ0 = 0.25 and 200 samples, the relative frequency of 0s is 0.235
+For ϱ1 = 0.75 and 200 samples, the relative frequency of 1s is 0.765
 </pre></div>
 </div>
 </div>
@@ -533,7 +533,7 @@ For ϱ1 = 0.75 and 200 samples, the relative frequency of 1s is 0.73
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../../_images/1fd39f4d2d8706db084c3327acde80fbace7d1d9ae3bb15e7aeb26c8474d6f5e.png"><img alt="../../_images/1fd39f4d2d8706db084c3327acde80fbace7d1d9ae3bb15e7aeb26c8474d6f5e.png" src="../../_images/1fd39f4d2d8706db084c3327acde80fbace7d1d9ae3bb15e7aeb26c8474d6f5e.png" style="width: 411px; height: 310px;" /></a>
+<img alt="../../_images/65bed44aa1856ea88c4bc57bb84c9b6e03177db2b37a263ddcf094bc8442f3e8.png" src="../../_images/65bed44aa1856ea88c4bc57bb84c9b6e03177db2b37a263ddcf094bc8442f3e8.png" />
 </div>
 </div>
 <p>Now, note that unlike in the previous chapter, where we relabeled the bit vector <span class="math notranslate nohighlight">\(\vec{b}\)</span> to use bra-ket notation <span class="math notranslate nohighlight">\(|b\rangle\)</span>, here we have opted to denote our probability vector as <span class="math notranslate nohighlight">\(\vec{p}\)</span>. We’ve purposely done this to emphasize that there are some distinctions between some of the properties of p-bits and what we will encounter for qubits, for which we reserve the bra-ket notation. For instance, recall from that the magnitude of a real-valued vector is given by its Euclidean norm:</p>
@@ -686,7 +686,7 @@ P &amp;= \begin{bmatrix} \frac{1}{2} &amp; \frac{1}{2} \\ \frac{1}{2} &amp; \fra
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\displaystyle \left[\begin{matrix}0 &amp; 0.5 &amp; 0 &amp; 0.5\\0.5 &amp; 0 &amp; 0.5 &amp; 0\\0 &amp; 0.5 &amp; 0 &amp; 0.5\\0.5 &amp; 0 &amp; 0.5 &amp; 0\end{matrix}\right]\end{split}\]</div>
+\[\begin{split}\displaystyle \left[\begin{matrix}0.0 &amp; 0.5 &amp; 0.0 &amp; 0.5\\0.5 &amp; 0.0 &amp; 0.5 &amp; 0.0\\0.0 &amp; 0.5 &amp; 0.0 &amp; 0.5\\0.5 &amp; 0.0 &amp; 0.5 &amp; 0.0\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
 <p>From this result, it is not entirely obvious that the system should act deterministically on <span class="math notranslate nohighlight">\(\vec{p}_0\)</span> and randomly on <span class="math notranslate nohighlight">\(\vec{p}_1\)</span>, so let us, for example, pass an input where both p-bits are <span class="math notranslate nohighlight">\(0\)</span>. We should see a vector at the output that represents <span class="math notranslate nohighlight">\(\vec{p}_0\)</span> being <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(\vec{p}_1\)</span> being <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> each with probability of <span class="math notranslate nohighlight">\(1/2\)</span>:</p>
@@ -719,7 +719,7 @@ P &amp;= \begin{bmatrix} \frac{1}{2} &amp; \frac{1}{2} \\ \frac{1}{2} &amp; \fra
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\displaystyle \left[\begin{matrix}0\\0.5\\0\\0.5\end{matrix}\right]\end{split}\]</div>
+\[\begin{split}\displaystyle \left[\begin{matrix}0.0\\0.5\\0.0\\0.5\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
 <p>What this vector represents is finding the total system in state <span class="math notranslate nohighlight">\(01\)</span> with probability of <span class="math notranslate nohighlight">\(1/2\)</span> and state <span class="math notranslate nohighlight">\(11\)</span> with probability of <span class="math notranslate nohighlight">\(1/2\)</span>, which means the p-bit corresponding to <span class="math notranslate nohighlight">\(\vec{p}_0\)</span> is always <span class="math notranslate nohighlight">\(1\)</span> as expected, and <span class="math notranslate nohighlight">\(\vec{p}_1\)</span> is <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> with probability <span class="math notranslate nohighlight">\(1/2\)</span>, as expected. We can do this for inputs where the p-bits are not deterministic, and also check that the math still works.</p>
@@ -793,7 +793,7 @@ P &amp;= \begin{bmatrix} \frac{1}{2} &amp; \frac{1}{2} \\ \frac{1}{2} &amp; \fra
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\displaystyle \left[\begin{matrix}0\\0\\0.5\\0.5\end{matrix}\right]\end{split}\]</div>
+\[\begin{split}\displaystyle \left[\begin{matrix}0.0\\0.0\\0.5\\0.5\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
 <p>This shows that, when <span class="math notranslate nohighlight">\(\vec{p}_1\)</span> is <span class="math notranslate nohighlight">\(1\)</span>, the output is <span class="math notranslate nohighlight">\(10\)</span> and <span class="math notranslate nohighlight">\(11\)</span> each with probability of <span class="math notranslate nohighlight">\(1/2\)</span>, which means <span class="math notranslate nohighlight">\(\vec{p}_1\)</span> remains unchanged, but <span class="math notranslate nohighlight">\(\vec{p}_0\)</span> went from being <span class="math notranslate nohighlight">\(0\)</span> to being <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> with equal probability.</p>
