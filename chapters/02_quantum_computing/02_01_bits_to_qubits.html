@@ -898,6 +898,54 @@ H =
 \[\frac{\sqrt{2}}{2} |0\rangle- \frac{\sqrt{2}}{2} |1\rangle\]</div>
 </div>
 </div>
+<p>And, in case it isn’t entirely obvious, we can apply a sequence of gates to obtain a desired output. For example, The state <span class="math notranslate nohighlight">\(|-\rangle\)</span> can also be obtain from a circuit initialized in state <span class="math notranslate nohighlight">\(|0\rangle\)</span>, where we first apply and <span class="math notranslate nohighlight">\(X\)</span> gate (to turn it to state <span class="math notranslate nohighlight">\(|1\rangle\)</span>, followed by an <span class="math notranslate nohighlight">\(H\)</span> gate to get <span class="math notranslate nohighlight">\(|-\rangle\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc_xh</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Create circuit object with 1 qubitt</span>
+
+<span class="n">qc_xh</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>                 <span class="c1"># Add X gate to circuit</span>
+<span class="n">qc_xh</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>                 <span class="c1"># Add H gate to circuit</span>
+<span class="n">qc_xh</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../../_images/2a62560ef27ba4f727b95d336bc1ce6b4e158fd28b7706edec093e4a2d18a4fd.png"><img alt="../../_images/2a62560ef27ba4f727b95d336bc1ce6b4e158fd28b7706edec093e4a2d18a4fd.png" src="../../_images/2a62560ef27ba4f727b95d336bc1ce6b4e158fd28b7706edec093e4a2d18a4fd.png" style="width: 163px; height: 79px;" /></a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">HX</span> <span class="o">=</span> <span class="n">Operator</span><span class="p">(</span><span class="n">qc_xh</span><span class="p">)</span>
+<span class="n">HX</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;H </span><span class="se">\\</span><span class="s1">cdot X =&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+H \cdot X =
+\begin{bmatrix}
+\frac{\sqrt{2}}{2} &amp; \frac{\sqrt{2}}{2}  \\
+ - \frac{\sqrt{2}}{2} &amp; \frac{\sqrt{2}}{2}  \\
+ \end{bmatrix}
+\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Result of applying X gate followed by an H gate to state |0⟩:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Statevector</span><span class="p">(</span><span class="n">qc_xh</span><span class="p">))</span>  <span class="c1"># Passing a circuit to the Statevector class, always evolves state |0⟩</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Result of applying X gate followed by an H gate to state |0⟩:
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\frac{\sqrt{2}}{2} |0\rangle- \frac{\sqrt{2}}{2} |1\rangle\]</div>
+</div>
+</div>
 <p>Before wrapping up this section, let’s see a couple of different ways in which we can perform measurements using Qiskit.</p>
 <p>First, if we already have a <code class="docutils literal notranslate"><span class="pre">Statevector</span></code> object, we can use the <code class="docutils literal notranslate"><span class="pre">sample_counts</span></code> method to “emulate” as if the state was being measured. Here’s an example we were sample state <span class="math notranslate nohighlight">\(|+\rangle\)</span> 100 times. We should get <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> roughly half of the time each:</p>
 <div class="cell docutils container">
@@ -908,7 +956,7 @@ H =
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;0&#39;: 47, &#39;1&#39;: 53}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;0&#39;: 51, &#39;1&#39;: 49}
 </pre></div>
 </div>
 </div>
@@ -922,12 +970,12 @@ H =
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39;
- &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39;
- &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39;
- &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39;
- &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39;
- &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39;
+ &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39;
+ &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39;
+ &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39;
+ &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39;
+ &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39;]
 </pre></div>
 </div>
 </div>
@@ -994,7 +1042,7 @@ H =
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;0&#39;: 51, &#39;1&#39;: 49}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;0&#39;: 41, &#39;1&#39;: 59}
 </pre></div>
 </div>
 </div>
@@ -1009,7 +1057,7 @@ H =
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../../_images/78d89a291f33767b9ecaf5dd4ec0944170884ac2648eb261013fe3d03891be22.png"><img alt="../../_images/78d89a291f33767b9ecaf5dd4ec0944170884ac2648eb261013fe3d03891be22.png" src="../../_images/78d89a291f33767b9ecaf5dd4ec0944170884ac2648eb261013fe3d03891be22.png" style="width: 409px; height: 296px;" /></a>
+<a class="reference internal image-reference" href="../../_images/b2601372838a8f6d283b6de2e9ef0a38c318d7e6fced43b22f90a6e50052ddc3.png"><img alt="../../_images/b2601372838a8f6d283b6de2e9ef0a38c318d7e6fced43b22f90a6e50052ddc3.png" src="../../_images/b2601372838a8f6d283b6de2e9ef0a38c318d7e6fced43b22f90a6e50052ddc3.png" style="width: 409px; height: 296px;" /></a>
 </div>
 </div>
 <p>As expected, we get <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> about half of the time because, we started with state <span class="math notranslate nohighlight">\(|0\rangle\)</span>, applied a Hadamard gate, turning it into state <span class="math notranslate nohighlight">\(|+\rangle\)</span>, and then measured the qubit a 100 times.</p>
