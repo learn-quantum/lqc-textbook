@@ -26,6 +26,12 @@ jobs:
       run: |
         pip install -r requirements.txt
 
+    # Copy file to ~/.qiskit/ directory
+    - name: Set up Qiskit configuration
+      run: |
+        mkdir -p ~/.qiskit
+        cp settings.conf ~/.qiskit/
+
     # Build the book
     - name: Build the book
       run: |
