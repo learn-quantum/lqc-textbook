@@ -74,6 +74,8 @@ sphinx:
     #html_context:
       #default_mode: dark
     html_theme_options:
+      pygments_light_style: "default"
+      pygments_dark_style: "github-dark"
       use_download_button: true
       repository_url: https://github.com/learn-quantum/lqc-textbook
       use_issues_button: true

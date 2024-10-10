@@ -2,6 +2,10 @@ p {
     text-align: justify;
 }
 
+div.cell div.cell_input {
+    border-left-color: #a883f7 !important;
+}
+
 /* Light theme */
 html[data-theme="light"] img[src$=".png"] {
     background-color: transparent !important;
