@@ -1,3 +1,8 @@
+:root {
+    --pst-color-link-hover: #a883f7 !important;
+    --pst-color-secondary:  #eb4c77 !important;
+}
+
 p {
     text-align: justify;
 }
@@ -6,12 +11,6 @@ div.cell div.cell_input {
     border-left-color: #a883f7 !important;
 }
 
-/* Light theme */
-html[data-theme="light"] img[src$=".png"] {
-    background-color: transparent !important;
-}
-
-/* Dark theme */
-html[data-theme="dark"] img[src$=".png"] {
+img[src$=".png"] {
     background-color: transparent !important;
 }
