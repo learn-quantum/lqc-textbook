@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Quantum Entanglement &#8212; Quantum Computing using Python</title>
+    <title>Basics of Quantum Entanglement &#8212; Quantum Computing using Python</title>
   
   
   
@@ -58,6 +58,8 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/02_quantum_computing/02_02_entanglement';</script>
     <link rel="canonical" href="https://learn-quantum.github.io/lqc-textbook/chapters/02_quantum_computing/02_02_entanglement.html" />
     <link rel="icon" href="../../_static/nabla.ico"/>
@@ -190,7 +192,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Computing</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="02_01_bits_to_qubits.html">Qubits and Quantum Circuits (an Introduction)</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Quantum Entanglement</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Basics of Quantum Entanglement</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Protocols</span></p>
 <ul class="nav bd-sidenav">
@@ -379,7 +381,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -390,11 +394,29 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Quantum Entanglement</h1>
+    <h1>Basics of Quantum Entanglement</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-electron-system">1. Two-Electron System</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#separable-electrons">1.1 Separable Electrons</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entangled-electrons">1.2 Entangled Electrons</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-qubit-circuits">2. Two-Qubit Circuits</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#separable-states">2.1 Separable States</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entangled-states">2.2 Entangled States</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#footnotes">Footnotes</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -404,9 +426,496 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="quantum-entanglement">
-<h1>Quantum Entanglement<a class="headerlink" href="#quantum-entanglement" title="Link to this heading">#</a></h1>
-<hr></hr></section>
+  <section class="tex2jax_ignore mathjax_ignore" id="basics-of-quantum-entanglement">
+<h1>Basics of Quantum Entanglement<a class="headerlink" href="#basics-of-quantum-entanglement" title="Link to this heading">#</a></h1>
+<hr></hr><p><a class="reference external" href="https://en.wikipedia.org/wiki/Quantum_entanglement">Entanglement</a> is one of the key components that makes quantum computing different from traditional digital systems. As a matter of fact, entanglement might be the main ingredient that allows quantum devices to provide a computational advantage over their classical counterparts.</p>
+<p>To understand entanglement, we will follow a similar approach to that of the previous chapter, and explain how this phenomenon emerges in a physical setup, like for example a system composed by the spin of two separate electrons.</p>
+<p>We will then explore how this effect is mapped to the qubit representation in an abstract quantum circuit model, which will be vital step in the construction of quantum algorithms.</p>
+<section id="two-electron-system">
+<h2>1. Two-Electron System<a class="headerlink" href="#two-electron-system" title="Link to this heading">#</a></h2>
+<section id="separable-electrons">
+<h3>1.1 Separable Electrons<a class="headerlink" href="#separable-electrons" title="Link to this heading">#</a></h3>
+<p>In the previous chapter we described how the spin of a single electron can be seen as one of many physical implementations of a qubit. Let us now consider a system where we have two isolated electrons for which we want to describe their spin. Like before, we can use a Stern-Gerlach device to measure the spin of each electron. In the diagram below, we show two electrons isolated by a wall in the middle, each being sent to a separate apparatus (labeled SG left and SG right). If both electrons have their spin pointing in the the <span class="math notranslate nohighlight">\(\texttt{+}z\)</span> direction, we know that both of the will deflect upwards with <span class="math notranslate nohighlight">\(100\%\)</span> probability:</p>
+<a class="reference internal image-reference" href="../../_images/02_02_01_two_spin_up.png"><img alt="../../_images/02_02_01_two_spin_up.png" class="align-center" src="../../_images/02_02_01_two_spin_up.png" style="width: 700px;" /></a>
+<p>Now, to mathematically represent a system with two electrons (which, we will treat as qubits), we follow the same rules we introduced for <a class="reference internal" href="../01_classical_computing/01_03_bits_to_vectors.html#2.1-Multi-Bit-Numbers-as-Vectors"><span class="std std-ref">multi-bit reversible-circuit systems</span></a>. Namely, we use the Kronecker product of the two separate states. So, given two electrons/qubits <span class="math notranslate nohighlight">\(q_0\)</span> and <span class="math notranslate nohighlight">\(q_1\)</span> (corresponding to the electrons on the right and on the left, respectively), the statevector that represents the entire system is given by:</p>
+<div class="math notranslate nohighlight">
+\[|q\rangle = |q_1\rangle \otimes |q_0\rangle\]</div>
+<p>Therefore, if both electrons have their spin pointing in the <span class="math notranslate nohighlight">\(\texttt{+}z\)</span> direction (qubits are in state <span class="math notranslate nohighlight">\(|0\rangle\)</span>), we have the state:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+|q\rangle &amp;= |0\rangle \otimes |0\rangle
+\\
+\\
+|q\rangle &amp;= \begin{bmatrix} 1 \\ 0 \end{bmatrix} \otimes \begin{bmatrix} 1 \\ 0 \end{bmatrix}
+\\
+\\
+|q\rangle &amp;= \begin{bmatrix} 1 \\ 0 \\ 0 \\ 0 \end{bmatrix}
+\end{aligned}
+\end{split}\]</div>
+<p>In a similar way, we can find the column vectors for all possible combinations of spin along the <span class="math notranslate nohighlight">\(\pm z\)</span> direction by taking the Kronecker product of the spin-up and spin-down states (denoted as <span class="math notranslate nohighlight">\(|0\rangle\)</span> and <span class="math notranslate nohighlight">\(|1\rangle\)</span>, respectively). Instead of doing this manually, let’s use Qiskit to find what these vectors look like:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">Statevector</span>
+
+<span class="c1"># Define states |0⟩ and |1⟩</span>
+<span class="n">state_0</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">)</span> <span class="c1"># define state |0⟩</span>
+<span class="n">state_1</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">)</span> <span class="c1"># define state |1⟩</span>
+
+<span class="n">state_00</span> <span class="o">=</span> <span class="n">state_0</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">state_0</span><span class="p">)</span>    <span class="c1"># compose state |0⟩⊗|0⟩</span>
+<span class="n">state_01</span> <span class="o">=</span> <span class="n">state_0</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">state_1</span><span class="p">)</span>    <span class="c1"># compose state |0⟩⊗|1⟩</span>
+<span class="n">state_10</span> <span class="o">=</span> <span class="n">state_1</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">state_0</span><span class="p">)</span>    <span class="c1"># compose state |1⟩⊗|0⟩</span>
+<span class="n">state_11</span> <span class="o">=</span> <span class="n">state_1</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">state_1</span><span class="p">)</span>    <span class="c1"># compose state |1⟩⊗|1⟩</span>
+
+<span class="c1"># display states in column-vector notation</span>
+<span class="n">display</span><span class="p">(</span><span class="n">state_00</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">convention</span><span class="o">=</span><span class="s1">&#39;vector&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;|0\rangle \otimes |0\rangle = &#39;</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">state_01</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">convention</span><span class="o">=</span><span class="s1">&#39;vector&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;|0\rangle \otimes |1\rangle = &#39;</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">state_10</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">convention</span><span class="o">=</span><span class="s1">&#39;vector&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;|1\rangle \otimes |0\rangle = &#39;</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">state_11</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">convention</span><span class="o">=</span><span class="s1">&#39;vector&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;|1\rangle \otimes |1\rangle = &#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+|0\rangle \otimes |0\rangle = 
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0  \\
+ \end{bmatrix}
+\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+|0\rangle \otimes |1\rangle = 
+\begin{bmatrix}
+0 &amp; 1 &amp; 0 &amp; 0  \\
+ \end{bmatrix}
+\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+|1\rangle \otimes |0\rangle = 
+\begin{bmatrix}
+0 &amp; 0 &amp; 1 &amp; 0  \\
+ \end{bmatrix}
+\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+|1\rangle \otimes |1\rangle = 
+\begin{bmatrix}
+0 &amp; 0 &amp; 0 &amp; 1  \\
+ \end{bmatrix}
+\end{split}\]</div>
+</div>
+</div>
+<p>In the code above, we created <code class="docutils literal notranslate"><span class="pre">Statevector</span></code> objects for <span class="math notranslate nohighlight">\(|0\rangle\)</span> and <span class="math notranslate nohighlight">\(|1\rangle\)</span>, and then found the statevectors for <span class="math notranslate nohighlight">\(|0\rangle \otimes |0\rangle\)</span>, <span class="math notranslate nohighlight">\(|0\rangle \otimes |1\rangle\)</span>, <span class="math notranslate nohighlight">\(|1\rangle \otimes |0\rangle\)</span>, <span class="math notranslate nohighlight">\(|1\rangle \otimes |1\rangle\)</span> by making use of the <code class="docutils literal notranslate"><span class="pre">tensor</span></code> method, which applies the Kronecker product between two states.</p>
+<p>Let us now consider the case where both electrons have their spin pointing in the <span class="math notranslate nohighlight">\(\texttt{+}x\)</span> direction. From the single electron experiments, we know that each electron will deflect upwards or downwards probability of <span class="math notranslate nohighlight">\(1/2\)</span>:</p>
+<a class="reference internal image-reference" href="../../_images/02_02_02_two_spin_right.png"><img alt="../../_images/02_02_02_two_spin_right.png" class="align-center" src="../../_images/02_02_02_two_spin_right.png" style="width: 700px;" /></a>
+<p>Since we are considering this to be a joint experiment, let’s examine the combination of all possible outcomes. Given that each electron can be deflected up or down, each with <span class="math notranslate nohighlight">\(50\%\)</span> probability, we can have a total of 4 possible outcomes each with probability of <span class="math notranslate nohighlight">\(25\%\)</span>:</p>
+<a class="reference internal image-reference" href="../../_images/02_02_03_two_spin_right_options.png"><img alt="../../_images/02_02_03_two_spin_right_options.png" class="align-center" src="../../_images/02_02_03_two_spin_right_options.png" style="width: 740px;" /></a>
+<p>Mathematically, we can represent our system by, again, taking the Kronecker product of two electrons with spin along the <span class="math notranslate nohighlight">\(\texttt{+}x\)</span> direction (which, in the previous chapter we denoted as <span class="math notranslate nohighlight">\(|+\rangle\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+|q\rangle &amp;= |+\rangle \otimes |+\rangle
+\\
+\\
+|q\rangle &amp;= \frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ 1 \end{bmatrix} \otimes \frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ 1 \end{bmatrix}
+\\
+\\
+|q\rangle &amp;= \frac{1}{2}\begin{bmatrix} 1 \\ 1 \\ 1 \\ 1 \end{bmatrix}
+\end{aligned}
+\end{split}\]</div>
+<p>Let’s also recall that we can express this vector as a linear combination (a <strong>superposition</strong>) of terms as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+|q\rangle &amp;= \frac{1}{2}\begin{bmatrix} 1 \\ 1 \\ 1 \\ 1 \end{bmatrix}
+\\
+\\
+|q\rangle &amp;= \frac{1}{2}\left( \begin{bmatrix} 1 \\ 0 \\ 0 \\ 0 \end{bmatrix} + 
+                               \begin{bmatrix} 0 \\ 1 \\ 0 \\ 0 \end{bmatrix} + 
+                               \begin{bmatrix} 0 \\ 0 \\ 1 \\ 0 \end{bmatrix} + 
+                               \begin{bmatrix} 0 \\ 0 \\ 0 \\ 1 \end{bmatrix} \right)
+\\
+\\
+|q\rangle &amp;= \frac{1}{2}\left(|0\rangle \otimes |0\rangle  + |0\rangle \otimes |1\rangle + |1\rangle \otimes |0\rangle + |1\rangle \otimes |1\rangle \right)
+\end{aligned}
+\end{split}\]</div>
+<p>It is common notation to shorten states of the form <span class="math notranslate nohighlight">\(|q_1\rangle \otimes |q_0\rangle \)</span> as <span class="math notranslate nohighlight">\(|q_1 q_0\rangle \)</span>, so we can rewrite the expression above more succinctly as:</p>
+<div class="math notranslate nohighlight">
+\[ |q\rangle = \frac{1}{2}|00\rangle  + \frac{1}{2}|01\rangle + \frac{1}{2}|10\rangle + \frac{1}{2}|11\rangle \]</div>
+<p>So, what we have is that, when there are two separate electrons/qubits each in a superposition, the state that represents the total system corresponds to a superposition of four terms premultiplied by the probability amplitude associated with observing each of four possible states. In this particular case, all four states have a probability amplitude of <span class="math notranslate nohighlight">\(1/2\)</span>, which means we have an equal probability of <strong>measuring</strong> each states equal to:</p>
+<div class="math notranslate nohighlight">
+\[ P_{00} = P_{01} = P_{10} = P_{11} = \left(\frac{1}{2}\right)^2 = \frac{1}{4}, \]</div>
+<p>which is what we expected from the experimental observations.</p>
+<p>Same holds true for the other different combinations of <span class="math notranslate nohighlight">\(|+\rangle\)</span> and <span class="math notranslate nohighlight">\(|-\rangle\)</span>, but with different signs in the summation terms. We can actually show what these statevectors look like using Qiskit:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">state_p</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">)</span> <span class="c1"># define state |+⟩</span>
+<span class="n">state_m</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="c1"># define state |-⟩</span>
+
+<span class="n">state_pp</span> <span class="o">=</span> <span class="n">state_p</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">state_p</span><span class="p">)</span>    <span class="c1"># Compose state |+⟩⊗|+⟩</span>
+<span class="n">state_pm</span> <span class="o">=</span> <span class="n">state_p</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">state_m</span><span class="p">)</span>    <span class="c1"># Compose state |+⟩⊗|-⟩</span>
+<span class="n">state_mp</span> <span class="o">=</span> <span class="n">state_m</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">state_p</span><span class="p">)</span>    <span class="c1"># Compose state |-⟩⊗|+⟩</span>
+<span class="n">state_mm</span> <span class="o">=</span> <span class="n">state_m</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">state_m</span><span class="p">)</span>    <span class="c1"># Compose state |-⟩⊗|-⟩</span>
+
+<span class="c1"># display states in bra-ket notation</span>
+<span class="n">display</span><span class="p">(</span><span class="n">state_pp</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;|++</span><span class="se">\\</span><span class="s1">rangle = &#39;</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">state_pm</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;|+-</span><span class="se">\\</span><span class="s1">rangle = &#39;</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">state_mp</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;|-+</span><span class="se">\\</span><span class="s1">rangle = &#39;</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">state_mm</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;|--</span><span class="se">\\</span><span class="s1">rangle = &#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[|++\rangle = \frac{1}{2} |00\rangle+\frac{1}{2} |01\rangle+\frac{1}{2} |10\rangle+\frac{1}{2} |11\rangle\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[|+-\rangle = \frac{1}{2} |00\rangle- \frac{1}{2} |01\rangle+\frac{1}{2} |10\rangle- \frac{1}{2} |11\rangle\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[|-+\rangle = \frac{1}{2} |00\rangle+\frac{1}{2} |01\rangle- \frac{1}{2} |10\rangle- \frac{1}{2} |11\rangle\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[|--\rangle = \frac{1}{2} |00\rangle- \frac{1}{2} |01\rangle- \frac{1}{2} |10\rangle+\frac{1}{2} |11\rangle\]</div>
+</div>
+</div>
+<p>These systems composed of particles/qubits that do not interact with each other are called <span style="color:#a883f7"><strong>separable</strong></span> and have the key property that their combined statevectors can always be factorized into the statevectors of their individual qubits. Let’s take for example the following 2-qubit separable state and try to factorize it:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+|q\rangle &amp;= \frac{1}{2} \left(|0 \rangle \otimes |0\rangle - |0 \rangle \otimes |1\rangle + |1 \rangle \otimes |0\rangle - |1 \rangle \otimes |1\rangle \right)
+\\
+\\
+|q\rangle &amp;= \frac{1}{2} |0 \rangle \otimes (|0\rangle - |1\rangle) + |1\rangle \otimes (|0\rangle - |1\rangle)
+\\
+\\
+|q\rangle &amp;= \frac{1}{2} (|0\rangle + |1\rangle) \otimes (|0\rangle - |1\rangle)
+\\
+\\
+|q\rangle &amp;= \frac{1}{\sqrt{2}} (|0\rangle + |1\rangle) \otimes \frac{1}{\sqrt{2}} (|0\rangle - |1\rangle)
+\\
+\\
+|q\rangle &amp;= |+\rangle \otimes |-\rangle
+\end{aligned}
+\end{split}\]</div>
+<p>The statement above seems obvious. After all, if we have a system composed of two (or more) parts, we should be able to “separate” it into its constituents and get an individual description of each of its components. This is of course true for any classical system; however, in quantum mechanics this is not always the case. But to understand this unusual property we need to talk about entanglement.</p>
+</section>
+<section id="entangled-electrons">
+<h3>1.2 Entangled Electrons<a class="headerlink" href="#entangled-electrons" title="Link to this heading">#</a></h3>
+<p>Particle spin is a conserved quantity. What this means is that, if we have a particle with spin of <span class="math notranslate nohighlight">\(0\)</span>, and it decays into two separate particles, the spin of the new particles better add up to <span class="math notranslate nohighlight">\(0\)</span>. So, if these two particles are like electrons, one of them must have their spin oriented in the exact opposite direction as the other so they cancel each other out. A way to prove this is by something similar to what we had in the previous section: send each particle through a Stern-Gerlach device, and measure the outcomes. Experiments of this kind do indeed show that this is exactly how particles behave: half of the time one particle is deflected up and the other down, and the other half of the time the opposite happens, showing that the particles do indeed have opposite spins.</p>
+<a class="reference internal image-reference" href="../../_images/02_02_04_two_spin_entangled.png"><img alt="../../_images/02_02_04_two_spin_entangled.png" class="align-center" src="../../_images/02_02_04_two_spin_entangled.png" style="width: 700px;" /></a>
+<p>At first glance, this seems rather obvious and unremarkable. However, upon closer inspection, these observations can only be explained if the pair of particles is always generated with a predefined spin along the <span class="math notranslate nohighlight">\(z\)</span> direction:</p>
+<a class="reference internal image-reference" href="../../_images/02_02_05_two_spin_z_entangled.png"><img alt="../../_images/02_02_05_two_spin_z_entangled.png" class="align-center" src="../../_images/02_02_05_two_spin_z_entangled.png" style="width: 700px;" /></a>
+<p>In other words, this particle decay always results in state <span class="math notranslate nohighlight">\(|0\rangle \otimes |1\rangle\)</span> or state <span class="math notranslate nohighlight">\(|1\rangle \otimes |0\rangle\)</span> each with equal probability of occurrence.</p>
+<p>But why would these particles have a preferential spatial orientation along the <span class="math notranslate nohighlight">\(z\)</span> axis? Well, we could hypothesize that this was just rather coincidental for the particular experimental setup we chose, or that there is some strange physical reason in nature to always aligns the particles along some given direction in space. An easy way to verify these hypotheses is to rotate the Stern-Gerlach apparatuses by <span class="math notranslate nohighlight">\(90°\)</span>; this way the spin of our particles will be now oriented along the <span class="math notranslate nohighlight">\(x\)</span> with respect to the devices’ magnetic field. The expectation would then be to observe the same as what we have for separable electrons: each individual electron deflects upwards or downwards with <span class="math notranslate nohighlight">\(50\%\)</span> probability, but <strong>independent</strong> from each other, so there should be four possible combinations of results each with <span class="math notranslate nohighlight">\(25\%\)</span> of occurrence:</p>
+<a class="reference internal image-reference" href="../../_images/02_02_06_two_spin_x_entangled.png"><img alt="../../_images/02_02_06_two_spin_x_entangled.png" class="align-center" src="../../_images/02_02_06_two_spin_x_entangled.png" style="width: 700px;" /></a>
+<p><a name="back1"></a> However, this is <strong>not</strong> what experiments show. No matter what angle we choose to rotate our devices by, the measurements always reflect one of the particles deflecting upwards, and the other one deflecting downwards. It is as if the particles were “linked” together no matter how far away they are from each other, so if one is measured to deflect up (down), the other is instantly measured to deflect down (up). This effect is commonly known as <a class="reference external" href="https://en.wikipedia.org/wiki/Quantum_nonlocality">quantum nonlocality</a>.</p>
+<p>Mathematically, this behavior can only be described using a global state for the overall system, but that cannot be separated into a state description of its individual constituents<a class="reference internal" href="#footnote1"><span class="xref myst"><span class="math notranslate nohighlight">\(^*\)</span></span></a>. The states that described such type of correlated systems are known as <span style="color:#a883f7"><strong>entangled</strong></span> states.</p>
+<p>Now, to construct a statevector that describes such observations we could follow a similar approach to the one we used with a single electron system. We could say that, since we observe states <span class="math notranslate nohighlight">\(|01\rangle\)</span> and <span class="math notranslate nohighlight">\(|10\rangle\)</span> each with probability of <span class="math notranslate nohighlight">\(1/2\)</span>, a reasonable choice for the state that describes this system is:</p>
+<div class="math notranslate nohighlight">
+\[ |q\rangle = \frac{1}{\sqrt{2}}|01\rangle + \frac{1}{\sqrt{2}}|10\rangle, \]</div>
+<p>since taking the square of its probability amplitudes gives us the observed probabilities for this system:</p>
+<div class="math notranslate nohighlight">
+\[ P_{01} = \left(\frac{1}{\sqrt{2}} \right)^2 = \frac{1}{2}, \quad P_{10} = \left(\frac{1}{\sqrt{2}} \right)^2 = \frac{1}{2}. \]</div>
+<p>Although, a state like this:</p>
+<div class="math notranslate nohighlight">
+\[ |q\rangle = \frac{1}{\sqrt{2}}|01\rangle - \frac{1}{\sqrt{2}}|10\rangle, \]</div>
+<p>would also result in the same experimental observations:</p>
+<div class="math notranslate nohighlight">
+\[ P_{01} =  \left(\frac{1}{\sqrt{2}} \right)^2 = \frac{1}{2}, \quad   P_{10} =  \left(-\frac{1}{\sqrt{2}} \right)^2 = \frac{1}{2}.\]</div>
+<p>We will discuss how distinguish between these two type of states later on, but what is critical here is to realize that there is no way in which we can factorize either of these into the Kronecker product of two separate states that describe each of the two particles individually! This is a remarkable and strictly quantum result with no analog in any classical system.</p>
+</section>
+</section>
+<section id="two-qubit-circuits">
+<h2>2. Two-Qubit Circuits<a class="headerlink" href="#two-qubit-circuits" title="Link to this heading">#</a></h2>
+<section id="separable-states">
+<h3>2.1 Separable States<a class="headerlink" href="#separable-states" title="Link to this heading">#</a></h3>
+<p>Representing quantum circuits with more than one qubit is as simple as what we did for classical reversible circuits: we just add one extra wire per qubit. Let’s implement a two qubit circuit where we place the qubits in the superposition state <span class="math notranslate nohighlight">\(|q_1\rangle \otimes |q_0\rangle = |+\rangle \otimes |-\rangle\)</span>.</p>
+<p>From above, we know this is a separable state, so we can place <span class="math notranslate nohighlight">\(q_1\)</span> in state <span class="math notranslate nohighlight">\(|+\rangle\)</span> by applying a Hadamard gate <span class="math notranslate nohighlight">\(H\)</span> to that wire. Similarly, we know that to obtain state <span class="math notranslate nohighlight">\(|-\rangle\)</span> we have to apply an <span class="math notranslate nohighlight">\(H\)</span> gate to state <span class="math notranslate nohighlight">\(|1\rangle\)</span>. So in <span class="math notranslate nohighlight">\(q_0\)</span>, we first apply an <span class="math notranslate nohighlight">\(X\)</span> gate to take it from its initial state <span class="math notranslate nohighlight">\(|0\rangle\)</span> to state <span class="math notranslate nohighlight">\(|1\rangle\)</span>, and the apply an <span class="math notranslate nohighlight">\(H\)</span> gate. Let’s do this in Qiskit and extract the output state:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumCircuit</span>
+
+<span class="n">qc_sep</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>    <span class="c1"># define quantum circuit</span>
+<span class="n">qc_sep</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>                   <span class="c1"># apply H gate to qubit 1</span>
+<span class="n">qc_sep</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>                   <span class="c1"># apply X gate to qubit 0</span>
+<span class="n">qc_sep</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>                   <span class="c1"># apply H gate to qubit 0</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">qc_sep</span><span class="o">.</span><span class="n">draw</span><span class="p">())</span>        <span class="c1"># draw circuit</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Statevector</span><span class="p">(</span><span class="n">qc_sep</span><span class="p">))</span>  <span class="c1"># display statevector</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/e9212b92a976606935240e5d62b6c934b7c7bb2549920b242afcef31fab5a8c8.png" src="../../_images/e9212b92a976606935240e5d62b6c934b7c7bb2549920b242afcef31fab5a8c8.png" />
+<div class="output text_latex math notranslate nohighlight">
+\[\frac{1}{2} |00\rangle- \frac{1}{2} |01\rangle+\frac{1}{2} |10\rangle- \frac{1}{2} |11\rangle\]</div>
+</div>
+</div>
+<p>We can complete our circuit to also perform measurements on the output and verify we indeed get each possible combination of states <span class="math notranslate nohighlight">\(|0\rangle\)</span> and <span class="math notranslate nohighlight">\(|1\rangle\)</span> with equal probability:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add measurement blocks</span>
+<span class="n">qc_sep</span><span class="o">.</span><span class="n">measure_all</span><span class="p">()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">qc_sep</span><span class="o">.</span><span class="n">draw</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/e698ed9f47c49db2fcf167dc0a8758061c1b63f33d4373ccf7ca5c19de168fcf.png" src="../../_images/e698ed9f47c49db2fcf167dc0a8758061c1b63f33d4373ccf7ca5c19de168fcf.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># perform circuit simulation</span>
+<span class="kn">from</span> <span class="nn">qiskit.providers.basic_provider</span> <span class="kn">import</span> <span class="n">BasicSimulator</span>
+
+<span class="n">simulator</span> <span class="o">=</span> <span class="n">BasicSimulator</span><span class="p">()</span>             <span class="c1"># define simulator object</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">simulator</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc_sep</span><span class="p">,</span> <span class="n">shots</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>  <span class="c1"># use run method to execute our circuit some number of shots</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>                    <span class="c1"># extract our results</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>             <span class="c1"># get the counts from the experiment</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;01&#39;: 247, &#39;10&#39;: 279, &#39;00&#39;: 222, &#39;11&#39;: 252}
+</pre></div>
+</div>
+</div>
+</div>
+<p>And as expected, we get each possible outcome about a quarter of the time.</p>
+</section>
+<section id="entangled-states">
+<h3>2.2 Entangled States<a class="headerlink" href="#entangled-states" title="Link to this heading">#</a></h3>
+<p>The next obvious question then is: How do we entangle two separate electron spin/qubits? In the section above, entangled particles with opposite spins were generated from the decay of <span class="math notranslate nohighlight">\(0\)</span>-spin particle, but what if we have two non-entangled electrons to begin with? Well, in practice there are indeed ways to entangle electrons by having them interact with each other in a way that, due to the <a class="reference external" href="https://en.wikipedia.org/wiki/Pauli_exclusion_principle">Pauli exclusion principle</a>, their spins must be opposite to each other. The details of how this is done are outside of the scope of this chapter, but you can learn more about it by looking into how <a class="reference external" href="https://en.wikipedia.org/wiki/Spin_qubit_quantum_computer">spin-qubit quantum computers</a> are built (e.g., [<a class="reference external" href="https://link.aps.org/accepted/10.1103/RevModPhys.95.025003">Burkard23</a>]). The bottom line is that, in principle we can take two electrons, have them interact by the use of electromagnetic fields and, depending on the state of the incoming electrons, get them entangled. From a circuit standpoint, this is exactly what the <span class="math notranslate nohighlight">\(CX\)</span> gate we introduced in the chapter on reversible computing does.</p>
+<p>The diagram below shows an example of the different steps involved in generating a pair of entangled electrons with the corresponding quantum circuit diagram.</p>
+<a class="reference internal image-reference" href="../../_images/02_02_07_spin_vs_qubit_entangled.png"><img alt="../../_images/02_02_07_spin_vs_qubit_entangled.png" class="align-center" src="../../_images/02_02_07_spin_vs_qubit_entangled.png" style="width: 750px;" /></a>
+<p>Furthermore, we can work through the math of the gates applied to these statevectors and verify that this procedure actually works:</p>
+<ol class="arabic simple">
+<li><p>The qubits are initialized in the all-zeros (ground) state:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[ 
+|q\rangle = |q_1 q_0\rangle = |0\rangle \otimes |0\rangle \quad \quad \text{}
+\]</div>
+<ol class="arabic simple" start="2">
+<li><p>Apply Hadamard gate to <span class="math notranslate nohighlight">\(q_1\)</span>:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+|q\rangle &amp;= H |0\rangle \otimes |0\rangle 
+\\
+\\
+|q\rangle &amp;= |+\rangle \otimes |0\rangle 
+\\
+\\
+|q\rangle &amp;= \frac{1}{\sqrt{2}} \left(|0\rangle + |1\rangle \right)  \otimes |0\rangle 
+\\
+\\
+|q\rangle &amp;= \frac{1}{\sqrt{2}} \left(|0\rangle \otimes |0\rangle  + |1\rangle \otimes |0\rangle  \right)
+\end{aligned}
+\end{split}\]</div>
+<ol class="arabic simple" start="3">
+<li><p>Apply <span class="math notranslate nohighlight">\(CX\)</span> with control in <span class="math notranslate nohighlight">\(q_1\)</span> and target in <span class="math notranslate nohighlight">\(q_0\)</span> (recall when control is <span class="math notranslate nohighlight">\(1\)</span>, target gets flipped):</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+|q\rangle &amp;= CX \left[ \frac{1}{\sqrt{2}} \left(|0\rangle \otimes |0\rangle  + |1\rangle \otimes |0\rangle \right) \right ]
+\\
+\\
+|q\rangle &amp;= \frac{1}{\sqrt{2}} \left(|0\rangle \otimes |0\rangle  + |1\rangle \otimes |1\rangle \right)
+\end{aligned}
+\end{split}\]</div>
+<p>Notice how we opted to do these operations using ket notation since we already know how each of the <span class="math notranslate nohighlight">\(H\)</span> and <span class="math notranslate nohighlight">\(CX\)</span> gates operate on statevectors, but we could’ve equally done this using matrices and column vectors. We will write down these steps next but using the <code class="docutils literal notranslate"><span class="pre">Statevector</span></code> and <code class="docutils literal notranslate"><span class="pre">Operator</span></code> classes in Qiskit to show our work:</p>
+<ol class="arabic simple">
+<li><p>Initialize qubits to <span class="math notranslate nohighlight">\(|00\rangle\)</span> vector:</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s1">&#39;00&#39;</span><span class="p">)</span>
+<span class="n">q</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">convention</span><span class="o">=</span><span class="s1">&#39;vector&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;|q\rangle = &#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+|q\rangle = 
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0  \\
+ \end{bmatrix}
+\end{split}\]</div>
+</div>
+</div>
+<p>2.1 Define Hadamard matrix <span class="math notranslate nohighlight">\(H\)</span> and Identity matrix <span class="math notranslate nohighlight">\(I\)</span>. Since our column vector is composed of two qubits (<span class="math notranslate nohighlight">\(q_0\)</span> and <span class="math notranslate nohighlight">\(q_1\)</span>), and we want to apply <span class="math notranslate nohighlight">\(H\)</span> only to <span class="math notranslate nohighlight">\(q_1\)</span>, we need to create a new matrix <span class="math notranslate nohighlight">\(H \otimes I\)</span>, so that q_0 is left unchanged:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">Operator</span>
+
+<span class="c1"># Define H</span>
+<span class="n">H</span> <span class="o">=</span> <span class="n">Operator</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;H = &#39;</span><span class="p">))</span>
+
+<span class="c1"># Define I</span>
+<span class="n">I</span> <span class="o">=</span> <span class="n">Operator</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s1">&#39;I&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">I</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;I = &#39;</span><span class="p">))</span>
+
+<span class="c1"># Compose H⊗I</span>
+<span class="n">HI</span> <span class="o">=</span> <span class="n">H</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">HI</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">prefix</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;H \otimes I = &#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+H = 
+\begin{bmatrix}
+\frac{\sqrt{2}}{2} &amp; \frac{\sqrt{2}}{2}  \\
+ \frac{\sqrt{2}}{2} &amp; - \frac{\sqrt{2}}{2}  \\
+ \end{bmatrix}
+\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+I = 
+\begin{bmatrix}
+1 &amp; 0  \\
+ 0 &amp; 1  \\
+ \end{bmatrix}
+\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+H \otimes I = 
+\begin{bmatrix}
+\frac{\sqrt{2}}{2} &amp; 0 &amp; \frac{\sqrt{2}}{2} &amp; 0  \\
+ 0 &amp; \frac{\sqrt{2}}{2} &amp; 0 &amp; \frac{\sqrt{2}}{2}  \\
+ \frac{\sqrt{2}}{2} &amp; 0 &amp; - \frac{\sqrt{2}}{2} &amp; 0  \\
+ 0 &amp; \frac{\sqrt{2}}{2} &amp; 0 &amp; - \frac{\sqrt{2}}{2}  \\
+ \end{bmatrix}
+\end{split}\]</div>
+</div>
+</div>
+<p>2.2 Apply composed matrix <span class="math notranslate nohighlight">\(H \otimes I\)</span> to <span class="math notranslate nohighlight">\(|00\rangle\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">HI</span><span class="p">)</span>
+<span class="n">q</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">convention</span><span class="o">=</span><span class="s1">&#39;vector&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;|q\rangle = &#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+|q\rangle = 
+\begin{bmatrix}
+\frac{\sqrt{2}}{2} &amp; 0 &amp; \frac{\sqrt{2}}{2} &amp; 0  \\
+ \end{bmatrix}
+\end{split}\]</div>
+</div>
+</div>
+<p>3.1 Define <span class="math notranslate nohighlight">\(CX\)</span> matrix. There is not a label to do this in Qiskit, so we are going to explicitly pass matrix we defined for the <span class="math notranslate nohighlight">\(CX\)</span> gate in a <a class="reference external" href="https://learnquantum.io/chapters/01_classical_computing/01_03_bits_to_vectors.html#multi-bit-systems">previous chapter</a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">CX</span> <span class="o">=</span> <span class="n">Operator</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">CX</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;CX = &#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+CX = 
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0  \\
+ 0 &amp; 1 &amp; 0 &amp; 0  \\
+ 0 &amp; 0 &amp; 0 &amp; 1  \\
+ 0 &amp; 0 &amp; 1 &amp; 0  \\
+ \end{bmatrix}
+\end{split}\]</div>
+</div>
+</div>
+<p>3.2 Apply <span class="math notranslate nohighlight">\(CX\)</span> matrix to state <span class="math notranslate nohighlight">\(|q\rangle\)</span> to get our output. We will display this in both column-vector and ket notation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">CX</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">convention</span><span class="o">=</span><span class="s1">&#39;vector&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;|q\rangle = &#39;</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;|q\rangle = &#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+|q\rangle = 
+\begin{bmatrix}
+\frac{\sqrt{2}}{2} &amp; 0 &amp; 0 &amp; \frac{\sqrt{2}}{2}  \\
+ \end{bmatrix}
+\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[|q\rangle = \frac{\sqrt{2}}{2} |00\rangle+\frac{\sqrt{2}}{2} |11\rangle\]</div>
+</div>
+</div>
+<p>Similarly, we can accomplish the exact same output by implementing in Qiskit the quantum circuit we defined above to create an entangled state:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc_ent</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>    <span class="c1"># define quantum circuit</span>
+<span class="n">qc_ent</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>                   <span class="c1"># apply H gate to qubit 1</span>
+<span class="n">qc_ent</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>                <span class="c1"># apply CX with control on q1 and target on q0</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">qc_ent</span><span class="o">.</span><span class="n">draw</span><span class="p">())</span>        <span class="c1"># draw circuit</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Statevector</span><span class="p">(</span><span class="n">qc_ent</span><span class="p">))</span>  <span class="c1"># display statevector</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/9c3032ed5d26c9002beedb994fea90286d9b9b5cda663db8ee7eea90658591c5.png" src="../../_images/9c3032ed5d26c9002beedb994fea90286d9b9b5cda663db8ee7eea90658591c5.png" />
+<div class="output text_latex math notranslate nohighlight">
+\[\frac{\sqrt{2}}{2} |00\rangle+\frac{\sqrt{2}}{2} |11\rangle\]</div>
+</div>
+</div>
+<p>And just like we did for the example with a separable state, we can add measurements to our circuit and perform a simulation to show that the only two possible outcomes are either <code class="docutils literal notranslate"><span class="pre">00</span></code> or <code class="docutils literal notranslate"><span class="pre">11</span></code>, each with equal probability:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add measurement blocks</span>
+<span class="n">qc_ent</span><span class="o">.</span><span class="n">measure_all</span><span class="p">()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">qc_ent</span><span class="o">.</span><span class="n">draw</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/3ba97e6db74571669ada25ac1af921345fff809c1f66751e43c4171ced826175.png" src="../../_images/3ba97e6db74571669ada25ac1af921345fff809c1f66751e43c4171ced826175.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># perform circuit simulation</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">simulator</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc_ent</span><span class="p">,</span> <span class="n">shots</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>  <span class="c1"># use run method to execute our circuit some number of shots</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>                    <span class="c1"># extract our results</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>             <span class="c1"># get the counts from the experiment</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;00&#39;: 496, &#39;11&#39;: 504}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we have a reasonable understanding of how the concepts of superposition and entanglement work for equiprobable one- and two-qubit systems, we will next generalize these concepts for systems where our probability amplitudes are not always equal in amplitude, and where we can have more than two qubits.</p>
+</section>
+</section>
+<section id="footnotes">
+<h2>Footnotes<a class="headerlink" href="#footnotes" title="Link to this heading">#</a></h2>
+<p><a name="footnote1"></a><span style="font-size: smaller;"><span class="math notranslate nohighlight">\(^*\)</span>Technically, this view of having an inseparable wavefunction that describes non-local effects is only true in the <a class="reference external" href="https://en.wikipedia.org/wiki/Schr%C3%B6dinger_picture">Schrödinger picture</a> of quantum mechanics. However, when using the the <a class="reference external" href="https://en.wikipedia.org/wiki/Heisenberg_picture">Heisenberg picture</a>, one can construct a fully local representation of quantum systems [<a class="reference external" href="https://arxiv.org/pdf/quant-ph/9906007">Deutsch99</a>]. (<a class="reference internal" href="#back1"><span class="xref myst">go back</span></a>)</p>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -462,6 +971,31 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-electron-system">1. Two-Electron System</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#separable-electrons">1.1 Separable Electrons</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entangled-electrons">1.2 Entangled Electrons</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-qubit-circuits">2. Two-Qubit Circuits</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#separable-states">2.1 Separable States</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entangled-states">2.2 Entangled States</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#footnotes">Footnotes</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
