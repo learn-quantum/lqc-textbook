@@ -453,7 +453,7 @@ document.write(`
 <p>The reason why electrons show this probabilistic behavior is partially related to what is perhaps the most debated question in all quantum mechanics: <a class="reference external" href="https://en.wikipedia.org/wiki/Measurement_problem">the measurement problem</a>. Since discussions about the measurement problem are outside the scope of this textbook, we will simply use the empirical evidence from these experiments to build a model for how to describe these particles.</p>
 <p>So, given this observed behavior, it is then very tempting to assign a probability vector (like the ones described in the <a class="reference internal" href="../01_classical_computing/01_04_probabilistic_circuits.html"><span class="std std-doc">previous chapter</span></a>) to describe the state of the spin of an electron, where to first element in the vector represents the probability of the electron being spin up, and the second element the probability of being spin down:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split} \vec{s} = \begin{bmatrix}p_{\texttt{+}z} \\ p_{\texttt{-}z} \end{bmatrix} \end{split}\]</div>
+\[\begin{split} \vec{s} = \begin{bmatrix}P_{\texttt{+}z} \\ P_{\texttt{-}z} \end{bmatrix} \end{split}\]</div>
 <p>Clearly, this works for the specific case of the Stern-Gerlach experiment we described above, but does it work in general?…</p>
 <p>
 <div style="text-align: center;"> <strong> ¡No! </strong> </div>
@@ -512,30 +512,30 @@ document.write(`
 </section>
 <section id="from-probabilities-to-probability-amplitudes">
 <h3>1.2 From Probabilities to Probability Amplitudes<a class="headerlink" href="#from-probabilities-to-probability-amplitudes" title="Link to this heading">#</a></h3>
-<p>A key observation from the probabilistic model we proposed above is that, since the components <span class="math notranslate nohighlight">\(p_{\texttt{+}z}\)</span> and <span class="math notranslate nohighlight">\(p_{\texttt{-}z}\)</span> of the vector <span class="math notranslate nohighlight">\(\vec{s}\)</span> are probabilities (which are numbers between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span> and must always add up to <span class="math notranslate nohighlight">\(1\)</span>), there is simply no way we can recover the original vector that describes <span class="math notranslate nohighlight">\(\vec{s}_{\texttt{+}z}\)</span> by using linear combinations of other probability vectors. This is because the second entry in <span class="math notranslate nohighlight">\(\vec{s}_{\texttt{+}z}\)</span> is a <span class="math notranslate nohighlight">\(0\)</span>, and there are no two positive numbers that can add up to it (unless they are both <span class="math notranslate nohighlight">\(0\)</span>). What this implies is that, for our maths to work, we need to also allow <strong>negative</strong> entries in our vectors. However, since these vectors still need to describe probabilistic experimental results (and probabilities cannot be negative), we need a new rule that tells us how to relate these new vector elements to probabilities.</p>
+<p>A key observation from the probabilistic model we proposed above is that, since the components <span class="math notranslate nohighlight">\(P_{\texttt{+}z}\)</span> and <span class="math notranslate nohighlight">\(P_{\texttt{-}z}\)</span> of the vector <span class="math notranslate nohighlight">\(\vec{s}\)</span> are probabilities (which are numbers between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span> and must always add up to <span class="math notranslate nohighlight">\(1\)</span>), there is simply no way we can recover the original vector that describes <span class="math notranslate nohighlight">\(\vec{s}_{\texttt{+}z}\)</span> by using linear combinations of other probability vectors. This is because the second entry in <span class="math notranslate nohighlight">\(\vec{s}_{\texttt{+}z}\)</span> is a <span class="math notranslate nohighlight">\(0\)</span>, and there are no two positive numbers that can add up to it (unless they are both <span class="math notranslate nohighlight">\(0\)</span>). What this implies is that, for our maths to work, we need to also allow <strong>negative</strong> entries in our vectors. However, since these vectors still need to describe probabilistic experimental results (and probabilities cannot be negative), we need a new rule that tells us how to relate these new vector elements to probabilities.</p>
 <p>Well, a simple recipe to turn negative numbers into positive numbers is to square them, so we could propose to have the elements of our vectors to be numbers that when squared turn into the probabilities we see in experimental results! It is not hard to see that, a vector that would work in the case of the Stern-Gerlach experiment is given by:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} 
 |s \rangle = \begin{bmatrix} s_0 \\ s_1 \end{bmatrix}, \end{split}\]</div>
 <p><a name="back2"></a> where <span class="math notranslate nohighlight">\(s_0\)</span> and <span class="math notranslate nohighlight">\(s_1\)</span> are called the <strong>probability amplitudes</strong> of vector <span class="math notranslate nohighlight">\(|s \rangle\)</span> and which, when squared, represent the probabilities of measuring the electron to be spin up or spin down<a class="reference internal" href="#footnote2"><span class="xref myst"><span class="math notranslate nohighlight">\(^{\dagger}\)</span></span></a>:</p>
 <div class="math notranslate nohighlight">
-\[ p_{\texttt{+}z} = s_0^2 \,, \quad p_{\texttt{-}z} = s_1^2 .\]</div>
+\[ P_{\texttt{+}z} = s_0^2 \,, \quad P_{\texttt{-}z} = s_1^2 .\]</div>
 <p><a name="back3"></a> Notice how we have switched back to using the <a class="reference external" href="https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation">bra-ket</a> notation for our vectors. This is because, as we pointed out in a <a class="reference internal" href="../01_classical_computing/01_03_bits_to_vectors.html#1.1-Single-Bit-Numbers-as-Vectors"><span class="std std-ref">previous chapter</span></a>, the vector <span class="math notranslate nohighlight">\(|s \rangle \)</span> belongs to a family of vectors (a vector space) with some specific properties, one of them being that the sum of their components squared must be equal to <span class="math notranslate nohighlight">\(1\)</span>, but we will go into these details in a later chapter<a class="reference internal" href="#footnote3"><span class="xref myst"><span class="math notranslate nohighlight">\(^{\ddagger}\)</span></span></a>.</p>
 <p>The key here is that, unlike what we had for the probability vector <span class="math notranslate nohighlight">\(\vec{s}\)</span>, this new definition does align with the observations of how the spin of electrons behaves. To see this, let’s reconsider an electron with spin pointing in the <span class="math notranslate nohighlight">\(\texttt{+}z\)</span> direction using this new definition:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} |s_{\texttt{+}z} \rangle = \begin{bmatrix} 1 \\ 0 \end{bmatrix}. \end{split}\]</div>
 <p>So far, this vector looks identical to what we had defined for <span class="math notranslate nohighlight">\(\vec{s}_{\texttt{+}z}\)</span>, but this is simply because:</p>
 <div class="math notranslate nohighlight">
-\[ p_{\texttt{+}z} = s_0^2 = 1^2 = 1 \quad \text{and} \quad p_{\texttt{-}z} = s_1^2 = 0^2 = 0 .\]</div>
+\[ P_{\texttt{+}z} = s_0^2 = 1^2 = 1 \quad \text{and} \quad P_{\texttt{-}z} = s_1^2 = 0^2 = 0 .\]</div>
 <p>Similarly, for an electron with its spin pointing the <span class="math notranslate nohighlight">\(\texttt{-}z\)</span> direction we have:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} |s_{\texttt{-}z} \rangle = \begin{bmatrix} 0 \\ 1 \end{bmatrix}, \end{split}\]</div>
 <p>which, again, is identical to <span class="math notranslate nohighlight">\(\vec{s}_{\texttt{-}z}\)</span> because in this case:</p>
 <div class="math notranslate nohighlight">
-\[ p_{\texttt{+}z} = s_0^2 = 0^2 = 0 \quad \text{and} \quad p_{\texttt{-}z} = s_1^2 = 1^2 = 1 .\]</div>
+\[ P_{\texttt{+}z} = s_0^2 = 0^2 = 0 \quad \text{and} \quad P_{\texttt{-}z} = s_1^2 = 1^2 = 1 .\]</div>
 <p>But now let’s look at the vector of an electron with spin in the <span class="math notranslate nohighlight">\(\texttt{+}x\)</span> direction. Since we need to satisfy that the square of the probability amplitudes squared is equal to the probability of measuring the spin being deflected in the up or down direction (which are <span class="math notranslate nohighlight">\(50\%\)</span> each) we have:</p>
 <div class="math notranslate nohighlight">
-\[p_{\texttt{+}z} = s_0^2 = \frac{1}{2} \quad \text{and} \quad p_{\texttt{-}z} = s_1^2 = \frac{1}{2}.\]</div>
+\[P_{\texttt{+}z} = s_0^2 = \frac{1}{2} \quad \text{and} \quad P_{\texttt{-}z} = s_1^2 = \frac{1}{2}.\]</div>
 <p>So we can then arbitrarily choose <span class="math notranslate nohighlight">\(s_0\)</span> and <span class="math notranslate nohighlight">\(s_1\)</span> to both be the <strong>positive</strong> square root of <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[s_0 = \frac{1}{\sqrt{2}} \quad \text{and} \quad  s_1 = \frac{1}{\sqrt{2}},\]</div>
@@ -586,7 +586,7 @@ document.write(`
 \[s_0 = \frac{1}{\sqrt{2}} \quad \text{and} \quad  s_1 = -\frac{1}{\sqrt{2}},\]</div>
 <p>which gives us the correct probabilities of measurement:</p>
 <div class="math notranslate nohighlight">
-\[p_{\texttt{+}z} = s_0^2 = \left(\frac{1}{\sqrt{2}}\right)^2 = \frac{1}{2} \quad \text{and} \quad  p_{\texttt{-}z} = s_1^2 = \left(-\frac{1}{\sqrt{2}}\right)^2 = \frac{1}{2}.\]</div>
+\[P_{\texttt{+}z} = s_0^2 = \left(\frac{1}{\sqrt{2}}\right)^2 = \frac{1}{2} \quad \text{and} \quad  P_{\texttt{-}z} = s_1^2 = \left(-\frac{1}{\sqrt{2}}\right)^2 = \frac{1}{2}.\]</div>
 <p>In summary, the vectors that represent an electron with spins in the <span class="math notranslate nohighlight">\(\texttt{+}z\)</span> and <span class="math notranslate nohighlight">\(\texttt{-}z\)</span> direction are respectively given by:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} |s_{\texttt{+}z} \rangle = \begin{bmatrix} 1 \\ 0 \end{bmatrix} \quad \text{and} \quad |s_{\texttt{-}z} \rangle = \begin{bmatrix} 0 \\ 1 \end{bmatrix}. \end{split}\]</div>
@@ -958,7 +958,7 @@ H \cdot X =
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(60), np.str_(&#39;1&#39;): np.int64(40)}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(53), np.str_(&#39;1&#39;): np.int64(47)}
 </pre></div>
 </div>
 </div>
@@ -972,12 +972,12 @@ H \cdot X =
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39;
- &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39;
- &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39;
- &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39;
- &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39;
- &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39;
+ &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39;
+ &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39;
+ &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39;
+ &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39;
+ &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39;]
 </pre></div>
 </div>
 </div>
@@ -1044,7 +1044,7 @@ H \cdot X =
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;1&#39;: 50, &#39;0&#39;: 50}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;1&#39;: 55, &#39;0&#39;: 45}
 </pre></div>
 </div>
 </div>
@@ -1059,7 +1059,7 @@ H \cdot X =
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/bd1265e68780709ed2a4cfa449ee190bb65b57ebda29bfa3456750abdb793ab0.png" src="../../_images/bd1265e68780709ed2a4cfa449ee190bb65b57ebda29bfa3456750abdb793ab0.png" />
+<img alt="../../_images/c2a57a6987608ac38573f3e12816d11f44645f291d8d5539354e1a926fe507bc.png" src="../../_images/c2a57a6987608ac38573f3e12816d11f44645f291d8d5539354e1a926fe507bc.png" />
 </div>
 </div>
 <p>As expected, we get <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> about half of the time because, we started with state <span class="math notranslate nohighlight">\(|0\rangle\)</span>, applied a Hadamard gate, turning it into state <span class="math notranslate nohighlight">\(|+\rangle\)</span>, and then measured the qubit a 100 times.</p>
