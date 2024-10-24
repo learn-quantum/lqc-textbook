@@ -528,7 +528,7 @@
 \[ |q\rangle = \frac{1}{2}|00\rangle  + \frac{1}{2}|01\rangle + \frac{1}{2}|10\rangle + \frac{1}{2}|11\rangle \]</div>
 <p>So, what we have is that, when there are two separate electrons/qubits each in a superposition, the state that represents the total system corresponds to a superposition of four terms premultiplied by the probability amplitude associated with observing each of four possible states. In this particular case, all four states have a probability amplitude of <span class="math notranslate nohighlight">\(1/2\)</span>, which means we have an equal probability of <strong>measuring</strong> each states equal to:</p>
 <div class="math notranslate nohighlight">
-\[ P_{00} = P_{01} = P_{10} = P_{11} = \left(\frac{1}{2}\right)^2 = \frac{1}{4}, \]</div>
+\[ \mathbb{P}_{00} = \mathbb{P}_{01} = \mathbb{P}_{10} = \mathbb{P}_{11} = \left(\frac{1}{2}\right)^2 = \frac{1}{4}, \]</div>
 <p>which is what we expected from the experimental observations.</p>
 <p>Same holds true for the other different combinations of <span class="math notranslate nohighlight">\(|+\rangle\)</span> and <span class="math notranslate nohighlight">\(|-\rangle\)</span>, but with different signs in the summation terms. We can actually show what these statevectors look like using Qiskit:</p>
 <div class="cell docutils container">
@@ -597,13 +597,13 @@
 \[ |q\rangle = \frac{1}{\sqrt{2}}|01\rangle + \frac{1}{\sqrt{2}}|10\rangle, \]</div>
 <p>since taking the square of its probability amplitudes gives us the observed probabilities for this system:</p>
 <div class="math notranslate nohighlight">
-\[ P_{01} = \left(\frac{1}{\sqrt{2}} \right)^2 = \frac{1}{2}, \quad P_{10} = \left(\frac{1}{\sqrt{2}} \right)^2 = \frac{1}{2}. \]</div>
+\[ \mathbb{P}_{01} = \left(\frac{1}{\sqrt{2}} \right)^2 = \frac{1}{2}, \quad \mathbb{P}_{10} = \left(\frac{1}{\sqrt{2}} \right)^2 = \frac{1}{2}. \]</div>
 <p>Although, a state like this:</p>
 <div class="math notranslate nohighlight">
 \[ |q\rangle = \frac{1}{\sqrt{2}}|01\rangle - \frac{1}{\sqrt{2}}|10\rangle, \]</div>
 <p>would also result in the same experimental observations:</p>
 <div class="math notranslate nohighlight">
-\[ P_{01} =  \left(\frac{1}{\sqrt{2}} \right)^2 = \frac{1}{2}, \quad   P_{10} =  \left(-\frac{1}{\sqrt{2}} \right)^2 = \frac{1}{2}.\]</div>
+\[ \mathbb{P}_{01} =  \left(\frac{1}{\sqrt{2}} \right)^2 = \frac{1}{2}, \quad   \mathbb{P}_{10} =  \left(-\frac{1}{\sqrt{2}} \right)^2 = \frac{1}{2}.\]</div>
 <p>We will discuss how distinguish between these two type of states later on, but what is critical here is to realize that there is no way in which we can factorize either of these into the Kronecker product of two separate states that describe each of the two particles individually! This is a remarkable and strictly quantum result with no analog in any classical system.</p>
 </section>
 </section>
@@ -661,7 +661,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;10&#39;: 268, &#39;01&#39;: 248, &#39;11&#39;: 246, &#39;00&#39;: 238}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;00&#39;: 256, &#39;10&#39;: 237, &#39;01&#39;: 262, &#39;11&#39;: 245}
 </pre></div>
 </div>
 </div>
@@ -732,7 +732,7 @@
 \end{split}\]</div>
 </div>
 </div>
-<p>2.1 Define Hadamard matrix <span class="math notranslate nohighlight">\(H\)</span> and Identity matrix <span class="math notranslate nohighlight">\(I\)</span>. Since our column vector is composed of two qubits (<span class="math notranslate nohighlight">\(q_0\)</span> and <span class="math notranslate nohighlight">\(q_1\)</span>), and we want to apply <span class="math notranslate nohighlight">\(H\)</span> only to <span class="math notranslate nohighlight">\(q_1\)</span>, we need to create a new matrix <span class="math notranslate nohighlight">\(H \otimes I\)</span>, so that q_0 is left unchanged:</p>
+<p>2.1 Define Hadamard matrix <span class="math notranslate nohighlight">\(H\)</span> and Identity matrix <span class="math notranslate nohighlight">\(I\)</span>. Since our column vector is composed of two qubits (<span class="math notranslate nohighlight">\(q_0\)</span> and <span class="math notranslate nohighlight">\(q_1\)</span>), and we want to apply <span class="math notranslate nohighlight">\(H\)</span> only to <span class="math notranslate nohighlight">\(q_1\)</span>, we need to create a new matrix <span class="math notranslate nohighlight">\(H \otimes I\)</span>, so that <span class="math notranslate nohighlight">\(q_0\)</span> is left unchanged:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">Operator</span>
@@ -886,7 +886,7 @@ CX =
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;00&#39;: 486, &#39;11&#39;: 514}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;11&#39;: 482, &#39;00&#39;: 518}
 </pre></div>
 </div>
 </div>
