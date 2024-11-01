@@ -483,10 +483,10 @@
 \vec{s}_{\texttt{+}z} &amp;= \frac{1}{2} \begin{bmatrix} \frac{1}{2} \\ \frac{1}{2} \end{bmatrix} + \frac{1}{2} \begin{bmatrix} \frac{1}{2} \\ \frac{1}{2} \end{bmatrix}
 \\
 \\
-\vec{s}_{\texttt{+}z} &amp;= \begin{bmatrix} \frac{1}{2} \\ \frac{1}{2} \end{bmatrix},
+\vec{s}_{\texttt{+}z} &amp;= \begin{bmatrix} \frac{1}{2} \\ \frac{1}{2} \end{bmatrix} \color{#E53F73}{\leftarrow \text{incorrect vector values}} .
 \end{aligned}
 \end{split}\]</div>
-<p>which is clearly not consistent with our original definition for <span class="math notranslate nohighlight">\(\vec{s}_{\texttt{+}z}\)</span>:</p>
+<p>Clearly, this not consistent with our original definition for <span class="math notranslate nohighlight">\(\vec{s}_{\texttt{+}z}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} \vec{s}_{\texttt{+}z} = \begin{bmatrix}1 \\ 0 \end{bmatrix}. \end{split}\]</div>
 <p>This contradiction basically shows that probability vectors are not the right tool to represent how the spin of an electron behaves, so we need an alternative description. So let us now try to intuit how the mathematical object that describes the angular momentum of an electron would have to look like to match the results from these experiments.</p>
@@ -939,7 +939,7 @@ H \cdot X =
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(48), np.str_(&#39;1&#39;): np.int64(52)}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(47), np.str_(&#39;1&#39;): np.int64(53)}
 </pre></div>
 </div>
 </div>
@@ -953,12 +953,12 @@ H \cdot X =
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39;
- &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39;
- &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39;
- &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39;
- &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39;
- &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39;
+ &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39;
+ &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39;
+ &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39;
+ &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39;
+ &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39;]
 </pre></div>
 </div>
 </div>
@@ -1025,7 +1025,7 @@ H \cdot X =
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;0&#39;: 55, &#39;1&#39;: 45}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;1&#39;: 48, &#39;0&#39;: 52}
 </pre></div>
 </div>
 </div>
@@ -1040,7 +1040,7 @@ H \cdot X =
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/e7700df9ca0c41d94d9a78cf75c6aa9691c9a2c454fdb1bbcb167becd6eae54a.png" src="../../_images/e7700df9ca0c41d94d9a78cf75c6aa9691c9a2c454fdb1bbcb167becd6eae54a.png" />
+<img alt="../../_images/837bee36662bf3ecb51a40f2963f4bfc1abe2f068d80727bf05f4c774c40ee44.png" src="../../_images/837bee36662bf3ecb51a40f2963f4bfc1abe2f068d80727bf05f4c774c40ee44.png" />
 </div>
 </div>
 <p>As expected, we get <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> about half of the time because, we started with state <span class="math notranslate nohighlight">\(|0\rangle\)</span>, applied a Hadamard gate, turning it into state <span class="math notranslate nohighlight">\(|+\rangle\)</span>, and then measured the qubit a 100 times.</p>
