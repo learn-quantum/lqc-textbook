@@ -424,7 +424,9 @@
 <p>More generally, a probability vector can be expressed as:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} \vec{p} = \begin{bmatrix} \varrho_{0} \\ \varrho_{1} \end{bmatrix} ,\end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\varrho_{0}\)</span> and <span class="math notranslate nohighlight">\(\varrho_{1}\)</span> represent the probabilities associated with the state being <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>, respectively. Like all probabilities, these vector elements must meet the condition of being bounded between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span> (i.e., <span class="math notranslate nohighlight">\(\varrho_{0}, \varrho_{1} \in [0,1]\)</span>), and summing up to <span class="math notranslate nohighlight">\(1\)</span> (i.e., <span class="math notranslate nohighlight">\(\varrho_{0} + \varrho_{1} = 1\)</span>).</p>
+<p>where <span class="math notranslate nohighlight">\(\varrho_{0}\)</span> and <span class="math notranslate nohighlight">\(\varrho_{1}\)</span> represent the probabilities associated with the state being <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>, respectively. Like all probabilities, these vector elements must meet the condition of being bounded between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>, and summing up to <span class="math notranslate nohighlight">\(1\)</span>. So our complete definition of a p-bit is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \vec{p} = \begin{bmatrix} \varrho_{0} \\ \varrho_{1} \end{bmatrix}, \text{ such that:} \; \varrho_{j} \in [0,1] \; \text{ and } \; \rho_0 + \rho_1 = 1 \end{split}\]</div>
 <p>From a practical standpoint, this probability vector encodes information about how likely it is to <strong>measure</strong> a <span class="math notranslate nohighlight">\(0\)</span> or a <span class="math notranslate nohighlight">\(1\)</span> for a given p-bit. Going back to the example of our noisy gate, a measurement could consist of, for example, connecting the output of the gate to a register that stores its value every clock cycle. The register’s history will then look something like this:</p>
 <div class="math notranslate nohighlight">
 \[ \{1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, \dots \}, \]</div>
@@ -476,12 +478,12 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0 1 1 0 1 1 1 1 0 1 1 1 1 0 1 1 1 0 0 1 1 1 0 1 0 1 1 1 1 1 1 1 1 1 1 1 1
- 1 1 1 0 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0
- 1 1 1 1 0 1 0 1 1 1 1 1 1 1 0 1 1 0 1 1 1 0 1 1 1 1 0 1 1 1 1 1 1 0 1 1 1
- 1 1 1 1 1 1 1 1 1 0 0 1 1 1 1 0 0 1 1 1 1 0 1 1 1 1 1 1 1 0 1 0 0 1 1 1 1
- 1 1 1 1 1 1 0 1 1 1 0 1 1 0 1 1 1 1 1 0 1 1 0 0 1 1 1 1 1 1 1 1 1 0 1 0 1
- 1 1 1 1 1 0 0 1 1 1 0 0 1 1 1]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0 1 1 1 1 0 1 1 0 1 1 1 0 1 1 0 1 1 1 0 1 0 1 0 1 0 1 1 1 1 1 0 1 1 1 1 1
+ 0 1 1 1 1 0 0 1 1 1 1 0 1 1 0 1 1 1 0 1 1 1 0 1 1 1 0 0 1 1 0 0 1 1 1 1 1
+ 1 0 1 1 1 1 1 1 0 1 0 0 0 0 1 1 0 1 1 1 0 1 0 1 1 1 1 1 0 1 1 1 1 1 1 1 1
+ 1 1 1 1 1 0 1 1 0 0 1 1 1 1 0 1 1 1 1 1 1 1 1 1 0 1 1 1 0 1 1 1 1 1 1 1 1
+ 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 0 0 1 0 1 1 0 1 1 1 1 1 0 1 0 0 1 1 0 0 1 0
+ 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1]
 </pre></div>
 </div>
 </div>
@@ -498,8 +500,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For ϱ0 = 0.25 and 200 samples, the relative frequency of 0s is 0.19
-For ϱ1 = 0.75 and 200 samples, the relative frequency of 1s is 0.81
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For ϱ0 = 0.25 and 200 samples, the relative frequency of 0s is 0.245
+For ϱ1 = 0.75 and 200 samples, the relative frequency of 1s is 0.755
 </pre></div>
 </div>
 </div>
@@ -516,7 +518,7 @@ For ϱ1 = 0.75 and 200 samples, the relative frequency of 1s is 0.81
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ae076e31e461d8a156ffdcb530d326ebea37c38dff353d6978a0974a67d63b5d.png" src="../../_images/ae076e31e461d8a156ffdcb530d326ebea37c38dff353d6978a0974a67d63b5d.png" />
+<img alt="../../_images/d263ef40636bcec2b1720101d233e9cd7e61e48f1fa0c23a762143f801058251.png" src="../../_images/d263ef40636bcec2b1720101d233e9cd7e61e48f1fa0c23a762143f801058251.png" />
 </div>
 </div>
 <p>Now, note that unlike in the previous chapter, where we relabeled the bit vector <span class="math notranslate nohighlight">\(\vec{b}\)</span> to use bra-ket notation <span class="math notranslate nohighlight">\(|b\rangle\)</span>, here we have opted to denote our probability vector as <span class="math notranslate nohighlight">\(\vec{p}\)</span>. We’ve purposely done this to emphasize that there are some distinctions between some of the properties of p-bits and what we will encounter for qubits, for which we reserve the bra-ket notation. For instance, recall from that the magnitude of a real-valued vector is given by its Euclidean norm:</p>
@@ -634,9 +636,9 @@ P^{-1} &amp;= \begin{bmatrix} 0 &amp; \phantom{-}\frac{4}{3} \\ 1 &amp; -\frac{1
 <p>And since each <span class="math notranslate nohighlight">\(\vec{p}_{i}\)</span> is of dimension <span class="math notranslate nohighlight">\(2\)</span>, the dimension of <span class="math notranslate nohighlight">\(\vec{p}\)</span> will be <span class="math notranslate nohighlight">\(N = 2^n\)</span> and can be written as:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\vec{p} = \begin{bmatrix} \varrho_0 \\ \varrho_1 \\ \varrho_2 \\ \vdots \\ \varrho_{N - 1} \end{bmatrix}, \end{split}\]</div>
-<p>where each  <span class="math notranslate nohighlight">\(\varrho_j \in [0,1]\)</span>, and must meet the condition that probabilities need to add up to <span class="math notranslate nohighlight">\(1\)</span>:</p>
+<p>where each  <span class="math notranslate nohighlight">\(\varrho_j\)</span> must be between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>, and must meet the condition that probabilities need to add up to <span class="math notranslate nohighlight">\(1\)</span>; i.e.:</p>
 <div class="math notranslate nohighlight">
-\[\sum_{j = 0}^{N-1} \varrho_j = 1\]</div>
+\[\begin{split}\vec{p} = \begin{bmatrix} \varrho_0 \\ \varrho_1 \\ \varrho_2 \\ \vdots \\ \varrho_{N - 1} \end{bmatrix}, \text{ such that:} \; \varrho_j \in [0,1] \; \text{ and } \; \sum_{j=0}^{N-1} \varrho_j = 1\end{split}\]</div>
 </section>
 <section id="probabilistic-multi-bit-gates">
 <h3>2.2 Probabilistic Multi-Bit Gates<a class="headerlink" href="#probabilistic-multi-bit-gates" title="Link to this heading">#</a></h3>

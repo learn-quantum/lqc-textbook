@@ -408,8 +408,8 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="qubits-and-quantum-circuits-an-introduction">
 <h1>Qubits and Quantum Circuits (an Introduction)<a class="headerlink" href="#qubits-and-quantum-circuits-an-introduction" title="Link to this heading">#</a></h1>
-<hr></hr><p>Quantum computers, or more precisely, quantum processing units (QPUs), are devices that exploit quantum-mechanical effects to speed up certain computational tasks when compared to conventional (classical) computers. In order to understand how these devices work, we must familiarize ourselves with the quantum phenomena that enables this added computational advantage. In particular, we must understand the concepts of <a class="reference external" href="https://en.wikipedia.org/wiki/Quantum_superposition">superposition</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Quantum_entanglement">entanglement</a>.</p>
-<p>Therefore, in this chapter we will first introduce the concept of a qubit by showing how this fundamental element of computation emerges from some of the physical properties of particles like electrons. This will lay the foundations needed to later discuss how QPUs can outperform classical devices when executing algorithms designed to exploit quantum effects.</p>
+<hr></hr><p>Quantum computers, or more precisely, quantum processing units (QPUs), are devices that exploit quantum-mechanical effects to speed up certain computational tasks when compared to conventional (classical) computers. In order to understand how these devices work, we must familiarize ourselves with the quantum phenomena that enables this added computational advantage. In particular, grasping the concepts of <a class="reference external" href="https://en.wikipedia.org/wiki/Quantum_superposition">superposition</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Quantum_entanglement">entanglement</a> will be of great importance.</p>
+<p>Therefore, in this chapter we will first introduce the concept of a qubit by showing how this fundamental element of computation emerges from some of the physical properties of particles like electrons, and how they exhibit the properties mentioned above. This will lay the foundations needed to later discuss how QPUs can outperform classical devices when executing algorithms designed to exploit quantum effects.</p>
 <section id="quantum-bits-qubits">
 <h2>1. Quantum Bits (Qubits)<a class="headerlink" href="#quantum-bits-qubits" title="Link to this heading">#</a></h2>
 <p>From a computational standpoint, qubits are a generalization of classical bits and are the fundamental unit in quantum computing. There are many different ways in which we can introduce the concept of a qubit. Here, we will follow a relatively intuitive approach by looking at how electrons behave under the influence of an external magnetic field.</p>
@@ -483,7 +483,7 @@
 \vec{s}_{\texttt{+}z} &amp;= \frac{1}{2} \begin{bmatrix} \frac{1}{2} \\ \frac{1}{2} \end{bmatrix} + \frac{1}{2} \begin{bmatrix} \frac{1}{2} \\ \frac{1}{2} \end{bmatrix}
 \\
 \\
-\vec{s}_{\texttt{+}z} &amp;= \begin{bmatrix} \frac{1}{2} \\ \frac{1}{2} \end{bmatrix} \leftarrow \underline{\text{incorrect vector values}} .
+\vec{s}_{\texttt{+}z} &amp;= \begin{bmatrix} \frac{1}{2} \\ \frac{1}{2} \end{bmatrix} \leftarrow \textbf{incorrect vector values} .
 \end{aligned}
 \end{split}\]</div>
 <p>Clearly, this not consistent with our original definition for <span class="math notranslate nohighlight">\(\vec{s}_{\texttt{+}z}\)</span>:</p>
@@ -625,17 +625,14 @@
 \end{split}\]</div>
 <p>But more generally, before we had that, for a classical bit vector representation given by the following expression:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split} | b \rangle = \begin{bmatrix} \beta_0 \\ \beta_1 \end{bmatrix}, \end{split}\]</div>
-<p>the coefficents <span class="math notranslate nohighlight">\(\beta_j\)</span> were either <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>, and had to meet the condition that:</p>
+\[\begin{split} | b \rangle = \begin{bmatrix} \beta_0 \\ \beta_1 \end{bmatrix}, \text{ such that:} \; \beta_j \in \{0,1\}, \; \text{and} \; \beta_0^2 + \beta_1^2 = 1 . \end{split}\]</div>
+<p>Similarly, for a probability bit (or <strong>p-bit</strong>) we defined:</p>
 <div class="math notranslate nohighlight">
-\[ \beta_0^2 + \beta_1^2 = 1 .\]</div>
-<p>And now, for a quantum vector (i.e., a <strong>qubit</strong>) we have:</p>
+\[\begin{split} \vec{p} = \begin{bmatrix} \varrho_{0} \\ \varrho_{1} \end{bmatrix}, \text{ such that:} \; \varrho_{j} \in [0,1], \; \text{ and } \; \rho_0 + \rho_1 = 1 .\end{split}\]</div>
+<p>And now, for a quantum vector (i.e., a <span style="color:#a883f7"><strong>qubit</strong></span>) we have:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split} | q \rangle = \begin{bmatrix} q_0 \\ q_1 \end{bmatrix}, \end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(q_j \in \mathbb{C}\)</span>, and:</p>
-<div class="math notranslate nohighlight">
-\[ |q_0|^2 + |q_1|^2 = 1 .\]</div>
-<p>In words, the coeffients of our qubit <span class="math notranslate nohighlight">\(| q \rangle\)</span> are complex values whose norm squared must add up to <span class="math notranslate nohighlight">\(1\)</span>. At this point, this might seem like a lot to unpack because we have only seen these coefficients take positive and negative values (not complex), but in the next section we will see that there is a logical explanation of why they must be complex, and what this all means.</p>
+\[\begin{split} | q \rangle = \begin{bmatrix} \alpha_0 \\ \alpha_1 \end{bmatrix}, \text{ such that:} \; \alpha_j \in \mathbb{C}, \; \text{and} \;  |\alpha_0|^2 + |\alpha_1|^2 = 1 .\end{split}\]</div>
+<p>In words, the coeffients of our qubit <span class="math notranslate nohighlight">\(| q \rangle\)</span> are complex values whose norm squared must add up to <span class="math notranslate nohighlight">\(1\)</span>. At this point, this might seem like a lot to unpack because we have only seen these coefficients take positive and negative values (not complex), but in an <a class="reference external" href="https://learnquantum.io/chapters/02_quantum_computing/02_03_single_qb_sys.html">upcoming section</a> we will see that there is a logical explanation for why they must be complex, and what this all means.</p>
 <p>For now, let’s keep focusing in the four states we’ve described so far and start implementing qubits in Python. In  previous chapters, we relied on NumPy arrays to implement vectors and matrices. And although we could do the same for qubits, let us now switch to Qiskit, which provides a much more convenient way to deal with these elements. Specifically, we will use a module within Qiskit called <code class="docutils literal notranslate"><span class="pre">quantum_info</span></code>, which has some easy-to-use classes to create and manipulate qubits, which we will refer to as Statevectors.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -733,7 +730,7 @@
 <li><p>We start at time <span class="math notranslate nohighlight">\(t_0\)</span> with an electron for which we do not know where its spin is pointing to. In the circuit diagram we represent this state with with an arbitrary ket symbol <span class="math notranslate nohighlight">\(|?\rangle\)</span>.</p></li>
 <li><p>At time <span class="math notranslate nohighlight">\(t_1\)</span>, the electron goes through a Stern-Gerlach apparatus (labeled SG1). We know that due to the probabilistic nature of the spin of the electron, only spin-up or spin-down electrons will come out of SG1, each with some probability of occurrence. We can then set our experiment to have a screen that only detects spin-down electrons, in which case we will ignore the outcome and repeat the experiment. In the cases were we don’t measure anything on the screen, we know we will have a spin-up electron coming out of this setup. In our circuit, we represent this operation with a block known as a post-selection gate (labeled as <span class="math notranslate nohighlight">\(|0\rangle \langle 0|\)</span>). All this gate represents is that, no matter what state goes into it, it only “spits out” state <span class="math notranslate nohighlight">\(|0\rangle\)</span>.</p></li>
 <li><p>Therefore, at <span class="math notranslate nohighlight">\(t_2\)</span>, we have only spin-up electrons in our physical setup, which in our circuit diagram we represent with a qubit in state <span class="math notranslate nohighlight">\(|0\rangle\)</span>. This step is commonly known as ground-state or zero-state <strong>preparation</strong>, and it is often assumed that it will take place before executing any circuit, so we usually don’t need to explicitly specify it as a circuit operation.</p></li>
-<li><p><a name="back4"></a>At time <span class="math notranslate nohighlight">\(t_3\)</span>, we have our electron go through another apparatus that applies a constant magnetic field to the electron, causing the direction of its spin to rotate. The details of how this works are not important for our current discussion, all we need to know is that, by varying the strength, direction and duration of this field, we can have the spin point in any direction we want<a class="reference internal" href="#footnote4"><span class="xref myst"><span class="math notranslate nohighlight">\(^§\)</span></span></a>. In this particular example, we apply a field such that the electron spin rotates from being spin-up all the way to spin-down. In our circuit, this is represented with an <span class="math notranslate nohighlight">\(X\)</span> gate, which should not be a surprise since we <a class="reference internal" href="../01_classical_computing/01_02_reversible_computing.html#1.1-Reversible-NOT"><span class="std std-ref">already discussed</span></a> that this is equivalent to a <strong>NOT</strong> gate for classical reversible circuits.</p></li>
+<li><p><a name="back4"></a>At time <span class="math notranslate nohighlight">\(t_3\)</span>, we have our electron go through another apparatus that applies a constant magnetic field to the electron, causing the direction of its spin to rotate. The details of how this works are not important for our current discussion, all we need to know is that, by varying the strength, direction and duration of this field, we can have the spin point in any direction we want<a class="reference internal" href="#footnote4"><span class="xref myst"><span class="math notranslate nohighlight">\(^§\)</span></span></a>. In this particular example, we apply a field such that the electron spin rotates from being spin-up all the way to spin-down. In our circuit, this is represented with an <span class="math notranslate nohighlight">\(X\)</span> gate, which should not be a surprise since we <a class="reference external" href="https://learnquantum.io/chapters/01_classical_computing/01_02_reversible_computing.html#reversible-not">already discussed</a> that this is equivalent to a <strong>NOT</strong> gate for classical reversible circuits.</p></li>
 <li><p>So, at time <span class="math notranslate nohighlight">\(t_4\)</span> we have spin-down electrons, which in our circuit we represent with a qubit in state <span class="math notranslate nohighlight">\(|1\rangle\)</span>.</p></li>
 <li><p>Lastly, at <span class="math notranslate nohighlight">\(t_5\)</span> we send our electron through another Stern-Gerlach device (SG2) but this time we have a full screen to detect if electrons are being deflected upwards or downwards. In our circuit, this is represented with what is known as a measurement gate, which takes as an input a quantum state, and provides as an output a classical bit corresponding to the state that was probabilistically measured.</p></li>
 <li><p>So, at time <span class="math notranslate nohighlight">\(t_6\)</span>, we will only <strong>measure</strong> electrons hitting the lower part of the screen, since all electrons coming into SG2 were spin-down. And in our circuit, we will see bit <span class="math notranslate nohighlight">\(1\)</span> come out as a result every time we execute it.</p></li>
@@ -939,7 +936,7 @@ H \cdot X =
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(49), np.str_(&#39;1&#39;): np.int64(51)}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(57), np.str_(&#39;1&#39;): np.int64(43)}
 </pre></div>
 </div>
 </div>
@@ -953,12 +950,12 @@ H \cdot X =
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39;
- &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39;
- &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39;
- &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39;
- &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39;
- &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39;
+ &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39;
+ &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39;
+ &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39;
+ &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39;
+ &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39;]
 </pre></div>
 </div>
 </div>
@@ -1025,7 +1022,7 @@ H \cdot X =
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;1&#39;: 60, &#39;0&#39;: 40}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;1&#39;: 50, &#39;0&#39;: 50}
 </pre></div>
 </div>
 </div>
@@ -1040,7 +1037,7 @@ H \cdot X =
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/536d7d47407297d3fc2e35e34328a11f31fdac93d28a05bea1c331adb83afb5d.png" src="../../_images/536d7d47407297d3fc2e35e34328a11f31fdac93d28a05bea1c331adb83afb5d.png" />
+<img alt="../../_images/bd1265e68780709ed2a4cfa449ee190bb65b57ebda29bfa3456750abdb793ab0.png" src="../../_images/bd1265e68780709ed2a4cfa449ee190bb65b57ebda29bfa3456750abdb793ab0.png" />
 </div>
 </div>
 <p>As expected, we get <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> about half of the time because, we started with state <span class="math notranslate nohighlight">\(|0\rangle\)</span>, applied a Hadamard gate, turning it into state <span class="math notranslate nohighlight">\(|+\rangle\)</span>, and then measured the qubit a 100 times.</p>
