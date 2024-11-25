@@ -415,7 +415,7 @@
 <p>From a computational standpoint, qubits are a generalization of classical bits and are the fundamental unit in quantum computing. There are many different ways in which we can introduce the concept of a qubit. Here, we will follow a relatively intuitive approach by looking at how electrons behave under the influence of an external magnetic field.</p>
 <section id="the-spin-of-an-electron">
 <h3>1.1 The Spin of an Electron<a class="headerlink" href="#the-spin-of-an-electron" title="Link to this heading">#</a></h3>
-<p>One of the fundamental properties of electrons is that they have an intrinsic angular momentum. This property is commonly known as spin, even though particles are not really spinning. The spin of an electron can be deduced experimentally by using what is known as a <a class="reference external" href="https://en.wikipedia.org/wiki/Stern%E2%80%93Gerlach_experiment">Stern-Gerlach</a> apparatus. This device consists of two magnet poles shaped in a way such that the magnetic field between them is <strong>non-uniform</strong>, having a higher intensity at the top where the magnet is sharper:</p>
+<p>A fundamental property of electrons is that they have an intrinsic angular momentum. This property is commonly known as spin, even though particles are not really spinning. The spin of an electron can be deduced experimentally by using what is known as a <a class="reference external" href="https://en.wikipedia.org/wiki/Stern%E2%80%93Gerlach_experiment">Stern-Gerlach</a> apparatus. This device consists of two magnet poles shaped in a way such that the magnetic field between them is <strong>non-uniform</strong>, having a higher intensity at the top where the magnet is sharper:</p>
 <a class="reference internal image-reference" href="../../_images/02_01_01_stern-gerlach_field.png"><img alt="../../_images/02_01_01_stern-gerlach_field.png" class="align-center" src="../../_images/02_01_01_stern-gerlach_field.png" style="width: 600px;" /></a>
 <p>Therefore, if an object with a magnetic moment, like a tiny bar magnet, is sent into this device along the <span class="math notranslate nohighlight">\(y\)</span> direction, it will experience a force in the vertical <span class="math notranslate nohighlight">\(z\)</span> direction that will cause it to deflect upwards or downwards. A bar magnet with its north pole pointing up will deflect upwards. On the other hand, a bar magnet with its north pole pointing down will deflect downwards:</p>
 <a class="reference internal image-reference" href="../../_images/02_01_02_stern-gerlach_n-s_magnets.png"><img alt="../../_images/02_01_02_stern-gerlach_n-s_magnets.png" class="align-center" src="../../_images/02_01_02_stern-gerlach_n-s_magnets.png" style="width: 700px;" /></a>
@@ -428,11 +428,11 @@
 <a class="reference internal" href="../../_images/02_01_05_stern-gerlach_up-down_elec.png"><img alt="../../_images/02_01_05_stern-gerlach_up-down_elec.png" class="align-center" src="../../_images/02_01_05_stern-gerlach_up-down_elec.png" style="width: 700px;" /></a></p>
 <p>However, for the case of an electron with their spin pointing in, for example, the <span class="math notranslate nohighlight">\(\texttt{+}x\)</span> (or <span class="math notranslate nohighlight">\(\texttt{-}x\)</span>) direction, something interesting happens. Instead of traveling in a straight line (like in the case of the bar magnet), the electron ends up deflecting upwards or downwards each with <span class="math notranslate nohighlight">\(50 \%\)</span> probability:
 <a class="reference internal" href="../../_images/02_01_06_stern-gerlach_right_elec.png"><img alt="../../_images/02_01_06_stern-gerlach_right_elec.png" class="align-center" src="../../_images/02_01_06_stern-gerlach_right_elec.png" style="width: 360px;" /></a></p>
-<p>In other words, in an experiment where the electron is prepared to have spin in the <span class="math notranslate nohighlight">\(\texttt{±}x\)</span> direction is performed many times, it has been verified that roughly half of the time the electron deflects upwards, and half of the time it deflects downwards and <strong>never</strong> somewhere in between.</p>
-<p>And more generally, when an electron with its spin at an angle <span class="math notranslate nohighlight">\(\theta\)</span> with respect to the <span class="math notranslate nohighlight">\(\texttt{+}z\)</span> direction is sent into a Stern-Gerlach apparatus, the electron still only deflects either upwards or downwards with complimentary probabilities <span class="math notranslate nohighlight">\(p{\texttt{+}z}\)</span> and <span class="math notranslate nohighlight">\(p{\texttt{-}z}\)</span> that depend on this angle:</p>
+<p>In other words, in an experiment where the electron is prepared to have spin in the <span class="math notranslate nohighlight">\(\texttt{±}x\)</span> direction is performed many times, it has been verified that roughly half of the time the electron deflects upwards, and half of the time it deflects downwards, but <strong>never</strong> somewhere in between.</p>
+<p>And more generally, when an electron has its spin at an angle <span class="math notranslate nohighlight">\(\theta\)</span> with respect to the <span class="math notranslate nohighlight">\(\texttt{+}z\)</span> direction is sent into a Stern-Gerlach apparatus, the electron still only deflects either upwards or downwards with complimentary probabilities <span class="math notranslate nohighlight">\(p{\texttt{+}z}\)</span> and <span class="math notranslate nohighlight">\(p{\texttt{-}z}\)</span> that depend on this angle:</p>
 <a class="reference internal image-reference" href="../../_images/02_01_07_stern-gerlach_angle_elec.png"><img alt="../../_images/02_01_07_stern-gerlach_angle_elec.png" class="align-center" src="../../_images/02_01_07_stern-gerlach_angle_elec.png" style="width: 320px;" /></a>
 <p>The reason why electrons show this probabilistic behavior is partially related to what is perhaps the most debated question in all quantum mechanics: <a class="reference external" href="https://en.wikipedia.org/wiki/Measurement_problem">the measurement problem</a>. Since discussions about the measurement problem are outside the scope of this textbook, we will simply use the empirical evidence from these experiments to build a model for how to describe these particles.</p>
-<p>So, given this observed behavior, it is then very tempting to assign a probability vector (like the ones described in the <a class="reference internal" href="../01_classical_computing/01_04_probabilistic_circuits.html"><span class="std std-doc">previous chapter</span></a>) to describe the state of the spin of an electron, where to first element in the vector represents the probability of the electron being spin up, and the second element the probability of being spin down:</p>
+<p>So, given this observed behavior, it is then very tempting to assign a probability vector (like the ones described in the <a class="reference internal" href="../01_classical_computing/01_04_probabilistic_circuits.html"><span class="std std-doc">previous chapter</span></a>) to describe the state of the spin of an electron, where the first entry in this vector represents the probability of the electron being spin up, and the second entry the probability of being spin down:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} \vec{s} = \begin{bmatrix}\mathbb{P}_{\texttt{+}z} \\ \mathbb{P}_{\texttt{-}z} \end{bmatrix} \end{split}\]</div>
 <p>Clearly, this works for the specific case of the Stern-Gerlach experiment we described above, but does it work in general?…</p>
@@ -454,7 +454,7 @@
 \[\begin{split}
 \vec{s}_{\texttt{-}x} = \begin{bmatrix} \frac{1}{2} \\ \frac{1}{2} \end{bmatrix}.
 \end{split}\]</div>
-<p>One could argue that, perhaps, there is just simply no way to experimentally distinguish between electrons with spins along the <span class="math notranslate nohighlight">\(\texttt{+}x\)</span> and <span class="math notranslate nohighlight">\(\texttt{-}x\)</span> directions. However, it is not difficult to see that there is really nothing special about setting up the Stern-Gerlach apparatus with its varying field along the <span class="math notranslate nohighlight">\(z\)</span> axis. We can perfectly rotate the device so the field is now in the <span class="math notranslate nohighlight">\(x\)</span> direction. And, if we now send electrons with their spin along the <span class="math notranslate nohighlight">\(\texttt{+}x\)</span> (or <span class="math notranslate nohighlight">\(\texttt{-}x\)</span>) axis, we will see them deflect to the right (or to the left) accordingly, which shows that there is indeed a way to experimentally tell these are two different states:</p>
+<p>One could argue that, perhaps, there just isn’t a way to experimentally distinguish between electrons with spins along the <span class="math notranslate nohighlight">\(\texttt{+}x\)</span> and <span class="math notranslate nohighlight">\(\texttt{-}x\)</span> directions. However, it is not difficult to see that there is really nothing special about setting up the Stern-Gerlach apparatus with its varying field along the <span class="math notranslate nohighlight">\(z\)</span> axis. We can perfectly rotate the device so the field is now in the <span class="math notranslate nohighlight">\(x\)</span> direction. And, if we now send electrons with their spin along the <span class="math notranslate nohighlight">\(\texttt{+}x\)</span> (or <span class="math notranslate nohighlight">\(\texttt{-}x\)</span>) axis, we will see them deflect to the right (or to the left) accordingly, which shows that there is indeed a way to experimentally tell these are two different states:</p>
 <a class="reference internal image-reference" href="../../_images/02_01_08_stern-gerlach_left-right_elec.png"><img alt="../../_images/02_01_08_stern-gerlach_left-right_elec.png" class="align-center" src="../../_images/02_01_08_stern-gerlach_left-right_elec.png" style="width: 700px;" /></a>
 <p>Furthermore, we can also show that, mathematically, using probability vectors to describe spins simply doesn’t work. An interesting fact about using vectors is that we can write one particular state as a linear combination of other states. For example, an electron with spin pointing in the <span class="math notranslate nohighlight">\(\texttt{+}x\)</span> direction can be written as a linear combination of <span class="math notranslate nohighlight">\(\vec{s}_{\texttt{+}z}\)</span> and <span class="math notranslate nohighlight">\(\vec{s}_{\texttt{-}z}\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -469,7 +469,7 @@
 \vec{s}_{\texttt{+}x} &amp;= \frac{1}{2} \vec{s}_{\texttt{+}z} + \frac{1}{2} \vec{s}_{\texttt{-}z}.
 \end{aligned}
 \end{split}\]</div>
-<p>In words, this expression is simply saying that an electron with spin in the <span class="math notranslate nohighlight">\(\texttt{+}x\)</span> can be viewed as probabilistically having either an electron with spin in the <span class="math notranslate nohighlight">\(\texttt{+}z\)</span> direction or in the <span class="math notranslate nohighlight">\(\texttt{-}z\)</span> direction, each with <span class="math notranslate nohighlight">\(50\%\)</span> probability. By symmetry, we also know that if we send spin-up electrons through a rotated Stern-Gerlach apparatus, we will see them deflecting left or right, each with <span class="math notranslate nohighlight">\(50\%\)</span> probability:</p>
+<p>In words, this expression is saying that an electron with spin in the <span class="math notranslate nohighlight">\(\texttt{+}x\)</span> can be viewed as probabilistically having either an electron with spin in the <span class="math notranslate nohighlight">\(\texttt{+}z\)</span> direction or in the <span class="math notranslate nohighlight">\(\texttt{-}z\)</span> direction, each with <span class="math notranslate nohighlight">\(50\%\)</span> probability. By symmetry, we also know that if we send spin-up electrons through a rotated Stern-Gerlach apparatus, we will see them deflecting left or right, each with <span class="math notranslate nohighlight">\(50\%\)</span> probability:</p>
 <a class="reference internal image-reference" href="../../_images/02_01_09_stern-gerlach_up_elec.png"><img alt="../../_images/02_01_09_stern-gerlach_up_elec.png" class="align-center" src="../../_images/02_01_09_stern-gerlach_up_elec.png" style="width: 360px;" /></a>
 <p>This means that, for an electron with spin pointing in the <span class="math notranslate nohighlight">\(\texttt{+}z\)</span> direction, we should also be able to write it as a linear combination of the vectors <span class="math notranslate nohighlight">\(\vec{s}_{\texttt{+}x}\)</span> and <span class="math notranslate nohighlight">\(\vec{s}_{\texttt{-}x}\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -936,7 +936,7 @@ H \cdot X =
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(57), np.str_(&#39;1&#39;): np.int64(43)}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(47), np.str_(&#39;1&#39;): np.int64(53)}
 </pre></div>
 </div>
 </div>
@@ -950,12 +950,12 @@ H \cdot X =
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39;
- &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39;
- &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39;
- &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39;
- &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39;
- &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39;
+ &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39;
+ &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39;
+ &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39;
+ &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39;
+ &#39;0&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;1&#39; &#39;0&#39; &#39;1&#39; &#39;0&#39; &#39;0&#39;]
 </pre></div>
 </div>
 </div>
@@ -1022,7 +1022,7 @@ H \cdot X =
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;1&#39;: 50, &#39;0&#39;: 50}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;1&#39;: 58, &#39;0&#39;: 42}
 </pre></div>
 </div>
 </div>
@@ -1037,7 +1037,7 @@ H \cdot X =
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/bd1265e68780709ed2a4cfa449ee190bb65b57ebda29bfa3456750abdb793ab0.png" src="../../_images/bd1265e68780709ed2a4cfa449ee190bb65b57ebda29bfa3456750abdb793ab0.png" />
+<img alt="../../_images/c43e5b419f1dcb55209323e6f7e7794166a1aae3547a9626b930b5f8667d028e.png" src="../../_images/c43e5b419f1dcb55209323e6f7e7794166a1aae3547a9626b930b5f8667d028e.png" />
 </div>
 </div>
 <p>As expected, we get <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> about half of the time because, we started with state <span class="math notranslate nohighlight">\(|0\rangle\)</span>, applied a Hadamard gate, turning it into state <span class="math notranslate nohighlight">\(|+\rangle\)</span>, and then measured the qubit a 100 times.</p>
