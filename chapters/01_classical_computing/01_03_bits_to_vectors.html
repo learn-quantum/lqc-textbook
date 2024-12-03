@@ -397,6 +397,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-bit-gates-and-circuits-as-matrices">2.2 Multi-Bit Gates (and Circuits) as Matrices</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#footnotes">Footnotes</a></li>
 </ul>
             </nav>
         </div>
@@ -694,8 +695,7 @@ The dot product between |1⟩ and |1⟩ is 1
 \[\begin{split}\displaystyle \left[\begin{matrix}0 &amp; 1\\1 &amp; 0\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
-<p><strong>NOTE</strong></p>
-<p>If you are not accustomed to using NumPy, here’s a VERY important thing to keep in mind. The multiplication symbol <code class="docutils literal notranslate"><span class="pre">*</span></code> does NOT perform matrix multiplication of NumPy arrays; instead, it performs element-wise multiplication (aka, the <a class="reference external" href="https://en.wikipedia.org/wiki/Hadamard_product_(matrices)">Hadamard Product</a>). To perform matrix multiplication as defined above, we should use the <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.matmul.html"><code class="docutils literal notranslate"><span class="pre">numpy.matmul()</span></code></a> function. However, we can also use the syntactic-sugar symbol <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> as shortcut to perform the same operation:</p>
+<p><a name="back1"></a> Now, to perform matrix multiplication as defined above, we should use the <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.matmul.html"><code class="docutils literal notranslate"><span class="pre">numpy.matmul()</span></code></a> function. However, we can also use the syntactic-sugar symbol <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> as shortcut to perform the same operation<a class="reference internal" href="#footnote1"><span class="xref myst"><span class="math notranslate nohighlight">\(^*\)</span></span></a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Multiply |0⟩ by X to get |1⟩:</span>
@@ -1285,6 +1285,10 @@ Q &amp;= \text{CCX} \left( I \otimes \text{X} \otimes I \right) \left( \text{X} 
 <p>Now that we have established some of the linear algebra concepts needed to deal with reversible circuits, we can move on to the next chapter to introduce a critical concept required to understand quantum computing: randomness and probability.</p>
 </section>
 </section>
+<section id="footnotes">
+<h2>Footnotes<a class="headerlink" href="#footnotes" title="Link to this heading">#</a></h2>
+<p><a name="footnote1"></a><span style="font-size: smaller;"><span class="math notranslate nohighlight">\(^*\)</span>If you are not accustomed to using NumPy, here’s a <strong>VERY</strong> important thing to keep in mind. The multiplication symbol <code class="docutils literal notranslate"><span class="pre">*</span></code> does <strong>NOT</strong> perform convetional matrix multiplication of NumPy arrays. Instead, it performs element-wise multiplication (aka, the <a class="reference external" href="https://en.wikipedia.org/wiki/Hadamard_product_(matrices)">Hadamard Product</a>). For matrix multiplication, we must use the <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> symbol. (<a class="reference internal" href="#back1"><span class="xref myst">go back</span></a>)</span></p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1362,6 +1366,7 @@ Q &amp;= \text{CCX} \left( I \otimes \text{X} \otimes I \right) \left( \text{X} 
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-bit-gates-and-circuits-as-matrices">2.2 Multi-Bit Gates (and Circuits) as Matrices</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#footnotes">Footnotes</a></li>
 </ul>
   </nav></div>
 
