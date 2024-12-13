@@ -61,6 +61,8 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/02_quantum_computing/02_03_single_qb_sys';</script>
     <link rel="canonical" href="https://learn-quantum.github.io/lqc-textbook/chapters/02_quantum_computing/02_03_single_qb_sys.html" />
     <link rel="icon" href="../../_static/nabla.ico"/>
@@ -362,7 +364,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -378,6 +382,27 @@
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizing-the-qubit">1. Generalizing the Qubit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-probability-amplitudes">1.1 Real Probability Amplitudes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-probability-amplitudes">1.2 Complex Probability Amplitudes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#putting-it-all-together-and-the-bloch-sphere">1.3 Putting it all Together (…and the Bloch Sphere)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kets-bras-products-and-bases">1.4 Kets, Bras, Products, and Bases</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizing-quantum-gates">2. Generalizing Quantum Gates</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pauli-gates">2.1 The Pauli Gates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-phase-gate-family">2.2 The Phase-Gate Family</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-rotation-gates">2.3 General Rotation Gates</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#footnotes">Footnotes</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -389,7 +414,768 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="single-qubit-systems">
 <h1>Single-Qubit Systems<a class="headerlink" href="#single-qubit-systems" title="Link to this heading">#</a></h1>
-<hr></hr></section>
+<hr></hr><p>In the introductory chapter to <a class="reference external" href="https://learnquantum.io/chapters/02_quantum_computing/02_01_bits_to_qubits.html">quantum bits and circuits</a>, we presented the model of a qubit inspired by the probabilistic nature of the spin of an electron. However, we only described how the electron behaves when its spin was pointing in the <span class="math notranslate nohighlight">\(\texttt{+}z, \texttt{-}z, \texttt{+}x, \texttt{-}x\)</span> directions (to which we assigned the qubit states <span class="math notranslate nohighlight">\(|0\rangle, |1\rangle, |+\rangle, |-\rangle\)</span>, respectively).</p>
+<p>But what if the electron spin is pointing along some arbitrary angle with respect to the <span class="math notranslate nohighlight">\(\texttt{+}z\)</span> direction? We did mention that the probability of measuring spin-up or spin-down depends on this angle, but did not give a quantitative rule for how electrons behave.</p>
+<p>In this chapter, we will not only expand on this idea, but we will also broaden the definition of the state that describes the spin of an electron pointing in any direction, which represents the most general way to express the state of a qubit. We will then introduce the <a class="reference external" href="https://en.wikipedia.org/wiki/Bloch_sphere">Bloch Sphere</a>, which is a graphical representation of the mathematical description of the qubit’s state, and lastly discuss the different operations we can apply to a qubit to transform it from one arbitrary state to another.</p>
+<section id="generalizing-the-qubit">
+<h2>1. Generalizing the Qubit<a class="headerlink" href="#generalizing-the-qubit" title="Link to this heading">#</a></h2>
+<p>Our goal for this section is to derive the final mathematical definition of a qubit. For this, we will follow a similar approach to that of the previous two chapters; that is, through a discovery process using simple examples. Our final goal is to derive the general vector representation of a qubit, given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} |q\rangle = \begin{bmatrix} \alpha_0 \\ \alpha_1 \end{bmatrix}, \text{ such that:} \; \alpha_j \in \mathbb{C}, \; \text{and} \; \sqrt{|\alpha_0|^2 + |\alpha_1|^2} = 1 ,\end{split}\]</div>
+<p>which is a generalization of our definition for the bit, where the only entries allowed were <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} |b\rangle = \begin{bmatrix} \beta_0 \\ \beta_1 \end{bmatrix}, \text{ such that:} \; \beta_j \in \{0, 1\}, \; \text{and} \; \sqrt{|\beta_0|^2 + |\beta_1|^2} = 1 .\end{split}\]</div>
+<p>So, let’s take a first step and see how we go from the few specific statevectors we’ve presented so far, to a more general (but partial) representation using real numbers. After that, we will discover why we need to incorporate complex values as well in our definition. Lastly, we will combine these two steps to get a complete representation of a general qubit and its visual representation in the Bloch sphere.</p>
+<section id="real-probability-amplitudes">
+<h3>1.1 Real Probability Amplitudes<a class="headerlink" href="#real-probability-amplitudes" title="Link to this heading">#</a></h3>
+<p>Let us, once again, revisit the Stern-Gerlach experiment and consider the results of performing repeated experiments on an electron with its spin at an angle <span class="math notranslate nohighlight">\(\theta\)</span> with respect to the <span class="math notranslate nohighlight">\(\texttt{+}z\)</span> axis, as shown in the image below. Observations demonstrate that, in this scenario, the probability of the electron deflecting in the <span class="math notranslate nohighlight">\(\texttt{+}z\)</span> direction (i.e., measuring state <span class="math notranslate nohighlight">\(|0\rangle\)</span>) is given by the cosine squared of the angle <span class="math notranslate nohighlight">\(\theta/2\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ \mathbb{P}_{0} = \cos^2\left(\frac{\theta}{2}\right) \]</div>
+<p>Similarly, the probability of the electron deflecting in the <span class="math notranslate nohighlight">\(\texttt{-}z\)</span> direction (i.e., measuring state <span class="math notranslate nohighlight">\(|1\rangle\)</span>) is equal the sine squared of the angle:</p>
+<div class="math notranslate nohighlight">
+\[ \mathbb{P}_{1} = \sin^2\left(\frac{\theta}{2}\right) \]</div>
+<a class="reference internal image-reference" href="../../_images/02_03_01_stern-gerlach_angle_prob.png"><img alt="../../_images/02_03_01_stern-gerlach_angle_prob.png" class="align-center" src="../../_images/02_03_01_stern-gerlach_angle_prob.png" style="width: 360px;" /></a>
+<p>From a probability standpoint, these expressions work since the sum of sine and cosine squared for any common angle always add to one, just like probabilities ought to do:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\mathbb{P}_{0} &amp;+ \mathbb{P}_{1} = 1
+\\
+\\
+\cos^2\left(\frac{\theta}{2}\right) &amp;+ \sin^2\left(\frac{\theta}{2}\right) = 1
+\end{aligned}
+\end{split}\]</div>
+<p>Therefore, as discussed in the section on <a class="reference external" href="https://learnquantum.io/chapters/02_quantum_computing/02_01_bits_to_qubits.html#from-probabilities-to-probability-amplitudes">probability amplitudes</a>, we can construct a statevector that represents the state of a qubit (electron spin) by making sure that when the selected probability amplitudes are squared, we obtain the empirical probabilities that match those from observed results via experimentation (as specified by the <a class="reference external" href="https://en.wikipedia.org/wiki/Born_rule">Born rule</a>):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+|q\rangle &amp;= \begin{bmatrix} \cos\left(\frac{\theta}{2}\right) \\ \sin\left(\frac{\theta}{2}\right) \end{bmatrix}
+\\
+\\
+|q\rangle &amp;= \cos\left(\frac{\theta}{2}\right)|0\rangle + \sin\left(\frac{\theta}{2}\right) |1\rangle 
+\end{aligned}
+\end{split}\]</div>
+<p>It is easy to see that the expression above is of the form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} |q\rangle = \begin{bmatrix} a_0 \\ a_1 \end{bmatrix}, \text{ such that:} \; a_j \in \mathbb{R}, \; \text{and} \; \sqrt{a_0^2 + a_1^2} = 1 ,\end{split}\]</div>
+<p>which is very close to the final definition of a qubit we set ourselves to find. The only exception is that the vector elements here are real-valued rather than complex numbers. We will explore why we need complex values in the following section, but for now, we can see this expression works for the four electron spin cases we have explored so far:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Spin Direction</p></th>
+<th class="head text-center"><p>Qubit State</p></th>
+<th class="head text-center"><p>Angle <span class="math notranslate nohighlight">\(\theta\)</span> [rad]</p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(\cos\left(\frac{\theta}{2}\right)\)</span></p></th>
+<th class="head text-center"><p><span class="math notranslate nohighlight">\(\sin\left(\frac{\theta}{2}\right)\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\texttt{+}z\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\vert 0\rangle\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\texttt{-}z\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\vert 1\rangle\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\pi\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\texttt{+}x\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\vert +\rangle\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\frac{\pi}{2}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\texttt{-}x\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\vert -\rangle\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\frac{3\pi}{2}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(-\frac{1}{\sqrt{2}}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>But more generally, it works for any angle <span class="math notranslate nohighlight">\(\theta\)</span>. Let’s look at the specific example where <span class="math notranslate nohighlight">\(\theta = \pi/3\)</span>. The expectation is that we will get the following respective probabilities for measuring states <span class="math notranslate nohighlight">\(|0\rangle\)</span> and <span class="math notranslate nohighlight">\(|1\rangle\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+&amp;\mathbb{P}_{0} = \cos^2\left(\frac{\pi/3}{2}\right) = \left(\frac{\sqrt{3}}{2}\right)^2 = \frac{3}{4} = 0.75
+\\
+\\
+&amp;\mathbb{P}_{1} = \sin^2\left(\frac{\pi/3}{2}\right) = \left(\frac{1}{2}\right)^2 = \frac{1}{4} = 0.25
+\end{aligned}
+\end{split}\]</div>
+<p>And now let’s use the <code class="docutils literal notranslate"><span class="pre">Statevector</span></code> class in qiskit to construct this statevector, and see if the measurement probabilities match our expectation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">Statevector</span>
+
+<span class="n">θ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span>                <span class="c1"># Spin angle wrt to +z axis</span>
+<span class="n">α0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">θ</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>           <span class="c1"># Probability amplitude associated with |0⟩</span>
+<span class="n">α1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">θ</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>           <span class="c1"># Probability amplitude associated with |1⟩</span>
+
+<span class="n">q</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">([</span><span class="n">α0</span><span class="p">,</span> <span class="n">α1</span><span class="p">])</span>  <span class="c1"># Construct statevector |q⟩ = α0|0⟩ + α1|1⟩ = [α0 α1]ᵀ</span>
+
+<span class="n">probs</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">probabilities</span><span class="p">()</span> <span class="c1"># Extract expected probs array [P₀, P₁]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">probs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.75 0.25]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The result above is the calculation of the analytical probabilities, but we can also sample the statevector (as if we were performing measurements in this system) and get a distribution of results that should be approximately give us <span class="math notranslate nohighlight">\(75\%\)</span> of measuring <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(25\%\)</span> of measuring <span class="math notranslate nohighlight">\(1\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">sample_counts</span><span class="p">(</span><span class="n">shots</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span> <span class="c1"># &quot;Measure&quot; statevector 1000 times and return dictionary</span>
+                                     <span class="c1"># of the form: {&#39;0&#39;: number_of_0s, &#39;1&#39;: number_of_1s}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(753), np.str_(&#39;1&#39;): np.int64(247)}
+</pre></div>
+</div>
+</div>
+</div>
+<p>This generalization of the qubit, where the probability amplitudes are given by the <span class="math notranslate nohighlight">\(\cos^2\)</span> and <span class="math notranslate nohighlight">\(\sin^2\)</span> of the angle <span class="math notranslate nohighlight">\(\theta/2\)</span>, works well to describe the results of the Stern-Gerlach experiment; however, there is a bit of an issue. In this particular case, we are only concerned about the direction of the spin on the <span class="math notranslate nohighlight">\(xz\)</span>-plane because we are shooting the electrons along the <span class="math notranslate nohighlight">\(y\)</span> direction. But how do we describe the spin of the electron if it is aligned with, let’s say, the <span class="math notranslate nohighlight">\(\texttt{+}y\)</span> axis? Well, experiments show that, if we were to measure the spin of such an electron with a field oriented along the <span class="math notranslate nohighlight">\(z\)</span> axis, we will still see the electron deflecting up or down with <span class="math notranslate nohighlight">\(50\%\)</span> probability (just like we do for spin in the <span class="math notranslate nohighlight">\(\texttt{+}x\)</span> direction). As a matter of fact, this is true no matter which orientation (given by the angle <span class="math notranslate nohighlight">\(\varphi\)</span>) the electron has in the <span class="math notranslate nohighlight">\(xy\)</span>-plane:</p>
+<a class="reference internal image-reference" href="../../_images/02_03_02_elec_phi_angle.png"><img alt="../../_images/02_03_02_elec_phi_angle.png" class="align-center" src="../../_images/02_03_02_elec_phi_angle.png" style="width: 520px;" /></a>
+<p>So, how do we represent such states? After all, for spin along the <span class="math notranslate nohighlight">\(\pm x\)</span> directions, we defined the probability amplitudes by taking the positive and negative square roots of the probability of measuring spin-up and spin-down, so what do we do for spin along, let’s say the <span class="math notranslate nohighlight">\(\pm y\)</span> directions?</p>
+<div style="text-align: center;"> <strong> ¡Complex Numbers to the Rescue! </strong> </div></section>
+<section id="complex-probability-amplitudes">
+<h3>1.2 Complex Probability Amplitudes<a class="headerlink" href="#complex-probability-amplitudes" title="Link to this heading">#</a></h3>
+<p>Let us start by recalling the reason why we chose states <span class="math notranslate nohighlight">\(|+\rangle\)</span> and <span class="math notranslate nohighlight">\(|-\rangle\)</span> to be of the form:</p>
+<div class="math notranslate nohighlight">
+\[ 
+|+\rangle = \frac{1}{\sqrt{2}}|0\rangle + \frac{1}{\sqrt{2}}|1\rangle \quad \text{ and } \quad
+|-\rangle = \frac{1}{\sqrt{2}}|0\rangle - \frac{1}{\sqrt{2}}|1\rangle.
+\]</div>
+<p>First off, we chose the values of these probability amplitudes because, when we square them, we still get the correct probabilities of measuring <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\text{For state } |+\rangle : \mathbb{P}_0 = \left(\frac{1}{\sqrt{2}}\right)^2 = \frac{1}{2} \quad &amp;\text{and} \quad 
+\mathbb{P}_1 = \left(\frac{1}{\sqrt{2}}\right)^2 = \frac{1}{2}.
+\\
+\\
+\text{For state } |-\rangle : \mathbb{P}_0 = \left(\frac{1}{\sqrt{2}}\right)^2 = \frac{1}{2} \quad &amp;\text{and} \quad  
+\mathbb{P}_1 = \left(-\frac{1}{\sqrt{2}}\right)^2 = \frac{1}{2}.
+\end{aligned}
+\end{split}\]</div>
+<p>And secondly, the signs for the probability amplitudes were selected to allow us to express states <span class="math notranslate nohighlight">\(|0\rangle\)</span> and <span class="math notranslate nohighlight">\(|1\rangle\)</span> in terms of states <span class="math notranslate nohighlight">\(|+\rangle\)</span> and <span class="math notranslate nohighlight">\(|-\rangle\)</span> in a way that is consistent with observations when measurements of spin are performed along the <span class="math notranslate nohighlight">\(x\)</span> axis. More concretely, for state <span class="math notranslate nohighlight">\(|0\rangle\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+|0\rangle &amp;= \frac{1}{\sqrt{2}}|+\rangle + \frac{1}{\sqrt{2}}|-\rangle 
+\\
+\\
+&amp;= \frac{1}{\sqrt{2}}\left(\frac{1}{\sqrt{2}}|0\rangle + \frac{1}{\sqrt{2}}|1\rangle \right) + \frac{1}{\sqrt{2}}\left(\frac{1}{\sqrt{2}}|0\rangle - \frac{1}{\sqrt{2}}|1\rangle \right) 
+\\
+\\
+&amp;= \frac{1}{2}|0\rangle + \frac{1}{2}|1\rangle + \frac{1}{2}|0\rangle - \frac{1}{2}|1\rangle
+\\
+\\
+&amp;= |0\rangle .
+\end{aligned}
+\end{split}\]</div>
+<p>And, for state <span class="math notranslate nohighlight">\(|1\rangle\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+|1\rangle &amp;= \frac{1}{\sqrt{2}}|+\rangle - \frac{1}{\sqrt{2}}|-\rangle 
+\\
+\\
+&amp;= \frac{1}{\sqrt{2}}\left(\frac{1}{\sqrt{2}}|0\rangle + \frac{1}{\sqrt{2}}|1\rangle \right) - \frac{1}{\sqrt{2}}\left(\frac{1}{\sqrt{2}}|0\rangle - \frac{1}{\sqrt{2}}|1\rangle \right) 
+\\
+\\
+&amp;= \frac{1}{2}|0\rangle + \frac{1}{2}|1\rangle - \frac{1}{2}|0\rangle + \frac{1}{2}|1\rangle
+\\
+\\
+&amp;= |1\rangle .
+\end{aligned}
+\end{split}\]</div>
+<p>So, what do we do for the probability amplitudes of the states corresponding to spins along the <span class="math notranslate nohighlight">\(\pm y\)</span> directions? Well, we need to follow similar rules to those we had for spin along <span class="math notranslate nohighlight">\(\pm x\)</span> axes:</p>
+<ol class="arabic simple">
+<li><p>When “squared”, they must be equal to probability values of <span class="math notranslate nohighlight">\(1/2\)</span>.</p></li>
+<li><p>We must be able to consistently express states <span class="math notranslate nohighlight">\(|0\rangle\)</span> and <span class="math notranslate nohighlight">\(|1\rangle\)</span> as superpositions of these states.</p></li>
+</ol>
+<p>Unfortunately, the only <strong>real</strong> numbers that meet these conditions are <span class="math notranslate nohighlight">\(+1/\sqrt{2}\)</span> and <span class="math notranslate nohighlight">\(-1/\sqrt{2}\)</span>, which are what we use for states <span class="math notranslate nohighlight">\(|+\rangle\)</span> and <span class="math notranslate nohighlight">\(|-\rangle\)</span>. However, with just a small adjustment to the probability rule given above, <strong>complex</strong> numbers can save the day and make our model consistent with observations!</p>
+<p>To understand the adjustment we need to make, let’s start by recalling that a complex number <span class="math notranslate nohighlight">\(c\)</span> is of the form:</p>
+<div class="math notranslate nohighlight">
+\[ c = a + bi, \]</div>
+<p>where <span class="math notranslate nohighlight">\(a, b \in \mathbb{R}\)</span>, and are known as the <strong>real</strong> and <strong>imaginary</strong> parts of <span class="math notranslate nohighlight">\(c\)</span>, respectively. Furthermore, <span class="math notranslate nohighlight">\(i\)</span> is known as the imaginary unit, which satisfies the property that when squared, it equals negative one: <span class="math notranslate nohighlight">\(i^2 = -1 .\)</span></p>
+<p>Complex numbers can then be graphically represented in what is known as the complex plane, with the horizontal direction representing the real axis, and the vertical direction the imaginary axis:</p>
+<a class="reference internal image-reference" href="../../_images/02_03_03_complex_plane.png"><img alt="../../_images/02_03_03_complex_plane.png" class="align-center" src="../../_images/02_03_03_complex_plane.png" style="width: 250px;" /></a>
+<p>With this in mind, we can make the very simple observation that, in this plane, the imaginary numbers <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(-i\)</span> are in an orthogonal number line to that of the real numbers, which includes the values <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(-1\)</span>, and all of which lie in a circle of radius <span class="math notranslate nohighlight">\(1\)</span>:</p>
+<a class="reference internal image-reference" href="../../_images/02_03_04_i_in_plane.png"><img alt="../../_images/02_03_04_i_in_plane.png" class="align-center" src="../../_images/02_03_04_i_in_plane.png" style="width: 250px;" /></a>
+<p><a name="back1"></a> So, if we superimpose the complex plane on the <span class="math notranslate nohighlight">\(xy\)</span>-plane that defines the direction of the electron spin, we can see that we can associate a complex value in the unit circle with the direction of the spin statevector in this plane<a class="reference internal" href="#footnote1"><span class="xref myst"><span class="math notranslate nohighlight">\(^*\)</span></span></a>:</p>
+<a class="reference internal image-reference" href="../../_images/02_03_05_spin_in_complex_plane.png"><img alt="../../_images/02_03_05_spin_in_complex_plane.png" class="align-center" src="../../_images/02_03_05_spin_in_complex_plane.png" style="width: 250px;" /></a>
+<p>Furthermore, if we multiply this complex number with <strong>one</strong> of the two probability amplitudes of our statevector, we will indeed get the full and accurate representation of a quantum bit. So, for example, states <span class="math notranslate nohighlight">\(|+\rangle\)</span> and <span class="math notranslate nohighlight">\(|-\rangle\)</span>, which are aligned with the <span class="math notranslate nohighlight">\(\texttt{+}x\)</span> and <span class="math notranslate nohighlight">\(\texttt{-}x\)</span> directions, have one of their probability amplitudes multiplied by <span class="math notranslate nohighlight">\(+1\)</span> and <span class="math notranslate nohighlight">\(-1\)</span>, respectively. Similarly, we can define the states for spin aligned with the <span class="math notranslate nohighlight">\(\texttt{+}y\)</span> and <span class="math notranslate nohighlight">\(\texttt{-}y\)</span> directions by multiplying one of their probability amplitudes by <span class="math notranslate nohighlight">\(+i\)</span> and <span class="math notranslate nohighlight">\(-i\)</span>, accordingly:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+|r\rangle &amp;= \frac{1}{\sqrt{2}}|0\rangle + \frac{i}{\sqrt{2}}|1\rangle,
+\\
+\\
+|l\rangle &amp;= \frac{1}{\sqrt{2}}|0\rangle - \frac{i}{\sqrt{2}}|1\rangle.
+\end{aligned}
+\end{split}\]</div>
+<p><a name="back2"></a>We label this states as <span class="math notranslate nohighlight">\(|r\rangle\)</span> and <span class="math notranslate nohighlight">\(|l\rangle\)</span> because, when looking at the three-dimensional Cartesian plane, they point in the “right” and “left” directions, respectively<a class="reference internal" href="#footnote2"><span class="xref myst"><span class="math notranslate nohighlight">\(^\dagger\)</span></span></a>.</p>
+<p>Now, upon close inspection, these two statevectors do not really meet our probability condition! If we were to square the probability amplitude associated with <span class="math notranslate nohighlight">\(|1\rangle\)</span>, for let’s say state <span class="math notranslate nohighlight">\(|r\rangle\)</span>, we would get an invalid probability because squaring <span class="math notranslate nohighlight">\(i\)</span> gives us a negative value:</p>
+<div class="math notranslate nohighlight">
+\[ \mathbb{P}_1 = \left(\frac{i}{\sqrt{2}}\right)^2 = -\frac{1}{2} \, \leftarrow \textbf{invalid probability} .\]</div>
+<p>Luckily, this has a simple fix. If instead of taking the square of probability amplitudes to find probability, we find its squared modulus, we will then always get a positive value. So, for an arbitrary complex number <span class="math notranslate nohighlight">\(c\)</span>, we find it’s squared modulus by multiplying the number with its <a class="reference external" href="https://en.wikipedia.org/wiki/Complex_conjugate">complex conjugate</a>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+|c|^2 &amp;= c\, c^{*} = (a+bi)(a-bi) 
+\\
+\\
+|c|^2 &amp;= a^2 -abi + abi -b^2i^2
+\\
+\\
+|c|^2 &amp;= a^2 + b^2 
+\end{aligned}
+\end{split}\]</div>
+<p>Therefore, our updated (and final) version of the Born rule says that, to find the probability of measuring some given state we must take the squared modulus of the probability amplitude associated with it. Thus, for states <span class="math notranslate nohighlight">\(|r\rangle\)</span> and <span class="math notranslate nohighlight">\(|l\rangle\)</span> the probabilities of measuring <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span> given below are consistent with what we observe from experimentation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\text{For state } |r\rangle : \mathbb{P}_0 = \left|\frac{1}{\sqrt{2}}\right|^2 = \frac{1}{2} \quad &amp;\text{and} \quad 
+\mathbb{P}_1 = \left|\frac{i}{\sqrt{2}}\right|^2 = \frac{1}{2}.
+\\
+\\
+\text{For state } |l\rangle : \mathbb{P}_0 = \left|\frac{1}{\sqrt{2}}\right|^2 = \frac{1}{2} \quad &amp;\text{and} \quad  
+\mathbb{P}_1 = \left|-\frac{i}{\sqrt{2}}\right|^2 = \frac{1}{2}.
+\end{aligned}
+\end{split}\]</div>
+<p>Now, let’s inspect if we can recover states <span class="math notranslate nohighlight">\(|0\rangle\)</span> and <span class="math notranslate nohighlight">\(|1\rangle\)</span> by taking equal superpositions of these vectors, which is a condition derived from observations of running, for example, the Stern-Gerlach experiment with the magnetic field along the <span class="math notranslate nohighlight">\(y\)</span> axis. So, first let’s take a positive superposition:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\frac{1}{\sqrt{2}}|r\rangle + \frac{1}{\sqrt{2}}|l\rangle &amp;= \frac{1}{\sqrt{2}}\left(\frac{1}{\sqrt{2}}|0\rangle + \frac{i}{\sqrt{2}}|1\rangle \right) + \frac{1}{\sqrt{2}}\left(\frac{1}{\sqrt{2}}|0\rangle - \frac{i}{\sqrt{2}}|1\rangle \right) 
+\\
+\\
+&amp;= \frac{1}{2}|0\rangle + \frac{i}{2}|1\rangle + \frac{1}{2}|0\rangle - \frac{i}{2}|1\rangle
+\\
+\\
+&amp;= |0\rangle,
+\end{aligned}
+\end{split}\]</div>
+<p>which clearly shows we can express <span class="math notranslate nohighlight">\(|0\rangle\)</span> in terms of <span class="math notranslate nohighlight">\(|r\rangle\)</span> and <span class="math notranslate nohighlight">\(|l\rangle\)</span>. And now if we take a negative superposition we get:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\frac{1}{\sqrt{2}}|r\rangle - \frac{i}{\sqrt{2}}|l\rangle &amp;= \frac{1}{\sqrt{2}}\left(\frac{1}{\sqrt{2}}|0\rangle + \frac{i}{\sqrt{2}}|1\rangle \right) - \frac{1}{\sqrt{2}}\left(\frac{1}{\sqrt{2}}|0\rangle - \frac{i}{\sqrt{2}}|1\rangle \right) 
+\\
+\\
+&amp;= \frac{1}{2}|0\rangle + \frac{i}{2}|1\rangle - \frac{1}{2}|0\rangle + \frac{i}{2}|1\rangle
+\\
+\\
+&amp;= i|1\rangle.
+\end{aligned}
+\end{split}\]</div>
+<p>So we do not quite get exactly <span class="math notranslate nohighlight">\(|1\rangle\)</span> since the state above is premultiplied by a factor of <span class="math notranslate nohighlight">\(i\)</span>, but the thing is that states <span class="math notranslate nohighlight">\(|1\rangle\)</span> and <span class="math notranslate nohighlight">\(i|1\rangle\)</span> are effectively the equivalent. This is because, what we really want out of this quantum-mechanical model is to be able to get accurate predictions of what we observe through experimentation. So we have to ask ourselves, what is expression <span class="math notranslate nohighlight">\(i|1\rangle\)</span> telling me about what I will <em>measure</em> from this state? Well, we know that we will observe state <span class="math notranslate nohighlight">\(|1\rangle\)</span> with a probability of <span class="math notranslate nohighlight">\(\mathbb{P}_1 = |i|^2 = 1\)</span>, which is the same prediction we will get from simply having state <span class="math notranslate nohighlight">\(|1\rangle\)</span>. We say these two states are <em>equivalent up to a global phase</em>. We will explain what the term “global phase” means in the upcoming section.</p>
+<p>Clearly, these steps work for states <span class="math notranslate nohighlight">\(|r\rangle\)</span> and <span class="math notranslate nohighlight">\(|l\rangle\)</span>, but what about the rest of possible spin directions in the <span class="math notranslate nohighlight">\(xy\)</span>-plane? To generalize this approach, all we need to do is assign to each state the corresponding number from the complex unit circle that lies along the same direction as the spin is pointing to. And luckily for us, there is a direct correspondence between this angle and the complex number associated with it. Recall that, any complex <span class="math notranslate nohighlight">\(c = (a + bi)\)</span> can also be expressed in <a class="reference external" href="https://en.wikipedia.org/wiki/Polar_coordinate_system#Complex_numbers">polar form</a> as:</p>
+<div class="math notranslate nohighlight">
+\[ (a + bi) = r \left( \cos(\varphi) + i \sin(\varphi) \right) = r e^{i \varphi} \]</div>
+<p>Here, <span class="math notranslate nohighlight">\(r\)</span> is the magnitude of the vector associated with the complex number:</p>
+<div class="math notranslate nohighlight">
+\[ r = |c| = \sqrt{a^2 + b^2}, \]</div>
+<p>and <span class="math notranslate nohighlight">\(\varphi\)</span> is the angle it forms with the real axis:</p>
+<div class="math notranslate nohighlight">
+\[ \varphi = \arg(c) = \text{atan2}(a,b), \]</div>
+<p>both of which were shown in the images above in <span style="color:#00B0F0">blue</span>. And for clarity, here <span class="math notranslate nohighlight">\(\arg(\,\cdot\,)\)</span> stands for argument, and <span class="math notranslate nohighlight">\(\text{atan2}(\,\cdot\,)\)</span> corresponds to the <a class="reference external" href="https://en.wikipedia.org/wiki/Atan2">2-input arctangent</a> function.</p>
+<p>Now, for the specific case of spin on the <span class="math notranslate nohighlight">\(xy\)</span> plane, we only need numbers that do not change magnitude of the measured probabilities, therefore we are only interested in complex numbers where <span class="math notranslate nohighlight">\(r = 1\)</span>. Therefore, the complex number of interest is solely given by <span class="math notranslate nohighlight">\(e^{i \varphi}\)</span>, which we can use to generalize any state in the <span class="math notranslate nohighlight">\(xy\)</span>-plane as:</p>
+<div class="math notranslate nohighlight">
+\[ |q\rangle = \frac{1}{\sqrt{2}}|0\rangle + e^{i \varphi} \frac{1}{\sqrt{2}}|1\rangle .\]</div>
+</section>
+<section id="putting-it-all-together-and-the-bloch-sphere">
+<h3>1.3 Putting it all Together (…and the Bloch Sphere)<a class="headerlink" href="#putting-it-all-together-and-the-bloch-sphere" title="Link to this heading">#</a></h3>
+<p>We can now combine the results from section 1.1 and 1.2 to get the following general definition for a qubit:</p>
+<div class="math notranslate nohighlight">
+\[ |q\rangle = \cos^2\left(\frac{\theta}{2}\right)|0\rangle + e^{i \varphi} \sin^2\left(\frac{\theta}{2}\right)|1\rangle, \]</div>
+<p>where the angles <span class="math notranslate nohighlight">\(\theta\)</span> and <span class="math notranslate nohighlight">\(\varphi\)</span> respectively define the spin orientation with respect to the <span class="math notranslate nohighlight">\(\texttt{+}z\)</span> and <span class="math notranslate nohighlight">\(\texttt{+}x\)</span> axes. This visual depiction of spin orientation is so helpful that we actually use it to represent any kind of qubit independent of its physical implementation. But, instead of calling it “spin”, we refer to it as a unit vector inside of what is known as the <a class="reference external" href="https://en.wikipedia.org/wiki/Bloch_sphere">Bloch sphere</a>. This vector, however, simply points in the same direction the spin of an electron would be oriented <em>if</em> the qubit was of this type:</p>
+<a class="reference internal image-reference" href="../../_images/02_03_06_bloch.png"><img alt="../../_images/02_03_06_bloch.png" class="align-center" src="../../_images/02_03_06_bloch.png" style="width: 300px;" /></a>
+<p>In the image above we have also added the locations of where the vector will be pointing for states <span class="math notranslate nohighlight">\(\left\{(|0\rangle, |1\rangle \right\}, \left\{|+\rangle, |-\rangle \right\}\)</span> and <span class="math notranslate nohighlight">\(\left\{|r\rangle, |l\rangle \right\}, \)</span> which, as can be seen, respecitvely lie along the <span class="math notranslate nohighlight">\(z\)</span>, <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> axes.</p>
+<p>Let’s now use Qiskit to draw the Bloch sphere representation of an arbitrary qubit. You can change the values of <span class="math notranslate nohighlight">\(\theta\)</span> and <span class="math notranslate nohighlight">\(\varphi\)</span> to see how the direction of the statevector moves around the sphere:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">θ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span>
+<span class="n">φ</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">5</span>
+
+<span class="n">α0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">θ</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">α1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">θ</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">φ</span><span class="p">)</span>
+
+<span class="n">sv</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">([</span><span class="n">α0</span><span class="p">,</span> <span class="n">α1</span><span class="p">])</span>
+<span class="n">sv</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;bloch&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a9d8db9b99d8cbb6f8dd4dc6e8660dae3f39beccc38988fdd104c003fd8f34aa.png" src="../../_images/a9d8db9b99d8cbb6f8dd4dc6e8660dae3f39beccc38988fdd104c003fd8f34aa.png" />
+</div>
+</div>
+<p>So this is all well and good, however, there seems to be a small discrepancy between what we had set to be our general definition of a qubit and the expression we derived above. If we look closely at the values of <span class="math notranslate nohighlight">\(\alpha_0\)</span> and <span class="math notranslate nohighlight">\(\alpha_1\)</span>, it seems that it suffices for <span class="math notranslate nohighlight">\(\alpha_0\)</span> to be purely real rather than complex:</p>
+<div class="math notranslate nohighlight">
+\[ |q\rangle = \underbrace{\cos^2\left(\frac{\theta}{2}\right)}_{\alpha_0 \in \mathbb{R}}|0\rangle + \underbrace{e^{i \varphi} \sin^2\left(\frac{\theta}{2}\right)}_{\alpha_1 \in \mathbb{C}}|1\rangle, \]</div>
+<p>On the other hand, our general definition of a qubit has both <span class="math notranslate nohighlight">\(\alpha_0\)</span> and <span class="math notranslate nohighlight">\(\alpha_1\)</span> being complex-valued. Luckily, it is not hard to show how to reconcile this difference. Let’s start by assuming <span class="math notranslate nohighlight">\(\alpha_0, \alpha_1 \in \mathbb{C}\)</span>, and expressing them in polar form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+|q\rangle &amp;= \alpha_0 |0\rangle + \alpha_1 |1\rangle
+\\
+\\
+|q\rangle &amp;= r_0 e^{i\varphi_0} |0\rangle + r_1 e^{i\varphi_1} |1\rangle
+\end{aligned}
+\end{split}\]</div>
+<p>Let’s now note that, <span class="math notranslate nohighlight">\(r_0, r_1\)</span> are the respective magnitudes of <span class="math notranslate nohighlight">\(\alpha_0, \alpha_1\)</span>, and therefore: <span class="math notranslate nohighlight">\(r_0^2 + r_1^2 = 1\)</span>. We can then equate each of these to the sine and cosine terms of the trigonometric identity <span class="math notranslate nohighlight">\(\cos(\theta/2)^2 + \sin(\theta/2)^2 = 1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+|q\rangle = \cos\left(\frac{\theta}{2}\right) e^{i\varphi_0} |0\rangle + \sin\left(\frac{\theta}{2}\right)  e^{i\varphi_1} |1\rangle .
+\]</div>
+<p>Next, we can factor out the <span class="math notranslate nohighlight">\(e^{i\varphi_0}\)</span> term from this expression, resulting in:</p>
+<div class="math notranslate nohighlight">
+\[
+|q\rangle = e^{i\varphi_0} \left[ \cos\left(\frac{\theta}{2}\right) |0\rangle + \sin\left(\frac{\theta}{2}\right)  e^{i(\varphi_1-\varphi_0)} |1\rangle \right] .
+\]</div>
+<p>For convenience, we will relabel <span class="math notranslate nohighlight">\(\varphi_0\)</span> as <span class="math notranslate nohighlight">\(\gamma\)</span>, and call it the <span style="color:#a883f7"><strong>global phase</strong></span> since it premultiples the whole state. Similarly, we will relabel <span class="math notranslate nohighlight">\(\varphi_1 - \varphi_0\)</span> as simply <span class="math notranslate nohighlight">\(\varphi\)</span>, and call it the <span style="color:#a883f7"><strong>relative phase</strong></span> of state <span class="math notranslate nohighlight">\(|q\rangle\)</span> since it corresponds to the phase difference between state <span class="math notranslate nohighlight">\(|0\rangle\)</span> and state <span class="math notranslate nohighlight">\(|1\rangle\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+|q\rangle = e^{i\gamma} \left[ \cos\left(\frac{\theta}{2}\right) |0\rangle + e^{i\varphi} \sin\left(\frac{\theta}{2}\right) |1\rangle \right] .
+\]</div>
+<p>It is clear that the expression inside the square brackets is the same as we previously derived. Furthermore, the key observation to make here is that, the global-phase prefactor <span class="math notranslate nohighlight">\(e^{i\gamma}\)</span> has no impact in the predictions we can make from state <span class="math notranslate nohighlight">\(|q\rangle\)</span>. This is because when we compute the probabilities of measuring either state <span class="math notranslate nohighlight">\(|0\rangle\)</span> or state <span class="math notranslate nohighlight">\(|1\rangle\)</span> by taking the square modulus, this premultiplier is always equal to <span class="math notranslate nohighlight">\(1\)</span>, independent of the value of <span class="math notranslate nohighlight">\(\gamma\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ \left|e^{i\gamma} \right|^2 = 1 .\]</div>
+<p>So, in general, a qubit is defined as a vector of the form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} |q\rangle = \begin{bmatrix} \alpha_0 \\ \alpha_1 \end{bmatrix} = \alpha_0 |0\rangle + \alpha_1 |1\rangle, \end{split}\]</div>
+<p>but where we can represent <span class="math notranslate nohighlight">\(\alpha_0, \alpha_1 \in \mathbb{C}\)</span> in polar form to factor out a global phase and express the qubit in terms of angles <span class="math notranslate nohighlight">\(\theta, \varphi\)</span>, which correspond to the direction of a unit vector in the Bloch sphere:</p>
+<div class="math notranslate nohighlight">
+\[ |q\rangle = \cos^2\left(\frac{\theta}{2}\right)|0\rangle + e^{i \varphi} \sin^2\left(\frac{\theta}{2}\right)|1\rangle. \]</div>
+</section>
+<section id="kets-bras-products-and-bases">
+<h3>1.4 Kets, Bras, Products, and Bases<a class="headerlink" href="#kets-bras-products-and-bases" title="Link to this heading">#</a></h3>
+<p>Up to this point, we have managed to construct a definition for the qubit based purely on observations. We now know that a qubit is represented by a column vector with complex-valued entries called probability amplitudes, and whose square modulus represent the probabilities of observing the qubit being in one of two possible states that we denote as <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>. Mathematically, we arrived at an expression for this, which we expressed using the ket symbol <span class="math notranslate nohighlight">\(|q\rangle\)</span> given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\boxed{|q\rangle = \begin{bmatrix} \alpha_0 \\ \alpha_1 \end{bmatrix}, \text{ such that:} \; \alpha_j \in \mathbb{C}, \; \text{and} \; \sqrt{|\alpha_0|^2 + |\alpha_1|^2} = 1}\end{split}\]</div>
+<p><a name="back3"></a>Now, we say that the set of all elements of this kind are part of what is known as a complex <a class="reference external" href="https://en.wikipedia.org/wiki/Hilbert_space">Hilbert Space</a> denoted as <span class="math notranslate nohighlight">\(\mathcal{H}\)</span><a class="reference internal" href="#footnote3"><span class="xref myst"><span class="math notranslate nohighlight">\(^{\ddagger}\)</span></span></a>.</p>
+<p>Now that we have the complete definition of a qubit (represented by a ket vector <span class="math notranslate nohighlight">\(|q\rangle \in \mathcal{H}\)</span>), we can generalize the concept of it’s <a class="reference external" href="https://en.wikipedia.org/wiki/Dual_space#Finite-dimensional_case">dual counterpart</a>, the bra vector <span class="math notranslate nohighlight">\(\langle q|\)</span>, which we briefly introduced in a <a class="reference external" href="https://learnquantum.io/chapters/01_classical_computing/01_03_bits_to_vectors.html#single-bit-systems">previous chapter</a>. So, for the qubit state:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} |q\rangle = \begin{bmatrix} \alpha_0 \\ \alpha_1 \end{bmatrix}, \quad \quad\end{split}\]</div>
+<p>it’s bra counterpart is given by:</p>
+<div class="math notranslate nohighlight">
+\[ \langle q| = \begin{bmatrix} \alpha_0^* &amp; \alpha_1^* \end{bmatrix},  \]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha_i^*\)</span> is the complex conjugate of <span class="math notranslate nohighlight">\(\alpha_i\)</span>.</p>
+<p>This notation allows us to represent the <a class="reference external" href="https://en.wikipedia.org/wiki/Inner_product_space">inner product</a> between two vectors, let’s say <span class="math notranslate nohighlight">\(|x\rangle, |y\rangle \in \mathcal{H}\)</span>, by multiplying the bra of one of them with the ket of the other:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\langle y | x \rangle  = \begin{bmatrix} y_0^* &amp; y_1^* \end{bmatrix} \begin{bmatrix} x_0 \\ x_1 \end{bmatrix} = x_0 y_0^* + x_1 y_1^* .\end{split}\]</div>
+<p>And as discussed before, we can use the inner product of a vector with itself to calculate it’s length, often referred as the norm of the statevector:</p>
+<div class="math notranslate nohighlight">
+\[ \|q\| = \sqrt{\langle q | q \rangle},  \]</div>
+<p>where:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\langle q | q \rangle &amp;= \begin{bmatrix} \alpha_0^* &amp; \alpha_1^* \end{bmatrix} \begin{bmatrix} \alpha_0 \\ \alpha_1 \end{bmatrix}
+\\
+\\
+\langle q | q \rangle &amp;=  \alpha_0 \alpha_0^* + \alpha_1 \alpha_1^*
+\\
+\\
+\langle q | q \rangle &amp;= |\alpha_0|^2 + |\alpha_1|^2.
+\end{aligned}
+\end{split}\]</div>
+<p>The inner product is also an important tool to define the concept of an <span style="color:#a883f7"><strong>orthonormal basis</strong></span>. An <a class="reference external" href="https://en.wikipedia.org/wiki/Orthonormal_basis">orthonormal basis</a> is a subset of elements in our Hilbert space that are both orthogonal (making them linearly independent), and normalized. Two vectors are orthogonal to each other if their inner product is equal to <span class="math notranslate nohighlight">\(0\)</span>, and normalized if they have norm equal to <span class="math notranslate nohighlight">\(1\)</span>. The concept of a basis is important because it allows us to express any statevector as a linear combination of the basis states. So, you can probably guess at this point that our states <span class="math notranslate nohighlight">\(\{|0\rangle, |1\rangle\}\)</span> form an orthonormal basis since they are orthogonal to each other:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \langle 1 | 0 \rangle = \begin{bmatrix} 0 &amp; 1 \end{bmatrix} \begin{bmatrix} 1 \\ 0 \end{bmatrix} = 0, \end{split}\]</div>
+<p>and have norm equal to <span class="math notranslate nohighlight">\(1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ \sqrt{\langle 0 | 0 \rangle} = 1 \quad \text{and} \quad  \sqrt{\langle 1 | 1 \rangle} = 1 .\]</div>
+<p>In a 1-qubit Hilbert space, there are an infinite number of vector pairs <span class="math notranslate nohighlight">\(\{|u\rangle, |u^{\perp}\rangle\}\)</span> that form a basis, but some of the most important ones are the sets of states that lie along the main three axis in the Bloch sphere, and therefore receive their own flashy names:</p>
+<ol class="arabic">
+<li><p>States <span class="math notranslate nohighlight">\(\{|0\rangle, |1\rangle\}\)</span>, which point along the <span class="math notranslate nohighlight">\(\texttt{+}z\)</span> and <span class="math notranslate nohighlight">\(\texttt{-}z\)</span> axes, respectively.</p>
+<p>We will often refer to these as the <span style="color:#0070C0"><strong>Computational</strong></span> or <span style="color:#0070C0"><strong>Bit</strong></span> basis states.</p>
+</li>
+<li><p>States <span class="math notranslate nohighlight">\(\{|+\rangle, |-\rangle\}\)</span>, which point along the <span class="math notranslate nohighlight">\(\texttt{+}x\)</span> and <span class="math notranslate nohighlight">\(\texttt{-}x\)</span> axes, respectively.</p>
+<p>We will often refer to these as the <span style="color:magenta"><strong>Hadamard</strong></span> or <span style="color:magenta"><strong>Sign</strong></span> basis states.</p>
+</li>
+<li><p>States<span class="math notranslate nohighlight">\(\{|r\rangle, |l\rangle\}\)</span>, which point along the <span class="math notranslate nohighlight">\(\texttt{+}y\)</span> and <span class="math notranslate nohighlight">\(\texttt{-}y\)</span> axes, respectively.</p>
+<p>We will often refer to these as the <span style="color:#00B050"><strong>Y</strong></span> or <span style="color:#00B050"><strong>Hand</strong></span> basis states (as in right hand and left hand).</p>
+</li>
+</ol>
+<p>A good exercise is to show that the sign states and the hand states do indeed form a basis, and to show that we can take a state the bit basis like the one shown below:</p>
+<div class="math notranslate nohighlight">
+\[|\psi\rangle = \sqrt{\frac{2}{3}}|0\rangle - \sqrt{\frac{1}{3}}|1\rangle\]</div>
+<p>And express it in the sign basis to obtain:
+$<span class="math notranslate nohighlight">\(
+\begin{aligned}
+|\psi\rangle &amp;= \frac{2\sqrt{3} - \sqrt{6}}{6}|+\rangle + \frac{2\sqrt{3} - \sqrt{6}}{6}|-\rangle
+\\
+\\
+|\psi\rangle &amp;\approx 0.169|+\rangle + 0.986|-\rangle
+\end{aligned}
+\)</span>$</p>
+<p>One last concept worth mentioning before moving to the next section is that of the outer product. Jut like the inner product is the vector multiplication of a bra with a ket, the outer product is found by multiplying a ket with a bra, which results in a matrix of the form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+| x \rangle \langle y | = \begin{bmatrix} x_0 \\ x_1 \end{bmatrix} \begin{bmatrix} y_0^* &amp; y_1^* \end{bmatrix}
+\\
+\\
+| x \rangle \langle y | = \begin{bmatrix} x_0 y_0^* &amp; x_0 y_1^* \\ x_1 y_0^* &amp; x_1 y_1^*  \end{bmatrix} 
+\end{aligned}
+\end{split}\]</div>
+<p>Outer products will be helpful later on to define some important sets of matrices to construct both operators associated with quantum gates and measurement operations.</p>
+</section>
+</section>
+<section id="generalizing-quantum-gates">
+<h2>2. Generalizing Quantum Gates<a class="headerlink" href="#generalizing-quantum-gates" title="Link to this heading">#</a></h2>
+<p>When we first introduced the idea of <a class="reference external" href="https://learnquantum.io/chapters/02_quantum_computing/02_01_bits_to_qubits.html#quantum-circuits">quantum circuits</a>, we discussed two main quantum gates: the <span class="math notranslate nohighlight">\(X\)</span> gate, which was equivalent to the classical <strong>NOT</strong> gate (i.e., it flips <span class="math notranslate nohighlight">\(|0\rangle\)</span> to <span class="math notranslate nohighlight">\(|1\rangle\)</span>, and vice versa), and the Hadamard or <span class="math notranslate nohighlight">\(H\)</span> gate, which respectively transforms states <span class="math notranslate nohighlight">\(|0\rangle, |1\rangle\)</span> to <span class="math notranslate nohighlight">\(|+\rangle, |-\rangle\)</span>, and vice versa. These were just two examples of a family of gates described by what are known as <a class="reference external" href="https://en.wikipedia.org/wiki/Unitary_matrix">unitary matrices</a>, which are a generalization of the invertible matrices we used to express classical reversible circuits. A matrix <span class="math notranslate nohighlight">\(U\)</span> is unitary if, when we multiply it by its <a class="reference external" href="https://en.wikipedia.org/wiki/Conjugate_transpose">conjugate transpose</a> the result is the identity operator:</p>
+<div class="math notranslate nohighlight">
+\[ U U^\dagger = U^\dagger U = I. \]</div>
+<p>Here, the conjugate-transpose matrix <span class="math notranslate nohighlight">\(U^\dagger\)</span> is computed by taking the <a class="reference external" href="https://en.wikipedia.org/wiki/Transpose">transpose</a> of <span class="math notranslate nohighlight">\(U\)</span>, and replacing each of the matrix entries by their <a class="reference external" href="https://en.wikipedia.org/wiki/Complex_conjugate">complex conjugates</a>. For example, given the matrix:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} U = \begin{bmatrix} u_{00} &amp; u_{01} \\ u_{10} &amp; u_{11} \end{bmatrix} \end{split}\]</div>
+<p>It’s conjugate transpose is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} U^{\dagger} = \begin{bmatrix} u_{00}^* &amp; u_{10}^* \\ u_{01}^* &amp; u_{11}^* \end{bmatrix} \end{split}\]</div>
+<p>What the relation <span class="math notranslate nohighlight">\( U^\dagger U = I\)</span> implies, is that, for every quantum gate (represented by a unitary <span class="math notranslate nohighlight">\(U\)</span>), there exists another quantum gate (given by <span class="math notranslate nohighlight">\(U^\dagger\)</span>) that “reverses” its operation. This is why we say that, unlike conventional classical computing, quantum computing is reversible.</p>
+<p>Let’s now discuss some of the more relevant gates used in quantum computing. This will help us unravel some of the most important properties their corresponding unitary matrices have.</p>
+<section id="the-pauli-gates">
+<h3>2.1 The Pauli Gates<a class="headerlink" href="#the-pauli-gates" title="Link to this heading">#</a></h3>
+<p>The three Pauli gates <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span>, and <span class="math notranslate nohighlight">\(Z\)</span>, play a very important role in quantum computing. Their corresponding unitary matrices (known as the <a class="reference external" href="https://en.wikipedia.org/wiki/Pauli_matrices">Pauli matrices</a>) are given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} X = \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix}, \quad Y = \begin{bmatrix} 0 &amp; -i \\ i &amp; \phantom{-}0 \end{bmatrix}, \quad Z = \begin{bmatrix} 1 &amp; \phantom{-}0 \\ 0 &amp; -1 \end{bmatrix}\end{split}\]</div>
+<p>It is often common to also denote these matrices as <span class="math notranslate nohighlight">\(\sigma_x, \sigma_y, \sigma_z\)</span>, or sometimes <span class="math notranslate nohighlight">\(\sigma_1, \sigma_2, \sigma_3\)</span>, but in this textbook we will stick with the <span class="math notranslate nohighlight">\(X, Y, Z\)</span> notation. These matrices have a very large number of important properties that we will be uncovering over time. For now, it suffices to analyze how they act on some of the more common states, like the bit- and sign-basis states.</p>
+<p>As we’ve seen many times before, the <span class="math notranslate nohighlight">\(X\)</span> gate simply flips the bit-basis states:</p>
+<div class="math notranslate nohighlight">
+\[ X|0 \rangle = |1 \rangle \quad \text{and} \quad X|1 \rangle = |0 \rangle \]</div>
+<p>Another way to express this is by saying that the <span class="math notranslate nohighlight">\(X\)</span> gate rotates a vector pointing in the <span class="math notranslate nohighlight">\(\texttt{+}z\)</span> direction in the Bloch sphere about the <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> <strong>axis</strong> all the way to having it point in the <span class="math notranslate nohighlight">\(\texttt{-}z\)</span> direction. Similarly, if the vector is pointing along <span class="math notranslate nohighlight">\(\texttt{-}z\)</span>, the <span class="math notranslate nohighlight">\(X\)</span> gate takes it to point along the <span class="math notranslate nohighlight">\(\texttt{+}z\)</span> direction. Let’s visualize this in Qiskit:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumCircuit</span>
+<span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">Statevector</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize states |0⟩ and |1⟩</span>
+<span class="n">ket_0</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">)</span>
+<span class="n">ket_1</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create quantum circuit with X gate</span>
+<span class="n">qc_x</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc_x</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc_x</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/db025ba48b35b1c5971a9710b729480eb7fdde2139aed4ce2c983e1d77e87def.png" src="../../_images/db025ba48b35b1c5971a9710b729480eb7fdde2139aed4ce2c983e1d77e87def.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply X gate to |0⟩ and display in Bloch sphere</span>
+<span class="n">ket_out</span> <span class="o">=</span> <span class="n">ket_0</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">qc_x</span><span class="p">)</span>
+
+<span class="c1"># Show Bloch sphere before and after X gate</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;State before X gate:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">ket_0</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;bloch&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;State after X gate:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">ket_out</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;bloch&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>State before X gate:
+</pre></div>
+</div>
+<img alt="../../_images/88c6cc9458723e85ebd4cc55c27044af44b3dbc72d7ef5933050586d3a6d9ada.png" src="../../_images/88c6cc9458723e85ebd4cc55c27044af44b3dbc72d7ef5933050586d3a6d9ada.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>State after X gate:
+</pre></div>
+</div>
+<img alt="../../_images/93426789aa4aeb60bc8cb232839aa3d2375337ce5198ef5efca41e493ab3a4d2.png" src="../../_images/93426789aa4aeb60bc8cb232839aa3d2375337ce5198ef5efca41e493ab3a4d2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply X gate to |1⟩ and display in Bloch sphere</span>
+<span class="n">ket_out</span> <span class="o">=</span> <span class="n">ket_1</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">qc_x</span><span class="p">)</span>
+
+<span class="c1"># Show Bloch sphere before and after X gate</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;State before X gate:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">ket_1</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;bloch&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;State after X gate:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">ket_out</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;bloch&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>State before X gate:
+</pre></div>
+</div>
+<img alt="../../_images/93426789aa4aeb60bc8cb232839aa3d2375337ce5198ef5efca41e493ab3a4d2.png" src="../../_images/93426789aa4aeb60bc8cb232839aa3d2375337ce5198ef5efca41e493ab3a4d2.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>State after X gate:
+</pre></div>
+</div>
+<img alt="../../_images/88c6cc9458723e85ebd4cc55c27044af44b3dbc72d7ef5933050586d3a6d9ada.png" src="../../_images/88c6cc9458723e85ebd4cc55c27044af44b3dbc72d7ef5933050586d3a6d9ada.png" />
+</div>
+</div>
+<p>Now, let’s see how the <span class="math notranslate nohighlight">\(Z\)</span> gate acts on the sign basis states <span class="math notranslate nohighlight">\(|+\rangle\)</span> and <span class="math notranslate nohighlight">\(|-\rangle\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+Z |+\rangle &amp;= \begin{bmatrix} 1 &amp; \phantom{-}0 \\ 0 &amp; -1 \end{bmatrix} \begin{bmatrix} \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \end{bmatrix}
+\\
+\\
+Z |+\rangle &amp;= \begin{bmatrix} \phantom{-}\frac{1}{\sqrt{2}} \\ -\frac{1}{\sqrt{2}} \end{bmatrix}
+\\
+\\
+Z |+\rangle &amp;= |-\rangle
+\end{aligned}
+\end{split}\]</div>
+<p>Similarly, we can show that: <span class="math notranslate nohighlight">\( Z |-\rangle = |+\rangle .\)</span></p>
+<p>So the <span class="math notranslate nohighlight">\(Z\)</span> gate “flips” the sign of the sign-basis states. Or, seen another way, the <span class="math notranslate nohighlight">\(Z\)</span> gate rotates a vector pointing in the <span class="math notranslate nohighlight">\(\texttt{+}x\)</span> direction in the Bloch sphere about the <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> <strong>axis</strong> all the way to having it point in the <span class="math notranslate nohighlight">\(\texttt{-}x\)</span> direction (and vice versa). Let’s see this in action using Qiskit:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize states |+⟩ and |-⟩</span>
+<span class="n">ket_p</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">)</span>
+<span class="n">ket_m</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create quantum circuit with Z gate</span>
+<span class="n">qc_z</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc_z</span><span class="o">.</span><span class="n">z</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc_z</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/d2655d18991e3f02bdabc1f1ede9ec178239854e602e4a46676ded0c0afa4097.png" src="../../_images/d2655d18991e3f02bdabc1f1ede9ec178239854e602e4a46676ded0c0afa4097.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply Z gate to |+⟩ and display in Bloch sphere</span>
+<span class="n">ket_out</span> <span class="o">=</span> <span class="n">ket_p</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">qc_z</span><span class="p">)</span>
+
+<span class="c1"># Show Bloch sphere before and after Z gate</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;State before Z gate:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">ket_p</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;bloch&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;State after Z gate:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">ket_out</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;bloch&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>State before Z gate:
+</pre></div>
+</div>
+<img alt="../../_images/78f2ed2017442ef21032ef579d41e611aa44d17f76bc9469a993d15e2ec99606.png" src="../../_images/78f2ed2017442ef21032ef579d41e611aa44d17f76bc9469a993d15e2ec99606.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>State after Z gate:
+</pre></div>
+</div>
+<img alt="../../_images/7e55e05ddb882e4b4af287048831af87a2ca5e4d7d71b4c30b71b56db337d45e.png" src="../../_images/7e55e05ddb882e4b4af287048831af87a2ca5e4d7d71b4c30b71b56db337d45e.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply Z gate to |-⟩ and display in Bloch sphere</span>
+<span class="n">ket_out</span> <span class="o">=</span> <span class="n">ket_m</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">qc_z</span><span class="p">)</span>
+
+<span class="c1"># Show Bloch sphere before and after Z gate</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;State before Z gate:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">ket_m</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;bloch&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;State after Z gate:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">ket_out</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;bloch&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>State before Z gate:
+</pre></div>
+</div>
+<img alt="../../_images/7e55e05ddb882e4b4af287048831af87a2ca5e4d7d71b4c30b71b56db337d45e.png" src="../../_images/7e55e05ddb882e4b4af287048831af87a2ca5e4d7d71b4c30b71b56db337d45e.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>State after Z gate:
+</pre></div>
+</div>
+<img alt="../../_images/78f2ed2017442ef21032ef579d41e611aa44d17f76bc9469a993d15e2ec99606.png" src="../../_images/78f2ed2017442ef21032ef579d41e611aa44d17f76bc9469a993d15e2ec99606.png" />
+</div>
+</div>
+<p>More generally, the <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Z\)</span> gates can be interpreted as gates that rotate states in the Bloch sphere about the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(z\)</span> axes by an angle of <span class="math notranslate nohighlight">\(\pi\)</span> (or <span class="math notranslate nohighlight">\(180°\)</span>). This means that, since state <span class="math notranslate nohighlight">\(|0\rangle\)</span> and <span class="math notranslate nohighlight">\(|1\rangle\)</span> lie along the <span class="math notranslate nohighlight">\(z\)</span> axis, the <span class="math notranslate nohighlight">\(Z\)</span> should not change their state since they will be rotating about their own axis. And we can indeed show mathematically that this is true:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+Z |0\rangle &amp;= \begin{bmatrix} 1 &amp; \phantom{-}0 \\ 0 &amp; -1 \end{bmatrix} \begin{bmatrix} 1 \\ 0 \end{bmatrix} = \begin{bmatrix} 1 \\ 0 \end{bmatrix} = |0\rangle 
+\\
+\\
+ Z |1\rangle &amp;= \begin{bmatrix} 1 &amp; \phantom{-}0 \\ 0 &amp; -1 \end{bmatrix} \begin{bmatrix} 0 \\ 1 \end{bmatrix} =  \begin{bmatrix} 0 \\ -1 \end{bmatrix} = -|1\rangle 
+\end{aligned} 
+\end{split}\]</div>
+<p>An interesting observation is that, for state <span class="math notranslate nohighlight">\(|1\rangle\)</span> we do pick up a global phase of <span class="math notranslate nohighlight">\(-1\)</span>. This will become relevant when we discuss two-qubit controlled gates.</p>
+<p>As for the <span class="math notranslate nohighlight">\(Y\)</span> gate, well, in a similar way, this gate will rotate a statevector in the Bloch sphere by angle of <span class="math notranslate nohighlight">\(\pi\)</span> about the <span class="math notranslate nohighlight">\(y\)</span> axis.</p>
+</section>
+<section id="the-phase-gate-family">
+<h3>2.2 The Phase-Gate Family<a class="headerlink" href="#the-phase-gate-family" title="Link to this heading">#</a></h3>
+<p>Another very important single-quibt gate is the phase gate <span class="math notranslate nohighlight">\(P\)</span>, given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} P(\varphi) = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; e^{i\varphi} \end{bmatrix} \end{split}\]</div>
+<p>The role of this gate is to rotate a state in the Bloch sphere about the <span class="math notranslate nohighlight">\(z\)</span> axis by an angle of <span class="math notranslate nohighlight">\(\phi\)</span>. Associated with it, there are two special cases of this gate: the <span class="math notranslate nohighlight">\(S\)</span> gate, which is a phase gate for an angle of <span class="math notranslate nohighlight">\(\pi/2\)</span>, and the <span class="math notranslate nohighlight">\(T\)</span> gate, which is a phase gate for an angle of <span class="math notranslate nohighlight">\(pi/4\)</span>. It is also worth noting that the <span class="math notranslate nohighlight">\(Z\)</span> is a phase gate for an angle of <span class="math notranslate nohighlight">\(\pi\)</span>, so we have:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+Z &amp;= P(\pi) = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; e^{i\pi} \end{bmatrix} = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{bmatrix}
+\\
+\\
+S &amp;= P(\pi/2) = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; e^{i\pi/2} \end{bmatrix} = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; i \end{bmatrix}
+\\
+\\
+T &amp;= P(\pi/4) = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; e^{i\pi/4} \end{bmatrix} = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; \frac{(1+i)}{\sqrt{2}} \end{bmatrix}
+\end{aligned}
+\end{split}\]</div>
+<p>Let’s define a circuit in Qiskit with 3 qubits to which we individually apply each of these gates to visualize the effect they have on the <span class="math notranslate nohighlight">\(|+\rangle\)</span> state in the Bloch sphere:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create quantum circuit with Z gate</span>
+<span class="n">qc_p</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">qc_p</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="c1"># prepare |+⟩ state in all three qubits</span>
+<span class="n">qc_p</span><span class="o">.</span><span class="n">z</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc_p</span><span class="o">.</span><span class="n">s</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc_p</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc_p</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/bd855220a854b706c106858cb3f977c6b2b0db2a816d6d43bf3e6c232e9a1116.png" src="../../_images/bd855220a854b706c106858cb3f977c6b2b0db2a816d6d43bf3e6c232e9a1116.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Statevector</span><span class="p">(</span><span class="n">qc_p</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;bloch&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/2d7f2c02ca44c0c3d2f17988c336b49ceef1db54b805fc30cfa510944b0f8cbc.png" src="../../_images/2d7f2c02ca44c0c3d2f17988c336b49ceef1db54b805fc30cfa510944b0f8cbc.png" />
+</div>
+</div>
+<p>Another interesting observation about these gates is that, their corresponding conjugate transpose correspond to matrices that still rotate the state about the <span class="math notranslate nohighlight">\(z\)</span> axis by the same angle, but in the opposite direction:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+Z^{\dagger} &amp;= \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; e^{-i\pi} \end{bmatrix} = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; e^{i\pi} \end{bmatrix} = Z
+\\
+\\
+S^{\dagger} &amp;= \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; e^{-i\pi/2} \end{bmatrix}
+\\
+\\
+T^{\dagger} &amp;= \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; e^{-i\pi/4} \end{bmatrix}
+\end{aligned}
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create quantum circuit with Z gate</span>
+<span class="n">qc_pdg</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">qc_pdg</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="c1"># prepare |+⟩ state in all three qubits</span>
+<span class="n">qc_pdg</span><span class="o">.</span><span class="n">z</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc_pdg</span><span class="o">.</span><span class="n">sdg</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc_pdg</span><span class="o">.</span><span class="n">tdg</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc_pdg</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/431cbb3d9a56fe298d29e53cdc84d88a199396ceb2726d54b0006a3e76de27e5.png" src="../../_images/431cbb3d9a56fe298d29e53cdc84d88a199396ceb2726d54b0006a3e76de27e5.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Statevector</span><span class="p">(</span><span class="n">qc_pdg</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;bloch&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/3002fad9c37b39be68483f432989ac5ab4a89eb3a46a75d128645874a71989d9.png" src="../../_images/3002fad9c37b39be68483f432989ac5ab4a89eb3a46a75d128645874a71989d9.png" />
+</div>
+</div>
+<p>The <span class="math notranslate nohighlight">\(S\)</span> gate is of particular importance because it has been demonstrated that, in combination with just two more gates (the <span class="math notranslate nohighlight">\(H\)</span> gate and the <span class="math notranslate nohighlight">\(CX\)</span> gate) one can efficiently approximate any other quantum gate. This result is known as the <a class="reference external" href="https://en.wikipedia.org/wiki/Solovay%E2%80%93Kitaev_theorem">Solovay-Kitaev theorem</a>, and it is of extreme importance in the development of <a class="reference external" href="https://en.wikipedia.org/wiki/Threshold_theorem">fault-tolerant quantum computing</a>.</p>
+</section>
+<section id="general-rotation-gates">
+<h3>2.3 General Rotation Gates<a class="headerlink" href="#general-rotation-gates" title="Link to this heading">#</a></h3>
+<p>The last set of single-qubit gates we will discuss (at least for the moment) are the rotation gates <span class="math notranslate nohighlight">\(RX, RY, RX\)</span>, which as their name implies, rotate a statevector in the Bloch sphere about the <span class="math notranslate nohighlight">\(x, y, z\)</span> axes, respectively:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+RX(\theta) &amp;= \begin{bmatrix} \cos\left(\frac{\theta}{2}\right) &amp; -i\sin\left(\frac{\theta}{2}\right) \\ -i\sin\left(\frac{\theta}{2}\right) &amp; \cos\left(\frac{\theta}{2}\right) \end{bmatrix} 
+\\
+\\
+RY(\theta) &amp;= \begin{bmatrix} \cos\left(\frac{\theta}{2}\right) &amp; -\sin\left(\frac{\theta}{2}\right) \\ \sin\left(\frac{\theta}{2}\right) &amp; \cos\left(\frac{\theta}{2}\right)  \end{bmatrix} 
+\\
+\\
+RZ(\varphi) &amp;= \begin{bmatrix} e^{-i\varphi/2} &amp; 0 \\ 0 &amp; e^{i\varphi/2}  \end{bmatrix} .
+\end{aligned}
+\end{split}\]</div>
+<p>It is worth noting that the <span class="math notranslate nohighlight">\(RZ\)</span> gate is equivalent to the <span class="math notranslate nohighlight">\(P\)</span> gate up to a global phase:</p>
+<div class="math notranslate nohighlight">
+\[ RZ(\varphi) = e^{-i\varphi/2} P(\varphi) .\]</div>
+<p>Let’s look at an example for these three gates where we rotate the <span class="math notranslate nohighlight">\(|0\rangle\)</span> state using <span class="math notranslate nohighlight">\(RX\)</span> and <span class="math notranslate nohighlight">\(RY\)</span> by an angle of <span class="math notranslate nohighlight">\(\theta = \pi/8\)</span>, and state <span class="math notranslate nohighlight">\(|+\rangle\)</span> using <span class="math notranslate nohighlight">\(RZ\)</span> with <span class="math notranslate nohighlight">\(\varphi = \pi/8\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create quantum circuit with Z gate</span>
+<span class="n">qc_r</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">qc_r</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>            <span class="c1"># Prepare qubit 2 in |+⟩ state</span>
+<span class="n">qc_r</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+<span class="n">qc_r</span><span class="o">.</span><span class="n">rx</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">8</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>   <span class="c1"># Rotate qubit 0 using rx gate</span>
+<span class="n">qc_r</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>   <span class="c1"># Rotate qubit 1 using ry gate</span>
+<span class="n">qc_r</span><span class="o">.</span><span class="n">rz</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>   <span class="c1"># Rotate qubit 2 using rz gate</span>
+<span class="n">qc_r</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/d19f13952f0060a815d1ee8760c60dabc834cf5ef87d65eb776a4f3da2b0ea45.png" src="../../_images/d19f13952f0060a815d1ee8760c60dabc834cf5ef87d65eb776a4f3da2b0ea45.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Statevector</span><span class="p">(</span><span class="n">qc_r</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;bloch&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/52d922e569a9936412a41200f3b7018feef15d06aa624c4e4a6c989860c7bff4.png" src="../../_images/52d922e569a9936412a41200f3b7018feef15d06aa624c4e4a6c989860c7bff4.png" />
+</div>
+</div>
+<p>Even though there are an infinite number of possible unitary transformations, the ones we covered here are perhaps the most utilized ones. In the next chapter we will expand all of these ideas to multiple qubits and discuss the most common gates used to have two or more qubits interact.</p>
+</section>
+</section>
+<section id="footnotes">
+<h2>Footnotes<a class="headerlink" href="#footnotes" title="Link to this heading">#</a></h2>
+<p><a name="footnote1"></a><span style="font-size: smaller;"><span class="math notranslate nohighlight">\(^*\)</span>Note that here we are just abstractly superimposing the complex plane with the physical <span class="math notranslate nohighlight">\(xy\)</span>-plane to assign a complex number to the corresponding statevector associated with the spin in some given direction on this plane. We are <strong>not</strong> saying that this complex number is related to the physical length of the spin vector, or directly multiplying the full statevector. The relation between this complex value and the state is clarified in the section discussing the Bloch sphere. (<a class="reference internal" href="#back1"><span class="xref myst">go back</span></a>)</span></p>
+<p><a name="footnote2"></a><span style="font-size: smaller;"><span class="math notranslate nohighlight">\(^\dagger\)</span>Labeling these statevectors as <span class="math notranslate nohighlight">\(|r\rangle\)</span> and <span class="math notranslate nohighlight">\(|l\rangle\)</span> to respectively denote “right” and “left” seems a bit arbitrary; however, this nomenclature has become relatively standard, so that’s what we will use. Some references use <span class="math notranslate nohighlight">\(|+i\rangle\)</span> and <span class="math notranslate nohighlight">\(|-i\rangle\)</span> instead, but this can also be confusing because it could denote having the tensor product of states plus or minus with some arbitrary state <span class="math notranslate nohighlight">\(i\)</span>. For example, <span class="math notranslate nohighlight">\(|+i\rangle\)</span> could be confused with state <span class="math notranslate nohighlight">\(|+\rangle \otimes |i\rangle.\)</span> (<a class="reference internal" href="#back2"><span class="xref myst">go back</span></a>)</span></p>
+<p><a name="footnote3"></a><span style="font-size: smaller;"><span class="math notranslate nohighlight">\(^\ddagger\)</span>Admittedly, we are being fairly loose with the definition of a Hilbert space in here. More precisely, a finite-dimensional complex Hilbert space is a vector space over <span class="math notranslate nohighlight">\(\mathbb{C}\)</span>, equipped with an inner product that induces a complete norm. The definition we have for a qubit constitutes the subset of elements of a Hilbert space with norm equal to 1. (<a class="reference internal" href="#back3"><span class="xref myst">go back</span></a>)</span></p>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -445,6 +1231,35 @@
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizing-the-qubit">1. Generalizing the Qubit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-probability-amplitudes">1.1 Real Probability Amplitudes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-probability-amplitudes">1.2 Complex Probability Amplitudes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#putting-it-all-together-and-the-bloch-sphere">1.3 Putting it all Together (…and the Bloch Sphere)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kets-bras-products-and-bases">1.4 Kets, Bras, Products, and Bases</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizing-quantum-gates">2. Generalizing Quantum Gates</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pauli-gates">2.1 The Pauli Gates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-phase-gate-family">2.2 The Phase-Gate Family</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-rotation-gates">2.3 General Rotation Gates</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#footnotes">Footnotes</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
