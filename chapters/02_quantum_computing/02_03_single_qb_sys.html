@@ -539,7 +539,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(753), np.str_(&#39;1&#39;): np.int64(247)}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(749), np.str_(&#39;1&#39;): np.int64(251)}
 </pre></div>
 </div>
 </div>
@@ -775,8 +775,16 @@
 <p>where <span class="math notranslate nohighlight">\(\alpha_i^*\)</span> is the complex conjugate of <span class="math notranslate nohighlight">\(\alpha_i\)</span>.</p>
 <p>This notation allows us to represent the <a class="reference external" href="https://en.wikipedia.org/wiki/Inner_product_space">inner product</a> between two vectors, let’s say <span class="math notranslate nohighlight">\(|x\rangle, |y\rangle \in \mathcal{H}\)</span>, by multiplying the bra of one of them with the ket of the other:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\langle y | x \rangle  = \begin{bmatrix} y_0^* &amp; y_1^* \end{bmatrix} \begin{bmatrix} x_0 \\ x_1 \end{bmatrix} = x_0 y_0^* + x_1 y_1^* .\end{split}\]</div>
-<p>And as discussed before, we can use the inner product of a vector with itself to calculate it’s length, often referred as the norm of the statevector:</p>
+\[\begin{split}
+\begin{aligned}
+\langle y | x \rangle  &amp;= \begin{bmatrix} y_0^* &amp; y_1^* \end{bmatrix} \begin{bmatrix} x_0 \\ x_1 \end{bmatrix} = x_0 y_0^* + x_1 y_1^* 
+\\
+\\
+\langle x | y \rangle  &amp;= \begin{bmatrix} x_0^* &amp; x_1^* \end{bmatrix} \begin{bmatrix} y_0 \\ y_1 \end{bmatrix} = y_0 x_0^* + y_1 x_1^*.
+\end{aligned}
+\end{split}\]</div>
+<p>And from the expressions above: <span class="math notranslate nohighlight">\( \langle y | x \rangle = \langle x | y \rangle^* . \)</span></p>
+<p>Furthermore, we can use the inner product of a vector with itself to calculate it’s length, often referred as the norm of the statevector:</p>
 <div class="math notranslate nohighlight">
 \[ \|q\| = \sqrt{\langle q | q \rangle},  \]</div>
 <p>where:</p>
@@ -799,16 +807,10 @@
 <div class="math notranslate nohighlight">
 \[ \sqrt{\langle 0 | 0 \rangle} = 1 \quad \text{and} \quad  \sqrt{\langle 1 | 1 \rangle} = 1 .\]</div>
 <p>In a 1-qubit Hilbert space, there are an infinite number of vector pairs <span class="math notranslate nohighlight">\(\{|u\rangle, |u^{\perp}\rangle\}\)</span> that form a basis, but some of the most important ones are the sets of states that lie along the main three axis in the Bloch sphere, and therefore receive their own flashy names:</p>
-<ol class="arabic">
-<li><p>States <span class="math notranslate nohighlight">\(\{|0\rangle, |1\rangle\}\)</span>, which point along the <span class="math notranslate nohighlight">\(\texttt{+}z\)</span> and <span class="math notranslate nohighlight">\(\texttt{-}z\)</span> axes, respectively.</p>
-<p>We will often refer to these as the <span style="color:#0070C0"><strong>Computational</strong></span> or <span style="color:#0070C0"><strong>Bit</strong></span> basis states.</p>
-</li>
-<li><p>States <span class="math notranslate nohighlight">\(\{|+\rangle, |-\rangle\}\)</span>, which point along the <span class="math notranslate nohighlight">\(\texttt{+}x\)</span> and <span class="math notranslate nohighlight">\(\texttt{-}x\)</span> axes, respectively.</p>
-<p>We will often refer to these as the <span style="color:magenta"><strong>Hadamard</strong></span> or <span style="color:magenta"><strong>Sign</strong></span> basis states.</p>
-</li>
-<li><p>States<span class="math notranslate nohighlight">\(\{|r\rangle, |l\rangle\}\)</span>, which point along the <span class="math notranslate nohighlight">\(\texttt{+}y\)</span> and <span class="math notranslate nohighlight">\(\texttt{-}y\)</span> axes, respectively.</p>
-<p>We will often refer to these as the <span style="color:#00B050"><strong>Y</strong></span> or <span style="color:#00B050"><strong>Hand</strong></span> basis states (as in right hand and left hand).</p>
-</li>
+<ol class="arabic simple">
+<li><p>States <span class="math notranslate nohighlight">\(\{|0\rangle, |1\rangle\}\)</span>, which respectively point along the <span class="math notranslate nohighlight">\(\texttt{+}z\)</span> and <span class="math notranslate nohighlight">\(\texttt{-}z\)</span> axes, are often known as the <span style="color:#a883f7"><strong>Computational</strong></span> or <span style="color:#a883f7"><strong>Bit</strong></span> basis states.</p></li>
+<li><p>States <span class="math notranslate nohighlight">\(\{|+\rangle, |-\rangle\}\)</span>, which respectively point along the <span class="math notranslate nohighlight">\(\texttt{+}x\)</span> and <span class="math notranslate nohighlight">\(\texttt{-}x\)</span> axes, are often known as the <span style="color:#a883f7"><strong>Hadamard</strong></span> or <span style="color:#a883f7"><strong>Sign</strong></span> basis states.</p></li>
+<li><p>States<span class="math notranslate nohighlight">\(\{|r\rangle, |l\rangle\}\)</span>, which respectively point along the <span class="math notranslate nohighlight">\(\texttt{+}y\)</span> and <span class="math notranslate nohighlight">\(\texttt{-}y\)</span> axes, are often known as the <span style="color:#a883f7"><strong>Y</strong></span> or <span style="color:#a883f7"><strong>Hand</strong></span> basis states (as in right hand and left hand).</p></li>
 </ol>
 <p>A good exercise is to show that the sign states and the hand states do indeed form a basis, and to show that we can take a state the bit basis like the one shown below:</p>
 <div class="math notranslate nohighlight">
