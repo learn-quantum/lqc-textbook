@@ -539,7 +539,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(749), np.str_(&#39;1&#39;): np.int64(251)}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(742), np.str_(&#39;1&#39;): np.int64(258)}
 </pre></div>
 </div>
 </div>
@@ -1073,12 +1073,12 @@ T &amp;= P(\pi/4) = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; e^{i\pi/4} \end{bmatrix
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Statevector</span><span class="p">(</span><span class="n">qc_p</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;bloch&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Statevector</span><span class="p">(</span><span class="n">qc_p</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;bloch&#39;</span><span class="p">,</span> <span class="n">reverse_bits</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/2d7f2c02ca44c0c3d2f17988c336b49ceef1db54b805fc30cfa510944b0f8cbc.png" src="../../_images/2d7f2c02ca44c0c3d2f17988c336b49ceef1db54b805fc30cfa510944b0f8cbc.png" />
+<img alt="../../_images/604c01a3d3de40bb922ff17d5d378fac4e66878389f26e01615ac43993e3353f.png" src="../../_images/604c01a3d3de40bb922ff17d5d378fac4e66878389f26e01615ac43993e3353f.png" />
 </div>
 </div>
 <p>Another interesting observation about these gates is that, their corresponding conjugate transpose correspond to matrices that still rotate the state about the <span class="math notranslate nohighlight">\(z\)</span> axis by the same angle, but in the opposite direction:</p>
@@ -1112,12 +1112,12 @@ T^{\dagger} &amp;= \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; e^{-i\pi/4} \end{bmatrix
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Statevector</span><span class="p">(</span><span class="n">qc_pdg</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;bloch&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Statevector</span><span class="p">(</span><span class="n">qc_pdg</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;bloch&#39;</span><span class="p">,</span><span class="n">reverse_bits</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/3002fad9c37b39be68483f432989ac5ab4a89eb3a46a75d128645874a71989d9.png" src="../../_images/3002fad9c37b39be68483f432989ac5ab4a89eb3a46a75d128645874a71989d9.png" />
+<img alt="../../_images/68685a99a618c6891b055eee9894a99cf831c7a5444801a0a36bd8c2b123efd6.png" src="../../_images/68685a99a618c6891b055eee9894a99cf831c7a5444801a0a36bd8c2b123efd6.png" />
 </div>
 </div>
 <p>The <span class="math notranslate nohighlight">\(S\)</span> gate is of particular importance because it has been demonstrated that, in combination with just two more gates (the <span class="math notranslate nohighlight">\(H\)</span> gate and the <span class="math notranslate nohighlight">\(CX\)</span> gate) one can efficiently approximate any other quantum gate. This result is known as the <a class="reference external" href="https://en.wikipedia.org/wiki/Solovay%E2%80%93Kitaev_theorem">Solovay-Kitaev theorem</a>, and it is of extreme importance in the development of <a class="reference external" href="https://en.wikipedia.org/wiki/Threshold_theorem">fault-tolerant quantum computing</a>.</p>
@@ -1140,32 +1140,33 @@ RZ(\varphi) &amp;= \begin{bmatrix} e^{-i\varphi/2} &amp; 0 \\ 0 &amp; e^{i\varph
 <p>It is worth noting that the <span class="math notranslate nohighlight">\(RZ\)</span> gate is equivalent to the <span class="math notranslate nohighlight">\(P\)</span> gate up to a global phase:</p>
 <div class="math notranslate nohighlight">
 \[ RZ(\varphi) = e^{-i\varphi/2} P(\varphi) .\]</div>
-<p>Let’s look at an example for these three gates where we rotate the <span class="math notranslate nohighlight">\(|0\rangle\)</span> state using <span class="math notranslate nohighlight">\(RX\)</span> and <span class="math notranslate nohighlight">\(RY\)</span> by an angle of <span class="math notranslate nohighlight">\(\theta = \pi/8\)</span>, and state <span class="math notranslate nohighlight">\(|+\rangle\)</span> using <span class="math notranslate nohighlight">\(RZ\)</span> with <span class="math notranslate nohighlight">\(\varphi = \pi/8\)</span>:</p>
+<p>Let’s look at an example for these three gates where we rotate the <span class="math notranslate nohighlight">\(|0\rangle\)</span> state using <span class="math notranslate nohighlight">\(RX\)</span> and <span class="math notranslate nohighlight">\(RY\)</span> by an angle of <span class="math notranslate nohighlight">\(\theta = \pi/4\)</span>, and state <span class="math notranslate nohighlight">\(|+\rangle\)</span> using <span class="math notranslate nohighlight">\(RZ\)</span> with <span class="math notranslate nohighlight">\(\varphi = \pi/4\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create quantum circuit with Z gate</span>
 <span class="n">qc_r</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
 <span class="n">qc_r</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>            <span class="c1"># Prepare qubit 2 in |+⟩ state</span>
 <span class="n">qc_r</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
-<span class="n">qc_r</span><span class="o">.</span><span class="n">rx</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">8</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>   <span class="c1"># Rotate qubit 0 using rx gate</span>
-<span class="n">qc_r</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>   <span class="c1"># Rotate qubit 1 using ry gate</span>
-<span class="n">qc_r</span><span class="o">.</span><span class="n">rz</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>   <span class="c1"># Rotate qubit 2 using rz gate</span>
+<span class="n">qc_r</span><span class="o">.</span><span class="n">rz</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>   <span class="c1"># Rotate qubit 2 using rz gate</span>
+<span class="n">qc_r</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>   <span class="c1"># Rotate qubit 1 using ry gate</span>
+<span class="n">qc_r</span><span class="o">.</span><span class="n">rx</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>   <span class="c1"># Rotate qubit 0 using rx gate</span>
 <span class="n">qc_r</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/d19f13952f0060a815d1ee8760c60dabc834cf5ef87d65eb776a4f3da2b0ea45.png" src="../../_images/d19f13952f0060a815d1ee8760c60dabc834cf5ef87d65eb776a4f3da2b0ea45.png" />
+<img alt="../../_images/7a54bb15ee51e3a1ad3bf238c5df0b50042c8dcbe2d8c30e5f39afc551cd404a.png" src="../../_images/7a54bb15ee51e3a1ad3bf238c5df0b50042c8dcbe2d8c30e5f39afc551cd404a.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Statevector</span><span class="p">(</span><span class="n">qc_r</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;bloch&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Statevector</span><span class="p">(</span><span class="n">qc_r</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;bloch&#39;</span><span class="p">,</span> <span class="n">reverse_bits</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/52d922e569a9936412a41200f3b7018feef15d06aa624c4e4a6c989860c7bff4.png" src="../../_images/52d922e569a9936412a41200f3b7018feef15d06aa624c4e4a6c989860c7bff4.png" />
+<img alt="../../_images/778103991b30a2119bc11dbce44b68a34dcb9920aeeb13325143a597148cd49b.png" src="../../_images/778103991b30a2119bc11dbce44b68a34dcb9920aeeb13325143a597148cd49b.png" />
 </div>
 </div>
 <p>Even though there are an infinite number of possible unitary transformations, the ones we covered here are perhaps the most utilized ones. In the next chapter we will expand all of these ideas to multiple qubits and discuss the most common gates used to have two or more qubits interact.</p>
