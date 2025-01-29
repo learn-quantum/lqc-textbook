@@ -426,10 +426,10 @@
 <h2>1. Generalizing the Qubit<a class="headerlink" href="#generalizing-the-qubit" title="Link to this heading">#</a></h2>
 <p>Our goal for this section is to derive the final mathematical definition of a qubit. For this, we will follow a similar approach to that of the previous two chapters; that is, through a discovery process using simple examples. Our final goal is to derive the general vector representation of a qubit, given by:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split} |q\rangle = \begin{bmatrix} \alpha_0 \\ \alpha_1 \end{bmatrix}, \text{ such that:} \; \alpha_j \in \mathbb{C}, \; \text{and} \; \sqrt{|\alpha_0|^2 + |\alpha_1|^2} = 1 ,\end{split}\]</div>
+\[\begin{split} |q\rangle = \begin{bmatrix} \alpha_0 \\ \alpha_1 \end{bmatrix}, \text{ such that:} \; \alpha_j \in \mathbb{C}, \; \text{and} \; |\alpha_0|^2 + |\alpha_1|^2 = 1 ,\end{split}\]</div>
 <p>which is a generalization of our definition for the bit, where the only entries allowed were <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split} |b\rangle = \begin{bmatrix} \beta_0 \\ \beta_1 \end{bmatrix}, \text{ such that:} \; \beta_j \in \{0, 1\}, \; \text{and} \; \sqrt{|\beta_0|^2 + |\beta_1|^2} = 1 .\end{split}\]</div>
+\[\begin{split} |b\rangle = \begin{bmatrix} \beta_0 \\ \beta_1 \end{bmatrix}, \text{ such that:} \; \beta_j \in \{0, 1\}, \; \text{and} \; |\beta_0|^2 + |\beta_1|^2 = 1 .\end{split}\]</div>
 <p>So, let’s take a first step and see how we go from the few specific statevectors we’ve presented so far, to a more general (but partial) representation using real numbers. After that, we will discover why we need to incorporate complex values as well in our definition. Lastly, we will combine these two steps to get a complete representation of a general qubit and its visual representation in the Bloch sphere.</p>
 <section id="real-probability-amplitudes">
 <h3>1.1 Real Probability Amplitudes<a class="headerlink" href="#real-probability-amplitudes" title="Link to this heading">#</a></h3>
@@ -462,7 +462,7 @@
 \end{split}\]</div>
 <p>It is easy to see that the expression above is of the form:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split} |q\rangle = \begin{bmatrix} a_0 \\ a_1 \end{bmatrix}, \text{ such that:} \; a_j \in \mathbb{R}, \; \text{and} \; \sqrt{a_0^2 + a_1^2} = 1 ,\end{split}\]</div>
+\[\begin{split} |q\rangle = \begin{bmatrix} a_0 \\ a_1 \end{bmatrix}, \text{ such that:} \; a_j \in \mathbb{R}, \; \text{and} \; a_0^2 + a_1^2 = 1 ,\end{split}\]</div>
 <p>which is very close to the final definition of a qubit we set ourselves to find. The only exception is that the vector elements here are real-valued rather than complex numbers. We will explore why we need complex values in the following section, but for now, we can see this expression works for the four electron spin cases we have explored so far:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -544,7 +544,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(747), np.str_(&#39;1&#39;): np.int64(253)}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(729), np.str_(&#39;1&#39;): np.int64(271)}
 </pre></div>
 </div>
 </div>
@@ -769,7 +769,7 @@
 <h3>1.4 Kets, Bras, Products, and Bases<a class="headerlink" href="#kets-bras-products-and-bases" title="Link to this heading">#</a></h3>
 <p>Up to this point, we have managed to construct a definition for the qubit based purely on observations. We now know that a qubit is represented by a column vector with complex-valued entries called probability amplitudes, and whose square modulus represent the probabilities of observing the qubit being in one of two possible states that we denote as <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>. Mathematically, we arrived at an expression for this, which we expressed using the ket symbol <span class="math notranslate nohighlight">\(|q\rangle\)</span> given by:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\boxed{|q\rangle = \begin{bmatrix} \alpha_0 \\ \alpha_1 \end{bmatrix}, \text{ such that:} \; \alpha_j \in \mathbb{C}, \; \text{and} \; \sqrt{|\alpha_0|^2 + |\alpha_1|^2} = 1}\end{split}\]</div>
+\[\begin{split}\boxed{|q\rangle = \begin{bmatrix} \alpha_0 \\ \alpha_1 \end{bmatrix}, \text{ such that:} \; \alpha_j \in \mathbb{C}, \; \text{and} \; |\alpha_0|^2 + |\alpha_1|^2 = 1}\end{split}\]</div>
 <p><a name="back3"></a>Now, we say that the set of all elements of this kind are part of what is known as a complex <a class="reference external" href="https://en.wikipedia.org/wiki/Hilbert_space">Hilbert Space</a> denoted as <span class="math notranslate nohighlight">\(\mathcal{H}\)</span><a class="reference internal" href="#footnote3"><span class="xref myst"><span class="math notranslate nohighlight">\(^{\ddagger}\)</span></span></a>.</p>
 <p>Now that we have the complete definition of a qubit (represented by a ket vector <span class="math notranslate nohighlight">\(|q\rangle \in \mathcal{H}\)</span>), we can generalize the concept of it’s <a class="reference external" href="https://en.wikipedia.org/wiki/Dual_space#Finite-dimensional_case">dual counterpart</a>, the bra vector <span class="math notranslate nohighlight">\(\langle q|\)</span>, which we briefly introduced in a <a class="reference external" href="https://learnquantum.io/chapters/01_classical_computing/01_03_bits_to_vectors.html#single-bit-systems">previous chapter</a>. So, for the qubit state:</p>
 <div class="math notranslate nohighlight">
