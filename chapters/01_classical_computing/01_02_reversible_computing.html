@@ -30,7 +30,7 @@
   <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -504,7 +504,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define x gate as a function:</span>
-<span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="n">a_in</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">x</span><span class="p">(</span><span class="n">a_in</span><span class="p">):</span>
     <span class="n">a_out</span> <span class="o">=</span> <span class="n">a_in</span> <span class="o">^</span> <span class="mi">1</span>   <span class="c1"># Remember ^ performs the XOR operation. a^1 = a̅</span>
     <span class="k">return</span> <span class="n">a_out</span>
 </pre></div>
@@ -514,7 +514,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define cx gate as a function:</span>
-<span class="k">def</span> <span class="nf">cx</span><span class="p">(</span><span class="n">a_in</span><span class="p">,</span> <span class="n">b_in</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">cx</span><span class="p">(</span><span class="n">a_in</span><span class="p">,</span> <span class="n">b_in</span><span class="p">):</span>
     
     <span class="c1"># a&#39; is always equal to a.</span>
     <span class="n">a_out</span> <span class="o">=</span> <span class="n">a_in</span>
@@ -741,7 +741,7 @@ a | b || a&#39;&#39; | b&#39;&#39; |
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define ccx gate as a function:</span>
-<span class="k">def</span> <span class="nf">ccx</span><span class="p">(</span><span class="n">a_in</span><span class="p">,</span> <span class="n">b_in</span><span class="p">,</span> <span class="n">c_in</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">ccx</span><span class="p">(</span><span class="n">a_in</span><span class="p">,</span> <span class="n">b_in</span><span class="p">,</span> <span class="n">c_in</span><span class="p">):</span>
     
     <span class="c1"># a&#39; and b&#39; are always equal to a and b.</span>
     <span class="n">a_out</span> <span class="o">=</span> <span class="n">a_in</span>                 

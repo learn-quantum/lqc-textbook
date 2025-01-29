@@ -30,7 +30,7 @@
   <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -444,7 +444,7 @@
 <p>In a similar way, we can find the column vectors for all possible combinations of spin along the <span class="math notranslate nohighlight">\(\pm z\)</span> direction by taking the Kronecker product of the spin-up and spin-down states (denoted as <span class="math notranslate nohighlight">\(|0\rangle\)</span> and <span class="math notranslate nohighlight">\(|1\rangle\)</span>, respectively). Instead of doing this manually, let’s use Qiskit to find what these vectors look like:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">Statevector</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">Statevector</span>
 
 <span class="c1"># Define states |0⟩ and |1⟩</span>
 <span class="n">state_0</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">)</span> <span class="c1"># define state |0⟩</span>
@@ -620,7 +620,7 @@
 <p>From above, we know this is a separable state, so we can place <span class="math notranslate nohighlight">\(q_1\)</span> in state <span class="math notranslate nohighlight">\(|+\rangle\)</span> by applying a Hadamard gate <span class="math notranslate nohighlight">\(H\)</span> to that wire. Similarly, we know that to obtain state <span class="math notranslate nohighlight">\(|-\rangle\)</span> we have to apply an <span class="math notranslate nohighlight">\(H\)</span> gate to state <span class="math notranslate nohighlight">\(|1\rangle\)</span>. So in <span class="math notranslate nohighlight">\(q_0\)</span>, we first apply an <span class="math notranslate nohighlight">\(X\)</span> gate to take it from its initial state <span class="math notranslate nohighlight">\(|0\rangle\)</span> to state <span class="math notranslate nohighlight">\(|1\rangle\)</span>, and the apply an <span class="math notranslate nohighlight">\(H\)</span> gate. Let’s do this in Qiskit and extract the output state:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumCircuit</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumCircuit</span>
 
 <span class="n">qc_sep</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>    <span class="c1"># define quantum circuit</span>
 <span class="n">qc_sep</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>                   <span class="c1"># apply H gate to qubit 1</span>
@@ -654,7 +654,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># perform circuit simulation</span>
-<span class="kn">from</span> <span class="nn">qiskit.providers.basic_provider</span> <span class="kn">import</span> <span class="n">BasicSimulator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.providers.basic_provider</span><span class="w"> </span><span class="kn">import</span> <span class="n">BasicSimulator</span>
 
 <span class="n">simulator</span> <span class="o">=</span> <span class="n">BasicSimulator</span><span class="p">()</span>             <span class="c1"># define simulator object</span>
 <span class="n">job</span> <span class="o">=</span> <span class="n">simulator</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc_sep</span><span class="p">,</span> <span class="n">shots</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>  <span class="c1"># use run method to execute our circuit some number of shots</span>
@@ -666,7 +666,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;01&#39;: 261, &#39;11&#39;: 247, &#39;00&#39;: 253, &#39;10&#39;: 239}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;01&#39;: 262, &#39;11&#39;: 235, &#39;10&#39;: 243, &#39;00&#39;: 260}
 </pre></div>
 </div>
 </div>
@@ -740,7 +740,7 @@
 <p>2.1 Define Hadamard matrix <span class="math notranslate nohighlight">\(H\)</span> and Identity matrix <span class="math notranslate nohighlight">\(I\)</span>. Since our column vector is composed of two qubits (<span class="math notranslate nohighlight">\(q_0\)</span> and <span class="math notranslate nohighlight">\(q_1\)</span>), and we want to apply <span class="math notranslate nohighlight">\(H\)</span> only to <span class="math notranslate nohighlight">\(q_1\)</span>, we need to create a new matrix <span class="math notranslate nohighlight">\(H \otimes I\)</span>, so that <span class="math notranslate nohighlight">\(q_0\)</span> is left unchanged:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">Operator</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">Operator</span>
 
 <span class="c1"># Define H</span>
 <span class="n">H</span> <span class="o">=</span> <span class="n">Operator</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">)</span>
@@ -891,7 +891,7 @@ CX =
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;00&#39;: 498, &#39;11&#39;: 502}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;11&#39;: 506, &#39;00&#39;: 494}
 </pre></div>
 </div>
 </div>

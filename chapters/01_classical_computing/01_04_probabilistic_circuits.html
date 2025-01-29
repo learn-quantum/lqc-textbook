@@ -30,7 +30,7 @@
   <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -448,9 +448,9 @@
 <p>Let’s take a look at how to simulate something like this in Python. We will define a probability vector, and sample <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> using its probability amplitudes. We will use <a class="reference external" href="https://matplotlib.org/">Matplotlib</a> to plot the results.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sp</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
@@ -483,12 +483,12 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1 1 1 1 1 1 0 1 1 0 1 1 0 1 1 1 0 0 1 1 1 1 0 1 0 1 1 1 1 1 0 1 1 1 1 1 1
- 1 0 1 1 1 1 1 1 0 1 0 1 1 1 0 1 0 1 1 0 0 1 0 1 1 1 1 1 1 0 1 1 1 1 1 1 0
- 1 1 0 1 1 1 1 0 1 1 0 1 1 1 0 1 0 1 1 1 1 0 1 1 1 1 1 1 0 1 1 1 1 0 1 1 0
- 0 1 1 0 1 1 1 1 0 1 1 1 1 1 0 1 0 1 1 0 1 1 0 1 1 1 0 0 1 0 1 1 1 0 1 0 1
- 0 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 1 0 0 1 1 1 0 1 1 1 1 0 1 0 1 0 0
- 1 1 0 1 1 1 0 0 1 1 1 0 1 1 1]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0 0 1 0 1 1 1 1 1 1 1 1 1 0 1 0 1 1 1 0 1 1 1 1 1 1 1 1 1 0 1 0 0 1 1 0 1
+ 1 1 1 1 0 0 1 1 1 1 1 1 0 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1
+ 1 0 1 1 1 1 1 1 1 1 1 0 1 1 0 1 1 0 1 1 1 1 1 1 0 0 1 1 1 1 1 1 1 1 1 1 1
+ 0 0 1 1 0 1 1 1 1 0 1 1 1 1 0 1 1 1 0 0 0 0 1 0 0 1 0 1 1 0 1 1 1 1 0 1 1
+ 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 0 0 0 1 1 1 0 1 1 1 1 1 0 1 1 0 1 1 1 0
+ 0 1 0 1 1 0 0 0 1 1 0 1 1 1 0]
 </pre></div>
 </div>
 </div>
@@ -505,8 +505,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For ϱ0 = 0.25 and 200 samples, the relative frequency of 0s is 0.27
-For ϱ1 = 0.75 and 200 samples, the relative frequency of 1s is 0.73
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For ϱ0 = 0.25 and 200 samples, the relative frequency of 0s is 0.25
+For ϱ1 = 0.75 and 200 samples, the relative frequency of 1s is 0.75
 </pre></div>
 </div>
 </div>
@@ -523,7 +523,7 @@ For ϱ1 = 0.75 and 200 samples, the relative frequency of 1s is 0.73
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ec1253929de04817c9c1367ad98b0e1f7de017fadd3b6442ac8dc3bfce1a8bb2.png" src="../../_images/ec1253929de04817c9c1367ad98b0e1f7de017fadd3b6442ac8dc3bfce1a8bb2.png" />
+<img alt="../../_images/c2ff9ba301cf4a78dff996b6add5814986f088617cbaaab5ad86ad4ff9da865d.png" src="../../_images/c2ff9ba301cf4a78dff996b6add5814986f088617cbaaab5ad86ad4ff9da865d.png" />
 </div>
 </div>
 <p>Now, note that unlike in the previous chapter, where we relabeled the bit vector <span class="math notranslate nohighlight">\(\vec{b}\)</span> to use bra-ket notation <span class="math notranslate nohighlight">\(|b\rangle\)</span>, here we have opted to denote our probability vector as <span class="math notranslate nohighlight">\(\vec{p}\)</span>. We’ve purposely done this to emphasize that there are some distinctions between some of the properties of p-bits and what we will encounter for qubits, for which we reserve the bra-ket notation. For instance, recall from that the magnitude of a real-valued vector is given by its Euclidean norm:</p>

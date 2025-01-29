@@ -30,7 +30,7 @@
   <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -420,7 +420,7 @@
  <p></p>
 </li>
 <li><p>On your local machine, open a Jupyter Notebook and run the code below after pasting your API token over the <code class="docutils literal notranslate"><span class="pre">your-token-here</span></code> string. Make sure to <strong>not</strong> remove the single quotes <code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">'</span></code> enclosing it:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit_ibm_runtime</span> <span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
 <span class="n">QiskitRuntimeService</span><span class="o">.</span><span class="n">save_account</span><span class="p">(</span><span class="s1">&#39;your-token-here&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -459,7 +459,7 @@
 <li><p>Copy and paste the following settings into the file and save it:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">default</span><span class="p">]</span>
 <span class="n">circuit_drawer</span> <span class="o">=</span> <span class="n">mpl</span>
-<span class="n">circuit_mpl_style</span> <span class="o">=</span> <span class="n">iqx</span><span class="o">-</span><span class="n">dark</span>
+<span class="n">circuit_mpl_style</span> <span class="o">=</span> <span class="n">iqp</span><span class="o">-</span><span class="n">dark</span>
 <span class="n">state_drawer</span> <span class="o">=</span> <span class="n">latex</span>
 <span class="n">circuit_reverse_bits</span> <span class="o">=</span> <span class="kc">True</span>
 </pre></div>
@@ -470,7 +470,7 @@
 <ul class="simple">
 <li><p>Qiskit’s default way of drawing circuits is by using text. <strong><code class="docutils literal notranslate"><span class="pre">circuit_drawer</span> <span class="pre">=</span> <span class="pre">mpl</span></code></strong> switches this option to display circuits as colorful images instead.
 <br></br></p></li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">circuit_mpl_style</span> <span class="pre">=</span> <span class="pre">iqx-dark</span></code></strong> changes the default color pattern to draw circuits from light mode to dark mode.
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">circuit_mpl_style</span> <span class="pre">=</span> <span class="pre">iqp-dark</span></code></strong> changes the default color pattern to draw circuits from light mode to dark mode.
 <br></br></p></li>
 <li><p>Statevectors in Qiskit are displayed as numpy arrays in text form. <strong><code class="docutils literal notranslate"><span class="pre">state_drawer</span> <span class="pre">=</span> <span class="pre">latex</span></code></strong> changes this default configuration to render Statevectors in LaTeX using ket notation.
 <br></br></p></li>
