@@ -545,7 +545,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(746), np.str_(&#39;1&#39;): np.int64(254)}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(775), np.str_(&#39;1&#39;): np.int64(225)}
 </pre></div>
 </div>
 </div>
@@ -935,7 +935,7 @@
 \[\|\Pi_j |q\rangle \| = |\alpha_j| .\]</div>
 <p>But <span class="math notranslate nohighlight">\(|\alpha_j|\)</span> is nothing other than the square root of the probability <span class="math notranslate nohighlight">\(\mathbb{P}_j\)</span>. So, the right way to compute the resulting state after a measurement is given by:</p>
 <div class="math notranslate nohighlight">
-\[ |q'\rangle = \frac{1}{\sqrt{\mathbb{P}_i}}\Pi_j |q\rangle = \frac{1}{\sqrt{\langle q | \Pi_{j} | q \rangle}} \Pi_j |q\rangle .\]</div>
+\[ |q'\rangle = \frac{\Pi_j |q\rangle}{\|\Pi_j |q\rangle \|} = \frac{\Pi_j |q\rangle}{\sqrt{\mathbb{P}_i}} = \frac{\Pi_j |q\rangle}{\sqrt{\langle q | \Pi_{j} | q \rangle}} .\]</div>
 <p>This seems like a ridiculous amount of math to simply show that after measuring <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> the outcome state is respectively <span class="math notranslate nohighlight">\(|0\rangle\)</span> or <span class="math notranslate nohighlight">\(|1\rangle\)</span>. However, this formalism (known as <a class="reference external" href="https://en.wikipedia.org/wiki/Projection-valued_measure">projector-value measure</a>, or PMV) will come in handy when we discuss multi-qubit systems and are interested in finding the resulting state after measuring just a subset of qubits.</p>
 <p>It is also worth noting that we can generalize this to measuring in any other basis. For example, we can construct projectors for the Hadamard basis:</p>
 <div class="math notranslate nohighlight">
