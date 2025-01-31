@@ -545,7 +545,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(746), np.str_(&#39;1&#39;): np.int64(254)}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(728), np.str_(&#39;1&#39;): np.int64(272)}
 </pre></div>
 </div>
 </div>
@@ -938,8 +938,8 @@ $<span class="math notranslate nohighlight">\(
 <p>This seems like a ridiculous amount of math to simply show that after measuring <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> the outcome state is respectively <span class="math notranslate nohighlight">\(|0\rangle\)</span> or <span class="math notranslate nohighlight">\(|1\rangle\)</span>. However, this formalism (known as <a class="reference external" href="https://en.wikipedia.org/wiki/Projection-valued_measure">projector-value measure</a>, or PMV) will come in handy when we discuss multi-qubit systems and are interested in finding the resulting state after measuring just a subset of qubits.</p>
 <p>It is also worth noting that we can generalize this to measuring in any other basis. For example, we can construct projectors for the Hadamard basis:</p>
 <div class="math notranslate nohighlight">
-\[\Pi_+ = |+\rangle \langle+|, \quad \quad \Pi_- = |-\rangle \langle-|, \]</div>
-<p>and use them to compute the probabilities and outcome states resulting from measuring along the x-axis. We will almost entirely focus on only measuring in the computational basis, so the details of this generalization are not that critical, but it is at least worth knowing this can be done.</p>
+\[\Pi_+ = |+\rangle \langle+|, \quad \text{and} \quad \Pi_- = |-\rangle \langle-|, \]</div>
+<p>and use them to compute the probabilities and outcome states resulting from measuring along the <span class="math notranslate nohighlight">\(x\)</span>-axis of the Bloch sphere. We will almost entirely focus on only measuring in the computational basis, so the details of this generalization are not that critical, but it is at least worth knowing this can be done.</p>
 </section>
 </section>
 <section id="generalizing-quantum-gates">
