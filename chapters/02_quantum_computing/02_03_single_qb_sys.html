@@ -397,6 +397,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-probability-amplitudes">1.2 Complex Probability Amplitudes</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#putting-it-all-together-and-the-bloch-sphere">1.3 Putting it all Together (…and the Bloch Sphere)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kets-bras-products-and-bases">1.4 Kets, Bras, Products, and Bases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quantum-measurement">1.5 Quantum Measurement</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizing-quantum-gates">2. Generalizing Quantum Gates</a><ul class="nav section-nav flex-column">
@@ -544,7 +545,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(729), np.str_(&#39;1&#39;): np.int64(271)}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(746), np.str_(&#39;1&#39;): np.int64(254)}
 </pre></div>
 </div>
 </div>
@@ -770,15 +771,14 @@
 <p>Up to this point, we have managed to construct a definition for the qubit based purely on observations. We now know that a qubit is represented by a column vector with complex-valued entries called probability amplitudes, and whose square modulus represent the probabilities of observing the qubit being in one of two possible states that we denote as <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>. Mathematically, we arrived at an expression for this, which we expressed using the ket symbol <span class="math notranslate nohighlight">\(|q\rangle\)</span> given by:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\boxed{|q\rangle = \begin{bmatrix} \alpha_0 \\ \alpha_1 \end{bmatrix}, \text{ such that:} \; \alpha_j \in \mathbb{C}, \; \text{and} \; |\alpha_0|^2 + |\alpha_1|^2 = 1}\end{split}\]</div>
-<p><a name="back3"></a>Now, we say that the set of all elements of this kind are part of what is known as a complex <a class="reference external" href="https://en.wikipedia.org/wiki/Hilbert_space">Hilbert Space</a> denoted as <span class="math notranslate nohighlight">\(\mathcal{H}\)</span><a class="reference internal" href="#footnote3"><span class="xref myst"><span class="math notranslate nohighlight">\(^{\ddagger}\)</span></span></a>.</p>
-<p>Now that we have the complete definition of a qubit (represented by a ket vector <span class="math notranslate nohighlight">\(|q\rangle \in \mathcal{H}\)</span>), we can generalize the concept of it’s <a class="reference external" href="https://en.wikipedia.org/wiki/Dual_space#Finite-dimensional_case">dual counterpart</a>, the bra vector <span class="math notranslate nohighlight">\(\langle q|\)</span>, which we briefly introduced in a <a class="reference external" href="https://learnquantum.io/chapters/01_classical_computing/01_03_bits_to_vectors.html#single-bit-systems">previous chapter</a>. So, for the qubit state:</p>
+<p><a name="back3"></a>All elements of this kind belong to what is known as a complex <a class="reference external" href="https://en.wikipedia.org/wiki/Hilbert_space">Hilbert Space</a> of dimension <span class="math notranslate nohighlight">\(2\)</span>, which we will denote as <span class="math notranslate nohighlight">\(\mathcal{H}_2\)</span><a class="reference internal" href="#footnote3"><span class="xref myst"><span class="math notranslate nohighlight">\(^{\ddagger}\)</span></span></a>. So, with this complete definition of a qubit (represented by a ket vector <span class="math notranslate nohighlight">\(|q\rangle \in \mathcal{H}_2\)</span>), we can now generalize the concept of it’s <a class="reference external" href="https://en.wikipedia.org/wiki/Dual_space#Finite-dimensional_case">dual counterpart</a>, the bra vector <span class="math notranslate nohighlight">\(\langle q|\)</span>, which we briefly introduced in a <a class="reference external" href="https://learnquantum.io/chapters/01_classical_computing/01_03_bits_to_vectors.html#single-bit-systems">previous chapter</a>. Therefore, given the qubit state:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} |q\rangle = \begin{bmatrix} \alpha_0 \\ \alpha_1 \end{bmatrix}, \quad \quad\end{split}\]</div>
 <p>it’s bra counterpart is given by:</p>
 <div class="math notranslate nohighlight">
 \[ \langle q| = \begin{bmatrix} \alpha_0^* &amp; \alpha_1^* \end{bmatrix},  \]</div>
 <p>where <span class="math notranslate nohighlight">\(\alpha_i^*\)</span> is the complex conjugate of <span class="math notranslate nohighlight">\(\alpha_i\)</span>.</p>
-<p>This notation allows us to represent the <a class="reference external" href="https://en.wikipedia.org/wiki/Inner_product_space">inner product</a> between two vectors, let’s say <span class="math notranslate nohighlight">\(|x\rangle, |y\rangle \in \mathcal{H}\)</span>, by multiplying the bra of one of them with the ket of the other:</p>
+<p>This notation allows us to represent the <a class="reference external" href="https://en.wikipedia.org/wiki/Inner_product_space">inner product</a> between two vectors, let’s say <span class="math notranslate nohighlight">\(|x\rangle, |y\rangle \in \mathcal{H}_2\)</span>, by multiplying the bra of one of them with the ket of the other:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
@@ -811,25 +811,26 @@
 <p>and have norm equal to <span class="math notranslate nohighlight">\(1\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[ \sqrt{\langle 0 | 0 \rangle} = 1 \quad \text{and} \quad  \sqrt{\langle 1 | 1 \rangle} = 1 .\]</div>
-<p>In a 1-qubit Hilbert space, there are an infinite number of vector pairs <span class="math notranslate nohighlight">\(\{|u\rangle, |u^{\perp}\rangle\}\)</span> that form a basis, but some of the most important ones are the sets of states that lie along the main three axis in the Bloch sphere, and therefore receive their own flashy names:</p>
+<p>In a one-qubit Hilbert space <span class="math notranslate nohighlight">\(\mathcal{H}_2\)</span>, there are an infinite number of vector pairs <span class="math notranslate nohighlight">\(\{|u\rangle, |u^{\perp}\rangle\}\)</span> that form a basis, but some of the most important ones are the sets of states that lie along the three main axis in the Bloch sphere, and therefore receive their own flashy names:</p>
 <ol class="arabic simple">
 <li><p>States <span class="math notranslate nohighlight">\(\{|0\rangle, |1\rangle\}\)</span>, which respectively point along the <span class="math notranslate nohighlight">\(\texttt{+}z\)</span> and <span class="math notranslate nohighlight">\(\texttt{-}z\)</span> axes, are often known as the <span style="color:#a883f7"><strong>Computational</strong></span> or <span style="color:#a883f7"><strong>Bit</strong></span> basis states.</p></li>
 <li><p>States <span class="math notranslate nohighlight">\(\{|+\rangle, |-\rangle\}\)</span>, which respectively point along the <span class="math notranslate nohighlight">\(\texttt{+}x\)</span> and <span class="math notranslate nohighlight">\(\texttt{-}x\)</span> axes, are often known as the <span style="color:#a883f7"><strong>Hadamard</strong></span> or <span style="color:#a883f7"><strong>Sign</strong></span> basis states.</p></li>
-<li><p>States<span class="math notranslate nohighlight">\(\{|r\rangle, |l\rangle\}\)</span>, which respectively point along the <span class="math notranslate nohighlight">\(\texttt{+}y\)</span> and <span class="math notranslate nohighlight">\(\texttt{-}y\)</span> axes, are often known as the <span style="color:#a883f7"><strong>Y</strong></span> or <span style="color:#a883f7"><strong>Hand</strong></span> basis states (as in right hand and left hand).</p></li>
+<li><p>States<span class="math notranslate nohighlight">\(\{|r\rangle, |l\rangle\}\)</span>, which respectively point along the <span class="math notranslate nohighlight">\(\texttt{+}y\)</span> and <span class="math notranslate nohighlight">\(\texttt{-}y\)</span> axes, are often known as the <span style="color:#a883f7"><strong>Y</strong></span> or <span style="color:#a883f7"><strong>Hand</strong></span> basis states (as in <span class="math notranslate nohighlight">\(r\)</span> for right-hand, and <span class="math notranslate nohighlight">\(l\)</span> left hand).</p></li>
 </ol>
 <p>A good exercise is to show that the sign states and the hand states do indeed form a basis, and to show that we can take a state the bit basis like the one shown below:</p>
 <div class="math notranslate nohighlight">
 \[|\psi\rangle = \sqrt{\frac{2}{3}}|0\rangle - \sqrt{\frac{1}{3}}|1\rangle\]</div>
-<p>And express it in the sign basis to obtain:
-$<span class="math notranslate nohighlight">\(
+<p>And express it in the sign basis to obtain:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{aligned}
 |\psi\rangle &amp;= \frac{2\sqrt{3} - \sqrt{6}}{6}|+\rangle + \frac{2\sqrt{3} - \sqrt{6}}{6}|-\rangle
 \\
 \\
 |\psi\rangle &amp;\approx 0.169|+\rangle + 0.986|-\rangle
 \end{aligned}
-\)</span>$</p>
-<p>One last concept worth mentioning before moving to the next section is that of the outer product. Jut like the inner product is the vector multiplication of a bra with a ket, the outer product is found by multiplying a ket with a bra, which results in a matrix of the form:</p>
+\end{split}\]</div>
+<p>One last concept worth introducing is that of the outer product. Jut like the inner product is the vector multiplication of a bra with a ket, the outer product is found by multiplying a ket with a bra, which results in a matrix of the form:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
@@ -839,7 +840,106 @@ $<span class="math notranslate nohighlight">\(
 | x \rangle \langle y | = \begin{bmatrix} x_0 y_0^* &amp; x_0 y_1^* \\ x_1 y_0^* &amp; x_1 y_1^*  \end{bmatrix} 
 \end{aligned}
 \end{split}\]</div>
-<p>Outer products will be helpful later on to define some important sets of matrices to construct both operators associated with quantum gates and measurement operations.</p>
+<p>Outer products allow us to construct important sets of operators necessary to formalize the concept of a quantum measurement. For example, two useful operators are the outer products of the computational basis states <span class="math notranslate nohighlight">\(\{|0\rangle, |1\rangle \}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\Pi_{0} = |0\rangle \langle 0 | = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 0 \end{bmatrix}, \quad
+\Pi_{1} = |1\rangle \langle 1 | = \begin{bmatrix} 0 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}. 
+\end{aligned}
+\end{split}\]</div>
+<p>We will use these in the next section to construct the mathematical tools needed to describe the process of quantum measurement.</p>
+</section>
+<section id="quantum-measurement">
+<h3>1.5 Quantum Measurement<a class="headerlink" href="#quantum-measurement" title="Link to this heading">#</a></h3>
+<p>The way we have approached measurements so far has been by simply <em>stating</em> that, given a qubit in a general superposition state:</p>
+<div class="math notranslate nohighlight">
+\[ |q \rangle = \alpha_0 |0\rangle + \alpha_1 |1\rangle, \]</div>
+<p>the probability of measuring <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> is given by the square modulus of the probability amplitude associated with each of the two corresponding states:</p>
+<div class="math notranslate nohighlight">
+\[ \mathbb{P}_0 = |\alpha_0|^2, \quad \mathbb{P}_1 = |\alpha_1|^2 .\]</div>
+<p>We also said that, after a measurement, the superposition state immediately changes to the corresponding basis state that corresponds to the measurement outcome <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} |q \rangle = \alpha_0 |0\rangle + \alpha_1 |1\rangle \xrightarrow{\text{measure}} |q' \rangle =
+\begin{cases}
+|0\rangle \text{, with prob:} \; \mathbb{P}_0
+\\
+\\
+|1\rangle \text{, with prob:} \; \mathbb{P}_1 .
+\end{cases}
+\end{split}\]</div>
+<p>What we want though, is a formula to “extract” the probabilities of getting a given outcome given a general state <span class="math notranslate nohighlight">\(|q\rangle\)</span> rather than just <em>stating</em> that they correspond to the amplitudes squared. We can do this by noticing that taking the inner product between <span class="math notranslate nohighlight">\(|q\rangle\)</span> and each of the computational basis states <span class="math notranslate nohighlight">\(\{|0\rangle, |1\rangle \}\)</span> results their corresponding probability amplitude:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+\langle 0 | q \rangle &amp;= \langle 0 | (\alpha_0 |0\rangle + \alpha_1 |1\rangle) = \alpha_0 \langle 0|0\rangle + \alpha_1 \langle 0|1\rangle
+\\
+\langle 0 | q \rangle &amp;= \alpha_0,
+\end{aligned}
+\end{split}\]</div>
+<p>and:
+$<span class="math notranslate nohighlight">\( 
+\begin{aligned}
+\langle 1 | q \rangle &amp;= \langle 1 | (\alpha_1 |0\rangle + \alpha_1 |1\rangle) = \alpha_0 \langle 1|0\rangle + \alpha_1 \langle 1|1\rangle 
+\\
+\langle 1 | q \rangle &amp;= \alpha_1 .
+\end{aligned}
+\)</span>$</p>
+<p>Additionally, we showed in the previous section that <span class="math notranslate nohighlight">\(\langle y|x \rangle = \langle x|y \rangle^*\)</span>, which then gives us:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+\langle q | 0 \rangle &amp;= \alpha_0^* 
+\\
+\\
+\langle q | 1 \rangle &amp;= \alpha_1^* .
+\end{aligned}
+\end{split}\]</div>
+<p>Lastly, since we know the probabilities <span class="math notranslate nohighlight">\(\mathbb{P}_j\)</span> are given by <span class="math notranslate nohighlight">\(\alpha_j \alpha_j^* = |\alpha_j|^2\)</span>, we can combine the two results above to compute each of the two probabilities:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\mathbb{P}_0 &amp;= \langle q | 0 \rangle \langle 0 | q \rangle = \alpha_0 \alpha_0^* = |\alpha_0|^2
+\\
+\\
+\mathbb{P}_1 &amp;= \langle q | 1 \rangle\langle 1 | q \rangle = \alpha_1 \alpha_1^* = |\alpha_1|^2 .
+\end{aligned}
+\end{split}\]</div>
+<p>Recalling from the previous section that <span class="math notranslate nohighlight">\(\Pi_{0} = | 0 \rangle \langle 0 |\)</span> and <span class="math notranslate nohighlight">\(\Pi_{1} = | 1 \rangle \langle 1 |\)</span>, we can also write the expressions above as:</p>
+<div class="math notranslate nohighlight">
+\[ \mathbb{P}_0 = \langle q | \Pi_{0} | q \rangle \quad \text{and} \quad \mathbb{P}_1 = \langle q | \Pi_{1} | q \rangle .\]</div>
+<p>In words, we can compute the probability of measuring the basis state <span class="math notranslate nohighlight">\(|j\rangle\)</span> by “sandwiching” the superposition state <span class="math notranslate nohighlight">\(|q\rangle\)</span> in-between the corresponding projection operator <span class="math notranslate nohighlight">\(\Pi_{j}\)</span>.</p>
+<p>Similarly, to find which state our superposition <strong>projects</strong> onto after a measurement, we can multiply the initial state <span class="math notranslate nohighlight">\(|q\rangle\)</span> by the projection operator associated with each measurement outcome. In the case in which we measure <span class="math notranslate nohighlight">\(0\)</span>, we have:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+|q'\rangle &amp;= \Pi_0 |q\rangle = | 0 \rangle \langle 0 |q \rangle =  | 0 \rangle(\alpha_0 \langle 0|0\rangle + \alpha_1 \langle 0|1\rangle)
+\\
+\\
+|q'\rangle &amp;=  \alpha_0 | 0 \rangle .
+\end{aligned}
+\end{split}\]</div>
+<p>We can follow the same procedure for when we measure <span class="math notranslate nohighlight">\(1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+|q'\rangle &amp;= \Pi_1 |q\rangle = | 1 \rangle \langle 1 |q \rangle =  | 1 \rangle(\alpha_0 \langle 1|0\rangle + \alpha_1 \langle 1|1\rangle)
+\\
+\\
+|q'\rangle &amp;=  \alpha_1 | 1 \rangle .
+\end{aligned}
+\end{split}\]</div>
+<p>However, if we inspect these results closely, having the probability amplitudes <span class="math notranslate nohighlight">\(\alpha_0, \alpha_1\)</span> pre-multiplying the outcome states is problematic because that means the statevectors are not properly normalized. To solve this, we divide the outcomes above by the norm (length) of each of the resulting statevectors, which is given by:</p>
+<div class="math notranslate nohighlight">
+\[\|\Pi_j |q\rangle \| = |\alpha_j| .\]</div>
+<p>But <span class="math notranslate nohighlight">\(|\alpha_j|\)</span> is nothing other than the square root of the probability <span class="math notranslate nohighlight">\(\mathbb{P}_j\)</span>. So, the right way to compute the resulting state after a measurement is given by:</p>
+<div class="math notranslate nohighlight">
+\[ |q'\rangle = \frac{1}{\sqrt{\mathbb{P}_i}}\Pi_j |q\rangle = \frac{1}{\sqrt{\langle q | \Pi_{j} | q \rangle}} \Pi_j |q\rangle .\]</div>
+<p>This seems like a ridiculous amount of math to simply show that after measuring <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> the outcome state is respectively <span class="math notranslate nohighlight">\(|0\rangle\)</span> or <span class="math notranslate nohighlight">\(|1\rangle\)</span>. However, this formalism (known as <a class="reference external" href="https://en.wikipedia.org/wiki/Projection-valued_measure">projector-value measure</a>, or PMV) will come in handy when we discuss multi-qubit systems and are interested in finding the resulting state after measuring just a subset of qubits.</p>
+<p>It is also worth noting that we can generalize this to measuring in any other basis. For example, we can construct projectors for the Hadamard basis:</p>
+<div class="math notranslate nohighlight">
+\[\Pi_+ = |+\rangle \langle+|, \quad \quad \Pi_- = |-\rangle \langle-|, \]</div>
+<p>and use them to compute the probabilities and outcome states resulting from measuring along the x-axis. We will almost entirely focus on only measuring in the computational basis, so the details of this generalization are not that critical, but it is at least worth knowing this can be done.</p>
 </section>
 </section>
 <section id="generalizing-quantum-gates">
@@ -1255,6 +1355,7 @@ RZ(\varphi) &amp;= \begin{bmatrix} e^{-i\varphi/2} &amp; 0 \\ 0 &amp; e^{i\varph
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-probability-amplitudes">1.2 Complex Probability Amplitudes</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#putting-it-all-together-and-the-bloch-sphere">1.3 Putting it all Together (…and the Bloch Sphere)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kets-bras-products-and-bases">1.4 Kets, Bras, Products, and Bases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quantum-measurement">1.5 Quantum Measurement</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizing-quantum-gates">2. Generalizing Quantum Gates</a><ul class="nav section-nav flex-column">
