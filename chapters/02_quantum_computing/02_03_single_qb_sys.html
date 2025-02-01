@@ -392,20 +392,20 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizing-the-qubit">1. Generalizing the Qubit</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-the-qubit">1. Defining the Qubit</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-probability-amplitudes">1.1 Real Probability Amplitudes</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-probability-amplitudes">1.2 Complex Probability Amplitudes</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#putting-it-all-together-and-the-bloch-sphere">1.3 Putting it all Together (…and the Bloch Sphere)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kets-bras-products-and-bases">1.4 Kets, Bras, Products, and Bases</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quantum-measurement">1.5 Quantum Measurement</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizing-quantum-gates">2. Generalizing Quantum Gates</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-quantum-gates">2. Defining Quantum Gates</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pauli-gates">2.1 The Pauli Gates</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-phase-gate-family">2.2 The Phase-Gate Family</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-rotation-gates">2.3 General Rotation Gates</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-quantum-measurement">3. Defining Quantum Measurement</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#footnotes">Footnotes</a></li>
 </ul>
             </nav>
@@ -423,8 +423,8 @@
 <hr></hr><p>In the introductory chapter to <a class="reference external" href="https://learnquantum.io/chapters/02_quantum_computing/02_01_bits_to_qubits.html">quantum bits and circuits</a>, we presented the model of a qubit inspired by the probabilistic nature of the spin of an electron. However, we only described how the electron behaves when its spin was pointing in the <span class="math notranslate nohighlight">\(\texttt{+}z, \texttt{-}z, \texttt{+}x, \texttt{-}x\)</span> directions (to which we assigned the qubit states <span class="math notranslate nohighlight">\(|0\rangle, |1\rangle, |+\rangle, |-\rangle\)</span>, respectively).</p>
 <p>But what if the electron spin is pointing along some arbitrary angle with respect to the <span class="math notranslate nohighlight">\(\texttt{+}z\)</span> direction? We did mention that the probability of measuring spin-up or spin-down depends on this angle, but did not give a quantitative rule for how electrons behave.</p>
 <p>In this chapter, we will not only expand on this idea, but we will also broaden the definition of the state that describes the spin of an electron pointing in any direction, which represents the most general way to express the state of a qubit. We will then introduce the <a class="reference external" href="https://en.wikipedia.org/wiki/Bloch_sphere">Bloch Sphere</a>, which is a graphical representation of the mathematical description of the qubit’s state, and lastly discuss the different operations we can apply to a qubit to transform it from one arbitrary state to another.</p>
-<section id="generalizing-the-qubit">
-<h2>1. Generalizing the Qubit<a class="headerlink" href="#generalizing-the-qubit" title="Link to this heading">#</a></h2>
+<section id="defining-the-qubit">
+<h2>1. Defining the Qubit<a class="headerlink" href="#defining-the-qubit" title="Link to this heading">#</a></h2>
 <p>Our goal for this section is to derive the final mathematical definition of a qubit. For this, we will follow a similar approach to that of the previous two chapters; that is, through a discovery process using simple examples. Our final goal is to derive the general vector representation of a qubit, given by:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} |q\rangle = \begin{bmatrix} \alpha_0 \\ \alpha_1 \end{bmatrix}, \text{ such that:} \; \alpha_j \in \mathbb{C}, \; \text{and} \; |\alpha_0|^2 + |\alpha_1|^2 = 1 ,\end{split}\]</div>
@@ -545,7 +545,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(775), np.str_(&#39;1&#39;): np.int64(225)}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(750), np.str_(&#39;1&#39;): np.int64(250)}
 </pre></div>
 </div>
 </div>
@@ -848,103 +848,11 @@
 \Pi_{1} = |1\rangle \langle 1 | = \begin{bmatrix} 0 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}. 
 \end{aligned}
 \end{split}\]</div>
-<p>We will use these in the next section to construct the mathematical tools needed to describe the process of quantum measurement.</p>
-</section>
-<section id="quantum-measurement">
-<h3>1.5 Quantum Measurement<a class="headerlink" href="#quantum-measurement" title="Link to this heading">#</a></h3>
-<p>The way we have approached measurements so far has been by simply <em>stating</em> that, given a qubit in a general superposition state:</p>
-<div class="math notranslate nohighlight">
-\[ |q \rangle = \alpha_0 |0\rangle + \alpha_1 |1\rangle, \]</div>
-<p>the probability of measuring <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> is given by the square modulus of the probability amplitude associated with each of the two corresponding states:</p>
-<div class="math notranslate nohighlight">
-\[ \mathbb{P}_0 = |\alpha_0|^2, \quad \mathbb{P}_1 = |\alpha_1|^2 .\]</div>
-<p>We also said that, after a measurement, the superposition state immediately changes to the corresponding basis state that corresponds to the measurement outcome <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split} |q \rangle = \alpha_0 |0\rangle + \alpha_1 |1\rangle \xrightarrow{\text{measure}} |q' \rangle =
-\begin{cases}
-|0\rangle \text{, with prob:} \; \mathbb{P}_0
-\\
-\\
-|1\rangle \text{, with prob:} \; \mathbb{P}_1 .
-\end{cases}
-\end{split}\]</div>
-<p>What we want though, is a formula to “extract” the probabilities of getting a given outcome given a general state <span class="math notranslate nohighlight">\(|q\rangle\)</span> rather than just <em>stating</em> that they correspond to the amplitudes squared. We can do this by noticing that taking the inner product between <span class="math notranslate nohighlight">\(|q\rangle\)</span> and each of the computational basis states <span class="math notranslate nohighlight">\(\{|0\rangle, |1\rangle \}\)</span> results their corresponding probability amplitude:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split} 
-\begin{aligned}
-\langle 0 | q \rangle &amp;= \langle 0 | (\alpha_0 |0\rangle + \alpha_1 |1\rangle) = \alpha_0 \langle 0|0\rangle + \alpha_1 \langle 0|1\rangle
-\\
-\langle 0 | q \rangle &amp;= \alpha_0,
-\end{aligned}
-\end{split}\]</div>
-<p>and:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split} 
-\begin{aligned}
-\langle 1 | q \rangle &amp;= \langle 1 | (\alpha_1 |0\rangle + \alpha_1 |1\rangle) = \alpha_0 \langle 1|0\rangle + \alpha_1 \langle 1|1\rangle 
-\\
-\langle 1 | q \rangle &amp;= \alpha_1 .
-\end{aligned}
-\end{split}\]</div>
-<p>Additionally, we showed in the previous section that <span class="math notranslate nohighlight">\(\langle y|x \rangle = \langle x|y \rangle^*\)</span>, which then gives us:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split} 
-\begin{aligned}
-\langle q | 0 \rangle &amp;= \alpha_0^* 
-\\
-\\
-\langle q | 1 \rangle &amp;= \alpha_1^* .
-\end{aligned}
-\end{split}\]</div>
-<p>Lastly, since we know the probabilities <span class="math notranslate nohighlight">\(\mathbb{P}_j\)</span> are given by <span class="math notranslate nohighlight">\(\alpha_j \alpha_j^* = |\alpha_j|^2\)</span>, we can combine the two results above to compute each of the two probabilities:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{aligned}
-\mathbb{P}_0 &amp;= \langle q | 0 \rangle \langle 0 | q \rangle = \alpha_0 \alpha_0^* = |\alpha_0|^2
-\\
-\\
-\mathbb{P}_1 &amp;= \langle q | 1 \rangle\langle 1 | q \rangle = \alpha_1 \alpha_1^* = |\alpha_1|^2 .
-\end{aligned}
-\end{split}\]</div>
-<p>Recalling from the previous section that <span class="math notranslate nohighlight">\(\Pi_{0} = | 0 \rangle \langle 0 |\)</span> and <span class="math notranslate nohighlight">\(\Pi_{1} = | 1 \rangle \langle 1 |\)</span>, we can also write the expressions above as:</p>
-<div class="math notranslate nohighlight">
-\[ \mathbb{P}_0 = \langle q | \Pi_{0} | q \rangle \quad \text{and} \quad \mathbb{P}_1 = \langle q | \Pi_{1} | q \rangle .\]</div>
-<p>In words, we can compute the probability of measuring the basis state <span class="math notranslate nohighlight">\(|j\rangle\)</span> by “sandwiching” the superposition state <span class="math notranslate nohighlight">\(|q\rangle\)</span> in-between the corresponding projection operator <span class="math notranslate nohighlight">\(\Pi_{j}\)</span>.</p>
-<p>Similarly, to find which state our superposition <strong>projects</strong> onto after a measurement, we can multiply the initial state <span class="math notranslate nohighlight">\(|q\rangle\)</span> by the projection operator associated with each measurement outcome. In the case in which we measure <span class="math notranslate nohighlight">\(0\)</span>, we have:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split} 
-\begin{aligned}
-|q'\rangle &amp;= \Pi_0 |q\rangle = | 0 \rangle \langle 0 |q \rangle =  | 0 \rangle(\alpha_0 \langle 0|0\rangle + \alpha_1 \langle 0|1\rangle)
-\\
-\\
-|q'\rangle &amp;=  \alpha_0 | 0 \rangle .
-\end{aligned}
-\end{split}\]</div>
-<p>We can follow the same procedure for when we measure <span class="math notranslate nohighlight">\(1\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split} 
-\begin{aligned}
-|q'\rangle &amp;= \Pi_1 |q\rangle = | 1 \rangle \langle 1 |q \rangle =  | 1 \rangle(\alpha_0 \langle 1|0\rangle + \alpha_1 \langle 1|1\rangle)
-\\
-\\
-|q'\rangle &amp;=  \alpha_1 | 1 \rangle .
-\end{aligned}
-\end{split}\]</div>
-<p>However, if we inspect these results closely, having the probability amplitudes <span class="math notranslate nohighlight">\(\alpha_0, \alpha_1\)</span> pre-multiplying the outcome states is problematic because that means the statevectors are not properly normalized. To solve this, we divide the outcomes above by the norm (length) of each of the resulting statevectors, which is given by:</p>
-<div class="math notranslate nohighlight">
-\[\|\Pi_j |q\rangle \| = |\alpha_j| .\]</div>
-<p>But <span class="math notranslate nohighlight">\(|\alpha_j|\)</span> is nothing other than the square root of the probability <span class="math notranslate nohighlight">\(\mathbb{P}_j\)</span>. So, the right way to compute the resulting state after a measurement is given by:</p>
-<div class="math notranslate nohighlight">
-\[ |q'\rangle = \frac{\Pi_j |q\rangle}{\|\Pi_j |q\rangle \|} = \frac{\Pi_j |q\rangle}{\sqrt{\mathbb{P}_i}} = \frac{\Pi_j |q\rangle}{\sqrt{\langle q | \Pi_{j} | q \rangle}} .\]</div>
-<p>This seems like a ridiculous amount of math to simply show that after measuring <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> the outcome state is respectively <span class="math notranslate nohighlight">\(|0\rangle\)</span> or <span class="math notranslate nohighlight">\(|1\rangle\)</span>. However, this formalism (known as <a class="reference external" href="https://en.wikipedia.org/wiki/Projection-valued_measure">projector-value measure</a>, or PMV) will come in handy when we discuss multi-qubit systems and are interested in finding the resulting state after measuring just a subset of qubits.</p>
-<p>It is also worth noting that we can generalize this to measuring in any other basis. For example, we can construct projectors for the Hadamard basis:</p>
-<div class="math notranslate nohighlight">
-\[\Pi_+ = |+\rangle \langle+|, \quad \text{and} \quad \Pi_- = |-\rangle \langle-|, \]</div>
-<p>and use them to compute the probabilities and outcome states resulting from measuring along the <span class="math notranslate nohighlight">\(x\)</span>-axis of the Bloch sphere. We will almost entirely focus on only measuring in the computational basis, so the details of this generalization are not that critical, but it is at least worth knowing this can be done.</p>
+<p>We will use these in section to construct the mathematical tools needed to describe the process of quantum measurement.</p>
 </section>
 </section>
-<section id="generalizing-quantum-gates">
-<h2>2. Generalizing Quantum Gates<a class="headerlink" href="#generalizing-quantum-gates" title="Link to this heading">#</a></h2>
+<section id="defining-quantum-gates">
+<h2>2. Defining Quantum Gates<a class="headerlink" href="#defining-quantum-gates" title="Link to this heading">#</a></h2>
 <p>When we first introduced the idea of <a class="reference external" href="https://learnquantum.io/chapters/02_quantum_computing/02_01_bits_to_qubits.html#quantum-circuits">quantum circuits</a>, we discussed two main quantum gates: the <span class="math notranslate nohighlight">\(X\)</span> gate, which was equivalent to the classical <strong>NOT</strong> gate (i.e., it flips <span class="math notranslate nohighlight">\(|0\rangle\)</span> to <span class="math notranslate nohighlight">\(|1\rangle\)</span>, and vice versa), and the Hadamard or <span class="math notranslate nohighlight">\(H\)</span> gate, which respectively transforms states <span class="math notranslate nohighlight">\(|0\rangle, |1\rangle\)</span> to <span class="math notranslate nohighlight">\(|+\rangle, |-\rangle\)</span>, and vice versa. These were just two examples of a family of gates described by what are known as <a class="reference external" href="https://en.wikipedia.org/wiki/Unitary_matrix">unitary matrices</a>, which are a generalization of the invertible matrices we used to express classical reversible circuits. A matrix <span class="math notranslate nohighlight">\(U\)</span> is unitary if, when we multiply it by its <a class="reference external" href="https://en.wikipedia.org/wiki/Conjugate_transpose">conjugate transpose</a> the result is the identity operator:</p>
 <div class="math notranslate nohighlight">
 \[ U U^\dagger = U^\dagger U = I. \]</div>
@@ -1278,6 +1186,98 @@ RZ(\varphi) &amp;= \begin{bmatrix} e^{-i\varphi/2} &amp; 0 \\ 0 &amp; e^{i\varph
 <p>Even though there are an infinite number of possible unitary transformations, the ones we covered here are perhaps the most utilized ones. In the next chapter we will expand all of these ideas to multiple qubits and discuss the most common gates used to have two or more qubits interact.</p>
 </section>
 </section>
+<section id="defining-quantum-measurement">
+<h2>3. Defining Quantum Measurement<a class="headerlink" href="#defining-quantum-measurement" title="Link to this heading">#</a></h2>
+<p>So far, the way we have approached how measurements takes place has been by simply <em>stating</em> that, given a qubit in a general superposition state:</p>
+<div class="math notranslate nohighlight">
+\[ |q \rangle = \alpha_0 |0\rangle + \alpha_1 |1\rangle, \]</div>
+<p>the probability of measuring <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> is given by the square modulus of the probability amplitude associated with each of the two corresponding states:</p>
+<div class="math notranslate nohighlight">
+\[ \mathbb{P}_0 = |\alpha_0|^2, \quad \mathbb{P}_1 = |\alpha_1|^2 .\]</div>
+<p>We also said that, after a measurement, the superposition state immediately changes to the corresponding basis state that corresponds to the measurement outcome <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} |q \rangle = \alpha_0 |0\rangle + \alpha_1 |1\rangle \xrightarrow{\text{measure}} |q' \rangle =
+\begin{cases}
+|0\rangle \text{, with prob:} \; \mathbb{P}_0
+\\
+\\
+|1\rangle \text{, with prob:} \; \mathbb{P}_1 .
+\end{cases}
+\end{split}\]</div>
+<p>What we want though, is a mathematical procedure to “extract” the probabilities of getting a given outcome given a general state <span class="math notranslate nohighlight">\(|q\rangle\)</span> rather than just <em>stating</em> that they correspond to the amplitudes squared. We can do this by noticing that taking the inner product between <span class="math notranslate nohighlight">\(|q\rangle\)</span> and each of the computational basis states <span class="math notranslate nohighlight">\(\{|0\rangle, |1\rangle \}\)</span> results their corresponding probability amplitude:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+\langle 0 | q \rangle &amp;= \langle 0 | (\alpha_0 |0\rangle + \alpha_1 |1\rangle) = \alpha_0 \langle 0|0\rangle + \alpha_1 \langle 0|1\rangle
+\\
+\langle 0 | q \rangle &amp;= \alpha_0,
+\end{aligned}
+\end{split}\]</div>
+<p>and:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+\langle 1 | q \rangle &amp;= \langle 1 | (\alpha_1 |0\rangle + \alpha_1 |1\rangle) = \alpha_0 \langle 1|0\rangle + \alpha_1 \langle 1|1\rangle 
+\\
+\langle 1 | q \rangle &amp;= \alpha_1 .
+\end{aligned}
+\end{split}\]</div>
+<p>Additionally, we showed in section 1.4 that <span class="math notranslate nohighlight">\(\langle y|x \rangle = \langle x|y \rangle^*\)</span>, which we can use here to get:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+\langle q | 0 \rangle &amp;= \alpha_0^* 
+\\
+\\
+\langle q | 1 \rangle &amp;= \alpha_1^* .
+\end{aligned}
+\end{split}\]</div>
+<p>Lastly, since we know the probabilities <span class="math notranslate nohighlight">\(\mathbb{P}_j\)</span> are given by <span class="math notranslate nohighlight">\(\alpha_j^* \alpha_j = |\alpha_j|^2\)</span>, we can combine the two results above to compute each of the two probabilities:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\mathbb{P}_0 &amp;= \langle q | 0 \rangle \langle 0 | q \rangle = \alpha_0^* \alpha_0 = |\alpha_0|^2
+\\
+\\
+\mathbb{P}_1 &amp;= \langle q | 1 \rangle\langle 1 | q \rangle = \alpha_1^* \alpha_1 = |\alpha_1|^2 .
+\end{aligned}
+\end{split}\]</div>
+<p>Recalling (also from section 1.4) that <span class="math notranslate nohighlight">\(\Pi_{0} = | 0 \rangle \langle 0 |\)</span> and <span class="math notranslate nohighlight">\(\Pi_{1} = | 1 \rangle \langle 1 |\)</span>, we can rewrite the expressions above as:</p>
+<div class="math notranslate nohighlight">
+\[ \mathbb{P}_0 = \langle q | \Pi_{0} | q \rangle \quad \text{and} \quad \mathbb{P}_1 = \langle q | \Pi_{1} | q \rangle .\]</div>
+<p><span class="math notranslate nohighlight">\(\Pi_0\)</span> and <span class="math notranslate nohighlight">\(\Pi_1\)</span> are what are known as <a class="reference external" href="https://en.wikipedia.org/wiki/Projection_(linear_algebra)#Definitions">projection operators</a>, which we can use to compute the probability of measuring the basis state <span class="math notranslate nohighlight">\(|j\rangle\)</span> by “sandwiching” the superposition state <span class="math notranslate nohighlight">\(|q\rangle\)</span> in-between the corresponding projection operator <span class="math notranslate nohighlight">\(\Pi_{j}\)</span>. These two projection operators form a set known as a <a class="reference external" href="https://en.wikipedia.org/wiki/Projection-valued_measure">projector-value measure</a> (PVM), and have several important properties, such as being orthogonal to each other, squaring to themselves, and being complete (summing to identity), but these details are not so relevant for our current discussion. We will touch on this in later chapter when we discuss measurement <a class="reference external" href="https://en.wikipedia.org/wiki/Observable">observables</a>.</p>
+<p>Now, to find which state our superposition <strong>projects</strong> onto after a measurement, we can multiply the initial state <span class="math notranslate nohighlight">\(|q\rangle\)</span> by the projection operator associated with each measurement outcome. In the case in which we measure <span class="math notranslate nohighlight">\(0\)</span>, we have:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+|q'\rangle &amp;= \Pi_0 |q\rangle = | 0 \rangle \langle 0 |q \rangle =  | 0 \rangle(\alpha_0 \langle 0|0\rangle + \alpha_1 \langle 0|1\rangle)
+\\
+\\
+|q'\rangle &amp;=  \alpha_0 | 0 \rangle .
+\end{aligned}
+\end{split}\]</div>
+<p>We can follow the same procedure for when we measure <span class="math notranslate nohighlight">\(1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+|q'\rangle &amp;= \Pi_1 |q\rangle = | 1 \rangle \langle 1 |q \rangle =  | 1 \rangle(\alpha_0 \langle 1|0\rangle + \alpha_1 \langle 1|1\rangle)
+\\
+\\
+|q'\rangle &amp;=  \alpha_1 | 1 \rangle .
+\end{aligned}
+\end{split}\]</div>
+<p>However, if we inspect these results closely, having the probability amplitudes <span class="math notranslate nohighlight">\(\alpha_0, \alpha_1\)</span> pre-multiplying the outcome states is problematic because that means the statevectors are not properly normalized. To solve this, we divide the outcomes above by the norm (length) of each of the resulting statevectors, which is given by:</p>
+<div class="math notranslate nohighlight">
+\[\|\Pi_j |q\rangle \| = |\alpha_j| .\]</div>
+<p>But, here <span class="math notranslate nohighlight">\(|\alpha_j|\)</span> is nothing other than the square root of the probability <span class="math notranslate nohighlight">\(\mathbb{P}_j\)</span>. So, the right way to compute the resulting state after a measurement is given by:</p>
+<div class="math notranslate nohighlight">
+\[ |q'\rangle = \frac{\Pi_j |q\rangle}{\|\Pi_j |q\rangle \|} = \frac{\Pi_j |q\rangle}{\sqrt{\mathbb{P}_i}} = \frac{\Pi_j |q\rangle}{\sqrt{\langle q | \Pi_{j} | q \rangle}} .\]</div>
+<p>This seems like a ridiculous amount of math to simply show that after measuring <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> the outcome state is respectively <span class="math notranslate nohighlight">\(|0\rangle\)</span> or <span class="math notranslate nohighlight">\(|1\rangle\)</span>. However, the PVM formalism will come in handy when we discuss multi-qubit systems and are interested in finding the resulting state after measuring just a subset of qubits.</p>
+<p>It is also worth noting that we can generalize this to measuring in any other basis. For example, we can construct projectors for the Hadamard basis:</p>
+<div class="math notranslate nohighlight">
+\[\Pi_+ = |+\rangle \langle+|, \quad \text{and} \quad \Pi_- = |-\rangle \langle-|, \]</div>
+<p>and use them to compute the probabilities and outcome states resulting from measuring along the <span class="math notranslate nohighlight">\(x\)</span>-axis of the Bloch sphere. We will almost entirely focus on only measuring in the computational basis, so the details of this generalization are not that critical at this point, but it is at least worth knowing this can be done.</p>
+</section>
 <section id="footnotes">
 <h2>Footnotes<a class="headerlink" href="#footnotes" title="Link to this heading">#</a></h2>
 <p><a name="footnote1"></a><span style="font-size: smaller;"><span class="math notranslate nohighlight">\(^*\)</span>Note that here we are just abstractly superimposing the complex plane with the physical <span class="math notranslate nohighlight">\(xy\)</span>-plane to assign a complex number to the corresponding statevector associated with the spin in some given direction on this plane. We are <strong>not</strong> saying that this complex number is related to the physical length of the spin vector, or directly multiplying the full statevector. The relation between this complex value and the state is clarified in the section discussing the Bloch sphere. (<a class="reference internal" href="#back1"><span class="xref myst">go back</span></a>)</span></p>
@@ -1351,20 +1351,20 @@ RZ(\varphi) &amp;= \begin{bmatrix} e^{-i\varphi/2} &amp; 0 \\ 0 &amp; e^{i\varph
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizing-the-qubit">1. Generalizing the Qubit</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-the-qubit">1. Defining the Qubit</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-probability-amplitudes">1.1 Real Probability Amplitudes</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-probability-amplitudes">1.2 Complex Probability Amplitudes</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#putting-it-all-together-and-the-bloch-sphere">1.3 Putting it all Together (…and the Bloch Sphere)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kets-bras-products-and-bases">1.4 Kets, Bras, Products, and Bases</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quantum-measurement">1.5 Quantum Measurement</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizing-quantum-gates">2. Generalizing Quantum Gates</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-quantum-gates">2. Defining Quantum Gates</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pauli-gates">2.1 The Pauli Gates</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-phase-gate-family">2.2 The Phase-Gate Family</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-rotation-gates">2.3 General Rotation Gates</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-quantum-measurement">3. Defining Quantum Measurement</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#footnotes">Footnotes</a></li>
 </ul>
   </nav></div>
