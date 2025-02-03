@@ -392,20 +392,24 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-the-qubit">1. Defining the Qubit</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#refining-the-qubit">1. Refining the Qubit</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-probability-amplitudes">1.1 Real Probability Amplitudes</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-probability-amplitudes">1.2 Complex Probability Amplitudes</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#putting-it-all-together-and-the-bloch-sphere">1.3 Putting it all Together (…and the Bloch Sphere)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kets-bras-products-and-bases">1.4 Kets, Bras, Products, and Bases</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-quantum-gates">2. Defining Quantum Gates</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#refining-quantum-gates">2. Refining Quantum Gates</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pauli-gates">2.1 The Pauli Gates</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-phase-gate-family">2.2 The Phase-Gate Family</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-rotation-gates">2.3 General Rotation Gates</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-quantum-measurement">3. Defining Quantum Measurement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#refining-quantum-measurement">3. Refining Quantum Measurement</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#projective-measurements">3.1 Projective Measurements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#post-selection-and-reset-operations">3.2 Post-Selection and Reset Operations</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#footnotes">Footnotes</a></li>
 </ul>
             </nav>
@@ -423,8 +427,8 @@
 <hr></hr><p>In the introductory chapter to <a class="reference external" href="https://learnquantum.io/chapters/02_quantum_computing/02_01_bits_to_qubits.html">quantum bits and circuits</a>, we presented the model of a qubit inspired by the probabilistic nature of the spin of an electron. However, we only described how the electron behaves when its spin was pointing in the <span class="math notranslate nohighlight">\(\texttt{+}z, \texttt{-}z, \texttt{+}x, \texttt{-}x\)</span> directions (to which we assigned the qubit states <span class="math notranslate nohighlight">\(|0\rangle, |1\rangle, |+\rangle, |-\rangle\)</span>, respectively).</p>
 <p>But what if the electron spin is pointing along some arbitrary angle with respect to the <span class="math notranslate nohighlight">\(\texttt{+}z\)</span> direction? We did mention that the probability of measuring spin-up or spin-down depends on this angle, but did not give a quantitative rule for how electrons behave.</p>
 <p>In this chapter, we will not only expand on this idea, but we will also broaden the definition of the state that describes the spin of an electron pointing in any direction, which represents the most general way to express the state of a qubit. We will then introduce the <a class="reference external" href="https://en.wikipedia.org/wiki/Bloch_sphere">Bloch Sphere</a>, which is a graphical representation of the mathematical description of the qubit’s state, and lastly discuss the different operations we can apply to a qubit to transform it from one arbitrary state to another.</p>
-<section id="defining-the-qubit">
-<h2>1. Defining the Qubit<a class="headerlink" href="#defining-the-qubit" title="Link to this heading">#</a></h2>
+<section id="refining-the-qubit">
+<h2>1. Refining the Qubit<a class="headerlink" href="#refining-the-qubit" title="Link to this heading">#</a></h2>
 <p>Our goal for this section is to derive the final mathematical definition of a qubit. For this, we will follow a similar approach to that of the previous two chapters; that is, through a discovery process using simple examples. Our final goal is to derive the general vector representation of a qubit, given by:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} |q\rangle = \begin{bmatrix} \alpha_0 \\ \alpha_1 \end{bmatrix}, \text{ such that:} \; \alpha_j \in \mathbb{C}, \; \text{and} \; |\alpha_0|^2 + |\alpha_1|^2 = 1 ,\end{split}\]</div>
@@ -545,7 +549,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(750), np.str_(&#39;1&#39;): np.int64(250)}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(735), np.str_(&#39;1&#39;): np.int64(265)}
 </pre></div>
 </div>
 </div>
@@ -851,8 +855,8 @@
 <p>We will use these in section to construct the mathematical tools needed to describe the process of quantum measurement.</p>
 </section>
 </section>
-<section id="defining-quantum-gates">
-<h2>2. Defining Quantum Gates<a class="headerlink" href="#defining-quantum-gates" title="Link to this heading">#</a></h2>
+<section id="refining-quantum-gates">
+<h2>2. Refining Quantum Gates<a class="headerlink" href="#refining-quantum-gates" title="Link to this heading">#</a></h2>
 <p>When we first introduced the idea of <a class="reference external" href="https://learnquantum.io/chapters/02_quantum_computing/02_01_bits_to_qubits.html#quantum-circuits">quantum circuits</a>, we discussed two main quantum gates: the <span class="math notranslate nohighlight">\(X\)</span> gate, which was equivalent to the classical <strong>NOT</strong> gate (i.e., it flips <span class="math notranslate nohighlight">\(|0\rangle\)</span> to <span class="math notranslate nohighlight">\(|1\rangle\)</span>, and vice versa), and the Hadamard or <span class="math notranslate nohighlight">\(H\)</span> gate, which respectively transforms states <span class="math notranslate nohighlight">\(|0\rangle, |1\rangle\)</span> to <span class="math notranslate nohighlight">\(|+\rangle, |-\rangle\)</span>, and vice versa. These were just two examples of a family of gates described by what are known as <a class="reference external" href="https://en.wikipedia.org/wiki/Unitary_matrix">unitary matrices</a>, which are a generalization of the invertible matrices we used to express classical reversible circuits. A matrix <span class="math notranslate nohighlight">\(U\)</span> is unitary if, when we multiply it by its <a class="reference external" href="https://en.wikipedia.org/wiki/Conjugate_transpose">conjugate transpose</a> the result is the identity operator:</p>
 <div class="math notranslate nohighlight">
 \[ U U^\dagger = U^\dagger U = I. \]</div>
@@ -1186,9 +1190,26 @@ RZ(\varphi) &amp;= \begin{bmatrix} e^{-i\varphi/2} &amp; 0 \\ 0 &amp; e^{i\varph
 <p>Even though there are an infinite number of possible unitary transformations, the ones we covered here are perhaps the most utilized ones. In the next chapter we will expand all of these ideas to multiple qubits and discuss the most common gates used to have two or more qubits interact.</p>
 </section>
 </section>
-<section id="defining-quantum-measurement">
-<h2>3. Defining Quantum Measurement<a class="headerlink" href="#defining-quantum-measurement" title="Link to this heading">#</a></h2>
-<p>So far, the way we have approached how measurements takes place has been by simply <em>stating</em> that, given a qubit in a general superposition state:</p>
+<section id="refining-quantum-measurement">
+<h2>3. Refining Quantum Measurement<a class="headerlink" href="#refining-quantum-measurement" title="Link to this heading">#</a></h2>
+<p>Quantum measurement is the process by which a quantum property, like electron spin, is coupled to some classical property that we can physically observe or interpret, like the vertical position of a mark or flash on a screen:</p>
+<a class="reference internal image-reference" href="../../_images/02_03_07_dest_meas.png"><img alt="../../_images/02_03_07_dest_meas.png" class="align-center" src="../../_images/02_03_07_dest_meas.png" style="width: 375px;" /></a>
+<p>In this type of measurement, the electron gets absorbed by the screen, so there is no sense in talking about the spin of the electron <strong>after</strong> the measurement takes place. We call this type of measurement a destructive measurement.</p>
+<p>However, an equally valid way to measure electron spin would be to “carve” holes into the screen and let the electron pass through:</p>
+<a class="reference internal image-reference" href="../../_images/02_03_08_nondest_meas.png"><img alt="../../_images/02_03_08_nondest_meas.png" class="align-center" src="../../_images/02_03_08_nondest_meas.png" style="width: 400px;" /></a>
+<p>If we observe the electron passing through the top opening, we now know that its spin is pointing in the <span class="math notranslate nohighlight">\(+z\)</span> direction. Similarly, if we see it passed through the bottom opening, we know its spin is pointing in the <span class="math notranslate nohighlight">\(-z\)</span> direction.  We call this a non-destructive measurement because the electron survived the measurement process and it is therefore available to be modified and measured again. A common way to refer to the process of going from a superposition to one of the possible states associated with the measurement outcome is to say that the statevector of the electron spin <a class="reference external" href="https://en.wikipedia.org/wiki/Wave_function_collapse">collapsed</a>. Here, we will avoid using the term “collapse” since sometimes it can be associated with very specific <a class="reference external" href="https://en.wikipedia.org/wiki/Copenhagen_interpretation">interpretations of quantum mechanics</a>. We will instead use the term “projection” or “reduction” of the statevector.</p>
+<p>There are then three important components associated with this type of measurement:</p>
+<ol class="arabic simple">
+<li><p>The classical outcome <span class="math notranslate nohighlight">\(j\)</span> obtained after the measurement (for a qubit: <span class="math notranslate nohighlight">\(j \in \{0,1\}\)</span>).</p></li>
+<li><p>The probability <span class="math notranslate nohighlight">\(\mathbb{P}_j\)</span> of measuring the classical outcome <span class="math notranslate nohighlight">\(j\)</span>.</p></li>
+<li><p>The quantum state <span class="math notranslate nohighlight">\(|j\rangle\)</span> onto which the pre-measurement statevector projects onto.</p></li>
+</ol>
+<p>This is why, in some quantum circuit diagrams, we deliberately include a classical register that “stores” the classic result in addition to the quantum register reserved for the quantum state of the qubit even after it has been projected by a measurement:</p>
+<a class="reference internal image-reference" href="../../_images/02_03_09_meas_cir.png"><img alt="../../_images/02_03_09_meas_cir.png" class="align-center" src="../../_images/02_03_09_meas_cir.png" style="width: 500px;" /></a>
+<p>What we want to do next is present a slightly more formal way we obtain the three items described above given the statevector of a qubit <span class="math notranslate nohighlight">\(|q\rangle\)</span>, and the basis on which we want to perform our measurement.</p>
+<section id="projective-measurements">
+<h3>3.1 Projective Measurements<a class="headerlink" href="#projective-measurements" title="Link to this heading">#</a></h3>
+<p>So far, the way we have approached how measurements take place has been by simply <em>stating</em> that, given a qubit in a general superposition state:</p>
 <div class="math notranslate nohighlight">
 \[ |q \rangle = \alpha_0 |0\rangle + \alpha_1 |1\rangle, \]</div>
 <p>the probability of measuring <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> is given by the square modulus of the probability amplitude associated with each of the two corresponding states:</p>
@@ -1204,7 +1225,7 @@ RZ(\varphi) &amp;= \begin{bmatrix} e^{-i\varphi/2} &amp; 0 \\ 0 &amp; e^{i\varph
 |1\rangle \text{, with prob:} \; \mathbb{P}_1 .
 \end{cases}
 \end{split}\]</div>
-<p>What we want though, is a mathematical procedure to “extract” the probabilities of getting a given outcome given a general state <span class="math notranslate nohighlight">\(|q\rangle\)</span> rather than just <em>stating</em> that they correspond to the amplitudes squared. We can do this by noticing that taking the inner product between <span class="math notranslate nohighlight">\(|q\rangle\)</span> and each of the computational basis states <span class="math notranslate nohighlight">\(\{|0\rangle, |1\rangle \}\)</span> results their corresponding probability amplitude:</p>
+<p>What we want though, is a mathematical procedure that, given a general state <span class="math notranslate nohighlight">\(|q\rangle\)</span>, allows us to “extract” the probabilities of getting a certain outcome instead of simply <em>stating</em> that they correspond to the amplitudes squared. We can do this by noticing that taking the inner product between <span class="math notranslate nohighlight">\(|q\rangle\)</span> and each of the computational basis states <span class="math notranslate nohighlight">\(\{|0\rangle, |1\rangle \}\)</span> results their corresponding probability amplitude:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} 
 \begin{aligned}
@@ -1277,6 +1298,17 @@ RZ(\varphi) &amp;= \begin{bmatrix} e^{-i\varphi/2} &amp; 0 \\ 0 &amp; e^{i\varph
 <div class="math notranslate nohighlight">
 \[\Pi_+ = |+\rangle \langle+|, \quad \text{and} \quad \Pi_- = |-\rangle \langle-|, \]</div>
 <p>and use them to compute the probabilities and outcome states resulting from measuring along the <span class="math notranslate nohighlight">\(x\)</span>-axis of the Bloch sphere. We will almost entirely focus on only measuring in the computational basis, so the details of this generalization are not that critical at this point, but it is at least worth knowing this can be done.</p>
+<p>As for the classical outcomes of a PVM, one can also be compute these by finding the non-zero <a class="reference external" href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors">eigenvalue</a> of each of the matrices <span class="math notranslate nohighlight">\(\Pi_j\)</span>. But again, we will not go into the details of this until a later chapter.</p>
+<p>So, in summary, given a state <span class="math notranslate nohighlight">\(|q\rangle\)</span>, and a PVM defined by the set of projection operators <span class="math notranslate nohighlight">\(\{\Pi_j\}\)</span> we have that:</p>
+<ol class="arabic simple">
+<li><p>The classical outcome <span class="math notranslate nohighlight">\(j\)</span> is the eigenvalue of the operator <span class="math notranslate nohighlight">\(\Pi_j .\)</span></p></li>
+<li><p>The probability of obtaining outcome <span class="math notranslate nohighlight">\(j\)</span> is given by <span class="math notranslate nohighlight">\(\mathbb{P}_j = \langle q | \Pi_j | q \rangle .\)</span></p></li>
+<li><p>The projection quantum state associated with outcome <span class="math notranslate nohighlight">\(j\)</span> is computed as: <span class="math notranslate nohighlight">\(|q'\rangle = \frac{1}{\sqrt{\mathbb{P}_i}} \Pi_j |q\rangle.\)</span></p></li>
+</ol>
+</section>
+<section id="post-selection-and-reset-operations">
+<h3>3.2 Post-Selection and Reset Operations<a class="headerlink" href="#post-selection-and-reset-operations" title="Link to this heading">#</a></h3>
+</section>
 </section>
 <section id="footnotes">
 <h2>Footnotes<a class="headerlink" href="#footnotes" title="Link to this heading">#</a></h2>
@@ -1351,20 +1383,24 @@ RZ(\varphi) &amp;= \begin{bmatrix} e^{-i\varphi/2} &amp; 0 \\ 0 &amp; e^{i\varph
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-the-qubit">1. Defining the Qubit</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#refining-the-qubit">1. Refining the Qubit</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-probability-amplitudes">1.1 Real Probability Amplitudes</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-probability-amplitudes">1.2 Complex Probability Amplitudes</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#putting-it-all-together-and-the-bloch-sphere">1.3 Putting it all Together (…and the Bloch Sphere)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kets-bras-products-and-bases">1.4 Kets, Bras, Products, and Bases</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-quantum-gates">2. Defining Quantum Gates</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#refining-quantum-gates">2. Refining Quantum Gates</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pauli-gates">2.1 The Pauli Gates</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-phase-gate-family">2.2 The Phase-Gate Family</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-rotation-gates">2.3 General Rotation Gates</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-quantum-measurement">3. Defining Quantum Measurement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#refining-quantum-measurement">3. Refining Quantum Measurement</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#projective-measurements">3.1 Projective Measurements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#post-selection-and-reset-operations">3.2 Post-Selection and Reset Operations</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#footnotes">Footnotes</a></li>
 </ul>
   </nav></div>
