@@ -549,7 +549,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(735), np.str_(&#39;1&#39;): np.int64(265)}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(744), np.str_(&#39;1&#39;): np.int64(256)}
 </pre></div>
 </div>
 </div>
@@ -1308,6 +1308,53 @@ RZ(\varphi) &amp;= \begin{bmatrix} e^{-i\varphi/2} &amp; 0 \\ 0 &amp; e^{i\varph
 </section>
 <section id="post-selection-and-reset-operations">
 <h3>3.2 Post-Selection and Reset Operations<a class="headerlink" href="#post-selection-and-reset-operations" title="Link to this heading">#</a></h3>
+<p>Now that we have a more formal definition for what measurements are, we can go back to two operations we discussed before: post-selection and reset. Post-selection is nothing other than performing a measurement, and keeping only the state we’re interested in. For example, post-selection on <span class="math notranslate nohighlight">\(|0\rangle\)</span> will consist of measuring state</p>
+<div class="math notranslate nohighlight">
+\[ |q\rangle = \alpha_0 |0\rangle + \alpha_1 |1\rangle, \]</div>
+<p>and discarding the outcome if the classical result is <span class="math notranslate nohighlight">\(1\)</span>. This is basically equivalent to applying to <span class="math notranslate nohighlight">\(|q\rangle\)</span> the projection operator associated with the outcome we want with the corresponding normalization factor.</p>
+<p>A reset operation is similar; however, instead of discarding the result we don’t want, we applying an <span class="math notranslate nohighlight">\(X\)</span> gate condition on the classical outcome we got.</p>
+<p>Here is an example in Qiskit where we initialize our qubit in a superposition, measure it, and then flip the result if the classical outcome is <span class="math notranslate nohighlight">\(1\)</span>. This equivalent to a <span class="math notranslate nohighlight">\(|0\rangle\)</span> reset operation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_aer</span><span class="w"> </span><span class="kn">import</span> <span class="n">AerSimulator</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>                           <span class="c1"># Initialize in superposition</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>                   <span class="c1"># Measure state (should give 50/50 `0` or `1`)</span>
+<span class="k">with</span> <span class="n">qc</span><span class="o">.</span><span class="n">if_test</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)):</span> <span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>   <span class="c1"># Apply X gate if classical result is `1`</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">save_statevector</span><span class="p">()</span>             <span class="c1"># Save statevector after running simulation</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/9717ebcb23436849ff73071119a456511b6cd9e4394a795a866cbfc6c2214880.png" src="../../_images/9717ebcb23436849ff73071119a456511b6cd9e4394a795a866cbfc6c2214880.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulate circuit above and extract statevector (it should always be |0⟩)</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">get_statevector</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;State after reset: &#39;</span><span class="p">)</span>
+<span class="n">q</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>State after reset: 
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[ |0\rangle\]</div>
+</div>
+</div>
 </section>
 </section>
 <section id="footnotes">
