@@ -549,7 +549,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(744), np.str_(&#39;1&#39;): np.int64(256)}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(723), np.str_(&#39;1&#39;): np.int64(277)}
 </pre></div>
 </div>
 </div>
@@ -867,6 +867,7 @@
 <div class="math notranslate nohighlight">
 \[\begin{split} U^{\dagger} = \begin{bmatrix} u_{00}^* &amp; u_{10}^* \\ u_{01}^* &amp; u_{11}^* \end{bmatrix} \end{split}\]</div>
 <p>What the relation <span class="math notranslate nohighlight">\( U^\dagger U = I\)</span> implies, is that, for every quantum gate (represented by a unitary <span class="math notranslate nohighlight">\(U\)</span>), there exists another quantum gate (given by <span class="math notranslate nohighlight">\(U^\dagger\)</span>) that “reverses” its operation. This is why we say that, unlike conventional classical computing, quantum computing is reversible.</p>
+<p>Unitary matrices have the important property that they are norm preserving. This means that, evolving a normalized state through a unitary results in a statevector that is also normalized (i.e., the probabilities of such vector will still add to <span class="math notranslate nohighlight">\(1\)</span>).</p>
 <p>Let’s now discuss some of the more relevant gates used in quantum computing. This will help us unravel some of the most important properties their corresponding unitary matrices have.</p>
 <section id="the-pauli-gates">
 <h3>2.1 The Pauli Gates<a class="headerlink" href="#the-pauli-gates" title="Link to this heading">#</a></h3>
