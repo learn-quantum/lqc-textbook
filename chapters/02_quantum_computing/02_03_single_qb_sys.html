@@ -549,7 +549,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(742), np.str_(&#39;1&#39;): np.int64(258)}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(739), np.str_(&#39;1&#39;): np.int64(261)}
 </pre></div>
 </div>
 </div>
@@ -1299,10 +1299,10 @@ RZ(\varphi) &amp;= \begin{bmatrix} e^{-i\varphi/2} &amp; 0 \\ 0 &amp; e^{i\varph
 <div class="math notranslate nohighlight">
 \[\Pi_+ = |+\rangle \langle+|, \quad \text{and} \quad \Pi_- = |-\rangle \langle-|, \]</div>
 <p>and use them to compute the probabilities and outcome states resulting from measuring along the <span class="math notranslate nohighlight">\(x\)</span>-axis of the Bloch sphere. We will almost entirely focus on only measuring in the computational basis, so the details of this generalization are not that critical at this point, but it is at least worth knowing this can be done.</p>
-<p>As for the classical outcomes of a PVM, one can also be compute these by finding the non-zero <a class="reference external" href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors">eigenvalue</a> of each of the matrices <span class="math notranslate nohighlight">\(\Pi_j\)</span>. But again, we will not go into the details of this until a later chapter.</p>
+<p>As for the classical outcomes of a PVM, one can also be compute these by finding which is the non-zero <a class="reference external" href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors">eigenvalue</a> of each of the matrices <span class="math notranslate nohighlight">\(\Pi_j\)</span>. But again, we will not go into the details of this until a later chapter.</p>
 <p>So, in summary, given a state <span class="math notranslate nohighlight">\(|q\rangle\)</span>, and a PVM defined by the set of projection operators <span class="math notranslate nohighlight">\(\{\Pi_j\}\)</span> we have that:</p>
 <ol class="arabic simple">
-<li><p>The classical outcome <span class="math notranslate nohighlight">\(j\)</span> is the eigenvalue of the operator <span class="math notranslate nohighlight">\(\Pi_j .\)</span></p></li>
+<li><p>The classical outcome <span class="math notranslate nohighlight">\(j\)</span> is the number of the non-zero eigenvalue of the operator <span class="math notranslate nohighlight">\(\Pi_j .\)</span></p></li>
 <li><p>The probability of obtaining outcome <span class="math notranslate nohighlight">\(j\)</span> is given by <span class="math notranslate nohighlight">\(\mathbb{P}_j = \langle q | \Pi_j | q \rangle .\)</span></p></li>
 <li><p>The projection quantum state associated with outcome <span class="math notranslate nohighlight">\(j\)</span> is computed as: <span class="math notranslate nohighlight">\(|q'\rangle = \frac{1}{\sqrt{\mathbb{P}_i}} \Pi_j |q\rangle.\)</span></p></li>
 </ol>
