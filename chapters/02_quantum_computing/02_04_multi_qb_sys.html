@@ -16,22 +16,20 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -39,11 +37,10 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=ab0149b2" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
@@ -72,7 +69,6 @@
     <link rel="prev" title="Single-Qubit Systems" href="02_03_single_qb_sys.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -88,8 +84,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../../search.html"
       method="get">
@@ -97,6 +104,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -104,8 +112,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -121,8 +129,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -152,17 +159,21 @@
     
     
     <img src="../../_static/logo.svg" class="logo__image only-light" alt="Quantum Computing using Python - Home"/>
-    <img src="../../_static/logo.svg" class="logo__image only-dark pst-js-only" alt="Quantum Computing using Python - Home"/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-dark" alt="Quantum Computing using Python - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
@@ -208,14 +219,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -359,16 +365,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -400,10 +414,10 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-swap-gate">2.2.2 The SWAP Gate</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-copy-gate-no-cloning-theorem">2.3 The Copy Gate (No-Cloning Theorem)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#universal-gate-sets">2.4 Universal Gate Sets</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-copy-gate-no-cloning-theorem">2.3 The Copy Gate (No-Cloning Theorem)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#universal-gate-sets">2.4 Universal Gate Sets</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-qubit-measurements">3. Multi-Qubit Measurements</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full-state-measurement">3.1 Full State Measurement</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#partial-state-measurement">3.2 Partial State Measurement</a></li>
@@ -564,10 +578,10 @@
 \[ UU^\dagger = U^\dagger U = I .\]</div>
 <p>For a system of <span class="math notranslate nohighlight">\(n\)</span> qubits, the matrices will be of size <span class="math notranslate nohighlight">\(N \times N\)</span>, with <span class="math notranslate nohighlight">\(N = 2^n\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split} U = \begin{bmatrix}u_{00} &amp; u_{01} &amp; \dots &amp; u_{0 (N-1)} \\
-                      u_{10} &amp; u_{11} &amp; \dots &amp; u_{1 (N-1)} \\
+\[\begin{split} U = \begin{bmatrix}u_{0,0} &amp; u_{0,1} &amp; \dots &amp; u_{0,(N-1)} \\
+                      u_{1,0} &amp; u_{1,1} &amp; \dots &amp; u_{1,(N-1)} \\
                       \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-                      u_{(N-1)0} &amp; u_{(N-1)1} &amp; \dots &amp; u_{1 (N-1)}
+                      u_{(N-1),0} &amp; u_{(N-1),1} &amp; \dots &amp; u_{(N-1),(N-1)}
 \end{bmatrix} \end{split}\]</div>
 <p>For the specific case of multi-qubit systems composed solely of single-qubit gates acting on each individual qubit, it is easy to compute the total unitary matrix that acts on the whole system by taking the Kronecker product between the individual one-qubit operations. However, these separable operations cannot be used to generate entangled states, and therefore correspond to only limited subset of all possible unitaries that can act on a given Hilbert space.</p>
 <section id="one-qubit-gates-on-multiple-qubits">
@@ -1038,9 +1052,8 @@ C \text{SWAP} =
 </div>
 </section>
 </section>
-</section>
 <section id="the-copy-gate-no-cloning-theorem">
-<h2>2.3 The Copy Gate (No-Cloning Theorem)<a class="headerlink" href="#the-copy-gate-no-cloning-theorem" title="Link to this heading">#</a></h2>
+<h3>2.3 The Copy Gate (No-Cloning Theorem)<a class="headerlink" href="#the-copy-gate-no-cloning-theorem" title="Link to this heading">#</a></h3>
 <p>One of the operations we introduced in the chapter on reversible classical computing was the ability to copy the value of a bit (say, <span class="math notranslate nohighlight">\(b_1\)</span>) to another (e.g., <span class="math notranslate nohighlight">\(b_0\)</span>) by the use of a <span class="math notranslate nohighlight">\(CX\)</span> gate. Since qubits that are in strictly one of the two computational basis states <span class="math notranslate nohighlight">\(\{|0\rangle, |1\rangle \}\)</span> behave just like classical bits, we can effectively copy a qubit in the same way:</p>
 <a class="reference internal image-reference" href="../../_images/02_04_01_copy_1.png"><img alt="../../_images/02_04_01_copy_1.png" class="align-center" src="../../_images/02_04_01_copy_1.png" style="width: 420px;" /></a>
 <p>So, given two qubits <span class="math notranslate nohighlight">\(|q_1\rangle, |q_0\rangle\)</span>, we can copy the state of <span class="math notranslate nohighlight">\(|q_1\rangle\)</span> onto <span class="math notranslate nohighlight">\(|q_0\rangle\)</span> using a <span class="math notranslate nohighlight">\(CX\)</span> gate, provided that <span class="math notranslate nohighlight">\(|q_0\rangle\)</span> is initialized at <span class="math notranslate nohighlight">\(|0\rangle\)</span>, and the state of <span class="math notranslate nohighlight">\(|q_1\rangle\)</span> (denoted as <span class="math notranslate nohighlight">\(|\psi\rangle\)</span>) is one of the computational basis states:</p>
@@ -1077,7 +1090,7 @@ C \text{SWAP} =
 <p>This impossibility of copying an arbitrary state <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> is known as the <a class="reference external" href="https://en.wikipedia.org/wiki/No-cloning_theorem">non-cloning theorem</a>, and it is one of the most important results in the field of quantum information.</p>
 </section>
 <section id="universal-gate-sets">
-<h2>2.4 Universal Gate Sets<a class="headerlink" href="#universal-gate-sets" title="Link to this heading">#</a></h2>
+<h3>2.4 Universal Gate Sets<a class="headerlink" href="#universal-gate-sets" title="Link to this heading">#</a></h3>
 <p>An important aspect about quantum computing is that, depending on the type of hardware implementation (e.g. superconducting qubits, ion traps, etc.), the gates available to construct our circuits is limited to a subset of operations known as the basis gate-set. A gate-set that can implement any other unitary with arbitrary precision is known as a <a class="reference external" href="https://en.wikipedia.org/wiki/Quantum_logic_gate#Universal_quantum_gates">universal gate-set</a>.</p>
 <p>In most of today’s quantum devices, basis gate-sets are composed of one-qubit and two-qubit gates. Furthermore, the majority of these systems allow for continous-valued parametrized gates in one or more of their basis gates. This enables the precise control needed to build any other unitary gate or circuit. For instance, a valid gate-set could be composed of the gates <span class="math notranslate nohighlight">\(\{CX, SX, RZ(\theta) \}\)</span>, where the <span class="math notranslate nohighlight">\(RZ\)</span> gate is parameterized by an angle <span class="math notranslate nohighlight">\(\theta\)</span> that can take continuous values.</p>
 <p>Let’s take as an example a Toffoli (<span class="math notranslate nohighlight">\(CCX\)</span>) gate, which is a 3-qubit gate. This gate would have to be decomposed into gates that belong to the gate-set above in order to run on a particular quantum processor. Here is an example in Qiskit of how the <span class="math notranslate nohighlight">\(CCX\)</span> gate can be represented in terms of these gates:</p>
@@ -1214,6 +1227,7 @@ CCX =
 </div>
 </div>
 </section>
+</section>
 <section id="multi-qubit-measurements">
 <h2>3. Multi-Qubit Measurements<a class="headerlink" href="#multi-qubit-measurements" title="Link to this heading">#</a></h2>
 <section id="full-state-measurement">
@@ -1298,10 +1312,10 @@ CCX =
 </pre></div>
 </div>
 <div class="output text_latex math notranslate nohighlight">
-\[i |010\rangle\]</div>
+\[ |001\rangle\]</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Single-Measurement Classical Outcome:
 
-010
+001
 </pre></div>
 </div>
 </div>
@@ -1371,7 +1385,7 @@ CCX =
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/9f970c1f90d53bbba11fb0b2e31f124701ab1f2d303f72b17c39d4221290f6b1.png" src="../../_images/9f970c1f90d53bbba11fb0b2e31f124701ab1f2d303f72b17c39d4221290f6b1.png" />
+<img alt="../../_images/a7136a4e87d40ca79e03e6c44b15b11ec3dc94b01b3316de6fd7957c26072eec.png" src="../../_images/a7136a4e87d40ca79e03e6c44b15b11ec3dc94b01b3316de6fd7957c26072eec.png" />
 </div>
 </div>
 </section>
@@ -1568,7 +1582,7 @@ CCX =
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/5c86bb4e4af6d29a7eed4e4fab85f64e036184b08d9ba63ce8bf4f1ff029f15a.png" src="../../_images/5c86bb4e4af6d29a7eed4e4fab85f64e036184b08d9ba63ce8bf4f1ff029f15a.png" />
+<img alt="../../_images/1b703fe1cdcf99feb4f43f8e78a05bd50c4b688c8856d00d8fceb83f11bc28ef.png" src="../../_images/1b703fe1cdcf99feb4f43f8e78a05bd50c4b688c8856d00d8fceb83f11bc28ef.png" />
 </div>
 </div>
 </section>
@@ -1630,8 +1644,7 @@ CCX =
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1648,10 +1661,10 @@ CCX =
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-swap-gate">2.2.2 The SWAP Gate</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-copy-gate-no-cloning-theorem">2.3 The Copy Gate (No-Cloning Theorem)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#universal-gate-sets">2.4 Universal Gate Sets</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-copy-gate-no-cloning-theorem">2.3 The Copy Gate (No-Cloning Theorem)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#universal-gate-sets">2.4 Universal Gate Sets</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-qubit-measurements">3. Multi-Qubit Measurements</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full-state-measurement">3.1 Full State Measurement</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#partial-state-measurement">3.2 Partial State Measurement</a></li>
@@ -1705,8 +1718,8 @@ By Diego Emilio Serrano
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
