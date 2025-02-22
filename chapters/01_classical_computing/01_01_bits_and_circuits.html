@@ -424,7 +424,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="bits-and-digital-circuits">
 <h1>Bits and Digital Circuits<a class="headerlink" href="#bits-and-digital-circuits" title="Link to this heading">#</a></h1>
 <hr></hr><p>Before diving into the world of quantum computing, it is helpful to do a quick review of some of the basics of classical computation. This will allow us to gradually introduce some of the most important concepts that make quantum information different from its classical counterpart.</p>
-<p>Even if you understand digital systems fairly well, it is still worth skimming through the following few chapters since we will be discussing how the model of computation can be expanded to incorporate randomness into our systems, and how logic gates can be modified to make operations reversible.</p>
+<p>Even if you understand digital systems fairly well, it is still worth going through the chapters on classical systems because we will be discussing how the model of computation can be expanded to incorporate uncertainty and the notion of probability, and how logic gates can be modified to make operations reversible. These are critical notions in the study of quantum circuits.</p>
 <section id="binary-numbers">
 <h2>1. Binary Numbers<a class="headerlink" href="#binary-numbers" title="Link to this heading">#</a></h2>
 <p>All modern computers and communication systems rely on the use of binary numbers. The fundamental unit of a binary number is the <span style="color:#a883f7"><strong>bit</strong></span>, which can only take one of two values: <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>. But just like with decimal numbers, we can express larger binary values by concatenating bits together. For example, with 3 bits, we can express up to 8 different binary numbers:</p>
@@ -473,7 +473,7 @@ document.write(`
 <p>which we can write more compactly as using big-sum notation:</p>
 <div class="math notranslate nohighlight">
 \[ x = \sum_{i = 0}^{n-1} 2^{i} b_i .\]</div>
-<p>So, to represent, for example, the binary value <span class="math notranslate nohighlight">\(b = b_3 b_2 b_1 b_0 = 1101\)</span> in decimal, we write:</p>
+<p>For example, to represent the binary value <span class="math notranslate nohighlight">\(b = b_3 b_2 b_1 b_0 = 1101\)</span> in decimal, we write:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} 
 \begin{aligned}
@@ -486,7 +486,7 @@ x &amp;=  8 \times 1 + 4 \times 1 + 2 \times 0 + 1 \times 1
 x &amp;=  13
 \end{aligned}
 \end{split}\]</div>
-<p>Doing this manually is a tedious process. Luckily we can use Python to do this conversion for us. In Python we can represent binary numbers by using the prefix <code class="docutils literal notranslate"><span class="pre">0b</span></code>. These values still get treated like other integers, so if we, for example, print them, the output displays the corresponding decimal value:</p>
+<p>Calculating this manually is a tedious process. Luckily we can use Python to perform these conversions for us. In Python we can represent binary numbers by using the prefix <code class="docutils literal notranslate"><span class="pre">0b</span></code>. However, these values still get treated like any other integer. So, if we print them, we recover their corresponding decimal value. For example, we can save in a variable <code class="docutils literal notranslate"><span class="pre">x</span></code> the binary number <code class="docutils literal notranslate"><span class="pre">1101</span></code>, and print it to see that it corresponds to <code class="docutils literal notranslate"><span class="pre">13</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mb">0b1101</span>
@@ -500,7 +500,7 @@ x &amp;=  13
 </div>
 </div>
 </div>
-<p>Using this notation, we can also perform the same arithmetic operations we use for decimal integers:</p>
+<p>We can also take numbers in this binary representation and perform arithmetic operations like we do with decimal numbers. For example, we can add them together:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mb">0b1011</span> <span class="o">+</span> <span class="mb">0b1001</span>  <span class="c1"># in decimal: 11 + 9 = 20</span>
@@ -514,10 +514,10 @@ x &amp;=  13
 </div>
 </div>
 </div>
-<p>On the other hand, to convert a decimal integer <span class="math notranslate nohighlight">\(x\)</span> into a binary number <span class="math notranslate nohighlight">\(b\)</span>, we can find the <span class="math notranslate nohighlight">\(i^{\text{th}}\)</span> bit of <span class="math notranslate nohighlight">\(b\)</span> using the following expression:</p>
+<p>Now, to convert a decimal integer <span class="math notranslate nohighlight">\(x\)</span> into a binary number <span class="math notranslate nohighlight">\(b\)</span>, we can find the <span class="math notranslate nohighlight">\(i^{\text{th}}\)</span> bit of <span class="math notranslate nohighlight">\(b\)</span> using the following expression:</p>
 <div class="math notranslate nohighlight">
 \[ b_i = \left\lfloor\frac{x}{2^i}\right\rfloor \text{mod } 2 . \]</div>
-<p>If this expression looks intimidating, don’t worry, it really isn’t. Here, <span class="math notranslate nohighlight">\(\lfloor \, \cdot \, \rfloor\)</span> is the <a class="reference external" href="https://en.wikipedia.org/wiki/Floor_and_ceiling_functions">floor function</a>, which returns the integer part of its input. For example <span class="math notranslate nohighlight">\(\lfloor 2.71828 \rfloor = 2\)</span>. Furthermore, <span class="math notranslate nohighlight">\(a \text{ mod } m\)</span> represents the <a class="reference external" href="https://en.wikipedia.org/wiki/Modulo">modulo operation</a>, which returns the remainder of diving <span class="math notranslate nohighlight">\(a\)</span> by <span class="math notranslate nohighlight">\(m\)</span>. For instance, <span class="math notranslate nohighlight">\(5 \text{ mod } 2 = 1\)</span> because <span class="math notranslate nohighlight">\(5/2 = 2\)</span> with a remainder of <span class="math notranslate nohighlight">\(1\)</span>. The example below should clarify this further.</p>
+<p>If this equation looks intimidating, don’t worry, it really isn’t. Here, the symbol <span class="math notranslate nohighlight">\(\lfloor \, \cdot \, \rfloor\)</span> corresponds to the <a class="reference external" href="https://en.wikipedia.org/wiki/Floor_and_ceiling_functions">floor function</a>, which returns the integer part of its input. For example <span class="math notranslate nohighlight">\(\lfloor 2.71828 \rfloor = 2\)</span>. Furthermore, <span class="math notranslate nohighlight">\(a \text{ mod } m\)</span> represents the <a class="reference external" href="https://en.wikipedia.org/wiki/Modulo">modulo operation</a>, which returns the remainder of diving <span class="math notranslate nohighlight">\(a\)</span> by <span class="math notranslate nohighlight">\(m\)</span>. For instance, <span class="math notranslate nohighlight">\(5 \text{ mod } 2 = 1\)</span> because <span class="math notranslate nohighlight">\(5/2 = 2\)</span> with a remainder of <span class="math notranslate nohighlight">\(1\)</span>. The example below should clarify this further.</p>
 <p>The full binary representation of <span class="math notranslate nohighlight">\(x\)</span> can then be found by multiplying each <span class="math notranslate nohighlight">\(b_i\)</span> by its corresponding power of <span class="math notranslate nohighlight">\(10\)</span>, and adding them up:</p>
 <div class="math notranslate nohighlight">
 \[ b = \sum_{i = 0}^{n-1} 10^{i} \left(\left\lfloor\frac{x}{2^i}\right\rfloor \text{mod } 2 \right).\]</div>
@@ -547,10 +547,10 @@ b &amp;= 1101
 \\
 \end{aligned}
 \end{split}\]</div>
-<p>One important note here is that, in this example, we picked the exact number of bits to get the correct binary representation for <span class="math notranslate nohighlight">\(13\)</span>. However, if we would have picked <span class="math notranslate nohighlight">\(n\)</span> to be <span class="math notranslate nohighlight">\(3\)</span> or less, we would have ended up with the incorrect representation. So, to guarantee we can correctly express a decimal integer (greater than <span class="math notranslate nohighlight">\(0\)</span>) in binary, we need to make sure to pick <span class="math notranslate nohighlight">\(n\)</span> to be:</p>
+<p>One important note is that, in this example, we picked the exact number of bits (<span class="math notranslate nohighlight">\(4\)</span> bits) to get the correct binary representation for <span class="math notranslate nohighlight">\(13\)</span>. However, if we would have picked <span class="math notranslate nohighlight">\(n\)</span> to be <span class="math notranslate nohighlight">\(3\)</span> or less, we would have ended up with the wrong binary representation for this number since there would not have been enough bits to fit it in. So, to guarantee we can correctly express a decimal integer (greater than <span class="math notranslate nohighlight">\(0\)</span>) in binary, we need to make sure to pick <span class="math notranslate nohighlight">\(n\)</span> to be:</p>
 <div class="math notranslate nohighlight">
 \[ n \geq \lfloor \log_2 (x) + 1 \rfloor , \]</div>
-<p>where again, <span class="math notranslate nohighlight">\(\lfloor \, \cdot \, \rfloor\)</span> is the floor function. So, to accurately represent <span class="math notranslate nohighlight">\(13\)</span> in binary, we need:</p>
+<p>where, as we saw before, <span class="math notranslate nohighlight">\(\lfloor \, \cdot \, \rfloor\)</span> corresponds to the floor function. So, to accurately represent <span class="math notranslate nohighlight">\(13\)</span> in binary, we need <span class="math notranslate nohighlight">\(n\)</span> to be:</p>
 <div class="math notranslate nohighlight">
 \[ n \geq \lfloor \log_2 (13) + 1 \rfloor = 4 . \]</div>
 <p>Again, the concepts above are important to deepen our understanding, but we don’t need to go through the pain of calculating every one of these steps when we can simply rely on Python. So, to convert a decimal integer to binary, we can use the <code class="docutils literal notranslate"><span class="pre">bin()</span></code> function:</p>
@@ -580,7 +580,7 @@ b &amp;= 1101
 </div>
 </div>
 </div>
-<p>whereas expressing <span class="math notranslate nohighlight">\(13\)</span> in binary using <code class="docutils literal notranslate"><span class="pre">bin</span></code> returns a string (<code class="docutils literal notranslate"><span class="pre">str</span></code>):</p>
+<p>whereas expressing <span class="math notranslate nohighlight">\(13\)</span> in binary using <code class="docutils literal notranslate"><span class="pre">bin</span></code> returns a string of characters (<code class="docutils literal notranslate"><span class="pre">str</span></code>):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="nb">bin</span><span class="p">(</span><span class="mi">13</span><span class="p">)))</span>
@@ -639,10 +639,10 @@ value in decimal: 13
 </div>
 </div>
 </div>
-<p>This means that we can often drop the <code class="docutils literal notranslate"><span class="pre">0b</span></code> prefix of a binary representation without having to worry about adding it again if we need to convert the value back to decimal. Since strings in Python are indexable, we can easily do this by simply storing the portion of string after the first two characters:</p>
+<p>This means that we can drop the <code class="docutils literal notranslate"><span class="pre">0b</span></code> prefix of a binary representation without having to worry about including it again if we need to convert the value back to decimal. Since strings in Python are indexable, we can easily do this by simply storing the portion of string after the first two characters:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="nb">bin</span><span class="p">(</span><span class="mi">13</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="nb">bin</span><span class="p">(</span><span class="mi">13</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span> <span class="c1"># The square brakets [2:] index the string from the 2nd character on. </span>
 <span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 </pre></div>
 </div>
