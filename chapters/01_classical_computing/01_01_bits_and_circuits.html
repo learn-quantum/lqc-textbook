@@ -466,11 +466,11 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[ b = b_{n-1} ... b_1 b_0 ,\]</div>
 <p>where each bit <span class="math notranslate nohighlight">\(b_i\)</span> can take the value <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>. We will often write this as <span class="math notranslate nohighlight">\(b_i \in \{0, 1\}\)</span>.</p>
-<p>In this definition of a binary number <span class="math notranslate nohighlight">\(b\)</span>, the bit most to the left, <span class="math notranslate nohighlight">\(b_0\)</span>, is known as the least significant bit (LSB). The bit most to the right, <span class="math notranslate nohighlight">\(b_{n-1}\)</span>, is known as the most significant bit (MSB).</p>
-<p>To convert a binary number <span class="math notranslate nohighlight">\(b\)</span> to a decimal integer <span class="math notranslate nohighlight">\(x\)</span>, we simply take each of the individual bits, and multiply them by <span class="math notranslate nohighlight">\(2\)</span> exponentiated to the bit’s significance, and then sum them up:</p>
+<p>In this definition of a binary number <span class="math notranslate nohighlight">\(b\)</span>, the bit most to the right, <span class="math notranslate nohighlight">\(b_0\)</span>, is known as the least significant bit (LSB). The bit most to the left, <span class="math notranslate nohighlight">\(b_{n-1}\)</span>, is known as the most significant bit (MSB).</p>
+<p>To convert a binary number <span class="math notranslate nohighlight">\(b\)</span> to a decimal integer <span class="math notranslate nohighlight">\(x\)</span>, we simply take each individual bit, multiply it by <span class="math notranslate nohighlight">\(2\)</span> exponentiated to the bit’s significance, and then sum them all up:</p>
 <div class="math notranslate nohighlight">
-\[ x =  2^{n-1} b_{n-1} + ... + 2^{1} b_{1} + 2^{0} b_{0}, \]</div>
-<p>which we can write more compactly as using big-sum notation:</p>
+\[ x =  2^{n-1} b_{n-1} + ... + 2^{1} b_{1} + 2^{0} b_{0}. \]</div>
+<p>We can also write this expression more compactly as using big-sum notation:</p>
 <div class="math notranslate nohighlight">
 \[ x = \sum_{i = 0}^{n-1} 2^{i} b_i .\]</div>
 <p>For example, to represent the binary value <span class="math notranslate nohighlight">\(b = b_3 b_2 b_1 b_0 = 1101\)</span> in decimal, we write:</p>
