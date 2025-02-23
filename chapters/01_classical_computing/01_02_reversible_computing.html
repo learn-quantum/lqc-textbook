@@ -513,7 +513,7 @@ document.write(`
 </tbody>
 </table>
 </div>
-<p>The output <span class="math notranslate nohighlight">\(b'\)</span> is the same as what would we get with a classical <strong>XOR</strong> gate, but the simple fact of carrying the input <span class="math notranslate nohighlight">\(a\)</span> to the output <span class="math notranslate nohighlight">\(a'\)</span> allows us to be able to always predict the value of both inputs (<span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>) directly from the outputs (<span class="math notranslate nohighlight">\(a'\)</span> and <span class="math notranslate nohighlight">\(b'\)</span>). This should be clear from the fact that for each possible input there is only a single unique possible output.</p>
+<p>The output <span class="math notranslate nohighlight">\(b'\)</span> is the same as what we would get with a classical <strong>XOR</strong> gate, but the simple fact of carrying the input <span class="math notranslate nohighlight">\(a\)</span> to the output <span class="math notranslate nohighlight">\(a'\)</span> allows us to be able to always predict the value of both inputs (<span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>) directly from the outputs (<span class="math notranslate nohighlight">\(a'\)</span> and <span class="math notranslate nohighlight">\(b'\)</span>). This should be clear from the fact that for each possible input there is only a single unique possible output.</p>
 <p>Furthermore, the operation of a <span class="math notranslate nohighlight">\(\text{CX}\)</span> gate can be uncomputed (reversed) by applying another <span class="math notranslate nohighlight">\(\text{CX}\)</span> right after! We can verify this with a few lines of code. Let’s first implement a <span class="math notranslate nohighlight">\(\text{CX}\)</span> gate and generate its truth table in Python:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -533,7 +533,8 @@ document.write(`
     <span class="c1"># a&#39; is always equal to a.</span>
     <span class="n">a_out</span> <span class="o">=</span> <span class="n">a_in</span>
     
-    <span class="c1"># if control is one (i.e., a == 1): negate target (b&#39; = b̅), else: leave b alone (b&#39; = b).</span>
+    <span class="c1"># if control is one (i.e., a == 1): negate target (b&#39; = b̅), </span>
+    <span class="c1"># else: leave b alone (b&#39; = b).</span>
     <span class="k">if</span> <span class="n">a_in</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>                
         <span class="n">b_out</span> <span class="o">=</span> <span class="n">x</span><span class="p">(</span><span class="n">b_in</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
