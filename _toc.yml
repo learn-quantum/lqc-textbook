@@ -29,10 +29,11 @@ parts:
   - caption: Quantum Protocols
     maxdepth: 3
     chapters:
-      - file: chapters/03_quantum_protocols/03_01_CHSH_inequality
-      - file: chapters/03_quantum_protocols/03_02_BB4_protocol
-      - file: chapters/03_quantum_protocols/03_03_teleportation
-      - file: chapters/03_quantum_protocols/03_04_superdense_coding
+      - file: chapters/03_quantum_protocols/03_01_quantum_money
+      - file: chapters/03_quantum_protocols/03_02_bell_chsh
+      - file: chapters/03_quantum_protocols/03_03_bb84_e91
+      - file: chapters/03_quantum_protocols/03_04_teleportation
+      - file: chapters/03_quantum_protocols/03_05_superdense_coding
 
   - caption: Quantum Algorithms
     maxdepth: 3
