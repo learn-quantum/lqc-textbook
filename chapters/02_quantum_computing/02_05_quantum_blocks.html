@@ -1,0 +1,1688 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Quantum Building Blocks &#8212; Quantum Computing using Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=ab0149b2" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/02_quantum_computing/02_05_quantum_blocks';</script>
+    <link rel="canonical" href="https://learn-quantum.github.io/lqc-textbook/chapters/02_quantum_computing/02_05_quantum_blocks.html" />
+    <link rel="icon" href="../../_static/nabla.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="CHSH Inequality" href="../03_quantum_protocols/03_01_CHSH_inequality.html" />
+    <link rel="prev" title="Multi-Qubit Systems" href="02_04_multi_qb_sys.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="Quantum Computing using Python - Home"/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-dark" alt="Quantum Computing using Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/00_00_welcome.html">About the Textbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/00_01_setting_env.html">Setting Up your Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/00_02_qiskit_config.html">Configuring Qiskit</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Computing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_classical_computing/01_01_bits_and_circuits.html">Bits and Digital Circuits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_classical_computing/01_02_reversible_computing.html">Reversible Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_classical_computing/01_03_bits_to_vectors.html">Linear Algebra for Reversible Circuits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_classical_computing/01_04_probabilistic_circuits.html">Probabilistic Computing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Computing</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="02_01_bits_to_qubits.html">Qubits and Quantum Circuits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_02_entanglement.html">Quantum Entanglement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_03_single_qb_sys.html">Single-Qubit Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_04_multi_qb_sys.html">Multi-Qubit Systems</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Quantum Building Blocks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Protocols</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../03_quantum_protocols/03_01_CHSH_inequality.html">CHSH Inequality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_quantum_protocols/03_02_BB4_protocol.html">BB84 Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_quantum_protocols/03_03_teleportation.html">Quantum Teleportation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_quantum_protocols/03_04_superdense_coding.html">Superdense Coding</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Algorithms</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../04_quantum_algorithms/04_01_deutsch-jozsa.html">Deutsch-Jozsa Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_quantum_algorithms/04_02_bernstein-vazirani.html">Bernstein–Vazirani Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_quantum_algorithms/04_03_simons.html">Simon’s Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_quantum_algorithms/04_04_grover.html">Grover’s Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_quantum_algorithms/04_05_amp_amp.html">Amplitude Amplification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_quantum_algorithms/04_06_qft.html">Quantum Fourier Transform</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/learn-quantum/lqc-textbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/learn-quantum/lqc-textbook/issues/new?title=Issue%20on%20page%20%2Fchapters/02_quantum_computing/02_05_quantum_blocks.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/02_quantum_computing/02_05_quantum_blocks.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Quantum Building Blocks</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparation-of-some-entangled-states">1. Preparation of (Some) Entangled States</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bell-states">1.1 Bell States</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ghz-states">1.2 GHZ States</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#w-states">1.3 W States</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-quantum-hadamard-transform">2. The Quantum Hadamard Transform</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-kickback">3. Phase Kickback</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvalues-and-eigenvectors">3.1 Eigenvalues and Eigenvectors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kickback-in-action">3.2 Kickback in Action</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-qubit-phase-kickback">3.3 Multi-Qubit Phase Kickback</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quantum-function-evaluation">3. Quantum Function Evaluation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boolean-functions-as-quantum-circuits">3.1 Boolean Functions as Quantum Circuits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-dependent-kickback">3.2 Function-Dependent Kickback</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="quantum-building-blocks">
+<h1>Quantum Building Blocks<a class="headerlink" href="#quantum-building-blocks" title="Link to this heading">#</a></h1>
+<hr></hr><p>In order to understand some of the most relevant quantum protocols and algorithms, we must first introduce a few important quantum circuits that serve as building blocks in more advanced quantum routines. These include primitives such as: the preparation of important types of entangled states, namely <a class="reference external" href="https://en.wikipedia.org/wiki/Bell_state">Bell states</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Greenberger%E2%80%93Horne%E2%80%93Zeilinger_state">GHZ states</a>, and <a class="reference external" href="https://en.wikipedia.org/wiki/Hadamard_transform#Hadamard_transform_in_quantum_algorithms">W states</a>; the <a class="reference external" href="https://en.wikipedia.org/wiki/Hadamard_transform">Quantum Hadamard transform</a>; and <a class="reference external" href="https://en.wikipedia.org/wiki/Phase_kickback">Phase kickback</a>. Lastly, we will discuss the formalism behind the idea of quantum function evaluation, which allows us to instantiate certain classical functions into quantum circuits.</p>
+<p>Other more advanced primitives, like the <a class="reference external" href="https://en.wikipedia.org/wiki/Quantum_Fourier_transform">Quantum Fourier Transform</a>, will be discussed in a separate chapter since they are more involved, requiring a more detailed description.</p>
+<section id="preparation-of-some-entangled-states">
+<h2>1. Preparation of (Some) Entangled States<a class="headerlink" href="#preparation-of-some-entangled-states" title="Link to this heading">#</a></h2>
+<section id="bell-states">
+<h3>1.1 Bell States<a class="headerlink" href="#bell-states" title="Link to this heading">#</a></h3>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Bell_state">Bell states</a> correspond to an important set of <span class="math notranslate nohighlight">\(2\)</span>-qubit entangled states utilized in many quantum protocols such as <a class="reference external" href="https://en.wikipedia.org/wiki/Quantum_teleportation">quantum teleportation</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Superdense_coding">superdense coding</a>.</p>
+<p>There are four Bell states, which correspond to equal superposition statevectors that, in the computational basis, are given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+|\Phi^+ \rangle = \frac{1}{\sqrt{2}}\left(|00\rangle + |11\rangle \right), \quad \quad 
+|\Phi^- \rangle = \frac{1}{\sqrt{2}}\left(|00\rangle - |11\rangle \right), 
+\\
+\\
+|\Psi^+ \rangle = \frac{1}{\sqrt{2}}\left(|01\rangle + |10\rangle \right), \quad \quad 
+|\Psi^- \rangle = \frac{1}{\sqrt{2}}\left(|01\rangle - |10\rangle \right).
+\end{aligned}
+\end{split}\]</div>
+<p>These states can be generated by taking the four computational basis states <span class="math notranslate nohighlight">\(|00\rangle, |01\rangle, |10\rangle, |11\rangle \)</span>, and evolving them through the following quantum circuit:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumCircuit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">Statevector</span><span class="p">,</span> <span class="n">Operator</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/60c1832205ba10907d65b2e9a30f8d3d7a46c5bd6cffc5c43fdee315f7048056.png" src="../../_images/60c1832205ba10907d65b2e9a30f8d3d7a46c5bd6cffc5c43fdee315f7048056.png" />
+</div>
+</div>
+<p>We can see the correspondence between each computational basis state, and the respective Bell state below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q00</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s1">&#39;00&#39;</span><span class="p">)</span> <span class="c1"># Comp. basis state |00⟩</span>
+<span class="n">q01</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s1">&#39;01&#39;</span><span class="p">)</span> <span class="c1"># Comp. basis state |01⟩</span>
+<span class="n">q10</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s1">&#39;10&#39;</span><span class="p">)</span> <span class="c1"># Comp. basis state |10⟩</span>
+<span class="n">q11</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s1">&#39;11&#39;</span><span class="p">)</span> <span class="c1"># Comp. basis state |11⟩</span>
+
+<span class="n">Φp</span> <span class="o">=</span> <span class="n">q00</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>                <span class="c1"># Bell basis state |Φ⁺⟩</span>
+<span class="n">Ψp</span> <span class="o">=</span> <span class="n">q01</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>                <span class="c1"># Bell basis state |Ψ⁺⟩</span>
+<span class="n">Φm</span> <span class="o">=</span> <span class="n">q10</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>                <span class="c1"># Bell basis state |Φ⁻⟩</span>
+<span class="n">Ψm</span> <span class="o">=</span> <span class="n">q11</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>                <span class="c1"># Bell basis state |Ψ⁻⟩</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;state |00⟩ evolves to state: &#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Φp</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span><span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;|</span><span class="se">\\</span><span class="s1">Phi^+ </span><span class="se">\\</span><span class="s1">rangle = &#39;</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;state |01⟩ evolves to state: &#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Ψp</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span><span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;|</span><span class="se">\\</span><span class="s1">Psi^+ </span><span class="se">\\</span><span class="s1">rangle = &#39;</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;state |10⟩ evolves to state: &#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Φm</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span><span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;|</span><span class="se">\\</span><span class="s1">Phi^- </span><span class="se">\\</span><span class="s1">rangle = &#39;</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;state |11⟩ evolves to state: &#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Ψm</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span><span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;|</span><span class="se">\\</span><span class="s1">Psi^- </span><span class="se">\\</span><span class="s1">rangle = &#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>state |00⟩ evolves to state: 
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[|\Phi^+ \rangle = \frac{\sqrt{2}}{2} |00\rangle+\frac{\sqrt{2}}{2} |11\rangle\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>state |01⟩ evolves to state: 
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[|\Psi^+ \rangle = \frac{\sqrt{2}}{2} |01\rangle+\frac{\sqrt{2}}{2} |10\rangle\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>state |10⟩ evolves to state: 
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[|\Phi^- \rangle = \frac{\sqrt{2}}{2} |00\rangle- \frac{\sqrt{2}}{2} |11\rangle\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>state |11⟩ evolves to state: 
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[|\Psi^- \rangle = \frac{\sqrt{2}}{2} |01\rangle- \frac{\sqrt{2}}{2} |10\rangle\]</div>
+</div>
+</div>
+<p>We can also prepare these four states by using the same circuit we used above, but now initializing the input state as <span class="math notranslate nohighlight">\(|00\rangle\)</span> and applying the following gates accordingly:</p>
+<ol class="arabic simple">
+<li><p>Apply no other gates to generate <span class="math notranslate nohighlight">\(|\Phi^+\rangle\)</span>.</p></li>
+<li><p>Apply a <span class="math notranslate nohighlight">\(Z\)</span> gate to either of the qubits to generate <span class="math notranslate nohighlight">\(|\Phi^-\rangle\)</span>.</p></li>
+<li><p>Apply an <span class="math notranslate nohighlight">\(X\)</span> gate to either of the qubits to generate <span class="math notranslate nohighlight">\(|\Psi^+\rangle\)</span>.</p></li>
+<li><p>Apply both a <span class="math notranslate nohighlight">\(Z\)</span> and an <span class="math notranslate nohighlight">\(X\)</span> gate to either of the qubits to generate <span class="math notranslate nohighlight">\(|\Psi^-\rangle\)</span>.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Circuit for |Φ⁺⟩</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">())</span>
+
+<span class="n">Statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span><span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;|</span><span class="se">\\</span><span class="s1">Phi^+ </span><span class="se">\\</span><span class="s1">rangle = &#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/60c1832205ba10907d65b2e9a30f8d3d7a46c5bd6cffc5c43fdee315f7048056.png" src="../../_images/60c1832205ba10907d65b2e9a30f8d3d7a46c5bd6cffc5c43fdee315f7048056.png" />
+<div class="output text_latex math notranslate nohighlight">
+\[|\Phi^+ \rangle = \frac{\sqrt{2}}{2} |00\rangle+\frac{\sqrt{2}}{2} |11\rangle\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Circuit for |Φ⁻⟩</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">z</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">())</span>
+
+<span class="n">Statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span><span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;|</span><span class="se">\\</span><span class="s1">Phi^- </span><span class="se">\\</span><span class="s1">rangle = &#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/3713a72148ad03a16cab2248a8ffa415c6580f4930b2fc5fbfce9f94ff5d80b6.png" src="../../_images/3713a72148ad03a16cab2248a8ffa415c6580f4930b2fc5fbfce9f94ff5d80b6.png" />
+<div class="output text_latex math notranslate nohighlight">
+\[|\Phi^- \rangle = \frac{\sqrt{2}}{2} |00\rangle- \frac{\sqrt{2}}{2} |11\rangle\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Circuit for |Ψ⁺⟩</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">())</span>
+
+<span class="n">Statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span><span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;|</span><span class="se">\\</span><span class="s1">Psi^+ </span><span class="se">\\</span><span class="s1">rangle = &#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/7c0d0afc4da2d85902a58ad59389aea6f56c097d927d57f0bbec31adf890aad6.png" src="../../_images/7c0d0afc4da2d85902a58ad59389aea6f56c097d927d57f0bbec31adf890aad6.png" />
+<div class="output text_latex math notranslate nohighlight">
+\[|\Psi^+ \rangle = \frac{\sqrt{2}}{2} |01\rangle+\frac{\sqrt{2}}{2} |10\rangle\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Circuit for |Ψ⁻⟩</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">z</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">())</span>
+
+<span class="n">Statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span><span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;|</span><span class="se">\\</span><span class="s1">Psi^- </span><span class="se">\\</span><span class="s1">rangle = &#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a99d65ec7f33494bfe728d7c38491dff001dc9d01ae28719ce11d0ae7e4e3dad.png" src="../../_images/a99d65ec7f33494bfe728d7c38491dff001dc9d01ae28719ce11d0ae7e4e3dad.png" />
+<div class="output text_latex math notranslate nohighlight">
+\[|\Psi^- \rangle = \frac{\sqrt{2}}{2} |01\rangle- \frac{\sqrt{2}}{2} |10\rangle\]</div>
+</div>
+</div>
+<p>A good exercise is to manually verify why applying these sequences of gates generate the four Bell states.</p>
+</section>
+<section id="ghz-states">
+<h3>1.2 GHZ States<a class="headerlink" href="#ghz-states" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Greenberger%E2%80%93Horne%E2%80%93Zeilinger_state">Greenberger–Horne–Zeilinger (GHZ) states</a> are a generalization of the <span class="math notranslate nohighlight">\(|\Phi^+ \rangle\)</span> Bell state for 3 or more qubits. In other words, these are equal superpositions composed of the all-zeros and all-ones states. For example, for the specific case of 3 qubits, this state is given by:</p>
+<div class="math notranslate nohighlight">
+\[ |\Omega\rangle = \frac{1}{\sqrt{2}}\left(|000\rangle + |111\rangle \right) .\]</div>
+<p>But, more generally, for <span class="math notranslate nohighlight">\(n\)</span> qubits:</p>
+<div class="math notranslate nohighlight">
+\[ |\Omega_n\rangle = \frac{1}{\sqrt{2}}\left(|0\rangle^{\otimes n} + |1\rangle^{\otimes n} \right) .\]</div>
+<p>GHZ states are of critical importance in the generalized versions of superdense coding and quantum teleportation, and play a crucial role in the implementation of <a class="reference external" href="https://en.wikipedia.org/wiki/Quantum_error_correction">quantum error correction</a>.</p>
+<p>There are several ways in which these states can be created using quantum circuits. The simplest and perhaps most intuitive way, is by placing one of the qubits in equal superposition, and then entangling the remaining qubits (initialized at <span class="math notranslate nohighlight">\(|0\rangle\)</span>) by using <span class="math notranslate nohighlight">\(CX\)</span> gates as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">ghz_cir_a</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="c1"># create quantum circuit with n qubits</span>
+    <span class="n">qc_ghz</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    
+    <span class="c1"># place most significant qubit in equal superposition</span>
+    <span class="n">qc_ghz</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="c1"># apply cx gates between superposition qubit and remaning qubits</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)):</span>
+        <span class="n">qc_ghz</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">qc_ghz</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create GHZ circuit for n qubits</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">ghz_cir_a</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">())</span>
+
+<span class="c1"># Display n-qubit GHZ state</span>
+<span class="n">Statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;|</span><span class="se">\\</span><span class="s1">Omega _</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="se">\\</span><span class="s1">rangle = &#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/fd21bcbfc45d8bd0912c0252fa419fe4155426081d17907d0e0d355a6d6bef07.png" src="../../_images/fd21bcbfc45d8bd0912c0252fa419fe4155426081d17907d0e0d355a6d6bef07.png" />
+<div class="output text_latex math notranslate nohighlight">
+\[|\Omega _5\rangle = \frac{\sqrt{2}}{2} |00000\rangle+\frac{\sqrt{2}}{2} |11111\rangle\]</div>
+</div>
+</div>
+<p>One of the issues with this circuit is that, in many quantum hardware architectures, not all qubits are physically connected to each other. Therefore, applying the <span class="math notranslate nohighlight">\(CX\)</span> gates between non-adjacent qubits is not possible. For example, if a quantum chip only allows for “nearest neighbor” connectivity, qubit <span class="math notranslate nohighlight">\(q_4\)</span> in the circuit below would only be directly connected to <span class="math notranslate nohighlight">\(q_3\)</span>, so it will require adding extra <span class="math notranslate nohighlight">\(\text{SWAP}\)</span> gates to allow the entanglement between the remaining qubits. And of course, these extra gates add noise, which is not desirable. Alternatively, GHZ states can also be generated by gradually entangling each successive pair of qubits:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">ghz_cir_b</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="c1"># create quantum circuit with n qubits</span>
+    <span class="n">qc_ghz</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    
+    <span class="c1"># place most significant qubit in equal superposition</span>
+    <span class="n">qc_ghz</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="c1"># apply cx gates between successive pairs of qubits</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)):</span>
+        <span class="n">qc_ghz</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">qc_ghz</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create GHZ circuit for n qubits</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">ghz_cir_b</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">())</span>
+
+<span class="c1"># Display n-qubit GHZ state</span>
+<span class="n">Statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;|</span><span class="se">\\</span><span class="s1">Omega _</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="se">\\</span><span class="s1">rangle = &#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a84c040015586fb152109ee8ae5a53a37fb6dcd9207620b2797d6f7fd86f81ec.png" src="../../_images/a84c040015586fb152109ee8ae5a53a37fb6dcd9207620b2797d6f7fd86f81ec.png" />
+<div class="output text_latex math notranslate nohighlight">
+\[|\Omega _5\rangle = \frac{\sqrt{2}}{2} |00000\rangle+\frac{\sqrt{2}}{2} |11111\rangle\]</div>
+</div>
+</div>
+<p>Now, the problem with this approach is that, since each <span class="math notranslate nohighlight">\(CX\)</span> gate needs to be applied sequentially, the total circuit depth for <span class="math notranslate nohighlight">\(n\)</span> qubits is equal to <span class="math notranslate nohighlight">\(n+1\)</span>. In other words, no <span class="math notranslate nohighlight">\(CX\)</span> gates are being applied in parallel. This is problematic when the number of qubits is large because, the most significant qubits are being left idle for a long period of time, which leads to errors in the computation.</p>
+<p>It is therefore desirable to implement GHZ circuits where the nearest-neighbor connectivity is preserved, but the depth of the circuit is reduced. The example below cuts the depth to <span class="math notranslate nohighlight">\(n/2 + 2\)</span>, but there are more clever techniques where, for certain connectivity maps, the total number of <span class="math notranslate nohighlight">\(CX\)</span> gates can be reduced to be order <span class="math notranslate nohighlight">\(\log_2(n)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">ghz_cir_c</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="c1"># create quantum circuit with n qubits</span>
+    <span class="n">qb_mid</span> <span class="o">=</span> <span class="n">n</span><span class="o">//</span><span class="mi">2</span>
+    <span class="n">qc_ghz</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    
+    <span class="c1"># place most significant qubit in equal superposition</span>
+    <span class="n">qc_ghz</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">qb_mid</span><span class="p">)</span>
+    
+    <span class="c1"># apply cx gates between successive pairs of qubits</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">qb_mid</span><span class="p">)):</span>
+        <span class="n">qc_ghz</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">qb_mid</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">qc_ghz</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">qc_ghz</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create GHZ circuit for n qubits</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">ghz_cir_c</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">())</span>
+
+<span class="c1"># Display n-qubit GHZ state</span>
+<span class="n">Statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;|</span><span class="se">\\</span><span class="s1">Omega _</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="se">\\</span><span class="s1">rangle = &#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/37ec0460ec40ecd511ed539e0ac06275700cbcb8f4174b06a96ac40482919a00.png" src="../../_images/37ec0460ec40ecd511ed539e0ac06275700cbcb8f4174b06a96ac40482919a00.png" />
+<div class="output text_latex math notranslate nohighlight">
+\[|\Omega _7\rangle = \frac{\sqrt{2}}{2} |0000000\rangle+\frac{\sqrt{2}}{2} |1111111\rangle\]</div>
+</div>
+</div>
+</section>
+<section id="w-states">
+<h3>1.3 W States<a class="headerlink" href="#w-states" title="Link to this heading">#</a></h3>
+<p>Just like GHZ states can be seen as a generalization of the <span class="math notranslate nohighlight">\(|\Phi^+\rangle\)</span> Bell state, W states can be considered to be a generalization of the <span class="math notranslate nohighlight">\(|\Psi^+\rangle\)</span> Bell state for 3 or more qubits, where there is only one <span class="math notranslate nohighlight">\(1\)</span> in each state that composes the superposition. So, for the particular case of 3 qubits we have:</p>
+<div class="math notranslate nohighlight">
+\[ |\text{W}\rangle = \frac{1}{\sqrt{3}}\left(|001\rangle + |010\rangle + |100\rangle \right) .\]</div>
+<p>But, in general, for <span class="math notranslate nohighlight">\(n\)</span> qubits:</p>
+<div class="math notranslate nohighlight">
+\[ |\text{W}_n\rangle = \frac{1}{\sqrt{n}}\sum_{j=0}^{n-1} |2^j\rangle ,\]</div>
+<p>where we use the integer <span class="math notranslate nohighlight">\(2^j\)</span> inside the ket to denote the binary value for that particular number. So, for example, for <span class="math notranslate nohighlight">\(n = 5\)</span>, we have:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+|\text{W}_5\rangle &amp;= \frac{1}{\sqrt{5}}\left(|1\rangle + |2\rangle + |4\rangle + |8\rangle + |16\rangle \right) 
+\\
+\\
+|\text{W}_5\rangle &amp;= \frac{1}{\sqrt{5}}\left(|00001\rangle + |00010\rangle + |00100\rangle + |01000\rangle + |10000\rangle \right) 
+\end{aligned}
+\end{split}\]</div>
+<p>W states play a critical role in quantum information theory, quantum communication, and other applications that require <a class="reference external" href="https://en.wikipedia.org/wiki/One-hot">one-hot encoding</a>.</p>
+<p>The circuit to generate these states is significantly more involved than that of GHZ states, so I provide a detailed description on how to do this in a separate <a class="reference external" href="https://nbviewer.org/github/diemilio/quantum-playground/blob/main/w-states/w-states.ipynb">post</a>. However, for convenience, the code to generate these circuits is provided below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">w_cir</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    
+    <span class="n">prob_amp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">n</span><span class="p">)</span>          <span class="c1"># probability amplitude</span>
+    <span class="n">rot_ang</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">prob_amp</span><span class="p">)</span>  <span class="c1"># initial rotation angle</span>
+    
+    <span class="c1"># create quantum circuit with n qubits</span>
+    <span class="n">qc_w</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> 
+    
+    <span class="c1"># probability redistribution</span>
+    <span class="n">qc_w</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">rot_ang</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">comp_amp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="n">n</span><span class="p">)</span>
+        <span class="n">rot_ang</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">prob_amp</span><span class="o">/</span><span class="p">(</span><span class="n">comp_amp</span><span class="p">))</span>
+        <span class="n">qc_w</span><span class="o">.</span><span class="n">cry</span><span class="p">(</span><span class="n">rot_ang</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="c1"># state reshuffling</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">qc_w</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="n">qc_w</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">qc_w</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create W circuit for n qubits</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">w_cir</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">())</span>
+
+<span class="c1"># Display n-qubit W state</span>
+<span class="n">Statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;|</span><span class="se">\\</span><span class="s1">text W_</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1"> </span><span class="se">\\</span><span class="s1">rangle = &#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/3979267287b90b5da919fc08ba5f94fda847f188218dfb3cd6c8fe07e73449bc.png" src="../../_images/3979267287b90b5da919fc08ba5f94fda847f188218dfb3cd6c8fe07e73449bc.png" />
+<div class="output text_latex math notranslate nohighlight">
+\[|\text W_5 \rangle = \frac{\sqrt{5}}{5} |00001\rangle+\frac{\sqrt{5}}{5} |00010\rangle+\frac{\sqrt{5}}{5} |00100\rangle+\frac{\sqrt{5}}{5} |01000\rangle+\frac{\sqrt{5}}{5} |10000\rangle\]</div>
+</div>
+</div>
+<p>Similar to the preparation of GHZ states, there are also a methods to generate W states with circuit lower depths. <a class="reference external" href="https://arxiv.org/pdf/1807.05572">[Cruz18]</a> provides some insight into how both GHZ and W state generation can be accomplished using circuits with number of gates in order <span class="math notranslate nohighlight">\(\log_2(n)\)</span>.</p>
+</section>
+</section>
+<section id="the-quantum-hadamard-transform">
+<h2>2. The Quantum Hadamard Transform<a class="headerlink" href="#the-quantum-hadamard-transform" title="Link to this heading">#</a></h2>
+<p>The quantum <a class="reference external" href="https://en.wikipedia.org/wiki/Hadamard_transform">Hadamard transform</a> (QHT) is one of the most important building blocks in quantum computing as it shows up in a wide range of quantum algorithms. Its definition is rather simple, but the nomenclature used to describe how it acts on a general quantum state is worth introducing because it is used rather extensively.</p>
+<p>The QHT is nothing other than the Hadamard gate <span class="math notranslate nohighlight">\(H\)</span> being individually applied to <span class="math notranslate nohighlight">\(n\)</span> qubits:</p>
+<div class="math notranslate nohighlight">
+\[ \text{QHT}_n = H^{\otimes n} .\]</div>
+<p>Recalling that the matrix for Hadamard operation is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} H = \frac{1}{\sqrt{2}} \begin{bmatrix} 1 &amp; \phantom{-}1 \\ 1 &amp; -1 \end{bmatrix} ,\end{split}\]</div>
+<p>the QHT then results in matrix with <span class="math notranslate nohighlight">\(N = 2^n\)</span> rows/columns, composed of alternating sequences of <span class="math notranslate nohighlight">\(1\)</span>s an <span class="math notranslate nohighlight">\(-1\)</span>s with a normalization factor, which is determined by the number of qubits. To see this, we can use the <span class="math notranslate nohighlight">\(2\)</span>-qubit case as an example:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+\text{QHT}_2 &amp;= H \otimes H = \frac{1}{\sqrt{2}} \begin{bmatrix} 1 &amp; \phantom{-}1 \\ 1 &amp; -1 \end{bmatrix} \otimes \frac{1}{\sqrt{2}} \begin{bmatrix} 1 &amp; \phantom{-}1 \\ 1 &amp; -1 \end{bmatrix}
+\\
+\\
+\text{QHT}_2 &amp;= \frac{1}{\sqrt{4}} \begin{bmatrix} 1 \begin{bmatrix} 1 &amp; \phantom{-}1 \\ 1 &amp; -1 \end{bmatrix}  &amp; \phantom{-}1 \begin{bmatrix} 1 &amp; \phantom{-}1 \\ 1 &amp; -1 \end{bmatrix}  \\ 1 \begin{bmatrix} 1 &amp; \phantom{-}1 \\ 1 &amp; -1 \end{bmatrix}  &amp; -1 \begin{bmatrix} 1 &amp; \phantom{-}1 \\ 1 &amp; -1 \end{bmatrix} \end{bmatrix}
+\\
+\\
+\text{QHT}_2 &amp;= \frac{1}{\sqrt{4}} \begin{bmatrix} 1 &amp; \phantom{-}1 &amp; \phantom{-}1 &amp; \phantom{-}1 \\
+                                            1 &amp; -1 &amp; \phantom{-}1 &amp; -1 \\
+                                            1 &amp; \phantom{-}1 &amp; -1 &amp; -1 \\
+                                            1 &amp; -1 &amp; -1 &amp; \phantom{-}1 \end{bmatrix} .
+\end{aligned}
+\end{split}\]</div>
+<p>More generally, the matrix associated with the QHT is of the form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\text{QHT}_n = \frac{1}{\sqrt{N}} \begin{bmatrix} h_{0,0} &amp; h_{0,1} &amp; \dots &amp; h_{0,(N-1)} \\
+                                            h_{1,0} &amp; h_{1,1} &amp; \dots &amp; h_{1,(N-1)} \\
+                                            \vdots &amp; \vdots  &amp; \ddots &amp; \vdots \\
+                                            h_{(N-1),0} &amp; h_{(N-1),1} &amp; \dots &amp; h_{(N-1),(N-1)} \end{bmatrix}
+\end{split}\]</div>
+<p>where the element in row <span class="math notranslate nohighlight">\(i\)</span> and column <span class="math notranslate nohighlight">\(j\)</span> can be computed as:</p>
+<div class="math notranslate nohighlight">
+\[ h_{i,j} = (-1)^{i \cdot j}. \]</div>
+<p>Here, <span class="math notranslate nohighlight">\(i \cdot j\)</span> represents the dot product of the binary representations of <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>. So, for example, for <span class="math notranslate nohighlight">\(n = 3\)</span> qubits, The QHT will be a matrix of size <span class="math notranslate nohighlight">\(2^3 \times 2^3 = 8 \times 8\)</span>. And to calculate the matrix entry in, let’s say, row <span class="math notranslate nohighlight">\(i = 2\)</span> (which is <span class="math notranslate nohighlight">\(010\)</span> in binary) and column <span class="math notranslate nohighlight">\(j = 6\)</span> (<span class="math notranslate nohighlight">\(110\)</span> in binary), we compute:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+i \cdot j  &amp;= 010 \cdot 110
+\\
+i \cdot j  &amp;= 0 \times 1 + 1 \times 1 + 0 \times 0
+\\
+i \cdot j &amp; = 1,
+\end{aligned}
+\end{split}\]</div>
+<p>which results in the following matrix element:</p>
+<div class="math notranslate nohighlight">
+\[h_{2,6} = (-1)^{1} = -1 .\]</div>
+<p>We can also use Qiskit to implement the circuit and unitary matrix for the QHT as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create QHT circuit for n qubits</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">())</span>
+
+<span class="c1"># Display n-qubit QHT matrix</span>
+<span class="n">QHT</span> <span class="o">=</span> <span class="n">Operator</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">QHT</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">text Q </span><span class="se">\\</span><span class="s1">text H </span><span class="se">\\</span><span class="s1">text T_</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1"> = &#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/0931654e12adec03e339b22f663c3b0f2ac317643ea447baf609bdb7ad4b38eb.png" src="../../_images/0931654e12adec03e339b22f663c3b0f2ac317643ea447baf609bdb7ad4b38eb.png" />
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+\text Q \text H \text T_3 = 
+\begin{bmatrix}
+\frac{\sqrt{2}}{4} &amp; \frac{\sqrt{2}}{4} &amp; \frac{\sqrt{2}}{4} &amp; \frac{\sqrt{2}}{4} &amp; \frac{\sqrt{2}}{4} &amp; \frac{\sqrt{2}}{4} &amp; \frac{\sqrt{2}}{4} &amp; \frac{\sqrt{2}}{4}  \\
+ \frac{\sqrt{2}}{4} &amp; - \frac{\sqrt{2}}{4} &amp; \frac{\sqrt{2}}{4} &amp; - \frac{\sqrt{2}}{4} &amp; \frac{\sqrt{2}}{4} &amp; - \frac{\sqrt{2}}{4} &amp; \frac{\sqrt{2}}{4} &amp; - \frac{\sqrt{2}}{4}  \\
+ \frac{\sqrt{2}}{4} &amp; \frac{\sqrt{2}}{4} &amp; - \frac{\sqrt{2}}{4} &amp; - \frac{\sqrt{2}}{4} &amp; \frac{\sqrt{2}}{4} &amp; \frac{\sqrt{2}}{4} &amp; - \frac{\sqrt{2}}{4} &amp; - \frac{\sqrt{2}}{4}  \\
+ \frac{\sqrt{2}}{4} &amp; - \frac{\sqrt{2}}{4} &amp; - \frac{\sqrt{2}}{4} &amp; \frac{\sqrt{2}}{4} &amp; \frac{\sqrt{2}}{4} &amp; - \frac{\sqrt{2}}{4} &amp; - \frac{\sqrt{2}}{4} &amp; \frac{\sqrt{2}}{4}  \\
+ \frac{\sqrt{2}}{4} &amp; \frac{\sqrt{2}}{4} &amp; \frac{\sqrt{2}}{4} &amp; \frac{\sqrt{2}}{4} &amp; - \frac{\sqrt{2}}{4} &amp; - \frac{\sqrt{2}}{4} &amp; - \frac{\sqrt{2}}{4} &amp; - \frac{\sqrt{2}}{4}  \\
+ \frac{\sqrt{2}}{4} &amp; - \frac{\sqrt{2}}{4} &amp; \frac{\sqrt{2}}{4} &amp; - \frac{\sqrt{2}}{4} &amp; - \frac{\sqrt{2}}{4} &amp; \frac{\sqrt{2}}{4} &amp; - \frac{\sqrt{2}}{4} &amp; \frac{\sqrt{2}}{4}  \\
+ \frac{\sqrt{2}}{4} &amp; \frac{\sqrt{2}}{4} &amp; - \frac{\sqrt{2}}{4} &amp; - \frac{\sqrt{2}}{4} &amp; - \frac{\sqrt{2}}{4} &amp; - \frac{\sqrt{2}}{4} &amp; \frac{\sqrt{2}}{4} &amp; \frac{\sqrt{2}}{4}  \\
+ \frac{\sqrt{2}}{4} &amp; - \frac{\sqrt{2}}{4} &amp; - \frac{\sqrt{2}}{4} &amp; \frac{\sqrt{2}}{4} &amp; - \frac{\sqrt{2}}{4} &amp; \frac{\sqrt{2}}{4} &amp; \frac{\sqrt{2}}{4} &amp; - \frac{\sqrt{2}}{4}  \\
+ \end{bmatrix}
+\end{split}\]</div>
+</div>
+</div>
+<p>An important expression that comes in handy when analyzing quantum algorithms is that of the output state <span class="math notranslate nohighlight">\(|y\rangle\)</span> of the QHT given an arbitrary input state <span class="math notranslate nohighlight">\(|x\rangle\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ |y\rangle = \text{QHT} |x\rangle .\]</div>
+<p>An easy way to find <span class="math notranslate nohighlight">\(|y\rangle\)</span>, is by first assuming <span class="math notranslate nohighlight">\(|x\rangle\)</span> is one of the computational basis states <span class="math notranslate nohighlight">\(\{|0\rangle, |1\rangle \}^{\otimes n}\)</span>. For example, if <span class="math notranslate nohighlight">\(|x\rangle\)</span> is the all-zeros state <span class="math notranslate nohighlight">\(|0 \dots 00\rangle\)</span> (which is the first basis state), then <span class="math notranslate nohighlight">\(|y\rangle\)</span> will be a statevector whose entries correspond to the first column of the QHT matrix; if <span class="math notranslate nohighlight">\(|x\rangle\)</span> is state <span class="math notranslate nohighlight">\(|0 \dots 01\rangle\)</span> (the second basis state), then <span class="math notranslate nohighlight">\(|y\rangle\)</span> will correspond to the QHT’s second column, and so on. So, in general, if the input to the QHT is the <span class="math notranslate nohighlight">\(j^{\text{th}}\)</span> basis state <span class="math notranslate nohighlight">\(|j\rangle\)</span>, the output state <span class="math notranslate nohighlight">\(|y_j\rangle\)</span> corresponds to the <span class="math notranslate nohighlight">\(j^{\text{th}}\)</span> column of the QHT matrix.</p>
+<p>Again, if we take as example <span class="math notranslate nohighlight">\(|x\rangle\)</span> being the all-zeros state, we have:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+|y_0\rangle &amp;= \text{QHT} \, |0 \dots 00 \rangle
+\\
+\\
+|y_0\rangle &amp;= \frac{1}{\sqrt{N}} \begin{bmatrix} 1 \\ 1 \\ \vdots \\ 1 \end{bmatrix} 
+\\
+\\
+|y_0\rangle &amp;= \frac{1}{\sqrt{N}} \left( \; \begin{bmatrix} 1 \\ 0 \\ \vdots \\ 0 \end{bmatrix} + 
+                                          \begin{bmatrix} 0 \\ 1 \\ \vdots \\ 0 \end{bmatrix} + \dots +
+                                          \begin{bmatrix} 0 \\ 0 \\ \vdots \\ 1 \end{bmatrix} \; \right)
+\\
+\\
+|y_0\rangle &amp;= \frac{1}{\sqrt{N}} \sum_{i = 0}^{N - 1} |i\rangle .
+\end{aligned}
+\end{split}\]</div>
+<p>Now, recalling that each matrix entry of the QHT is given by <span class="math notranslate nohighlight">\( h_{i,j} = (-1)^{i \cdot j} \)</span>, we can find the output state <span class="math notranslate nohighlight">\(|y_j\rangle\)</span>, given the input <span class="math notranslate nohighlight">\(|x\rangle = |j\rangle\)</span>, by using the expression we found above for <span class="math notranslate nohighlight">\(|y_0\rangle\)</span>, but also including the corresponding matrix entry coefficients in the summation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+|y_j\rangle &amp;= \text{QHT} \, |j\rangle = \frac{1}{\sqrt{N}} \sum_{i = 0}^{N - 1} h_{i,j} |i\rangle
+\\
+\\
+|y_j\rangle &amp;= \frac{1}{\sqrt{N}} \sum_{i = 0}^{N - 1} (-1)^{i \cdot j} |i\rangle .
+\end{aligned} 
+\end{split}\]</div>
+<p>Finally, to obtain the general equation for an arbitrary input <span class="math notranslate nohighlight">\(|x\rangle\)</span>, all we need to recall is that, any state can be expressed as a linear superposition of the computational basis states:</p>
+<div class="math notranslate nohighlight">
+\[|x\rangle = \sum_{j=0}^{N-1} \alpha_j |j\rangle .\]</div>
+<p>So, by linearity:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+|y\rangle &amp;= \text{QHT} \, |x\rangle = \sum_{j=0}^{N-1} \alpha_j \, \text{QHT} \, |j\rangle 
+\\
+\\
+|y\rangle &amp;= \sum_{j=0}^{N-1} \alpha_j |y_j\rangle, 
+\end{aligned}
+\end{split}\]</div>
+<p>which, after replacing <span class="math notranslate nohighlight">\(|y_j\rangle\)</span> with the expression we found above, results in:</p>
+<div class="math notranslate nohighlight">
+\[ 
+\begin{split}
+\boxed{|y\rangle = \sum_{i = 0}^{N - 1} \left( \frac{1}{\sqrt{N}} \sum_{j = 0}^{N - 1} (-1)^{i \cdot j} \alpha_j \right) |i\rangle}
+\end{split}
+\]</div>
+<p>The terms inside the parenthesis correspond to each of the probability amplitudes <span class="math notranslate nohighlight">\(\beta_i\)</span> of the output state; i.e.:</p>
+<div class="math notranslate nohighlight">
+\[ |y\rangle = \sum_{i=0}^{N-1} \beta_i |i\rangle, \quad \text{where:} \; \beta_i = \frac{1}{\sqrt{N}} \sum_{j = 0}^{N - 1} (-1)^{i \cdot j} \alpha_j .\]</div>
+<p>Let’s now use Qiskit to compute the QHT of, for example, a <span class="math notranslate nohighlight">\(3\)</span>-qubit W state:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate n-qubit W state</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">QHT</span> <span class="o">=</span> <span class="n">Operator</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="o">*</span><span class="n">n</span><span class="p">)</span>
+<span class="n">W</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">(</span><span class="n">w_cir</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="n">W</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;|</span><span class="se">\\</span><span class="s1">text W_</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="se">\\</span><span class="s1">rangle = &#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[|\text W_3\rangle = \frac{\sqrt{3}}{3} |001\rangle+\frac{\sqrt{3}}{3} |010\rangle+\frac{\sqrt{3}}{3} |100\rangle\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute QHT of W state using Qiskit</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">W</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">QHT</span><span class="p">)</span>
+<span class="n">y</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">text Q </span><span class="se">\\</span><span class="s1">text H </span><span class="se">\\</span><span class="s1">text T | </span><span class="se">\\</span><span class="s1">text W_</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="se">\\</span><span class="s1">rangle = &#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\text Q \text H \text T | \text W_3\rangle = \frac{\sqrt{6}}{4} |000\rangle+\frac{\sqrt{6}}{12} |001\rangle+\frac{\sqrt{6}}{12} |010\rangle- \frac{\sqrt{6}}{12} |011\rangle+\frac{\sqrt{6}}{12} |100\rangle- \frac{\sqrt{6}}{12} |101\rangle- \frac{\sqrt{6}}{12} |110\rangle- \frac{\sqrt{6}}{4} |111\rangle\]</div>
+</div>
+</div>
+<p>Qiskit is very convinient; however, it is a good exercise to code a function to compute the QHT in order to verify that the expressions we derived above do indeed match what we get from Qiskit:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Function that computes the QHT of an input Statevector sv</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">qht_func</span><span class="p">(</span><span class="n">sv</span><span class="p">):</span>
+    
+    <span class="n">βs</span> <span class="o">=</span> <span class="p">[]</span>                                       <span class="c1"># List to store each βi                                    </span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sv</span><span class="p">)):</span>
+        <span class="n">i_str</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">binary_repr</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>               <span class="c1"># Convert i to binary str</span>
+        <span class="n">i_lst</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">bit</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">bit</span> <span class="ow">in</span> <span class="n">i_str</span><span class="p">]</span>     <span class="c1"># Store bits of i in a list</span>
+        
+        <span class="n">β_temp</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">α</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sv</span><span class="o">.</span><span class="n">data</span><span class="p">):</span>
+            <span class="n">j_str</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">binary_repr</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>           <span class="c1"># Convert j to binary str</span>
+            <span class="n">j_lst</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">bit</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">bit</span> <span class="ow">in</span> <span class="n">j_str</span><span class="p">]</span> <span class="c1"># Store bits of j in a list</span>
+            <span class="n">ij_dot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">i_lst</span><span class="p">,</span><span class="n">j_lst</span><span class="p">)</span>          <span class="c1"># perform inner product of i and j</span>
+            <span class="n">β_temp</span> <span class="o">+=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="n">ij_dot</span> <span class="o">*</span> <span class="n">α</span>            <span class="c1"># sum over j</span>
+        
+        <span class="n">β_temp</span> <span class="o">*=</span> <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">n</span><span class="p">)</span>                 <span class="c1"># multiply βi by normalization factor</span>
+        <span class="n">βs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">β_temp</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">Statevector</span><span class="p">(</span><span class="n">βs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Computer QHT of W state using our own function (should match Qiskit&#39;s result)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">qht_func</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+<span class="n">y</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">text Q </span><span class="se">\\</span><span class="s1">text H </span><span class="se">\\</span><span class="s1">text T | </span><span class="se">\\</span><span class="s1">text W_</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="se">\\</span><span class="s1">rangle = &#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\text Q \text H \text T | \text W_3\rangle = \frac{\sqrt{6}}{4} |000\rangle+\frac{\sqrt{6}}{12} |001\rangle+\frac{\sqrt{6}}{12} |010\rangle- \frac{\sqrt{6}}{12} |011\rangle+\frac{\sqrt{6}}{12} |100\rangle- \frac{\sqrt{6}}{12} |101\rangle- \frac{\sqrt{6}}{12} |110\rangle- \frac{\sqrt{6}}{4} |111\rangle\]</div>
+</div>
+</div>
+</section>
+<section id="phase-kickback">
+<h2>3. Phase Kickback<a class="headerlink" href="#phase-kickback" title="Link to this heading">#</a></h2>
+<p>Even though most popular descriptions of quantum computing cite <strong>superposition</strong> and <strong>entanglement</strong> as the key ingredients to achieving computational speedups, the reality is that the <a class="reference external" href="https://en.wikipedia.org/wiki/Phase_kickback">phase kickback</a> effect is equally important. Phase kickback is so critical that it shows up, in one way or an other, in every single quantum algorithm with a proven speedup. In this section we will cover the fundamentals of phase kickback, which will allow us to understand in detail how is it that this phenomenon makes quantum routines advantageous over their classical counterparts.</p>
+<section id="eigenvalues-and-eigenvectors">
+<h3>3.1 Eigenvalues and Eigenvectors<a class="headerlink" href="#eigenvalues-and-eigenvectors" title="Link to this heading">#</a></h3>
+<p>To understand phase kickback, we need to talk about the <a class="reference external" href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors">eigenvalues and eigenvectors</a> of a matrix. This might sound a bit intimidating, but the good thing is that these concepts have a very intuitive geometrical interpretation when discussed in the context of a single qubit system. And from there, it should be easy to generalize them to multi-qubit systems.</p>
+<p>Let’s recall that single qubit gates, which are described by unitary matrices, can be viewed as qubit rotations in the Bloch sphere. For example, the <span class="math notranslate nohighlight">\(X\)</span> gate rotates a qubit’s Bloch vector by angle of <span class="math notranslate nohighlight">\(\pi\)</span> (<span class="math notranslate nohighlight">\(180°\)</span>) about the <span class="math notranslate nohighlight">\(x\)</span> axis. We can easily see this when the <span class="math notranslate nohighlight">\(X\)</span> gate is applied to state <span class="math notranslate nohighlight">\(|0\rangle\)</span>, which then results in state <span class="math notranslate nohighlight">\(|1\rangle\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Qubit before X gate is applied:&#39;</span><span class="p">)</span>
+<span class="n">q</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;bloch&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Qubit before X gate is applied:
+</pre></div>
+</div>
+<img alt="../../_images/88c6cc9458723e85ebd4cc55c27044af44b3dbc72d7ef5933050586d3a6d9ada.png" src="../../_images/88c6cc9458723e85ebd4cc55c27044af44b3dbc72d7ef5933050586d3a6d9ada.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">Operator</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Qubit after X gate is applied:&#39;</span><span class="p">)</span>
+<span class="n">q</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;bloch&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Qubit after X gate is applied:
+</pre></div>
+</div>
+<img alt="../../_images/93426789aa4aeb60bc8cb232839aa3d2375337ce5198ef5efca41e493ab3a4d2.png" src="../../_images/93426789aa4aeb60bc8cb232839aa3d2375337ce5198ef5efca41e493ab3a4d2.png" />
+</div>
+</div>
+<p>But what happens if we apply an <span class="math notranslate nohighlight">\(X\)</span> gate to a qubit whose Bloch vector is pointing in a direction <strong>parallel</strong> to the <span class="math notranslate nohighlight">\(x\)</span> axis? Intuition tells us that the qubit will rotate on itself, and therefore remain unchanged. That is indeed precisely what happens to statevector <span class="math notranslate nohighlight">\(|+\rangle\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Qubit before X gate is applied:&#39;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;bloch&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Qubit before X gate is applied:
+</pre></div>
+</div>
+<img alt="../../_images/78f2ed2017442ef21032ef579d41e611aa44d17f76bc9469a993d15e2ec99606.png" src="../../_images/78f2ed2017442ef21032ef579d41e611aa44d17f76bc9469a993d15e2ec99606.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Qubit after X gate is applied:&#39;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;bloch&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Qubit after X gate is applied:
+</pre></div>
+</div>
+<img alt="../../_images/78f2ed2017442ef21032ef579d41e611aa44d17f76bc9469a993d15e2ec99606.png" src="../../_images/78f2ed2017442ef21032ef579d41e611aa44d17f76bc9469a993d15e2ec99606.png" />
+</div>
+</div>
+<p>We then say that state <span class="math notranslate nohighlight">\(|+\rangle\)</span> is an eigenvector of the <span class="math notranslate nohighlight">\(X\)</span> matrix. The other eigenvector of the <span class="math notranslate nohighlight">\(X\)</span> matrix is state <span class="math notranslate nohighlight">\(|-\rangle\)</span> since it is the only other vector that lies along the <span class="math notranslate nohighlight">\(x\)</span> axis, and will therefore remain unchanged if an <span class="math notranslate nohighlight">\(X\)</span> gate is applied to it.</p>
+<p>So, more generally, the <span style="color:#a883f7"><strong>eigenvectors</strong></span> of a unitary matrix <span class="math notranslate nohighlight">\(U\)</span> are those special vectors whose direction remains unchanged when <span class="math notranslate nohighlight">\(U\)</span> acts on them.</p>
+<p>Eigenvectors then satisfy what is known as the <span style="color:#a883f7"><strong>eigenvalue equation</strong></span>. For a unitary <span class="math notranslate nohighlight">\(U\)</span> with an eigenvector <span class="math notranslate nohighlight">\(|u\rangle\)</span>, the eigenvalue equation is given by:</p>
+<div class="math notranslate nohighlight">
+\[ U|u\rangle = \lambda |u\rangle, \]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda\)</span> is the <span style="color:#a883f7"><strong>eigenvalue</strong></span> associated with the eigenvector <span class="math notranslate nohighlight">\(|u\rangle\)</span>.</p>
+<p>In the case of some non-unitary matrices (like <a class="reference external" href="https://en.wikipedia.org/wiki/Transformation_matrix">spatial transformation matrices</a>), the eigenvalue <span class="math notranslate nohighlight">\(\lambda\)</span> can be interpreted as the factor by which an eigenvector gets scaled (stretched or compressed) by the matrix of interest while maintaining the vector’s direction. However, since unitary matrices preserve the length of vectors (i.e., statevectors evolved through unitaries remain normalized), <span class="math notranslate nohighlight">\(\lambda\)</span> is always a complex number of modulus equal to <span class="math notranslate nohighlight">\(1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[|\lambda| = 1 .\]</div>
+<p>In other words, the eigenvalues of unitary matrices <strong>do not</strong> scale the length of their corresponding eigenvectors.</p>
+<p>Now, since it is only the modulus of <span class="math notranslate nohighlight">\(\lambda\)</span> that must be equal to <span class="math notranslate nohighlight">\(1\)</span>, there is really no restriction on what the <strong>phase</strong> of <span class="math notranslate nohighlight">\(\lambda\)</span>  must be. As a matter of fact, this phase is determined to the unitary <span class="math notranslate nohighlight">\(U\)</span> and the corresponding eigenvector <span class="math notranslate nohighlight">\(|u\rangle\)</span>. To see what we mean by this, let’s apply <span class="math notranslate nohighlight">\(X\)</span> to each of its eigenvectors and find their corresponding eigenvalues. So, starting with eigenvector <span class="math notranslate nohighlight">\(|+\rangle\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+X |+\rangle &amp;= \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix} \frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ 1 \end{bmatrix}
+\\
+\\
+X |+\rangle &amp;= \frac{1}{\sqrt{2}} \begin{bmatrix} 1 \\ 1 \end{bmatrix}
+\\
+\\
+X |+\rangle &amp;= |+\rangle .
+\end{aligned}
+\end{split}\]</div>
+<p>From this, we can see that applying the <span class="math notranslate nohighlight">\(X\)</span> gate to <span class="math notranslate nohighlight">\(|+\rangle\)</span>, results in exactly state <span class="math notranslate nohighlight">\(|+\rangle\)</span>, which means its corresponding eigenvalue is <span class="math notranslate nohighlight">\(\lambda_+ = 1 .\)</span> Now, for state <span class="math notranslate nohighlight">\(|-\rangle\)</span> we have:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+X |-\rangle &amp;= \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix} \frac{1}{\sqrt{2}}\begin{bmatrix} \phantom{-}1 \\ -1 \end{bmatrix}
+\\
+\\
+X |-\rangle &amp;= \frac{1}{\sqrt{2}} \begin{bmatrix} -1 \\ \phantom{-}1 \end{bmatrix}
+\\
+\\
+X |-\rangle &amp;= -1 |-\rangle .
+\end{aligned}
+\end{split}\]</div>
+<p>In this case, we get state <span class="math notranslate nohighlight">\(|-\rangle\)</span> pre-multiplied by <span class="math notranslate nohighlight">\(-1\)</span>, which means that its eigenvalue is <span class="math notranslate nohighlight">\(\lambda_- = -1 .\)</span> This is consistent with what we have described before because <span class="math notranslate nohighlight">\(\lambda_-\)</span> does indeed have modulus equal to <span class="math notranslate nohighlight">\(1\)</span>. Therefore, for the <span class="math notranslate nohighlight">\(X\)</span> matrix, we have the following set of eigenvalue/eigenvector pairs:</p>
+<div class="math notranslate nohighlight">
+\[ \big \{\big(\lambda, |u\rangle \big)\big \}_{U=X} = \big \{ \big(1,  |+\rangle \big), \big( {-1}, |-\rangle \big) \big \} \]</div>
+<p>Now, since every complex number can be represented as <span class="math notranslate nohighlight">\(r e^{i\varphi}\)</span>, we have that the eigenvalues of unitary matrices (for which <span class="math notranslate nohighlight">\(r = |\lambda| = 1\)</span>) can always be expressed as:</p>
+<div class="math notranslate nohighlight">
+\[ \lambda = e^{i\varphi}. \]</div>
+<p>We can then rewrite the eigenvalue equation for unitary matrices as:</p>
+<div class="math notranslate nohighlight">
+\[ U|u\rangle = e^{i\varphi} |u\rangle. \]</div>
+<p>This reveals that, when a unitary <span class="math notranslate nohighlight">\(U\)</span> acts on any of its eigenvectors <span class="math notranslate nohighlight">\(|u\rangle\)</span>, the result is the same eigenvector pre-multiplied by a <strong>global phase factor</strong>, which as we discussed before, it is not something we can directly measure.</p>
+<p>In the specific case of the <span class="math notranslate nohighlight">\(X\)</span> matrix and its eigenvector <span class="math notranslate nohighlight">\(|-\rangle\)</span>, we see that the eigenvector acquires a global phase of <span class="math notranslate nohighlight">\(\pi\)</span> (since <span class="math notranslate nohighlight">\(\lambda_- = e^{i \pi} = -1\)</span>), but it is not uncommon to see the misnomer “<em>phase of <span class="math notranslate nohighlight">\(-1\)</span></em>” being used.</p>
+<p>At first glance, it seems that applying a unitary matrix to one of its eigenvectors is a useless operation since it only has the effect of adding a global phase to the state, which is an unmeasurable quantity. But this is where phase kickback comes in: by adding an extra qubit that controls if the unitary <span class="math notranslate nohighlight">\(U\)</span> is applied or not to an eigenvector <span class="math notranslate nohighlight">\(|u\rangle\)</span>, one can indirectly infer the corresponding eigenvalue <span class="math notranslate nohighlight">\(\lambda\)</span>. Let’s see how this work.</p>
+</section>
+<section id="kickback-in-action">
+<h3>3.2 Kickback in Action<a class="headerlink" href="#kickback-in-action" title="Link to this heading">#</a></h3>
+<p>Let us start by considering as an example the controlled-version of an <span class="math notranslate nohighlight">\(X\)</span> gate (i.e., a <span class="math notranslate nohighlight">\(CX\)</span> gate).</p>
+<p>If we initialize the control qubit of a <span class="math notranslate nohighlight">\(CX\)</span> gate to state <span class="math notranslate nohighlight">\(|0\rangle\)</span>, and the target qubit to state <span class="math notranslate nohighlight">\(|-\rangle\)</span>, which as we saw before, is an eigenvector of the <span class="math notranslate nohighlight">\(X\)</span> matrix, the output state will be the same as the input since the <span class="math notranslate nohighlight">\(X\)</span> gate will not be activated:</p>
+<div class="math notranslate nohighlight">
+\[ |0\rangle \otimes |-\rangle \xrightarrow{\; CX \;} |0\rangle \otimes |-\rangle .\]</div>
+<p>On the other had, if we now initialize the control qubit to state <span class="math notranslate nohighlight">\(|1\rangle\)</span>, the <span class="math notranslate nohighlight">\(CX\)</span> will be applied to the target state <span class="math notranslate nohighlight">\(|-\rangle\)</span>, causing it to get premultiplied by its eigenvalue of <span class="math notranslate nohighlight">\(-1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ |1\rangle \otimes |-\rangle \xrightarrow{\; CX \;} |1\rangle \otimes -1 |-\rangle .\]</div>
+<p>Since <span class="math notranslate nohighlight">\(-1\)</span> is simply a constant factor, we can rewrite the output state as <span class="math notranslate nohighlight">\(- |1\rangle \otimes |-\rangle,\)</span> which can be interpreted as the <span class="math notranslate nohighlight">\(CX\)</span> operation adding an overall global phase of <span class="math notranslate nohighlight">\(-1\)</span> to the total state. Let’s see this in Qiskit:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Circuit to apply |1-⟩ to CX gate</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ψ_in</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ψ_out</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">())</span>
+
+<span class="c1"># Statevector before CX</span>
+<span class="n">display</span><span class="p">(</span><span class="n">ψ_in</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span><span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;|</span><span class="se">\\</span><span class="s1">psi </span><span class="se">\\</span><span class="s1">rangle_{</span><span class="se">\\</span><span class="s1">text</span><span class="si">{in}</span><span class="s1">} = &#39;</span><span class="p">))</span>
+
+<span class="c1"># Statevector after CX</span>
+<span class="n">ψ_out</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span><span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;|</span><span class="se">\\</span><span class="s1">psi </span><span class="se">\\</span><span class="s1">rangle_{</span><span class="se">\\</span><span class="s1">text</span><span class="si">{out}</span><span class="s1">} = &#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/c1c669c907fe5a662a9538a79070ce48c8b8e4bd8dd705da8c11731703bf36b1.png" src="../../_images/c1c669c907fe5a662a9538a79070ce48c8b8e4bd8dd705da8c11731703bf36b1.png" />
+<div class="output text_latex math notranslate nohighlight">
+\[|\psi \rangle_{\text{in}} = \frac{\sqrt{2}}{2} |10\rangle- \frac{\sqrt{2}}{2} |11\rangle\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[|\psi \rangle_{\text{out}} = - \frac{\sqrt{2}}{2} |10\rangle+\frac{\sqrt{2}}{2} |11\rangle\]</div>
+</div>
+</div>
+<p>So far, this all seems very unexciting. All we’ve managed to do is add a global phase to our state, which is not any different than what we had for the single-gate case. However, let us now consider the scenario in which we initialize the control qubit in an equal superpostion of state <span class="math notranslate nohighlight">\(|0\rangle\)</span> and state <span class="math notranslate nohighlight">\(|1\rangle\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ \frac{1}{\sqrt{2}}\left(|0\rangle + |1\rangle\right) \otimes |-\rangle \xrightarrow{\; CX \;}  \frac{1}{\sqrt{2}}\left(|0\rangle \otimes |-\rangle - |1\rangle \otimes |-\rangle \right) .\]</div>
+<p>Notice how the phase factor of <span class="math notranslate nohighlight">\(-1\)</span> now shows up as a relative phase of the overall state. Also, since the eigenvector <span class="math notranslate nohighlight">\(|-\rangle\)</span> is a common factor in both terms of the superposition, it can be factored out:</p>
+<div class="math notranslate nohighlight">
+\[\frac{1}{\sqrt{2}}\left(|0\rangle \otimes |-\rangle - |1\rangle \otimes |-\rangle \right) =  \frac{1}{\sqrt{2}}\left(|0\rangle - |1\rangle \right) \otimes |-\rangle.\]</div>
+<p>In other words, we have that the eigenvalue (phase factor) of the eigenvector <span class="math notranslate nohighlight">\(|-\rangle\)</span> in the target qubit, has been “<strong>kicked back</strong>” to the relative phase of the state in the control qubit! Furthermore, the two states remain separable. It is as if the target qubit was the one responsible for a change in the state of the control qubit:</p>
+<div class="math notranslate nohighlight">
+\[ |+\rangle |-\rangle \xrightarrow{\; CX \;} |-\rangle |-\rangle .\]</div>
+<p>We can visualize this a bit better using Qiskit:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Circuit to apply |+-⟩ to CX gate</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ψ_in</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ψ_out</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Statevectors before CX gate:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">ψ_in</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;bloch&#39;</span><span class="p">,</span> <span class="n">reverse_bits</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Statevectors after CX gate:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">ψ_out</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;bloch&#39;</span><span class="p">,</span> <span class="n">reverse_bits</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f0c2e28a1e822faa2bbc8ca8b8effcb2a72bffe5e64f408d45db64330a27fd04.png" src="../../_images/f0c2e28a1e822faa2bbc8ca8b8effcb2a72bffe5e64f408d45db64330a27fd04.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statevectors before CX gate:
+</pre></div>
+</div>
+<img alt="../../_images/93838da1fbc91db1674aa64c380e187ff7dcf53d432d4c833fff607ba2bd6d93.png" src="../../_images/93838da1fbc91db1674aa64c380e187ff7dcf53d432d4c833fff607ba2bd6d93.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statevectors after CX gate:
+</pre></div>
+</div>
+<img alt="../../_images/9c5b75c4026e8b1c1353f48cf49f2c9b7ff66acb31c725b3de322b2e0313cf42.png" src="../../_images/9c5b75c4026e8b1c1353f48cf49f2c9b7ff66acb31c725b3de322b2e0313cf42.png" />
+</div>
+</div>
+<p>Notice how the vector that changes direction is the one associated with the control qubit, whereas the statevector for the target qubit remains unchanged.</p>
+<p>So phase kickback has allowed us to turn the undetectable eigenvalue of a unitary matrix into a measurable change in an auxiliary qubit.</p>
+<p>Now, since states <span class="math notranslate nohighlight">\(|+\rangle\)</span> and <span class="math notranslate nohighlight">\(|-\rangle\)</span> give probabilistic results when measured in the computational basis, the above analysis doesn’t seem to directly show that the target qubit is in fact causing a deterministic change in the control qubit. However, recall that we can always go from the bit basis to the sign basis (and back) by applying Hadamard gates. So the full kickback protocol to show that this is the case will be:</p>
+<div class="math notranslate nohighlight">
+\[ |0\rangle |1\rangle \xrightarrow{\; H \otimes H \;} |+\rangle |-\rangle \xrightarrow{\; CX \;} |-\rangle |-\rangle \xrightarrow{\;  H \otimes H \;} |1\rangle |1\rangle .\]</div>
+<p>So, here we can effectively see how when the target qubit is <span class="math notranslate nohighlight">\(|1\rangle\)</span>, the control qubit is flipped from <span class="math notranslate nohighlight">\(|0\rangle\)</span> to <span class="math notranslate nohighlight">\(|1\rangle\)</span>.</p>
+<p>Let’s see this in Qiskit:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+<span class="n">ψ_in</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ψ_out</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">())</span>
+
+<span class="c1"># Input statevector</span>
+<span class="n">display</span><span class="p">(</span><span class="n">ψ_in</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span><span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;|</span><span class="se">\\</span><span class="s1">psi </span><span class="se">\\</span><span class="s1">rangle_{</span><span class="se">\\</span><span class="s1">text</span><span class="si">{in}</span><span class="s1">} = &#39;</span><span class="p">))</span>
+
+<span class="c1"># Output statevector</span>
+<span class="n">ψ_out</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span><span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;|</span><span class="se">\\</span><span class="s1">psi </span><span class="se">\\</span><span class="s1">rangle_{</span><span class="se">\\</span><span class="s1">text</span><span class="si">{out}</span><span class="s1">} = &#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/78597a8d8e2fc47793bcd590a9273d773c24cd5182bd067136c29f7867d56d21.png" src="../../_images/78597a8d8e2fc47793bcd590a9273d773c24cd5182bd067136c29f7867d56d21.png" />
+<div class="output text_latex math notranslate nohighlight">
+\[|\psi \rangle_{\text{in}} =  |01\rangle\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[|\psi \rangle_{\text{out}} =  |11\rangle\]</div>
+</div>
+</div>
+<p>On the surface, this seems rather innocuous. It looks like all we have accomplished is to swap the direction of a <span class="math notranslate nohighlight">\(CX\)</span> gate. However, this concept of having a control state be modified by the target has massive implications.</p>
+<p>The majority of quantum algorithms consist of encoding a problem in a multi-qubit unitary <span class="math notranslate nohighlight">\(U\)</span>, and controlling <span class="math notranslate nohighlight">\(U\)</span> with a set of qubits initialized in a superposition. This allows to <strong>simultaneously</strong> have the kickback effect act on every state of the superposition, causing one, or a few of them, to pick up a relative phase determined by eigenvalues of <span class="math notranslate nohighlight">\(U\)</span>. This is precisely where the parallelism that leads to quantum advantage stems from, and will become clearer as we explore different quantum algorithms.</p>
+<p>So, to summarize, for the case in which we have a single qubit controlling a unitary <span class="math notranslate nohighlight">\(CU\)</span>, phase kickback is enabled by initializing the control qubit in an equal superposition of <span class="math notranslate nohighlight">\(|0\rangle\)</span> and <span class="math notranslate nohighlight">\(|1\rangle\)</span>, and the target in an eigenvector <span class="math notranslate nohighlight">\(|u\rangle\)</span> of <span class="math notranslate nohighlight">\(U\)</span> (where <span class="math notranslate nohighlight">\(U\)</span> can be a multi-qubit gate). After <span class="math notranslate nohighlight">\(CU\)</span> is applied, the control qubit then picks up a relative phase equal to that of the eigenvalue <span class="math notranslate nohighlight">\(e^{i\varphi}\)</span> of <span class="math notranslate nohighlight">\(U\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ \frac{1}{\sqrt{2}}\left(|0\rangle + |1\rangle \right)|u\rangle \xrightarrow{\; CU \;} \frac{1}{\sqrt{2}}\left(|0\rangle + e^{i\varphi}|1\rangle \right)|u\rangle .\]</div>
+</section>
+<section id="multi-qubit-phase-kickback">
+<h3>3.3 Multi-Qubit Phase Kickback<a class="headerlink" href="#multi-qubit-phase-kickback" title="Link to this heading">#</a></h3>
+<p>We can generalize the expression above for the case in which we now have <span class="math notranslate nohighlight">\(m\)</span> qubits controlling a <span class="math notranslate nohighlight">\(C^m U\)</span> gate, where <span class="math notranslate nohighlight">\(U\)</span> only gets applied to an eigenvector <span class="math notranslate nohighlight">\(|u\rangle\)</span> in the target qubits if the control register is in some arbitrary state <span class="math notranslate nohighlight">\(|k\rangle\)</span>, with <span class="math notranslate nohighlight">\( k \in [0,2^m]\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ \frac{1}{\sqrt{2}}\left(|k\rangle^{\perp} + |k\rangle \right)|u\rangle \xrightarrow{\; C^mU \;} \frac{1}{\sqrt{2}}\left(|k\rangle^{\perp} + e^{i\varphi}|k\rangle \right)|u\rangle .\]</div>
+<p>Here <span class="math notranslate nohighlight">\(|k\rangle^{\perp}\)</span> is a state composed of a superposition of the basis states that <strong>do not</strong> activate <span class="math notranslate nohighlight">\(U\)</span>, such that <span class="math notranslate nohighlight">\(\langle k|k\rangle^{\perp} = 0\)</span>.</p>
+<p>To make this definition more concrete, let’s look at an example where an <span class="math notranslate nohighlight">\(S\)</span> gate gets activated when two control qubits are in state <span class="math notranslate nohighlight">\(|01\rangle\)</span>. <a class="reference external" href="https://learnquantum.io/chapters/02_quantum_computing/02_03_single_qb_sys.html#the-phase-gate-family">Recall</a> that the matrix for an <span class="math notranslate nohighlight">\(S\)</span> gate is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} S = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; i \end{bmatrix} ,\end{split}\]</div>
+<p>which, as we saw before, corresponds to a <span class="math notranslate nohighlight">\(\pi/2\)</span> (or <span class="math notranslate nohighlight">\(90 °\)</span>) rotation about the <span class="math notranslate nohighlight">\(z\)</span> axis. Therefore, it is not hard to see that the eigenvectors of this matrix are states <span class="math notranslate nohighlight">\(|0\rangle\)</span> and <span class="math notranslate nohighlight">\(|1\rangle\)</span> since they are the two vectors that point in the <span class="math notranslate nohighlight">\(z, -z\)</span> directions, respectively. To find their corresponding eigenvalues, we use the eigenvalue equation, which for <span class="math notranslate nohighlight">\(|0\rangle\)</span> results in:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+S |0\rangle &amp;= \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; i \end{bmatrix} \begin{bmatrix} 1 \\ 0 \end{bmatrix}
+\\
+\\
+S |0\rangle &amp;= \begin{bmatrix} 1 \\ 0 \end{bmatrix}
+\\
+\\
+S |0\rangle &amp;= |0\rangle .
+\end{aligned}
+\end{split}\]</div>
+<p>Similarly, for <span class="math notranslate nohighlight">\(|1\rangle\)</span>, we get:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+S |1\rangle &amp;= \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; i \end{bmatrix} \begin{bmatrix} 0 \\ 1 \end{bmatrix}
+\\
+\\
+S |1\rangle &amp;= \begin{bmatrix} 0 \\ i \end{bmatrix}
+\\
+\\
+S |1\rangle &amp;= i|1\rangle .
+\end{aligned}
+\end{split}\]</div>
+<p>Consequently, for the <span class="math notranslate nohighlight">\(S\)</span> matrix, we have the following set of eigenvalue/eigenvector pairs:</p>
+<div class="math notranslate nohighlight">
+\[ \big \{\big(\lambda, |u\rangle \big)\big \}_{U=S} = \big \{ \big(1,  |0\rangle \big), \big( {i}, |1\rangle \big) \big \} .\]</div>
+<p>We can now compose a controlled-<span class="math notranslate nohighlight">\(S\)</span> gate, which is activated only when the control state is <span class="math notranslate nohighlight">\(|k\rangle = |01\rangle\)</span>. This can be expressed as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+C\bar{C}S &amp;= |k\rangle^\perp \langle k |^\perp \otimes I + |k\rangle \langle k | \otimes S 
+\\
+\\
+C\bar{C}S &amp;= \big(|00\rangle\langle 00|+|10\rangle\langle 10| + |11\rangle\langle 11| \big)  \otimes I + |01\rangle\langle 01| \otimes S 
+\end{aligned}
+\end{split}\]</div>
+<p>So, if the input control state is initialized in an equal superposition, and the target state in the eigenvector <span class="math notranslate nohighlight">\(|1\rangle\)</span> of the <span class="math notranslate nohighlight">\(S\)</span> gate, when the <span class="math notranslate nohighlight">\(C\bar{C}S\)</span>, phase kickback will cause state <span class="math notranslate nohighlight">\(|01\rangle\)</span> to pick up a phase of <span class="math notranslate nohighlight">\(i\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\frac{1}{2}\big(|00\rangle + |01\rangle + |10\rangle + |11\rangle \big) \otimes |1\rangle \xrightarrow{\; C\bar{C}S \;} \frac{1}{2}\big(|00\rangle + i|01\rangle + |10\rangle + |11\rangle \big)  \otimes |1\rangle. \]</div>
+<p>This can be seen as “tagging” a state of interest, which is a critical step in algorithms like Grover’s search algorithm.</p>
+<p>Let’s see how to implement this in Qiskit:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">SGate</span>
+
+<span class="c1"># create controlled S gate activated by state |01⟩</span>
+<span class="n">CC̄S</span> <span class="o">=</span> <span class="n">SGate</span><span class="p">()</span><span class="o">.</span><span class="n">control</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">ctrl_state</span><span class="o">=</span><span class="s1">&#39;01&#39;</span><span class="p">)</span>
+
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>              <span class="c1"># Initialize control in equal superposition</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>                  <span class="c1"># Initialize target in eigenvector |1⟩ of S gate</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+<span class="n">qψ_in</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>   <span class="c1"># Save input state</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CC̄S</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># Append CC̄S gate</span>
+<span class="n">ψ_out</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>  <span class="c1"># Save output state</span>
+<span class="n">display</span><span class="p">(</span><span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">())</span>
+
+<span class="c1"># Input statevector</span>
+<span class="n">display</span><span class="p">(</span><span class="n">ψ_in</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span><span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;|</span><span class="se">\\</span><span class="s1">psi </span><span class="se">\\</span><span class="s1">rangle_{</span><span class="se">\\</span><span class="s1">text</span><span class="si">{in}</span><span class="s1">} = &#39;</span><span class="p">))</span>
+
+<span class="c1"># Output statevector</span>
+<span class="n">ψ_out</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span><span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;|</span><span class="se">\\</span><span class="s1">psi </span><span class="se">\\</span><span class="s1">rangle_{</span><span class="se">\\</span><span class="s1">text</span><span class="si">{out}</span><span class="s1">} = &#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/888a42633bbd9dfc9b14f93a3c6016a3c9bd82e652356119daaab7de862cafae.png" src="../../_images/888a42633bbd9dfc9b14f93a3c6016a3c9bd82e652356119daaab7de862cafae.png" />
+<div class="output text_latex math notranslate nohighlight">
+\[|\psi \rangle_{\text{in}} =  |01\rangle\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[|\psi \rangle_{\text{out}} = \frac{1}{2} |001\rangle+\frac{1}{2} |011\rangle+\frac{i}{2} |101\rangle+\frac{1}{2} |111\rangle\]</div>
+</div>
+</div>
+</section>
+</section>
+<section id="quantum-function-evaluation">
+<h2>3. Quantum Function Evaluation<a class="headerlink" href="#quantum-function-evaluation" title="Link to this heading">#</a></h2>
+<p>In the section on <a class="reference external" href="https://learnquantum.io/chapters/01_classical_computing/01_01_bits_and_circuits.html#boolean-logic">Boolean logic</a> we introduced the idea that any logical statement can be composed using three basic operations: <strong>NOT</strong>, <strong>AND</strong>, <strong>OR</strong>. For example, we one could define something like a majority operation <strong>MAJ</strong>, that maps three input bits <span class="math notranslate nohighlight">\(a, b, c\)</span>, to an output which equals <span class="math notranslate nohighlight">\(1\)</span> if the majority of the inputs are <span class="math notranslate nohighlight">\(1\)</span>, and <span class="math notranslate nohighlight">\(0\)</span> otherwise. There is then a Boolean expression for this operation given by:</p>
+<div class="math notranslate nohighlight">
+\[\text{MAJ}(a, b, c) = (a \land b) \lor (a \land c) \lor (b \land c) .\]</div>
+<p>A logical statement like the one above is in essence a function <span class="math notranslate nohighlight">\(f\)</span> that maps a <span class="math notranslate nohighlight">\(n\)</span>-bit input <span class="math notranslate nohighlight">\(x \in \{0, 1\}^n\)</span> (commonly referred as a bitstring), to a single-bit output <span class="math notranslate nohighlight">\( f(x) \in \{0, 1\}\)</span>. This is commonly expressed as:</p>
+<div class="math notranslate nohighlight">
+\[ f: \{0, 1\}^n \longmapsto \{0, 1\} .\]</div>
+<p>An issue we discussed before, is that functions like these are in general not reversible. So we need to find a way to encode them in the form of a quantum circuit.</p>
+<section id="boolean-functions-as-quantum-circuits">
+<h3>3.1 Boolean Functions as Quantum Circuits<a class="headerlink" href="#boolean-functions-as-quantum-circuits" title="Link to this heading">#</a></h3>
+<p>A strategy to map a classical function <span class="math notranslate nohighlight">\(f(x)\)</span> like the ones described above into the quantum circuit model is to follow the same <a class="reference external" href="https://learnquantum.io/chapters/01_classical_computing/01_02_reversible_computing.html#reversible-and">approach</a> we used to make an <strong>AND</strong> gate reversible: pass all inputs <span class="math notranslate nohighlight">\(|x\rangle\)</span> straight to the output, and add an auxiliary qubit <span class="math notranslate nohighlight">\(|y\rangle\)</span> whose output depends on the function <span class="math notranslate nohighlight">\(f(x)\)</span>:</p>
+<a class="reference internal image-reference" href="../../_images/02_05_01_q_eval.png"><img alt="../../_images/02_05_01_q_eval.png" class="align-center" src="../../_images/02_05_01_q_eval.png" style="width: 500px;" />
+</a>
+<p>In other words, given a state <span class="math notranslate nohighlight">\(|x\rangle \otimes |y\rangle\)</span>, we can construct a unitary <span class="math notranslate nohighlight">\(U_f\)</span> that encodes a classical function <span class="math notranslate nohighlight">\(f(x)\)</span>, such that:</p>
+<div class="math notranslate nohighlight">
+\[|x\rangle \otimes \ |y\rangle \xrightarrow{\; U_f \;} |x\rangle \otimes |y \oplus f(x)\rangle, \]</div>
+<p>where <span class="math notranslate nohighlight">\(\oplus\)</span> represents addition modulo 2. Now, since <span class="math notranslate nohighlight">\(y\)</span> can be either <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>, we have two scenarios:</p>
+<ol class="arabic simple">
+<li><p>If <span class="math notranslate nohighlight">\(y = 0\)</span>, <span class="math notranslate nohighlight">\(|y \oplus f(x)\rangle = |f(x)\rangle\)</span>, because adding <span class="math notranslate nohighlight">\(0\)</span> to <span class="math notranslate nohighlight">\(f(x)\)</span> simply results in having just <span class="math notranslate nohighlight">\(f(x)\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(y = 1\)</span>, <span class="math notranslate nohighlight">\(|y \oplus f(x)\rangle = |\overline{f(x)}\rangle\)</span> (negated version of <span class="math notranslate nohighlight">\(f(x)\)</span>), because adding <span class="math notranslate nohighlight">\(1\)</span> to a single bit flips its value.</p></li>
+</ol>
+<p>Let’s consider as an example the case of a 3-qubit reversible <strong>AND</strong> gate. We know that the classical version of such function is given by:</p>
+<div class="math notranslate nohighlight">
+\[ f(x) = x_2 \land x_1 \land x_0, \]</div>
+<p>which can be implemented as a quantum circuit using a multi-control <span class="math notranslate nohighlight">\(X\)</span> gate, with the control qubits serving as the function input <span class="math notranslate nohighlight">\(|x\rangle\)</span>, and the target qubit as the auxiliary <span class="math notranslate nohighlight">\(|y\rangle\)</span>. Let’s implement this in Qiskit:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumRegister</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">qr_x</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">qr_y</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+<span class="c1"># Implement reversible 3-qubit AND</span>
+<span class="n">qc_and3</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">qr_y</span><span class="p">,</span> <span class="n">qr_x</span><span class="p">)</span>
+<span class="n">qc_and3</span><span class="o">.</span><span class="n">mcx</span><span class="p">(</span><span class="n">qr_x</span><span class="p">,</span><span class="n">qr_y</span><span class="p">)</span>
+<span class="n">qc_and3</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/fdb842767d88585983049bdaab2b19eee98de02f6184cbe23b877fd61372a3a9.png" src="../../_images/fdb842767d88585983049bdaab2b19eee98de02f6184cbe23b877fd61372a3a9.png" />
+</div>
+</div>
+<p>If we now test all possible inputs <span class="math notranslate nohighlight">\(|x\rangle \in \{|0\rangle, |1\rangle\}^{\otimes 3}\)</span>, with the bottom qubit  initialized as <span class="math notranslate nohighlight">\(|y\rangle = |0\rangle\)</span>, we can see that the output qubit (least significant qubit) will be equal to <span class="math notranslate nohighlight">\(|f(x)\rangle\)</span>, with <span class="math notranslate nohighlight">\(f(x)\)</span> being the classical <strong>AND</strong> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Function to print |x⟩|y⟩→|x⟩|y⊕f(x)⟩ for all combinations of |x⟩</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">print_func_eval</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">qc</span><span class="p">):</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Math</span>
+    
+    <span class="n">pre_in</span> <span class="o">=</span> <span class="s1">&#39;|x</span><span class="se">\\</span><span class="s1">rangle \otimes |y </span><span class="se">\\</span><span class="s1">rangle&#39;</span>
+    <span class="n">pre_out</span> <span class="o">=</span> <span class="s1">&#39;|x</span><span class="se">\\</span><span class="s1">rangle \otimes |y </span><span class="se">\\</span><span class="s1">oplus f(x) </span><span class="se">\\</span><span class="s1">rangle&#39;</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">pre_in</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">xrightarrow{\; U_f \;}&#39;</span><span class="o">+</span><span class="n">pre_out</span><span class="p">))</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">binary_repr</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+        <span class="n">in_str</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex_source&#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;\otimes&#39;</span><span class="o">+</span><span class="n">y</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex_source&#39;</span><span class="p">)</span>
+
+        <span class="n">ψ_in</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">ψ_out</span> <span class="o">=</span> <span class="n">ψ_in</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+        <span class="n">out_str</span> <span class="o">=</span> <span class="n">ψ_out</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex_source&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">rangle </span><span class="se">\\</span><span class="s1">otimes |&#39;</span><span class="o">+</span><span class="n">ψ_out</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex_source&#39;</span><span class="p">)[</span><span class="n">n</span><span class="o">+</span><span class="mi">2</span><span class="p">:]</span>
+
+        <span class="n">display</span><span class="p">(</span><span class="n">Math</span><span class="p">(</span><span class="n">in_str</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">longrightarrow&#39;</span><span class="o">+</span><span class="n">out_str</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test Uf gate for all possible |x⟩ inputs with |y⟩=|0⟩:</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">)</span>
+<span class="n">print_func_eval</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">qc_and3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle |x\rangle \otimes |y \rangle\xrightarrow{\; U_f \;}|x\rangle \otimes |y \oplus f(x) \rangle\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle  |000\rangle\otimes |0\rangle\longrightarrow|000\rangle \otimes |0\rangle\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle  |001\rangle\otimes |0\rangle\longrightarrow|001\rangle \otimes |0\rangle\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle  |010\rangle\otimes |0\rangle\longrightarrow|010\rangle \otimes |0\rangle\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle  |011\rangle\otimes |0\rangle\longrightarrow|011\rangle \otimes |0\rangle\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle  |100\rangle\otimes |0\rangle\longrightarrow|100\rangle \otimes |0\rangle\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle  |101\rangle\otimes |0\rangle\longrightarrow|101\rangle \otimes |0\rangle\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle  |110\rangle\otimes |0\rangle\longrightarrow|110\rangle \otimes |0\rangle\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle  |111\rangle\otimes |0\rangle\longrightarrow|111\rangle \otimes |1\rangle\]</div>
+</div>
+</div>
+<p>But if now we initialized as <span class="math notranslate nohighlight">\(|y\rangle = |1\rangle\)</span>, we can see that the output qubit will be equal to <span class="math notranslate nohighlight">\(|\overline{f(x)}\rangle\)</span> (i.e., equivalent to a <strong>NAND</strong> function):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test Uf for all possible |x⟩ inputs with |y⟩=|1⟩:</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
+<span class="n">print_func_eval</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">qc_and3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle |x\rangle \otimes |y \rangle\xrightarrow{\; U_f \;}|x\rangle \otimes |y \oplus f(x) \rangle\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle  |000\rangle\otimes |1\rangle\longrightarrow|000\rangle \otimes |1\rangle\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle  |001\rangle\otimes |1\rangle\longrightarrow|001\rangle \otimes |1\rangle\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle  |010\rangle\otimes |1\rangle\longrightarrow|010\rangle \otimes |1\rangle\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle  |011\rangle\otimes |1\rangle\longrightarrow|011\rangle \otimes |1\rangle\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle  |100\rangle\otimes |1\rangle\longrightarrow|100\rangle \otimes |1\rangle\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle  |101\rangle\otimes |1\rangle\longrightarrow|101\rangle \otimes |1\rangle\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle  |110\rangle\otimes |1\rangle\longrightarrow|110\rangle \otimes |1\rangle\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle  |111\rangle\otimes |1\rangle\longrightarrow|111\rangle \otimes |0\rangle\]</div>
+</div>
+</div>
+</section>
+<section id="function-dependent-kickback">
+<h3>3.2 Function-Dependent Kickback<a class="headerlink" href="#function-dependent-kickback" title="Link to this heading">#</a></h3>
+<p>The key ingredient of many quantum algorithms, is to combine the quantum function evaluation primitive with phase kickback. Let’s now explore the idea of taking a unitary <span class="math notranslate nohighlight">\(U_f\)</span>, which encodes a Boolean function <span class="math notranslate nohighlight">\(f(x)\)</span>, but where we initialize the auxiliary qubit <span class="math notranslate nohighlight">\(|y\rangle\)</span> in state <span class="math notranslate nohighlight">\(|-\rangle\)</span>, such that our input state is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+|x\rangle \otimes |y\rangle &amp;= |x\rangle \otimes |-\rangle
+\\
+\\
+|x\rangle \otimes |y\rangle &amp;= |x\rangle \otimes \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)
+\\
+\\
+|x\rangle \otimes |y\rangle &amp;= \frac{1}{\sqrt{2}}(|x\rangle |0\rangle - |x\rangle |1\rangle)
+\end{aligned}
+\end{split}\]</div>
+<p>Recalling that <span class="math notranslate nohighlight">\(U_f\)</span> performs the following mapping:</p>
+<div class="math notranslate nohighlight">
+\[ 
+|x\rangle \otimes |y\rangle \xrightarrow{\; Uf \;} |x\rangle \otimes |y \oplus f(x) \rangle, 
+\]</div>
+<p>for the input state described above, we then have:</p>
+<div class="math notranslate nohighlight">
+\[\frac{1}{\sqrt{2}}(|x\rangle |0\rangle - |x\rangle |1\rangle) \xrightarrow{\; Uf \;} \frac{1}{\sqrt{2}}(|x\rangle |f(x) \rangle - |x\rangle |\overline{f(x)} \rangle) .\]</div>
+<p>Now, since <span class="math notranslate nohighlight">\(f(x)\)</span> can only take one of two values, we have two scenarios:</p>
+<ol class="arabic simple">
+<li><p>If <span class="math notranslate nohighlight">\(f(x) = 0\)</span>, the output is given by: <span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}(|x\rangle |0 \rangle - |x\rangle |1\rangle) = |x\rangle|-\rangle.\)</span></p></li>
+<li><p>If <span class="math notranslate nohighlight">\(f(x) = 1\)</span>, the output is given by: <span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}(|x\rangle |1 \rangle - |x\rangle |0\rangle) = -|x\rangle|-\rangle.\)</span></p></li>
+</ol>
+<p>In other words, we either have the output being equal to the input when <span class="math notranslate nohighlight">\(f(x) = 0\)</span>, or the output picking up a global phase of <span class="math notranslate nohighlight">\(-1\)</span> if <span class="math notranslate nohighlight">\(f(x) = 1\)</span>. This, again, is the phase kickback effect in action, but where the phase factor now depends on the outcome of the function <span class="math notranslate nohighlight">\(f(x)\)</span>. We can write the result above more compactly as:</p>
+<div class="math notranslate nohighlight">
+\[|x\rangle \otimes |-\rangle \xrightarrow{\; Uf \;} (-1)^{f(x)}|x\rangle |-\rangle .\]</div>
+<p>The reason why we see kickback here is because, the way the unitary <span class="math notranslate nohighlight">\(U_f\)</span> is constructed, is such that, the gate being applied on the auxiliary register is the <span class="math notranslate nohighlight">\(X\)</span> gate, which as we know has state <span class="math notranslate nohighlight">\(|-\rangle\)</span> as an eigenvector with eigenvalue of <span class="math notranslate nohighlight">\(-1\)</span>.</p>
+<p>The idea is then to have <span class="math notranslate nohighlight">\(|x\rangle\)</span> prepared as some sort of superpositon, so that the global phase <span class="math notranslate nohighlight">\((-1)^{f(x)}\)</span> turns into a relative phase that marks those values of <span class="math notranslate nohighlight">\(x\)</span> that satisfy the condition of <span class="math notranslate nohighlight">\(f(x) = 1\)</span>.</p>
+<p>For now, let’s go back to our example where <span class="math notranslate nohighlight">\(f(x)\)</span> is a 3-qubit <strong>AND</strong> gate, which we know only produces an output equal to <span class="math notranslate nohighlight">\(|1\rangle\)</span> if the input is <span class="math notranslate nohighlight">\(|111\rangle .\)</span> Therefore, if we prepare <span class="math notranslate nohighlight">\(|x\rangle\)</span> in a equal superposition, and <span class="math notranslate nohighlight">\(|y\rangle\)</span> is state <span class="math notranslate nohighlight">\(|-\rangle\)</span>, we should see state <span class="math notranslate nohighlight">\(|111\rangle \)</span> picking up a phase of <span class="math notranslate nohighlight">\(-1\)</span> at the output of <span class="math notranslate nohighlight">\(U_f\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc_f</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">qr_y</span><span class="p">,</span> <span class="n">qr_x</span><span class="p">)</span>
+
+<span class="c1"># Initialize |y⟩ in state |-⟩</span>
+<span class="n">qc_f</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">qr_y</span><span class="p">)</span>
+<span class="n">qc_f</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">qr_y</span><span class="p">)</span>
+
+<span class="c1"># Prepare |x⟩ in equal superposition</span>
+<span class="n">qc_f</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">qr_x</span><span class="p">)</span>
+<span class="n">qc_f</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+<span class="c1"># Apply 3-qubit AND gate</span>
+<span class="n">qc_f</span><span class="o">.</span><span class="n">mcx</span><span class="p">(</span><span class="n">qr_x</span><span class="p">,</span> <span class="n">qr_y</span><span class="p">)</span>
+<span class="n">qc_f</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+<span class="c1"># Take |y⟩ back to state |0⟩</span>
+<span class="n">qc_f</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">qr_y</span><span class="p">)</span>
+<span class="n">qc_f</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">qr_y</span><span class="p">)</span>
+<span class="n">ψ_out</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">(</span><span class="n">qc_f</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">qc_f</span><span class="o">.</span><span class="n">draw</span><span class="p">())</span>
+
+<span class="c1"># Output statevector</span>
+<span class="n">ψ_out</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span><span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;|</span><span class="se">\\</span><span class="s1">psi </span><span class="se">\\</span><span class="s1">rangle_{</span><span class="se">\\</span><span class="s1">text</span><span class="si">{out}</span><span class="s1">} = &#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/1e436682b9796b447d8a0397850d98ce555eb4e934d89b4472ad58ee2383e936.png" src="../../_images/1e436682b9796b447d8a0397850d98ce555eb4e934d89b4472ad58ee2383e936.png" />
+<div class="output text_latex math notranslate nohighlight">
+\[|\psi \rangle_{\text{out}} = \frac{\sqrt{2}}{4} |0000\rangle+\frac{\sqrt{2}}{4} |0010\rangle+\frac{\sqrt{2}}{4} |0100\rangle+\frac{\sqrt{2}}{4} |0110\rangle+\frac{\sqrt{2}}{4} |1000\rangle+\frac{\sqrt{2}}{4} |1010\rangle+\frac{\sqrt{2}}{4} |1100\rangle- \frac{\sqrt{2}}{4} |1110\rangle\]</div>
+</div>
+</div>
+<p>As we can see, only the state <span class="math notranslate nohighlight">\(|x\rangle = |111\rangle\)</span>, which corresponds to <span class="math notranslate nohighlight">\(f(x) = 1\)</span> for an <strong>AND</strong> gate picks up a phase of <span class="math notranslate nohighlight">\(-1\)</span>.</p>
+<p>Now, if it is not entirely clear why we would want to “tag” a state based on the output of a function, don’t worry, we will see why this matters in the chapter on quantum algorithms, where this primitive will be used extensively.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/02_quantum_computing"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02_04_multi_qb_sys.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Multi-Qubit Systems</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../03_quantum_protocols/03_01_CHSH_inequality.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">CHSH Inequality</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparation-of-some-entangled-states">1. Preparation of (Some) Entangled States</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bell-states">1.1 Bell States</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ghz-states">1.2 GHZ States</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#w-states">1.3 W States</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-quantum-hadamard-transform">2. The Quantum Hadamard Transform</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-kickback">3. Phase Kickback</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvalues-and-eigenvectors">3.1 Eigenvalues and Eigenvectors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kickback-in-action">3.2 Kickback in Action</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-qubit-phase-kickback">3.3 Multi-Qubit Phase Kickback</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quantum-function-evaluation">3. Quantum Function Evaluation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boolean-functions-as-quantum-circuits">3.1 Boolean Functions as Quantum Circuits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-dependent-kickback">3.2 Function-Dependent Kickback</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Diego Emilio Serrano
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
