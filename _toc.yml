@@ -24,6 +24,7 @@ parts:
       - file: chapters/02_quantum_computing/02_02_entanglement
       - file: chapters/02_quantum_computing/02_03_single_qb_sys
       - file: chapters/02_quantum_computing/02_04_multi_qb_sys
+      - file: chapters/02_quantum_computing/02_05_quantum_blocks
 
   - caption: Quantum Protocols
     maxdepth: 3
