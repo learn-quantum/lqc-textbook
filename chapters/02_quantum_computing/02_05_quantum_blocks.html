@@ -421,9 +421,9 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-qubit-phase-kickback">3.3 Multi-Qubit Phase Kickback</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quantum-function-evaluation">3. Quantum Function Evaluation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boolean-functions-as-quantum-circuits">3.1 Boolean Functions as Quantum Circuits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-dependent-kickback">3.2 Function-Dependent Kickback</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quantum-function-evaluation">4. Quantum Function Evaluation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boolean-functions-as-quantum-circuits">4.1 Boolean Functions as Quantum Circuits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-dependent-kickback">4.2 Function-Dependent Kickback</a></li>
 </ul>
 </li>
 </ul>
@@ -1349,7 +1349,7 @@ C\bar{C}S &amp;= \big(|00\rangle\langle 00|+|10\rangle\langle 10| + |11\rangle\l
 </section>
 </section>
 <section id="quantum-function-evaluation">
-<h2>3. Quantum Function Evaluation<a class="headerlink" href="#quantum-function-evaluation" title="Link to this heading">#</a></h2>
+<h2>4. Quantum Function Evaluation<a class="headerlink" href="#quantum-function-evaluation" title="Link to this heading">#</a></h2>
 <p>In the section on <a class="reference external" href="https://learnquantum.io/chapters/01_classical_computing/01_01_bits_and_circuits.html#boolean-logic">Boolean logic</a> we introduced the idea that any logical statement can be composed using three basic operations: <strong>NOT</strong>, <strong>AND</strong>, <strong>OR</strong>. For example, we one could define something like a majority operation <strong>MAJ</strong>, that maps three input bits <span class="math notranslate nohighlight">\(a, b, c\)</span>, to an output which equals <span class="math notranslate nohighlight">\(1\)</span> if the majority of the inputs are <span class="math notranslate nohighlight">\(1\)</span>, and <span class="math notranslate nohighlight">\(0\)</span> otherwise. There is then a Boolean expression for this operation given by:</p>
 <div class="math notranslate nohighlight">
 \[\text{MAJ}(a, b, c) = (a \land b) \lor (a \land c) \lor (b \land c) .\]</div>
@@ -1358,8 +1358,8 @@ C\bar{C}S &amp;= \big(|00\rangle\langle 00|+|10\rangle\langle 10| + |11\rangle\l
 \[ f: \{0, 1\}^n \longmapsto \{0, 1\} .\]</div>
 <p>An issue we discussed before, is that functions like these are in general not reversible. So we need to find a way to encode them in the form of a quantum circuit.</p>
 <section id="boolean-functions-as-quantum-circuits">
-<h3>3.1 Boolean Functions as Quantum Circuits<a class="headerlink" href="#boolean-functions-as-quantum-circuits" title="Link to this heading">#</a></h3>
-<p>A strategy to map a classical function <span class="math notranslate nohighlight">\(f(x)\)</span> like the ones described above into the quantum circuit model is to follow the same <a class="reference external" href="https://learnquantum.io/chapters/01_classical_computing/01_02_reversible_computing.html#reversible-and">approach</a> we used to make an <strong>AND</strong> gate reversible: pass all inputs <span class="math notranslate nohighlight">\(|x\rangle\)</span> straight to the output, and add an auxiliary qubit <span class="math notranslate nohighlight">\(|y\rangle\)</span> whose output depends on the function <span class="math notranslate nohighlight">\(f(x)\)</span>:</p>
+<h3>4.1 Boolean Functions as Quantum Circuits<a class="headerlink" href="#boolean-functions-as-quantum-circuits" title="Link to this heading">#</a></h3>
+<p>A general strategy to map a classical function <span class="math notranslate nohighlight">\(f(x)\)</span> like the ones described above into the quantum circuit model is to follow the same <a class="reference external" href="https://learnquantum.io/chapters/01_classical_computing/01_02_reversible_computing.html#reversible-and">approach</a> we used to make an <strong>AND</strong> gate reversible: pass all inputs <span class="math notranslate nohighlight">\(|x\rangle\)</span> straight to the output, and add an auxiliary qubit <span class="math notranslate nohighlight">\(|y\rangle\)</span> whose output depends on the function <span class="math notranslate nohighlight">\(f(x)\)</span>:</p>
 <a class="reference internal image-reference" href="../../_images/02_05_01_q_eval.png"><img alt="../../_images/02_05_01_q_eval.png" class="align-center" src="../../_images/02_05_01_q_eval.png" style="width: 700px;" />
 </a>
 <p>In other words, given a state <span class="math notranslate nohighlight">\(|x\rangle \otimes |y\rangle\)</span>, we can construct a unitary <span class="math notranslate nohighlight">\(U_f\)</span> that encodes a classical function <span class="math notranslate nohighlight">\(f(x)\)</span>, such that:</p>
@@ -1446,7 +1446,7 @@ C\bar{C}S &amp;= \big(|00\rangle\langle 00|+|10\rangle\langle 10| + |11\rangle\l
 \[\displaystyle  |111\rangle\otimes |0\rangle\longrightarrow|111\rangle \otimes |1\rangle\]</div>
 </div>
 </div>
-<p>But if now we initialized as <span class="math notranslate nohighlight">\(|y\rangle = |1\rangle\)</span>, we can see that the output qubit will be equal to <span class="math notranslate nohighlight">\(|\overline{f(x)}\rangle\)</span> (i.e., equivalent to a <strong>NAND</strong> function):</p>
+<p>But if now we initialized <span class="math notranslate nohighlight">\(|y\rangle\)</span> in state <span class="math notranslate nohighlight">\(|1\rangle\)</span>, we can see that the output qubit will be equal to <span class="math notranslate nohighlight">\(|\overline{f(x)}\rangle;\)</span> i.e., we will get the equivalent of a <strong>NAND</strong> function:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test Uf for all possible |x⟩ inputs with |y⟩=|1⟩:</span>
@@ -1476,10 +1476,11 @@ C\bar{C}S &amp;= \big(|00\rangle\langle 00|+|10\rangle\langle 10| + |11\rangle\l
 \[\displaystyle  |111\rangle\otimes |1\rangle\longrightarrow|111\rangle \otimes |0\rangle\]</div>
 </div>
 </div>
+<p>The key ingredient of many quantum algorithms, is to combine this quantum function evaluation primitive with the phase kickback effect; so let’s explore how this can be done.</p>
 </section>
 <section id="function-dependent-kickback">
-<h3>3.2 Function-Dependent Kickback<a class="headerlink" href="#function-dependent-kickback" title="Link to this heading">#</a></h3>
-<p>The key ingredient of many quantum algorithms, is to combine the quantum function evaluation primitive with phase kickback. Let’s now explore the idea of taking a unitary <span class="math notranslate nohighlight">\(U_f\)</span>, which encodes a Boolean function <span class="math notranslate nohighlight">\(f(x)\)</span>, but where we initialize the auxiliary qubit <span class="math notranslate nohighlight">\(|y\rangle\)</span> in state <span class="math notranslate nohighlight">\(|-\rangle\)</span>, such that our input state is given by:</p>
+<h3>4.2 Function-Dependent Kickback<a class="headerlink" href="#function-dependent-kickback" title="Link to this heading">#</a></h3>
+<p>Once again, let’s consider a unitary <span class="math notranslate nohighlight">\(U_f\)</span> that encodes a Boolean function <span class="math notranslate nohighlight">\(f(x)\)</span>, but where we initialize the auxiliary qubit <span class="math notranslate nohighlight">\(|y\rangle\)</span> in state <span class="math notranslate nohighlight">\(|-\rangle\)</span>, such that our input state is given by:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
@@ -1628,9 +1629,9 @@ C\bar{C}S &amp;= \big(|00\rangle\langle 00|+|10\rangle\langle 10| + |11\rangle\l
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-qubit-phase-kickback">3.3 Multi-Qubit Phase Kickback</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quantum-function-evaluation">3. Quantum Function Evaluation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boolean-functions-as-quantum-circuits">3.1 Boolean Functions as Quantum Circuits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-dependent-kickback">3.2 Function-Dependent Kickback</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quantum-function-evaluation">4. Quantum Function Evaluation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boolean-functions-as-quantum-circuits">4.1 Boolean Functions as Quantum Circuits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-dependent-kickback">4.2 Function-Dependent Kickback</a></li>
 </ul>
 </li>
 </ul>
