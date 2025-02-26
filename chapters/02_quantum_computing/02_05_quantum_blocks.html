@@ -1359,7 +1359,7 @@ C\bar{C}S &amp;= \big(|00\rangle\langle 00|+|10\rangle\langle 10| + |11\rangle\l
 <section id="boolean-functions-as-quantum-circuits">
 <h3>3.1 Boolean Functions as Quantum Circuits<a class="headerlink" href="#boolean-functions-as-quantum-circuits" title="Link to this heading">#</a></h3>
 <p>A strategy to map a classical function <span class="math notranslate nohighlight">\(f(x)\)</span> like the ones described above into the quantum circuit model is to follow the same <a class="reference external" href="https://learnquantum.io/chapters/01_classical_computing/01_02_reversible_computing.html#reversible-and">approach</a> we used to make an <strong>AND</strong> gate reversible: pass all inputs <span class="math notranslate nohighlight">\(|x\rangle\)</span> straight to the output, and add an auxiliary qubit <span class="math notranslate nohighlight">\(|y\rangle\)</span> whose output depends on the function <span class="math notranslate nohighlight">\(f(x)\)</span>:</p>
-<a class="reference internal image-reference" href="../../_images/02_05_01_q_eval.png"><img alt="../../_images/02_05_01_q_eval.png" class="align-center" src="../../_images/02_05_01_q_eval.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="../../_images/02_05_01_q_eval.png"><img alt="../../_images/02_05_01_q_eval.png" class="align-center" src="../../_images/02_05_01_q_eval.png" style="width: 700px;" />
 </a>
 <p>In other words, given a state <span class="math notranslate nohighlight">\(|x\rangle \otimes |y\rangle\)</span>, we can construct a unitary <span class="math notranslate nohighlight">\(U_f\)</span> that encodes a classical function <span class="math notranslate nohighlight">\(f(x)\)</span>, such that:</p>
 <div class="math notranslate nohighlight">
@@ -1514,12 +1514,13 @@ C\bar{C}S &amp;= \big(|00\rangle\langle 00|+|10\rangle\langle 10| + |11\rangle\l
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc_f</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">qr_y</span><span class="p">,</span> <span class="n">qr_x</span><span class="p">)</span>
 
+<span class="c1"># Prepare |x⟩ in equal superposition</span>
+<span class="n">qc_f</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">qr_x</span><span class="p">)</span>
+<span class="n">qc_f</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
 <span class="c1"># Initialize |y⟩ in state |-⟩</span>
 <span class="n">qc_f</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">qr_y</span><span class="p">)</span>
 <span class="n">qc_f</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">qr_y</span><span class="p">)</span>
-
-<span class="c1"># Prepare |x⟩ in equal superposition</span>
-<span class="n">qc_f</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">qr_x</span><span class="p">)</span>
 <span class="n">qc_f</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
 
 <span class="c1"># Apply 3-qubit AND gate</span>
@@ -1538,7 +1539,7 @@ C\bar{C}S &amp;= \big(|00\rangle\langle 00|+|10\rangle\langle 10| + |11\rangle\l
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/1e436682b9796b447d8a0397850d98ce555eb4e934d89b4472ad58ee2383e936.png" src="../../_images/1e436682b9796b447d8a0397850d98ce555eb4e934d89b4472ad58ee2383e936.png" />
+<img alt="../../_images/54887a71b5f0cfee47b0b14e594109a319cbff43634bb640c4857748d0fa3a28.png" src="../../_images/54887a71b5f0cfee47b0b14e594109a319cbff43634bb640c4857748d0fa3a28.png" />
 <div class="output text_latex math notranslate nohighlight">
 \[|\psi \rangle_{\text{out}} = \frac{\sqrt{2}}{4} |0000\rangle+\frac{\sqrt{2}}{4} |0010\rangle+\frac{\sqrt{2}}{4} |0100\rangle+\frac{\sqrt{2}}{4} |0110\rangle+\frac{\sqrt{2}}{4} |1000\rangle+\frac{\sqrt{2}}{4} |1010\rangle+\frac{\sqrt{2}}{4} |1100\rangle- \frac{\sqrt{2}}{4} |1110\rangle\]</div>
 </div>
