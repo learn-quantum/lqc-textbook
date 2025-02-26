@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="./" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Learn Quantum Computing using Python &#8212; Quantum Computing using Python</title>
+    <title>Bell Inequalities (CHSH) &#8212; Quantum Computing using Python</title>
   
   
   
@@ -18,54 +18,53 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=ab0149b2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=ab0149b2" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
-    <link rel="canonical" href="https://learn-quantum.github.io/lqc-textbook/index.html" />
-    <link rel="icon" href="_static/nabla.ico"/>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="About the Textbook" href="chapters/00_getting_started/00_00_welcome.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/03_quantum_protocols/03_02_bell_chsh';</script>
+    <link rel="canonical" href="https://learn-quantum.github.io/lqc-textbook/chapters/03_quantum_protocols/03_02_bell_chsh.html" />
+    <link rel="icon" href="../../_static/nabla.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="The BB84 &amp; E91 Protocols" href="03_03_bb84_e91.html" />
+    <link rel="prev" title="Quantum Money" href="03_01_quantum_money.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -97,7 +96,7 @@
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
-      action="search.html"
+      action="../../search.html"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -128,8 +127,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -148,7 +145,7 @@
     
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="../../index.html">
   
   
   
@@ -159,8 +156,8 @@
       
     
     
-    <img src="_static/logo.svg" class="logo__image only-light" alt="Quantum Computing using Python - Home"/>
-    <script>document.write(`<img src="_static/logo.svg" class="logo__image only-dark" alt="Quantum Computing using Python - Home"/>`);</script>
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="Quantum Computing using Python - Home"/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-dark" alt="Quantum Computing using Python - Home"/>`);</script>
   
   
 </a></div>
@@ -179,41 +176,41 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="chapters/00_getting_started/00_00_welcome.html">About the Textbook</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chapters/00_getting_started/00_01_setting_env.html">Setting Up your Environment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chapters/00_getting_started/00_02_qiskit_config.html">Configuring Qiskit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/00_00_welcome.html">About the Textbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/00_01_setting_env.html">Setting Up your Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/00_02_qiskit_config.html">Configuring Qiskit</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Computing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="chapters/01_classical_computing/01_01_bits_and_circuits.html">Bits and Digital Circuits</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chapters/01_classical_computing/01_02_reversible_computing.html">Reversible Computing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chapters/01_classical_computing/01_03_bits_to_vectors.html">Linear Algebra for Reversible Circuits</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chapters/01_classical_computing/01_04_probabilistic_circuits.html">Probabilistic Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_classical_computing/01_01_bits_and_circuits.html">Bits and Digital Circuits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_classical_computing/01_02_reversible_computing.html">Reversible Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_classical_computing/01_03_bits_to_vectors.html">Linear Algebra for Reversible Circuits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_classical_computing/01_04_probabilistic_circuits.html">Probabilistic Computing</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Computing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="chapters/02_quantum_computing/02_01_bits_to_qubits.html">Qubits and Quantum Circuits</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chapters/02_quantum_computing/02_02_entanglement.html">Quantum Entanglement</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chapters/02_quantum_computing/02_03_single_qb_sys.html">Single-Qubit Systems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chapters/02_quantum_computing/02_04_multi_qb_sys.html">Multi-Qubit Systems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chapters/02_quantum_computing/02_05_quantum_blocks.html">Quantum Building Blocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_quantum_computing/02_01_bits_to_qubits.html">Qubits and Quantum Circuits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_quantum_computing/02_02_entanglement.html">Quantum Entanglement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_quantum_computing/02_03_single_qb_sys.html">Single-Qubit Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_quantum_computing/02_04_multi_qb_sys.html">Multi-Qubit Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_quantum_computing/02_05_quantum_blocks.html">Quantum Building Blocks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Protocols</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="chapters/03_quantum_protocols/03_01_quantum_money.html">Quantum Money</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chapters/03_quantum_protocols/03_02_bell_chsh.html">Bell Inequalities (CHSH)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chapters/03_quantum_protocols/03_03_bb84_e91.html">The BB84 &amp; E91 Protocols</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chapters/03_quantum_protocols/03_04_teleportation.html">Quantum Teleportation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chapters/03_quantum_protocols/03_05_superdense_coding.html">Superdense Coding</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="03_01_quantum_money.html">Quantum Money</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Bell Inequalities (CHSH)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_03_bb84_e91.html">The BB84 &amp; E91 Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_04_teleportation.html">Quantum Teleportation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_05_superdense_coding.html">Superdense Coding</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Algorithms</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="chapters/04_quantum_algorithms/04_01_deutsch-jozsa.html">Deutsch-Jozsa Algorithm</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chapters/04_quantum_algorithms/04_02_bernstein-vazirani.html">Bernstein–Vazirani Algorithm</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chapters/04_quantum_algorithms/04_03_simons.html">Simon’s Algorithm</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chapters/04_quantum_algorithms/04_04_grover.html">Grover’s Algorithm</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chapters/04_quantum_algorithms/04_05_amp_amp.html">Amplitude Amplification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chapters/04_quantum_algorithms/04_06_qft.html">Quantum Fourier Transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_quantum_algorithms/04_01_deutsch-jozsa.html">Deutsch-Jozsa Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_quantum_algorithms/04_02_bernstein-vazirani.html">Bernstein–Vazirani Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_quantum_algorithms/04_03_simons.html">Simon’s Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_quantum_algorithms/04_04_grover.html">Grover’s Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_quantum_algorithms/04_05_amp_amp.html">Amplitude Amplification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_quantum_algorithms/04_06_qft.html">Quantum Fourier Transform</a></li>
 </ul>
 
     </div>
@@ -285,7 +282,7 @@
       
       
       
-      <li><a href="https://github.com/learn-quantum/lqc-textbook/issues/new?title=Issue%20on%20page%20%2Findex.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/learn-quantum/lqc-textbook/issues/new?title=Issue%20on%20page%20%2Fchapters/03_quantum_protocols/03_02_bell_chsh.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -315,7 +312,7 @@
       
       
       
-      <li><a href="_sources/index.md" target="_blank"
+      <li><a href="../../_sources/chapters/03_quantum_protocols/03_02_bell_chsh.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -325,7 +322,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -397,7 +394,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Learn Quantum Computing using Python</h1>
+    <h1>Bell Inequalities (CHSH)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -411,23 +408,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="learn-quantum-computing-using-python">
-<h1>Learn Quantum Computing using Python<a class="headerlink" href="#learn-quantum-computing-using-python" title="Link to this heading">#</a></h1>
-<hr></hr>
-<p>Welcome!</p>
-<p>This online textbook is meant to serve as a reference guide to the field of quantum computing using an applied approach.</p>
-<p>Instead of solely focusing on the theory and equations needed to get acquainted with the field, this website is designed to help you understand the necessary concepts to learn quantum computation, communication, and information by using code written in <a class="reference external" href="https://www.python.org/">Python</a>. In particular, this guide uses <a class="reference external" href="https://qiskit.org/">Qiskit</a>, which is currently considered to be the most popular Python package for the implementation, simulation, and execution of quantum programs. However, other packages might be supported in the future.</p>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-</section>
+  <section class="tex2jax_ignore mathjax_ignore" id="bell-inequalities-chsh">
+<h1>Bell Inequalities (CHSH)<a class="headerlink" href="#bell-inequalities-chsh" title="Link to this heading">#</a></h1>
+<hr></hr></section>
 
     <script type="text/x-thebe-config">
     {
@@ -442,7 +425,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./."
+            path: "./chapters/03_quantum_protocols"
         },
         predefinedOutput: true
     }
@@ -459,12 +442,21 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="03_01_quantum_money.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Quantum Money</p>
+      </div>
+    </a>
     <a class="right-next"
-       href="chapters/00_getting_started/00_00_welcome.html"
+       href="03_03_bb84_e91.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">About the Textbook</p>
+        <p class="prev-next-title">The BB84 &amp; E91 Protocols</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -518,8 +510,8 @@ By Diego Emilio Serrano
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

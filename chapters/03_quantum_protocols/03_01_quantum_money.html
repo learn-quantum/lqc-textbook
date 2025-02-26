@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>CHSH Inequality &#8212; Quantum Computing using Python</title>
+    <title>Quantum Money &#8212; Quantum Computing using Python</title>
   
   
   
@@ -58,12 +58,12 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/03_quantum_protocols/03_01_CHSH_inequality';</script>
-    <link rel="canonical" href="https://learn-quantum.github.io/lqc-textbook/chapters/03_quantum_protocols/03_01_CHSH_inequality.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/03_quantum_protocols/03_01_quantum_money';</script>
+    <link rel="canonical" href="https://learn-quantum.github.io/lqc-textbook/chapters/03_quantum_protocols/03_01_quantum_money.html" />
     <link rel="icon" href="../../_static/nabla.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="BB84 Protocol" href="03_02_BB4_protocol.html" />
+    <link rel="next" title="Bell Inequalities (CHSH)" href="03_02_bell_chsh.html" />
     <link rel="prev" title="Quantum Building Blocks" href="../02_quantum_computing/02_05_quantum_blocks.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -197,10 +197,11 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Protocols</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">CHSH Inequality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_02_BB4_protocol.html">BB84 Protocol</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_03_teleportation.html">Quantum Teleportation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_04_superdense_coding.html">Superdense Coding</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Quantum Money</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_02_bell_chsh.html">Bell Inequalities (CHSH)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_03_bb84_e91.html">The BB84 &amp; E91 Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_04_teleportation.html">Quantum Teleportation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_05_superdense_coding.html">Superdense Coding</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Algorithms</span></p>
 <ul class="nav bd-sidenav">
@@ -281,7 +282,7 @@
       
       
       
-      <li><a href="https://github.com/learn-quantum/lqc-textbook/issues/new?title=Issue%20on%20page%20%2Fchapters/03_quantum_protocols/03_01_CHSH_inequality.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/learn-quantum/lqc-textbook/issues/new?title=Issue%20on%20page%20%2Fchapters/03_quantum_protocols/03_01_quantum_money.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -311,7 +312,7 @@
       
       
       
-      <li><a href="../../_sources/chapters/03_quantum_protocols/03_01_CHSH_inequality.ipynb" target="_blank"
+      <li><a href="../../_sources/chapters/03_quantum_protocols/03_01_quantum_money.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -393,7 +394,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>CHSH Inequality</h1>
+    <h1>Quantum Money</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -407,8 +408,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="chsh-inequality">
-<h1>CHSH Inequality<a class="headerlink" href="#chsh-inequality" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="quantum-money">
+<h1>Quantum Money<a class="headerlink" href="#quantum-money" title="Link to this heading">#</a></h1>
 <hr></hr></section>
 
     <script type="text/x-thebe-config">
@@ -451,11 +452,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="03_02_BB4_protocol.html"
+       href="03_02_bell_chsh.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">BB84 Protocol</p>
+        <p class="prev-next-title">Bell Inequalities (CHSH)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
