@@ -444,7 +444,8 @@ document.write(`
 \end{split}\]</div>
 <p>At first glance, this might look silly. Having a vector with two separate elements to represent a single bit seems rather redundant, but the many reasons for doing this will become evident as we progress throughout the next few chapters. In particular, we will soon see that this vector representation is a very convenient way to express the likelihood of finding a bit to be either <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> when we don’t have full knowledge of how our circuits are behaving in the presence of uncertainty.</p>
 <p>An easy way to remember this notation is to think of the <span class="math notranslate nohighlight">\(1\)</span> inside the vectors as the position of a light switch. Having a <span class="math notranslate nohighlight">\(1\)</span> on the top position of the vector can be seen as a switch flipped upwards, which keeps a light bulb OFF (Boolean <span class="math notranslate nohighlight">\(0\)</span>). Similarly, a <span class="math notranslate nohighlight">\(1\)</span> in the bottom of the vector represents the light switch being flipped down, which turns the light bulb ON (Boolean <span class="math notranslate nohighlight">\(1\)</span>):</p>
-<a class="reference internal image-reference" href="../../_images/01_03_01_light_switches.png"><img alt="../../_images/01_03_01_light_switches.png" class="align-center" src="../../_images/01_03_01_light_switches.png" style="width: 400px;" /></a>
+<a class="reference internal image-reference" href="../../_images/01_03_01_light_switches.png"><img alt="../../_images/01_03_01_light_switches.png" class="align-center" src="../../_images/01_03_01_light_switches.png" style="width: 400px;" />
+</a>
 <p>Now, even though there is nothing stopping us from using arrows on top of <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span> to emphasize that they are vectors, this notation is quite unusual. Instead, we will now introduce a new way to express vectors by using what is known as <a class="reference external" href="https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation">bra-ket</a> or Dirac notation:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} 
@@ -982,7 +983,8 @@ There is a &#39;1&#39; in position 22 of this vector
 <section id="multi-bit-gates-and-circuits-as-matrices">
 <h3>2.2 Multi-Bit Gates (and Circuits) as Matrices<a class="headerlink" href="#multi-bit-gates-and-circuits-as-matrices" title="Link to this heading">#</a></h3>
 <p>The next and final step of this chapter is to figure out how to represent multi-bit gates and full circuits as matrices. Let’s start by looking at the <span class="math notranslate nohighlight">\(\text{CX}\)</span> gate we introduced in the previous chapter:</p>
-<a class="reference internal image-reference" href="../../_images/01_03_07_cx_gate.png"><img alt="../../_images/01_03_07_cx_gate.png" class="align-center" src="../../_images/01_03_07_cx_gate.png" style="width: 180px;" /></a>
+<a class="reference internal image-reference" href="../../_images/01_03_07_cx_gate.png"><img alt="../../_images/01_03_07_cx_gate.png" class="align-center" src="../../_images/01_03_07_cx_gate.png" style="width: 180px;" />
+</a>
 <p>which has the following truth table:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -1068,7 +1070,8 @@ There is a &#39;1&#39; in position 22 of this vector
 \end{split}\]</div>
 <p>But more generally, since gates of reversible circuits always map from input to output vectors of the same length, these matrices are always square matrices of dimension <span class="math notranslate nohighlight">\(2^n \times 2^n\)</span>, with <span class="math notranslate nohighlight">\(n\)</span> being the number of bits. Furthermore, because input and output vectors should represent valid vectors of magnitude <span class="math notranslate nohighlight">\(1\)</span>, gate matrices should be such that they preserve the magnitude of vectors.</p>
 <p>Lastly, we need to specify how to compose the matrices of larger systems. For example, let’s consider the case in which we have a circuit with two bits, where we apply an <span class="math notranslate nohighlight">\(\text{X}\)</span> on the bottom bit, but leave the top bit alone:</p>
-<a class="reference internal image-reference" href="../../_images/01_03_02_id_and_x.png"><img alt="../../_images/01_03_02_id_and_x.png" class="align-center" src="../../_images/01_03_02_id_and_x.png" style="width: 180px;" /></a>
+<a class="reference internal image-reference" href="../../_images/01_03_02_id_and_x.png"><img alt="../../_images/01_03_02_id_and_x.png" class="align-center" src="../../_images/01_03_02_id_and_x.png" style="width: 180px;" />
+</a>
 <p>The way we construct the matrix <span class="math notranslate nohighlight">\(Q\)</span> for this circuit, is by taking the Kronecker product of an identity matrix (because the vector of the top bit must remain unchanged) and the <span class="math notranslate nohighlight">\(\text{X}\)</span> gate:</p>
 <div class="math notranslate nohighlight">
 \[Q = I \otimes \text{X}\]</div>
@@ -1120,7 +1123,8 @@ Q &amp;= \begin{bmatrix} 0 &amp; 1 &amp; 0 &amp; 0 \\
 \[ Q = Q_{n-1} \otimes \dots \otimes Q_1 \otimes Q_0, \]</div>
 <p>where, in this case, each <span class="math notranslate nohighlight">\(Q_i\)</span> corresponds to a <span class="math notranslate nohighlight">\(2 \times 2\)</span> matrix.</p>
 <p>For larger circuits where we have several series of gates in each bit line, we can align gates from different bits into “layers”. For example:</p>
-<a class="reference internal image-reference" href="../../_images/01_03_03_or_1.png"><img alt="../../_images/01_03_03_or_1.png" class="align-center" src="../../_images/01_03_03_or_1.png" style="width: 220px;" /></a>
+<a class="reference internal image-reference" href="../../_images/01_03_03_or_1.png"><img alt="../../_images/01_03_03_or_1.png" class="align-center" src="../../_images/01_03_03_or_1.png" style="width: 220px;" />
+</a>
 <p>We can then compute the Kronecker product of the gates within a given layer, followed by the matrix multiplication of the resulting matrices of the different layers. In the example above, for the fist layer we would have:</p>
 <div class="math notranslate nohighlight">
 \[ Q_1 = \text{X} \otimes \text{X} \otimes I \]</div>
@@ -1169,7 +1173,8 @@ Q &amp;= \text{CCX} \left( \text{X} \otimes \text{X} \otimes I \right) .
 </div>
 </div>
 <p>It is also worth noting that the “layering” we selected above is rather arbitrary. We could have chosen a different way to perform the operations, but this will lead to the same result. For we could have selected to organize the circuit with three layers:</p>
-<a class="reference internal image-reference" href="../../_images/01_03_04_or_2.png"><img alt="../../_images/01_03_04_or_2.png" class="align-center" src="../../_images/01_03_04_or_2.png" style="width: 280px;" /></a>
+<a class="reference internal image-reference" href="../../_images/01_03_04_or_2.png"><img alt="../../_images/01_03_04_or_2.png" class="align-center" src="../../_images/01_03_04_or_2.png" style="width: 280px;" />
+</a>
 <p>We would then compute its matrix as:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} 
@@ -1205,7 +1210,8 @@ Q &amp;= \text{CCX} \left( I \otimes \text{X} \otimes I \right) \left( \text{X} 
 </ol>
 <p>One more characteristic we’ve seen from these matrices is that all of their entries are <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>. However, this will soon change when we introduce the concept of probabilistic circuits in the <a class="reference internal" href="#01_04_random_circuits.ipynb"><span class="xref myst">next chapter</span></a>.</p>
 <p>Lastly, I want to discuss an important exception to constructing larger matrices by using the Kronecker product as described above. An issue arises when we have idle bits in between multi-bit operations. For example, consider the following 3-bit circuit where we have a <span class="math notranslate nohighlight">\(\text{CX}\)</span> between the top and bottom bits:</p>
-<a class="reference internal image-reference" href="../../_images/01_03_06_cx_with_idle.png"><img alt="../../_images/01_03_06_cx_with_idle.png" class="align-center" src="../../_images/01_03_06_cx_with_idle.png" style="width: 180px;" /></a>
+<a class="reference internal image-reference" href="../../_images/01_03_06_cx_with_idle.png"><img alt="../../_images/01_03_06_cx_with_idle.png" class="align-center" src="../../_images/01_03_06_cx_with_idle.png" style="width: 180px;" />
+</a>
 <p>Notice that because the idle bit is in between the <span class="math notranslate nohighlight">\(\text{CX}\)</span> gate (not below or above it), the operations <span class="math notranslate nohighlight">\((I \otimes \text{CX})\)</span> and <span class="math notranslate nohighlight">\((\text{CX} \otimes I)\)</span> will not produce the right matrix. An intuitive way to construct this matrix would be to follow the same procedure we used before where we write down the input to output mappings for every state:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}

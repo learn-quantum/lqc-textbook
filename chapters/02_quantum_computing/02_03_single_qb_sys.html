@@ -458,7 +458,8 @@ document.write(`
 <p>Similarly, the probability of the electron deflecting in the <span class="math notranslate nohighlight">\(\texttt{-}z\)</span> direction (i.e., measuring state <span class="math notranslate nohighlight">\(|1\rangle\)</span>) is equal the sine squared of the angle:</p>
 <div class="math notranslate nohighlight">
 \[ \mathbb{P}_{1} = \sin^2\left(\frac{\theta}{2}\right) \]</div>
-<a class="reference internal image-reference" href="../../_images/02_03_01_stern-gerlach_angle_prob.png"><img alt="../../_images/02_03_01_stern-gerlach_angle_prob.png" class="align-center" src="../../_images/02_03_01_stern-gerlach_angle_prob.png" style="width: 360px;" /></a>
+<a class="reference internal image-reference" href="../../_images/02_03_01_stern-gerlach_angle_prob.png"><img alt="../../_images/02_03_01_stern-gerlach_angle_prob.png" class="align-center" src="../../_images/02_03_01_stern-gerlach_angle_prob.png" style="width: 360px;" />
+</a>
 <p>From a probability standpoint, these expressions work since the sum of sine and cosine squared for any common angle always add to one, just like probabilities ought to do:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -563,13 +564,14 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(757), np.str_(&#39;1&#39;): np.int64(243)}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(749), np.str_(&#39;1&#39;): np.int64(251)}
 </pre></div>
 </div>
 </div>
 </div>
 <p>This generalization of the qubit, where the probability amplitudes are given by the <span class="math notranslate nohighlight">\(\cos^2\)</span> and <span class="math notranslate nohighlight">\(\sin^2\)</span> of the angle <span class="math notranslate nohighlight">\(\theta/2\)</span>, works well to describe the results of the Stern-Gerlach experiment; however, there is a bit of an issue. In this particular case, we are only concerned about the direction of the spin on the <span class="math notranslate nohighlight">\(xz\)</span>-plane because we are shooting the electrons along the <span class="math notranslate nohighlight">\(y\)</span> direction. But how do we describe the spin of the electron if it is aligned with, let’s say, the <span class="math notranslate nohighlight">\(\texttt{+}y\)</span> axis? Well, experiments show that, if we were to measure the spin of such an electron with a field oriented along the <span class="math notranslate nohighlight">\(z\)</span> axis, we will still see the electron deflecting up or down with <span class="math notranslate nohighlight">\(50\%\)</span> probability (just like we do for spin in the <span class="math notranslate nohighlight">\(\texttt{+}x\)</span> direction). As a matter of fact, this is true no matter which orientation (given by the angle <span class="math notranslate nohighlight">\(\varphi\)</span>) the electron has in the <span class="math notranslate nohighlight">\(xy\)</span>-plane:</p>
-<a class="reference internal image-reference" href="../../_images/02_03_02_elec_phi_angle.png"><img alt="../../_images/02_03_02_elec_phi_angle.png" class="align-center" src="../../_images/02_03_02_elec_phi_angle.png" style="width: 520px;" /></a>
+<a class="reference internal image-reference" href="../../_images/02_03_02_elec_phi_angle.png"><img alt="../../_images/02_03_02_elec_phi_angle.png" class="align-center" src="../../_images/02_03_02_elec_phi_angle.png" style="width: 520px;" />
+</a>
 <p>So, how do we represent such states? After all, for spin along the <span class="math notranslate nohighlight">\(\pm x\)</span> directions, we defined the probability amplitudes by taking the positive and negative square roots of the probability of measuring spin-up and spin-down, so what do we do for spin along, let’s say the <span class="math notranslate nohighlight">\(\pm y\)</span> directions?</p>
 <div style="text-align: center;"> <strong> ¡Complex Numbers to the Rescue! </strong> </div></section>
 <section id="complex-probability-amplitudes">
@@ -635,11 +637,14 @@ document.write(`
 \[ c = a + bi, \]</div>
 <p>where <span class="math notranslate nohighlight">\(a, b \in \mathbb{R}\)</span>, and are known as the <strong>real</strong> and <strong>imaginary</strong> parts of <span class="math notranslate nohighlight">\(c\)</span>, respectively. Furthermore, <span class="math notranslate nohighlight">\(i\)</span> is known as the imaginary unit, which satisfies the property that when squared, it equals negative one: <span class="math notranslate nohighlight">\(i^2 = -1 .\)</span></p>
 <p>Complex numbers can then be graphically represented in what is known as the complex plane, with the horizontal direction representing the real axis, and the vertical direction the imaginary axis:</p>
-<a class="reference internal image-reference" href="../../_images/02_03_03_complex_plane.png"><img alt="../../_images/02_03_03_complex_plane.png" class="align-center" src="../../_images/02_03_03_complex_plane.png" style="width: 250px;" /></a>
+<a class="reference internal image-reference" href="../../_images/02_03_03_complex_plane.png"><img alt="../../_images/02_03_03_complex_plane.png" class="align-center" src="../../_images/02_03_03_complex_plane.png" style="width: 250px;" />
+</a>
 <p>With this in mind, we can make the very simple observation that, in this plane, the imaginary numbers <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(-i\)</span> are in an orthogonal number line to that of the real numbers, which includes the values <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(-1\)</span>, and all of which lie in a circle of radius <span class="math notranslate nohighlight">\(1\)</span>:</p>
-<a class="reference internal image-reference" href="../../_images/02_03_04_i_in_plane.png"><img alt="../../_images/02_03_04_i_in_plane.png" class="align-center" src="../../_images/02_03_04_i_in_plane.png" style="width: 250px;" /></a>
+<a class="reference internal image-reference" href="../../_images/02_03_04_i_in_plane.png"><img alt="../../_images/02_03_04_i_in_plane.png" class="align-center" src="../../_images/02_03_04_i_in_plane.png" style="width: 250px;" />
+</a>
 <p><a name="back1"></a> So, if we superimpose the complex plane on the <span class="math notranslate nohighlight">\(xy\)</span>-plane that defines the direction of the electron spin, we can see that we can associate a complex value in the unit circle with the direction of the spin statevector in this plane<a class="reference internal" href="#footnote1"><span class="xref myst"><span class="math notranslate nohighlight">\(^*\)</span></span></a>:</p>
-<a class="reference internal image-reference" href="../../_images/02_03_05_spin_in_complex_plane.png"><img alt="../../_images/02_03_05_spin_in_complex_plane.png" class="align-center" src="../../_images/02_03_05_spin_in_complex_plane.png" style="width: 250px;" /></a>
+<a class="reference internal image-reference" href="../../_images/02_03_05_spin_in_complex_plane.png"><img alt="../../_images/02_03_05_spin_in_complex_plane.png" class="align-center" src="../../_images/02_03_05_spin_in_complex_plane.png" style="width: 250px;" />
+</a>
 <p>Furthermore, if we multiply this complex number with <strong>one</strong> of the two probability amplitudes of our statevector, we will indeed get the full and accurate representation of a quantum bit. So, for example, states <span class="math notranslate nohighlight">\(|+\rangle\)</span> and <span class="math notranslate nohighlight">\(|-\rangle\)</span>, which are aligned with the <span class="math notranslate nohighlight">\(\texttt{+}x\)</span> and <span class="math notranslate nohighlight">\(\texttt{-}x\)</span> directions, have one of their probability amplitudes multiplied by <span class="math notranslate nohighlight">\(+1\)</span> and <span class="math notranslate nohighlight">\(-1\)</span>, respectively. Similarly, we can define the states for spin aligned with the <span class="math notranslate nohighlight">\(\texttt{+}y\)</span> and <span class="math notranslate nohighlight">\(\texttt{-}y\)</span> directions by multiplying one of their probability amplitudes by <span class="math notranslate nohighlight">\(+i\)</span> and <span class="math notranslate nohighlight">\(-i\)</span>, accordingly:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} 
@@ -726,7 +731,8 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[ |q\rangle = \cos^2\left(\frac{\theta}{2}\right)|0\rangle + e^{i \varphi} \sin^2\left(\frac{\theta}{2}\right)|1\rangle, \]</div>
 <p>where the angles <span class="math notranslate nohighlight">\(\theta\)</span> and <span class="math notranslate nohighlight">\(\varphi\)</span> respectively define the spin orientation with respect to the <span class="math notranslate nohighlight">\(\texttt{+}z\)</span> and <span class="math notranslate nohighlight">\(\texttt{+}x\)</span> axes. This visual depiction of spin orientation is so helpful that we actually use it to represent any kind of qubit independent of its physical implementation. But, instead of calling it “spin”, we refer to it as a unit vector inside of what is known as the <a class="reference external" href="https://en.wikipedia.org/wiki/Bloch_sphere">Bloch sphere</a>. This vector, however, simply points in the same direction the spin of an electron would be oriented <em>if</em> the qubit was of this type:</p>
-<a class="reference internal image-reference" href="../../_images/02_03_06_bloch.png"><img alt="../../_images/02_03_06_bloch.png" class="align-center" src="../../_images/02_03_06_bloch.png" style="width: 300px;" /></a>
+<a class="reference internal image-reference" href="../../_images/02_03_06_bloch.png"><img alt="../../_images/02_03_06_bloch.png" class="align-center" src="../../_images/02_03_06_bloch.png" style="width: 300px;" />
+</a>
 <p>In the image above we have also added the locations of where the vector will be pointing for states <span class="math notranslate nohighlight">\(\left\{(|0\rangle, |1\rangle \right\}, \left\{|+\rangle, |-\rangle \right\}\)</span> and <span class="math notranslate nohighlight">\(\left\{|r\rangle, |l\rangle \right\}, \)</span> which, as can be seen, respecitvely lie along the <span class="math notranslate nohighlight">\(z\)</span>, <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> axes.</p>
 <p>Let’s now use Qiskit to draw the Bloch sphere representation of an arbitrary qubit. You can change the values of <span class="math notranslate nohighlight">\(\theta\)</span> and <span class="math notranslate nohighlight">\(\varphi\)</span> to see how the direction of the statevector moves around the sphere:</p>
 <div class="cell docutils container">
@@ -1208,10 +1214,12 @@ RZ(\varphi) &amp;= \begin{bmatrix} e^{-i\varphi/2} &amp; 0 \\ 0 &amp; e^{i\varph
 <section id="refining-quantum-measurement">
 <h2>3. Refining Quantum Measurement<a class="headerlink" href="#refining-quantum-measurement" title="Link to this heading">#</a></h2>
 <p>Quantum measurement is the process by which a quantum property, like electron spin, is coupled to some classical property that we can physically observe or interpret, like the vertical position of a mark or flash on a screen:</p>
-<a class="reference internal image-reference" href="../../_images/02_03_07_dest_meas.png"><img alt="../../_images/02_03_07_dest_meas.png" class="align-center" src="../../_images/02_03_07_dest_meas.png" style="width: 375px;" /></a>
+<a class="reference internal image-reference" href="../../_images/02_03_07_dest_meas.png"><img alt="../../_images/02_03_07_dest_meas.png" class="align-center" src="../../_images/02_03_07_dest_meas.png" style="width: 375px;" />
+</a>
 <p>In this type of measurement, the electron gets absorbed by the screen, so there is no sense in talking about the spin of the electron <strong>after</strong> the measurement takes place. We call this type of measurement a destructive measurement.</p>
 <p>However, an equally valid way to measure electron spin would be to “carve” holes into the screen and let the electron pass through:</p>
-<a class="reference internal image-reference" href="../../_images/02_03_08_nondest_meas.png"><img alt="../../_images/02_03_08_nondest_meas.png" class="align-center" src="../../_images/02_03_08_nondest_meas.png" style="width: 400px;" /></a>
+<a class="reference internal image-reference" href="../../_images/02_03_08_nondest_meas.png"><img alt="../../_images/02_03_08_nondest_meas.png" class="align-center" src="../../_images/02_03_08_nondest_meas.png" style="width: 400px;" />
+</a>
 <p>If we observe the electron passing through the top opening, we now know that its spin is pointing in the <span class="math notranslate nohighlight">\(+z\)</span> direction. Similarly, if we see it passed through the bottom opening, we know its spin is pointing in the <span class="math notranslate nohighlight">\(-z\)</span> direction.  We call this a non-destructive measurement because the electron survived the measurement process and it is therefore available to be modified and measured again. A common way to refer to the process of going from a superposition to one of the possible states associated with the measurement outcome is to say that the statevector of the electron spin <a class="reference external" href="https://en.wikipedia.org/wiki/Wave_function_collapse">collapsed</a>. Here, we will avoid using the term “collapse” since sometimes it can be associated with very specific <a class="reference external" href="https://en.wikipedia.org/wiki/Copenhagen_interpretation">interpretations of quantum mechanics</a>. We will instead use the term “projection” or “reduction” of the statevector.</p>
 <p>There are then three important components associated with this type of measurement:</p>
 <ol class="arabic simple">
@@ -1220,7 +1228,8 @@ RZ(\varphi) &amp;= \begin{bmatrix} e^{-i\varphi/2} &amp; 0 \\ 0 &amp; e^{i\varph
 <li><p>The quantum state <span class="math notranslate nohighlight">\(|j\rangle\)</span> onto which the pre-measurement statevector projects onto.</p></li>
 </ol>
 <p>This is why, in some quantum circuit diagrams, we deliberately include a classical register that “stores” the classic result in addition to the quantum register reserved for the quantum state of the qubit even after it has been projected by a measurement:</p>
-<a class="reference internal image-reference" href="../../_images/02_03_09_meas_cir.png"><img alt="../../_images/02_03_09_meas_cir.png" class="align-center" src="../../_images/02_03_09_meas_cir.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../../_images/02_03_09_meas_cir.png"><img alt="../../_images/02_03_09_meas_cir.png" class="align-center" src="../../_images/02_03_09_meas_cir.png" style="width: 500px;" />
+</a>
 <p>What we want to do next is present a slightly more formal way we obtain the three items described above given the statevector of a qubit <span class="math notranslate nohighlight">\(|q\rangle\)</span>, and the basis on which we want to perform our measurement.</p>
 <section id="projective-measurements">
 <h3>3.1 Projective Measurements<a class="headerlink" href="#projective-measurements" title="Link to this heading">#</a></h3>
