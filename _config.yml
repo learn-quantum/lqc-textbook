@@ -81,6 +81,7 @@ sphinx:
       use_issues_button: true
       use_repository_button: true
       use_edit_page_button: false
+      external_links_target: '_blank'
       #navbar_end:
         #- navbar-icon-links
       #launch_buttons:
