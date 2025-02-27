@@ -424,7 +424,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#refining-quantum-measurement">3. Refining Quantum Measurement</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#projective-measurements">3.1 Projective Measurements</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#post-selection-and-reset-operations">3.2 Post-Selection and Reset Operations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#measurement-observables">3.3 Measurement Observables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quantum-observables">3.3 Quantum Observables</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#footnotes">Footnotes</a></li>
@@ -567,7 +567,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(736), np.str_(&#39;1&#39;): np.int64(264)}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(777), np.str_(&#39;1&#39;): np.int64(223)}
 </pre></div>
 </div>
 </div>
@@ -1381,19 +1381,19 @@ RZ(\varphi) &amp;= \begin{bmatrix} e^{-i\varphi/2} &amp; 0 \\ 0 &amp; e^{i\varph
 </div>
 </div>
 </section>
-<section id="measurement-observables">
-<h3>3.3 Measurement Observables<a class="headerlink" href="#measurement-observables" title="Link to this heading">#</a></h3>
-<p>In quantum mechanics, an <a class="reference external" href="https://en.wikipedia.org/wiki/Observable">observable</a> refers to a measurable physical property of a quantum system. For instance, particles such as electrons have multiple observables, including position, momentum, and, as we previously discussed, the orientation of their spin.</p>
+<section id="quantum-observables">
+<h3>3.3 Quantum Observables<a class="headerlink" href="#quantum-observables" title="Link to this heading">#</a></h3>
+<p>In quantum mechanics, <a class="reference external" href="https://en.wikipedia.org/wiki/Observable">observables</a> correspond to the physical properties of a quantum system that can be measured. For instance, particles such as electrons have multiple observables, including position, momentum, and, as we previously discussed, the orientation of their spin.</p>
 <p>For the specific case of a qubit, we introduced the concept of a measurement by associating the two possible outcomes of an electron’s spin along the <span class="math notranslate nohighlight">\(z\)</span> axis with the numerical values <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>. This choice was made for two important reasons:</p>
 <ol class="arabic simple">
 <li><p>To abstract away the concept of a qubit from that of electron spin, allowing for qubits to represent other types of quantum systems (e.g., energy levels of atoms, polarization of photons, etc.).</p></li>
 <li><p>To align with the binary number system, which is the natural framework for quantum computation and quantum information.</p></li>
 </ol>
-<p>However, the physical observable property associated with spin is actually the electron’s angular momentum, which can take values of:</p>
+<p>However, the physical observable property associated with electron spin is actually the particle’s angular momentum, which can take values of:</p>
 <div class="math notranslate nohighlight">
 \[ S = \left\{ + \frac{\hbar}{2}, - \frac{\hbar}{2} \right\},\]</div>
-<p>where <span class="math notranslate nohighlight">\(\hbar\)</span> is the <a class="reference external" href="https://en.wikipedia.org/wiki/Planck_constant#Reduced_Planck_constant">reduced Planck constant</a>. Now, since <span class="math notranslate nohighlight">\(\hbar/2\)</span> is just a scaling factor, we could’ve equally <strong>defined</strong> the two possible outcomes of measuring a qubit to be <span class="math notranslate nohighlight">\(\{+1, -1 \}\)</span>, rather than <span class="math notranslate nohighlight">\(\{0, 1\} .\)</span> That way, the results for a qubit measurement would be directly in line with the physical quantity measured for electron spin. This can be a useful thing to do when we want to simulate physical systems on a quantum computer, which is something done quite frequently.</p>
-<p>Luckily, using the PVM formalism we described above, it is relatively straightforward to construct other measurement operators with measurable quantities different than <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>. For example, if we want our qubit states <span class="math notranslate nohighlight">\(|0\rangle\)</span> and <span class="math notranslate nohighlight">\(|1\rangle\)</span> to represent electron spin along the <span class="math notranslate nohighlight">\(z\)</span> axis with measurement outcomes of <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(-1\)</span>, respectively; all we need to do is take the corresponding projection operators <span class="math notranslate nohighlight">\(\{\Pi_0, \Pi_1 \}\)</span>, multiply each of them by the corresponding desired output <span class="math notranslate nohighlight">\(\{1, -1 \}\)</span>, and add them up:</p>
+<p>where <span class="math notranslate nohighlight">\(\hbar\)</span> is the <a class="reference external" href="https://en.wikipedia.org/wiki/Planck_constant#Reduced_Planck_constant">reduced Planck constant</a>. Now, since <span class="math notranslate nohighlight">\(\hbar/2\)</span> is just a scaling factor, we could’ve equally <strong>defined</strong> the two possible outcomes of measuring a qubit to be <span class="math notranslate nohighlight">\(\{+1, -1 \}\)</span>, rather than <span class="math notranslate nohighlight">\(\{0, 1\} .\)</span> That way, the results for a qubit measurement would be directly in line with the physical quantity measured for electron spin. This is a useful thing to do when simulating physical systems on a quantum computer, which is something done quite frequently.</p>
+<p>Luckily, using the PVM formalism we described above, it is relatively straightforward to construct measurement operators whose measurable outcomes are different from <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>. For example, if we want our qubit states <span class="math notranslate nohighlight">\(|0\rangle\)</span> and <span class="math notranslate nohighlight">\(|1\rangle\)</span> to represent electron spin along the <span class="math notranslate nohighlight">\(z\)</span> axis, with corresponding measurement outcomes of <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(-1\)</span>, all we need to do is take the sum of the projection operators <span class="math notranslate nohighlight">\(\{\Pi_0, \Pi_1 \}\)</span>, weighted by the new measurement outcomes <span class="math notranslate nohighlight">\(\{1, -1\}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} 
 \begin{aligned}
@@ -1406,10 +1406,10 @@ Z &amp;= 1 \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 0 \end{bmatrix} - 1 \begin{bmatr
 Z &amp;= \begin{bmatrix} 1 &amp; \phantom{-}0 \\ 0 &amp; -1 \end{bmatrix} .
 \end{aligned}
 \end{split}\]</div>
-<p>It is no coincidence that the resulting operator corresponds to the Pauli <span class="math notranslate nohighlight">\(Z\)</span> matrix. Similarly, we could associate values of <span class="math notranslate nohighlight">\(\{+1, -1\}\)</span> for measuring spin along the <span class="math notranslate nohighlight">\(x\)</span> axis with the projection operators <span class="math notranslate nohighlight">\(\{\Pi_+, \Pi_- \}\)</span>, and find that the corresponding observable is the Pauli <span class="math notranslate nohighlight">\(X\)</span> matrix. In general, we can construct an observable <span class="math notranslate nohighlight">\(O\)</span> with measurable quantities <span class="math notranslate nohighlight">\( \lambda_j \in \mathbb{R}\)</span> and projectors <span class="math notranslate nohighlight">\(\Pi_j\)</span> as:</p>
+<p>It is no coincidence that the resulting operator corresponds to the Pauli <span class="math notranslate nohighlight">\(Z\)</span> matrix. Similarly, we could associate values of <span class="math notranslate nohighlight">\(\{+1, -1\}\)</span> for measuring spin along the <span class="math notranslate nohighlight">\(x\)</span> axis with the projection operators <span class="math notranslate nohighlight">\(\{\Pi_+, \Pi_- \}\)</span>, and find that the corresponding observable is the Pauli <span class="math notranslate nohighlight">\(X\)</span> matrix. In general, we can construct an observable <span class="math notranslate nohighlight">\(\mathcal{O}\)</span> with measurement outcomes <span class="math notranslate nohighlight">\( \lambda_j \in \mathbb{R}\)</span> and projectors <span class="math notranslate nohighlight">\(\Pi_j\)</span> (corresponding to an orthonormal set of states <span class="math notranslate nohighlight">\(|j\rangle\)</span>) as:</p>
 <div class="math notranslate nohighlight">
-\[ O = \sum_j \lambda_j \Pi_j .\]</div>
-<p>The advantage of defining observables this way is that, since quantum mechanics is a probabilistic theory, we can use <span class="math notranslate nohighlight">\(O\)</span> to directly compute the expectation value (average) of measuring that observable given some arbitrary state <span class="math notranslate nohighlight">\(|q\rangle\)</span>. For example, let’s say we want to calculate what is the average of measuring the <span class="math notranslate nohighlight">\(Z\)</span> observable for state:</p>
+\[ \mathcal{O} = \sum_j \lambda_j \Pi_j .\]</div>
+<p>The advantage of defining observables this way is that, since quantum mechanics is a probabilistic theory, we can use <span class="math notranslate nohighlight">\(\mathcal{O}\)</span> to directly compute the expectation value (average) of measuring that observable given some arbitrary state <span class="math notranslate nohighlight">\(|q\rangle\)</span>. For example, let’s say we want to calculate what is the average of measuring the <span class="math notranslate nohighlight">\(Z\)</span> observable for state:</p>
 <div class="math notranslate nohighlight">
 \[ |q\rangle = \alpha_0 |0\rangle +  \alpha_1 |1\rangle .\]</div>
 <p>Well, we know that we will measure either <span class="math notranslate nohighlight">\(1\)</span> or <span class="math notranslate nohighlight">\(-1\)</span> with probabilities of <span class="math notranslate nohighlight">\(|\alpha_0|^2\)</span> and <span class="math notranslate nohighlight">\(|\alpha_1|^2, \)</span> respectively. So to calculate the expectation value, take each possible outcome, multiply it by its corresponding probability of occurrence, and add them up:</p>
@@ -1430,7 +1430,7 @@ Z &amp;= \begin{bmatrix} 1 &amp; \phantom{-}0 \\ 0 &amp; -1 \end{bmatrix} .
 \end{split}\]</div>
 <p>What this shows is that, given some state <span class="math notranslate nohighlight">\(|q\rangle\)</span>, we can calculate the expectation value of measuring some observable <span class="math notranslate nohighlight">\(O\)</span> as:</p>
 <div class="math notranslate nohighlight">
-\[ \langle O \rangle_{q} = \langle q | O | q \rangle .\]</div>
+\[ \langle \mathcal{O} \rangle_{q} = \langle q | \mathcal{O} | q \rangle .\]</div>
 <p>For example, given the state:</p>
 <div class="math notranslate nohighlight">
 \[|q\rangle = \sqrt{\frac{1}{3}}|0\rangle + \sqrt{\frac{2}{3}}|1\rangle, \]</div>
@@ -1488,7 +1488,7 @@ Z &amp;= \begin{bmatrix} 1 &amp; \phantom{-}0 \\ 0 &amp; -1 \end{bmatrix} .
 <span class="n">qc_o</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">)),</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">qc_o</span><span class="o">.</span><span class="n">draw</span><span class="p">())</span>
 
-<span class="c1"># Create Observable compatible with Estimator</span>
+<span class="c1"># Create Observable of type SparsePauliOp compatible with Estimator</span>
 <span class="n">Obs</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_operator</span><span class="p">(</span><span class="n">O</span><span class="p">)</span>
 
 <span class="c1"># Define the estimator using the AerSimulator</span>
@@ -1503,11 +1503,12 @@ Z &amp;= \begin{bmatrix} 1 &amp; \phantom{-}0 \\ 0 &amp; -1 \end{bmatrix} .
 </div>
 <div class="cell_output docutils container">
 <img alt="../../_images/4c7724c32626fd22c81705c0c1d8753d2bc8b86500c3b4b8e41b6daed0659199.png" src="../../_images/4c7724c32626fd22c81705c0c1d8753d2bc8b86500c3b4b8e41b6daed0659199.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>⟨X⟩q = 0.9419
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>⟨X⟩q = 0.9399
 </pre></div>
 </div>
 </div>
 </div>
+<p>The type of matrices associated with observables are known as <a class="reference external" href="https://en.wikipedia.org/wiki/Hermitian_matrix">Hermitian matrices</a>, and have several important properties that guarantee these operators do indeed correspond to a valid representation of quantifiable physical properties. We will not go into these details in this section, but we will slowly uncover some of the most important properties in future chapters where observables become important.</p>
 </section>
 </section>
 <section id="footnotes">
@@ -1598,7 +1599,7 @@ Z &amp;= \begin{bmatrix} 1 &amp; \phantom{-}0 \\ 0 &amp; -1 \end{bmatrix} .
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#refining-quantum-measurement">3. Refining Quantum Measurement</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#projective-measurements">3.1 Projective Measurements</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#post-selection-and-reset-operations">3.2 Post-Selection and Reset Operations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#measurement-observables">3.3 Measurement Observables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quantum-observables">3.3 Quantum Observables</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#footnotes">Footnotes</a></li>
