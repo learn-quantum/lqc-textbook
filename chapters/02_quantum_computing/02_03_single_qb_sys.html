@@ -424,6 +424,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#refining-quantum-measurement">3. Refining Quantum Measurement</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#projective-measurements">3.1 Projective Measurements</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#post-selection-and-reset-operations">3.2 Post-Selection and Reset Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#measurement-observables">3.3 Measurement Observables</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#footnotes">Footnotes</a></li>
@@ -566,7 +567,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(748), np.str_(&#39;1&#39;): np.int64(252)}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(736), np.str_(&#39;1&#39;): np.int64(264)}
 </pre></div>
 </div>
 </div>
@@ -1269,7 +1270,7 @@ RZ(\varphi) &amp;= \begin{bmatrix} e^{-i\varphi/2} &amp; 0 \\ 0 &amp; e^{i\varph
 \langle 1 | q \rangle &amp;= \alpha_1 .
 \end{aligned}
 \end{split}\]</div>
-<p>Additionally, we showed in section 1.4 that <span class="math notranslate nohighlight">\(\langle y|x \rangle = \langle x|y \rangle^*\)</span>, which we can use here to get:</p>
+<p>Additionally, we showed in <a class="reference external" href="https://learnquantum.io/chapters/02_quantum_computing/02_03_single_qb_sys.html#kets-bras-products-and-bases">section 1.4</a> that <span class="math notranslate nohighlight">\(\langle y|x \rangle = \langle x|y \rangle^*\)</span>, which we can use here to get:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} 
 \begin{aligned}
@@ -1292,7 +1293,7 @@ RZ(\varphi) &amp;= \begin{bmatrix} e^{-i\varphi/2} &amp; 0 \\ 0 &amp; e^{i\varph
 <p>Recalling (also from section 1.4) that <span class="math notranslate nohighlight">\(\Pi_{0} = | 0 \rangle \langle 0 |\)</span> and <span class="math notranslate nohighlight">\(\Pi_{1} = | 1 \rangle \langle 1 |\)</span>, we can rewrite the expressions above as:</p>
 <div class="math notranslate nohighlight">
 \[ \mathbb{P}_0 = \langle q | \Pi_{0} | q \rangle \quad \text{and} \quad \mathbb{P}_1 = \langle q | \Pi_{1} | q \rangle .\]</div>
-<p><span class="math notranslate nohighlight">\(\Pi_0\)</span> and <span class="math notranslate nohighlight">\(\Pi_1\)</span> are what are known as <a class="reference external" href="https://en.wikipedia.org/wiki/Projection_(linear_algebra)#Definitions">projection operators</a>, which we can use to compute the probability of measuring the basis state <span class="math notranslate nohighlight">\(|j\rangle\)</span> by “sandwiching” the superposition state <span class="math notranslate nohighlight">\(|q\rangle\)</span> in-between the corresponding projection operator <span class="math notranslate nohighlight">\(\Pi_{j}\)</span>. These two projection operators form a set known as a <a class="reference external" href="https://en.wikipedia.org/wiki/Projection-valued_measure">projector-value measure</a> (PVM), and have several important properties, such as being orthogonal to each other, squaring to themselves, and being complete (summing to identity), but these details are not so relevant for our current discussion. We will touch on this in later chapter when we discuss measurement <a class="reference external" href="https://en.wikipedia.org/wiki/Observable">observables</a>.</p>
+<p><span class="math notranslate nohighlight">\(\Pi_0\)</span> and <span class="math notranslate nohighlight">\(\Pi_1\)</span> are what are known as <a class="reference external" href="https://en.wikipedia.org/wiki/Projection_(linear_algebra)#Definitions">projection operators</a>, which we can use to compute the probability of measuring the basis state <span class="math notranslate nohighlight">\(|j\rangle\)</span> by “sandwiching” the superposition state <span class="math notranslate nohighlight">\(|q\rangle\)</span> in-between the corresponding projection operator <span class="math notranslate nohighlight">\(\Pi_{j}\)</span>. These two projection operators form a set known as a <a class="reference external" href="https://en.wikipedia.org/wiki/Projection-valued_measure">projector-value measure</a> (PVM), and have several important properties, such as being orthogonal to each other, squaring to themselves, and being complete (summing to identity), but these details are not so relevant for our current discussion.</p>
 <p>Now, to find which state our superposition <strong>projects</strong> onto after a measurement, we can multiply the initial state <span class="math notranslate nohighlight">\(|q\rangle\)</span> by the projection operator associated with each measurement outcome. In the case in which we measure <span class="math notranslate nohighlight">\(0\)</span>, we have:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} 
@@ -1324,11 +1325,9 @@ RZ(\varphi) &amp;= \begin{bmatrix} e^{-i\varphi/2} &amp; 0 \\ 0 &amp; e^{i\varph
 <div class="math notranslate nohighlight">
 \[\Pi_+ = |+\rangle \langle+|, \quad \text{and} \quad \Pi_- = |-\rangle \langle-|, \]</div>
 <p>and use them to compute the probabilities and outcome states resulting from measuring along the <span class="math notranslate nohighlight">\(x\)</span>-axis of the Bloch sphere. We will almost entirely focus on only measuring in the computational basis, so the details of this generalization are not that critical at this point, but it is at least worth knowing this can be done.</p>
-<p>As for the classical outcomes of a PVM, one can also be compute these by finding which is the non-zero <a class="reference external" href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors">eigenvalue</a> of each of the matrices <span class="math notranslate nohighlight">\(\Pi_j\)</span>. But again, we will not go into the details of this until a later chapter.</p>
 <p>So, in summary, given a state <span class="math notranslate nohighlight">\(|q\rangle\)</span>, and a PVM defined by the set of projection operators <span class="math notranslate nohighlight">\(\{\Pi_j\}\)</span> we have that:</p>
 <ol class="arabic simple">
-<li><p>The classical outcome <span class="math notranslate nohighlight">\(j\)</span> is the number of the non-zero eigenvalue of the operator <span class="math notranslate nohighlight">\(\Pi_j .\)</span></p></li>
-<li><p>The probability of obtaining outcome <span class="math notranslate nohighlight">\(j\)</span> is given by <span class="math notranslate nohighlight">\(\mathbb{P}_j = \langle q | \Pi_j | q \rangle .\)</span></p></li>
+<li><p>The probability of obtaining outcome <span class="math notranslate nohighlight">\(|j\rangle\)</span> is given by <span class="math notranslate nohighlight">\(\mathbb{P}_j = \langle q | \Pi_j | q \rangle .\)</span></p></li>
 <li><p>The projection quantum state associated with outcome <span class="math notranslate nohighlight">\(j\)</span> is computed as: <span class="math notranslate nohighlight">\(|q'\rangle = \frac{1}{\sqrt{\mathbb{P}_i}} \Pi_j |q\rangle.\)</span></p></li>
 </ol>
 </section>
@@ -1379,6 +1378,134 @@ RZ(\varphi) &amp;= \begin{bmatrix} e^{-i\varphi/2} &amp; 0 \\ 0 &amp; e^{i\varph
 </div>
 <div class="output text_latex math notranslate nohighlight">
 \[ |0\rangle\]</div>
+</div>
+</div>
+</section>
+<section id="measurement-observables">
+<h3>3.3 Measurement Observables<a class="headerlink" href="#measurement-observables" title="Link to this heading">#</a></h3>
+<p>In quantum mechanics, an <a class="reference external" href="https://en.wikipedia.org/wiki/Observable">observable</a> refers to a measurable physical property of a quantum system. For instance, particles such as electrons have multiple observables, including position, momentum, and, as we previously discussed, the orientation of their spin.</p>
+<p>For the specific case of a qubit, we introduced the concept of a measurement by associating the two possible outcomes of an electron’s spin along the <span class="math notranslate nohighlight">\(z\)</span> axis with the numerical values <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>. This choice was made for two important reasons:</p>
+<ol class="arabic simple">
+<li><p>To abstract away the concept of a qubit from that of electron spin, allowing for qubits to represent other types of quantum systems (e.g., energy levels of atoms, polarization of photons, etc.).</p></li>
+<li><p>To align with the binary number system, which is the natural framework for quantum computation and quantum information.</p></li>
+</ol>
+<p>However, the physical observable property associated with spin is actually the electron’s angular momentum, which can take values of:</p>
+<div class="math notranslate nohighlight">
+\[ S = \left\{ + \frac{\hbar}{2}, - \frac{\hbar}{2} \right\},\]</div>
+<p>where <span class="math notranslate nohighlight">\(\hbar\)</span> is the <a class="reference external" href="https://en.wikipedia.org/wiki/Planck_constant#Reduced_Planck_constant">reduced Planck constant</a>. Now, since <span class="math notranslate nohighlight">\(\hbar/2\)</span> is just a scaling factor, we could’ve equally <strong>defined</strong> the two possible outcomes of measuring a qubit to be <span class="math notranslate nohighlight">\(\{+1, -1 \}\)</span>, rather than <span class="math notranslate nohighlight">\(\{0, 1\} .\)</span> That way, the results for a qubit measurement would be directly in line with the physical quantity measured for electron spin. This can be a useful thing to do when we want to simulate physical systems on a quantum computer, which is something done quite frequently.</p>
+<p>Luckily, using the PVM formalism we described above, it is relatively straightforward to construct other measurement operators with measurable quantities different than <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>. For example, if we want our qubit states <span class="math notranslate nohighlight">\(|0\rangle\)</span> and <span class="math notranslate nohighlight">\(|1\rangle\)</span> to represent electron spin along the <span class="math notranslate nohighlight">\(z\)</span> axis with measurement outcomes of <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(-1\)</span>, respectively; all we need to do is take the corresponding projection operators <span class="math notranslate nohighlight">\(\{\Pi_0, \Pi_1 \}\)</span>, multiply each of them by the corresponding desired output <span class="math notranslate nohighlight">\(\{1, -1 \}\)</span>, and add them up:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+Z &amp;= 1 \cdot \Pi_0 + (-1) \cdot \Pi_1 .
+\\
+\\
+Z &amp;= 1 \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 0 \end{bmatrix} - 1 \begin{bmatrix} 0 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}
+\\
+\\
+Z &amp;= \begin{bmatrix} 1 &amp; \phantom{-}0 \\ 0 &amp; -1 \end{bmatrix} .
+\end{aligned}
+\end{split}\]</div>
+<p>It is no coincidence that the resulting operator corresponds to the Pauli <span class="math notranslate nohighlight">\(Z\)</span> matrix. Similarly, we could associate values of <span class="math notranslate nohighlight">\(\{+1, -1\}\)</span> for measuring spin along the <span class="math notranslate nohighlight">\(x\)</span> axis with the projection operators <span class="math notranslate nohighlight">\(\{\Pi_+, \Pi_- \}\)</span>, and find that the corresponding observable is the Pauli <span class="math notranslate nohighlight">\(X\)</span> matrix. In general, we can construct an observable <span class="math notranslate nohighlight">\(O\)</span> with measurable quantities <span class="math notranslate nohighlight">\( \lambda_j \in \mathbb{R}\)</span> and projectors <span class="math notranslate nohighlight">\(\Pi_j\)</span> as:</p>
+<div class="math notranslate nohighlight">
+\[ O = \sum_j \lambda_j \Pi_j .\]</div>
+<p>The advantage of defining observables this way is that, since quantum mechanics is a probabilistic theory, we can use <span class="math notranslate nohighlight">\(O\)</span> to directly compute the expectation value (average) of measuring that observable given some arbitrary state <span class="math notranslate nohighlight">\(|q\rangle\)</span>. For example, let’s say we want to calculate what is the average of measuring the <span class="math notranslate nohighlight">\(Z\)</span> observable for state:</p>
+<div class="math notranslate nohighlight">
+\[ |q\rangle = \alpha_0 |0\rangle +  \alpha_1 |1\rangle .\]</div>
+<p>Well, we know that we will measure either <span class="math notranslate nohighlight">\(1\)</span> or <span class="math notranslate nohighlight">\(-1\)</span> with probabilities of <span class="math notranslate nohighlight">\(|\alpha_0|^2\)</span> and <span class="math notranslate nohighlight">\(|\alpha_1|^2, \)</span> respectively. So to calculate the expectation value, take each possible outcome, multiply it by its corresponding probability of occurrence, and add them up:</p>
+<div class="math notranslate nohighlight">
+\[\langle Z \rangle_q = 1 |\alpha_0|^2 + (-1) |\alpha_1|^2 .\]</div>
+<p>Now recall that, from the PVM formalism, the probabilities <span class="math notranslate nohighlight">\(|\alpha_j|^2\)</span> can be computed from the projector operators as <span class="math notranslate nohighlight">\(\langle q | \Pi_j | q \rangle\)</span>, so we can replace in these in the expression above:</p>
+<div class="math notranslate nohighlight">
+\[ \langle Z \rangle_q = 1 \cdot \langle q | \Pi_0 | q \rangle + (-1) \cdot \langle q | \Pi_1 | q \rangle, \]</div>
+<p>and then, by linearity, factor in the operators inside the bra-ket product:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\langle Z \rangle_q &amp;= \langle q |\left( 1 \cdot \Pi_0 + (-1) \cdot \Pi_1 \right)| q \rangle
+\\
+\\
+\langle Z \rangle_q &amp;= \langle q | Z | q \rangle .
+\end{aligned}
+\end{split}\]</div>
+<p>What this shows is that, given some state <span class="math notranslate nohighlight">\(|q\rangle\)</span>, we can calculate the expectation value of measuring some observable <span class="math notranslate nohighlight">\(O\)</span> as:</p>
+<div class="math notranslate nohighlight">
+\[ \langle O \rangle_{q} = \langle q | O | q \rangle .\]</div>
+<p>For example, given the state:</p>
+<div class="math notranslate nohighlight">
+\[|q\rangle = \sqrt{\frac{1}{3}}|0\rangle + \sqrt{\frac{2}{3}}|1\rangle, \]</div>
+<p>and the <span class="math notranslate nohighlight">\(X\)</span> observable, we have:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\langle X \rangle_q &amp;= \langle q | X | q \rangle
+\\
+\\
+\langle X \rangle_q &amp;= \begin{bmatrix} \sqrt{\frac{1}{3}} &amp; \sqrt{\frac{2}{3}} \end{bmatrix} \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix} \begin{bmatrix}\sqrt{\frac{1}{3}} \\ \sqrt{\frac{2}{3}} \end{bmatrix}
+\\
+\\
+\langle X \rangle_q &amp;= \begin{bmatrix} \sqrt{\frac{2}{3}} &amp; \sqrt{\frac{1}{3}} \end{bmatrix} \begin{bmatrix}\sqrt{\frac{1}{3}} \\ \sqrt{\frac{2}{3}} \end{bmatrix}
+\\
+\\
+\langle X \rangle_q &amp;= 2 \sqrt{\frac{2}{9}} \approx 0.943 .
+\end{aligned}
+\end{split}\]</div>
+<p>In Qiskit, there a few different ways to compute expectation values. Let’s first take a look at how to compute the exact value given some <code class="docutils literal notranslate"><span class="pre">Statevector</span></code> and observable of type <code class="docutils literal notranslate"><span class="pre">Operator</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">Operator</span>
+
+<span class="c1"># Define state</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">)])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;|q</span><span class="se">\\</span><span class="s1">rangle = &#39;</span><span class="p">))</span>
+
+<span class="c1"># Define observable</span>
+<span class="n">O</span> <span class="o">=</span> <span class="n">Operator</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+
+<span class="c1"># compute expectation value using </span>
+<span class="n">O_expval</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">expectation_value</span><span class="p">(</span><span class="n">O</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;⟨X⟩q = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">O_expval</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[|q\rangle = \frac{\sqrt{3}}{3} |0\rangle+\frac{\sqrt{6}}{3} |1\rangle\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>⟨X⟩q = (0.9428+0j)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Alternatively, we can construct a circuit, and run a simulation that computes the expectation value of some observable using the <code class="docutils literal notranslate"><span class="pre">Estimator</span></code> class from Qiskit Runtime. The results, however, will be approximate, since they are computed based on the sampled results of measurements. The example below uses a circuit that prepares the same state as above, and computes the expectation value with respect to the <span class="math notranslate nohighlight">\(X\)</span> operator:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">SparsePauliOp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">Estimator</span>
+
+<span class="c1"># Create circuit that initializes state |q⟩</span>
+<span class="n">qc_o</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc_o</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">)),</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">qc_o</span><span class="o">.</span><span class="n">draw</span><span class="p">())</span>
+
+<span class="c1"># Create Observable compatible with Estimator</span>
+<span class="n">Obs</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_operator</span><span class="p">(</span><span class="n">O</span><span class="p">)</span>
+
+<span class="c1"># Define the estimator using the AerSimulator</span>
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">Estimator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">AerSimulator</span><span class="p">())</span>
+
+<span class="c1"># Run the estimator by passing the circuit and observable of interest</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">([(</span><span class="n">qc_o</span><span class="p">,</span> <span class="n">Obs</span><span class="p">)])</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">O_expval</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;⟨X⟩q = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">O_expval</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/4c7724c32626fd22c81705c0c1d8753d2bc8b86500c3b4b8e41b6daed0659199.png" src="../../_images/4c7724c32626fd22c81705c0c1d8753d2bc8b86500c3b4b8e41b6daed0659199.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>⟨X⟩q = 0.9419
+</pre></div>
+</div>
 </div>
 </div>
 </section>
@@ -1471,6 +1598,7 @@ RZ(\varphi) &amp;= \begin{bmatrix} e^{-i\varphi/2} &amp; 0 \\ 0 &amp; e^{i\varph
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#refining-quantum-measurement">3. Refining Quantum Measurement</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#projective-measurements">3.1 Projective Measurements</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#post-selection-and-reset-operations">3.2 Post-Selection and Reset Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#measurement-observables">3.3 Measurement Observables</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#footnotes">Footnotes</a></li>
