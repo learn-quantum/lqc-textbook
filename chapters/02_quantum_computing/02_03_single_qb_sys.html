@@ -567,7 +567,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(745), np.str_(&#39;1&#39;): np.int64(255)}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(763), np.str_(&#39;1&#39;): np.int64(237)}
 </pre></div>
 </div>
 </div>
@@ -1406,7 +1406,7 @@ Z &amp;= 1 \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 0 \end{bmatrix} - 1 \begin{bmatr
 Z &amp;= \begin{bmatrix} 1 &amp; \phantom{-}0 \\ 0 &amp; -1 \end{bmatrix} .
 \end{aligned}
 \end{split}\]</div>
-<p>It is no coincidence that the resulting operator corresponds to the Pauli <span class="math notranslate nohighlight">\(Z\)</span> matrix. Similarly, we could associate values of <span class="math notranslate nohighlight">\(\{+1, -1\}\)</span> for measuring spin along the <span class="math notranslate nohighlight">\(x\)</span> axis with the projection operators <span class="math notranslate nohighlight">\(\{\Pi_+, \Pi_- \}\)</span>, and find that the corresponding observable is the Pauli <span class="math notranslate nohighlight">\(X\)</span> matrix. In general, we can construct an observable <span class="math notranslate nohighlight">\(\mathcal{O}\)</span> with measurement outcomes <span class="math notranslate nohighlight">\( \lambda_j \in \mathbb{R}\)</span> and projectors <span class="math notranslate nohighlight">\(\Pi_j\)</span> (corresponding to an orthonormal set of states <span class="math notranslate nohighlight">\(|j\rangle\)</span>) as:</p>
+<p>It is no coincidence that the resulting operator corresponds to the Pauli <span class="math notranslate nohighlight">\(Z\)</span> matrix. Similarly, we could associate values of <span class="math notranslate nohighlight">\(\{+1, -1\}\)</span> for measuring spin along the <span class="math notranslate nohighlight">\(x\)</span> (or <span class="math notranslate nohighlight">\(y\)</span>) axis with the projection operators <span class="math notranslate nohighlight">\(\{\Pi_+, \Pi_- \}\)</span> (or <span class="math notranslate nohighlight">\(\{\Pi_r, \Pi_l \}\)</span>), and find that the corresponding observable is the Pauli <span class="math notranslate nohighlight">\(X\)</span> (or Pauli <span class="math notranslate nohighlight">\(Y\)</span>) matrix. In general, we can construct an observable <span class="math notranslate nohighlight">\(\mathcal{O}\)</span> with measurement outcomes <span class="math notranslate nohighlight">\( \lambda_j \in \mathbb{R}\)</span> and projectors <span class="math notranslate nohighlight">\(\Pi_j\)</span> (corresponding to an orthonormal set of states <span class="math notranslate nohighlight">\(|j\rangle\)</span>) as:</p>
 <div class="math notranslate nohighlight">
 \[ \mathcal{O} = \sum_j \lambda_j \Pi_j .\]</div>
 <p>The advantage of defining observables this way is that, since quantum mechanics is a probabilistic theory, we can use <span class="math notranslate nohighlight">\(\mathcal{O}\)</span> to directly compute the expectation value (average) of measuring that observable given some arbitrary state <span class="math notranslate nohighlight">\(|q\rangle\)</span>. For example, let’s say we want to calculate what is the average of measuring the <span class="math notranslate nohighlight">\(Z\)</span> observable for state:</p>
@@ -1503,7 +1503,7 @@ Z &amp;= \begin{bmatrix} 1 &amp; \phantom{-}0 \\ 0 &amp; -1 \end{bmatrix} .
 </div>
 <div class="cell_output docutils container">
 <img alt="../../_images/4c7724c32626fd22c81705c0c1d8753d2bc8b86500c3b4b8e41b6daed0659199.png" src="../../_images/4c7724c32626fd22c81705c0c1d8753d2bc8b86500c3b4b8e41b6daed0659199.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>⟨X⟩q = 0.9443
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>⟨X⟩q = 0.9448
 </pre></div>
 </div>
 </div>
