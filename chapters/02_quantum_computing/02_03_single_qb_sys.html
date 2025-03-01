@@ -446,19 +446,19 @@ document.write(`
 <p>In this chapter, we will not only expand on this idea, but we will also broaden the definition of the state that describes the spin of an electron pointing in any direction, which represents the most general way to express the state of a qubit. We will then introduce the <a class="reference external" href="https://en.wikipedia.org/wiki/Bloch_sphere">Bloch Sphere</a>, which is a graphical representation of the mathematical description of the qubit’s state, and lastly discuss the different operations we can apply to a qubit to transform it from one arbitrary state to another.</p>
 <section id="refining-the-qubit">
 <h2>1. Refining the Qubit<a class="headerlink" href="#refining-the-qubit" title="Link to this heading">#</a></h2>
-<p>Our goal for this section is to derive the final mathematical definition of a qubit. For this, we will follow a similar approach to that of the previous two chapters; that is, through a discovery process using simple examples. Our final goal is to derive the general vector representation of a qubit, given by:</p>
+<p>Our goal for this section is to derive the final mathematical definition of a qubit. For this, we will follow a similar approach to that of the previous two chapters; that is, through a discovery process using simple examples. The idea is to derive the vector representation of a qubit, given by:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} |q\rangle = \begin{bmatrix} \alpha_0 \\ \alpha_1 \end{bmatrix}, \text{ such that:} \; \alpha_j \in \mathbb{C}, \; \text{and} \; |\alpha_0|^2 + |\alpha_1|^2 = 1 ,\end{split}\]</div>
 <p>which is a generalization of our definition for the bit, where the only entries allowed were <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} |b\rangle = \begin{bmatrix} \beta_0 \\ \beta_1 \end{bmatrix}, \text{ such that:} \; \beta_j \in \{0, 1\}, \; \text{and} \; |\beta_0|^2 + |\beta_1|^2 = 1 .\end{split}\]</div>
-<p>So, let’s take a first step and see how we go from the few specific statevectors we’ve presented so far, to a more general (but partial) representation using real numbers. After that, we will discover why we need to incorporate complex values as well in our definition. Lastly, we will combine these two steps to get a complete representation of a general qubit and its visual representation in the Bloch sphere.</p>
+<p>So, let’s take a first step and see how we go from the few specific statevectors we’ve presented so far, to a more general (but partial) representation using real numbers. After that, we will find why we need to incorporate complex values as well in our definition. Lastly, we will combine these two steps to get a complete representation of a general qubit and its visual representation in the Bloch sphere.</p>
 <section id="real-probability-amplitudes">
 <h3>1.1 Real Probability Amplitudes<a class="headerlink" href="#real-probability-amplitudes" title="Link to this heading">#</a></h3>
 <p>Let us, once again, revisit the Stern-Gerlach experiment and consider the results of performing repeated experiments on an electron with its spin at an angle <span class="math notranslate nohighlight">\(\theta\)</span> with respect to the <span class="math notranslate nohighlight">\(\texttt{+}z\)</span> axis, as shown in the image below. Observations demonstrate that, in this scenario, the probability of the electron deflecting in the <span class="math notranslate nohighlight">\(\texttt{+}z\)</span> direction (i.e., measuring state <span class="math notranslate nohighlight">\(|0\rangle\)</span>) is given by the cosine squared of the angle <span class="math notranslate nohighlight">\(\theta/2\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[ \mathbb{P}_{0} = \cos^2\left(\frac{\theta}{2}\right) \]</div>
-<p>Similarly, the probability of the electron deflecting in the <span class="math notranslate nohighlight">\(\texttt{-}z\)</span> direction (i.e., measuring state <span class="math notranslate nohighlight">\(|1\rangle\)</span>) is equal the sine squared of the angle:</p>
+<p>Similarly, the probability of the electron deflecting in the <span class="math notranslate nohighlight">\(\texttt{-}z\)</span> direction (i.e., measuring state <span class="math notranslate nohighlight">\(|1\rangle\)</span>) is equal to the sine squared of the angle:</p>
 <div class="math notranslate nohighlight">
 \[ \mathbb{P}_{1} = \sin^2\left(\frac{\theta}{2}\right) \]</div>
 <a class="reference internal image-reference" href="../../_images/02_03_01_stern-gerlach_angle_prob.png"><img alt="../../_images/02_03_01_stern-gerlach_angle_prob.png" class="align-center" src="../../_images/02_03_01_stern-gerlach_angle_prob.png" style="width: 360px;" />
@@ -513,7 +513,7 @@ document.write(`
 <td class="text-center"><p><span class="math notranslate nohighlight">\(\vert +\rangle\)</span></p></td>
 <td class="text-center"><p><span class="math notranslate nohighlight">\(\frac{\pi}{2}\)</span></p></td>
 <td class="text-center"><p><span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}\)</span></p></td>
-<td class="text-center"><p><span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\phantom{-}\frac{1}{\sqrt{2}}\)</span></p></td>
 </tr>
 <tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\texttt{-}x\)</span></p></td>
 <td class="text-center"><p><span class="math notranslate nohighlight">\(\vert -\rangle\)</span></p></td>
@@ -567,7 +567,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(766), np.str_(&#39;1&#39;): np.int64(234)}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(761), np.str_(&#39;1&#39;): np.int64(239)}
 </pre></div>
 </div>
 </div>
@@ -585,7 +585,7 @@ document.write(`
 |+\rangle = \frac{1}{\sqrt{2}}|0\rangle + \frac{1}{\sqrt{2}}|1\rangle \quad \text{ and } \quad
 |-\rangle = \frac{1}{\sqrt{2}}|0\rangle - \frac{1}{\sqrt{2}}|1\rangle.
 \]</div>
-<p>First off, we chose the values of these probability amplitudes because, when we square them, we still get the correct probabilities of measuring <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>:</p>
+<p>First off, we selected the values of these probability amplitudes because, when we square them, we still get the correct probabilities of measuring <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
@@ -1242,7 +1242,7 @@ RZ(\varphi) &amp;= \begin{bmatrix} e^{-i\varphi/2} &amp; 0 \\ 0 &amp; e^{i\varph
 <p>the probability of measuring <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> is given by the square modulus of the probability amplitude associated with each of the two corresponding states:</p>
 <div class="math notranslate nohighlight">
 \[ \mathbb{P}_0 = |\alpha_0|^2, \quad \mathbb{P}_1 = |\alpha_1|^2 .\]</div>
-<p>We also said that, after a measurement, the superposition state immediately changes to the corresponding basis state that corresponds to the measurement outcome <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>:</p>
+<p>We also said that, after a measurement, the superposition state immediately changes to the basis state associated with an outcome of either <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} |q \rangle = \alpha_0 |0\rangle + \alpha_1 |1\rangle \xrightarrow{\text{measure}} |q' \rangle =
 \begin{cases}
@@ -1293,7 +1293,7 @@ RZ(\varphi) &amp;= \begin{bmatrix} e^{-i\varphi/2} &amp; 0 \\ 0 &amp; e^{i\varph
 <p>Recalling (also from section 1.4) that <span class="math notranslate nohighlight">\(\Pi_{0} = | 0 \rangle \langle 0 |\)</span> and <span class="math notranslate nohighlight">\(\Pi_{1} = | 1 \rangle \langle 1 |\)</span>, we can rewrite the expressions above as:</p>
 <div class="math notranslate nohighlight">
 \[ \mathbb{P}_0 = \langle q | \Pi_{0} | q \rangle \quad \text{and} \quad \mathbb{P}_1 = \langle q | \Pi_{1} | q \rangle .\]</div>
-<p><span class="math notranslate nohighlight">\(\Pi_0\)</span> and <span class="math notranslate nohighlight">\(\Pi_1\)</span> are what are known as <a class="reference external" href="https://en.wikipedia.org/wiki/Projection_(linear_algebra)#Definitions">projection operators</a>, which we can use to compute the probability of measuring the basis state <span class="math notranslate nohighlight">\(|j\rangle\)</span> by “sandwiching” the superposition state <span class="math notranslate nohighlight">\(|q\rangle\)</span> in-between the corresponding projection operator <span class="math notranslate nohighlight">\(\Pi_{j}\)</span>. These two projection operators form a set known as a <a class="reference external" href="https://en.wikipedia.org/wiki/Projection-valued_measure">projector-value measure</a> (PVM), and have several important properties, such as being orthogonal to each other, squaring to themselves, and being complete (summing to identity), but these details are not so relevant for our current discussion.</p>
+<p><span class="math notranslate nohighlight">\(\Pi_0\)</span> and <span class="math notranslate nohighlight">\(\Pi_1\)</span> are what are known as <a class="reference external" href="https://en.wikipedia.org/wiki/Projection_(linear_algebra)#Definitions">projection operators</a>, which we can use to compute the probability of measuring the basis state <span class="math notranslate nohighlight">\(|j\rangle\)</span> by “sandwiching” the corresponding projection operator <span class="math notranslate nohighlight">\(\Pi_{j}\)</span> in-between the bra and the ket of superposition state <span class="math notranslate nohighlight">\(|q\rangle\)</span>. These two projection operators form a set known as a <a class="reference external" href="https://en.wikipedia.org/wiki/Projection-valued_measure">projector-value measure</a> (PVM), and have several important properties, such as being orthogonal to each other, squaring to themselves, and being complete (summing to identity), but these details are not so relevant for our current discussion.</p>
 <p>Now, to find which state our superposition <strong>projects</strong> onto after a measurement, we can multiply the initial state <span class="math notranslate nohighlight">\(|q\rangle\)</span> by the projection operator associated with each measurement outcome. In the case in which we measure <span class="math notranslate nohighlight">\(0\)</span>, we have:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} 
@@ -1317,18 +1317,19 @@ RZ(\varphi) &amp;= \begin{bmatrix} e^{-i\varphi/2} &amp; 0 \\ 0 &amp; e^{i\varph
 <p>However, if we inspect these results closely, having the probability amplitudes <span class="math notranslate nohighlight">\(\alpha_0, \alpha_1\)</span> pre-multiplying the outcome states is problematic because that means the statevectors are not properly normalized. To solve this, we divide the outcomes above by the norm (length) of each of the resulting statevectors, which is given by:</p>
 <div class="math notranslate nohighlight">
 \[\|\Pi_j |q\rangle \| = |\alpha_j| .\]</div>
-<p>But, here <span class="math notranslate nohighlight">\(|\alpha_j|\)</span> is nothing other than the square root of the probability <span class="math notranslate nohighlight">\(\mathbb{P}_j\)</span>. So, the right way to compute the resulting state after a measurement is given by:</p>
+<p>Here <span class="math notranslate nohighlight">\(|\alpha_j|\)</span> is nothing other than the square root of the probability <span class="math notranslate nohighlight">\(\mathbb{P}_j\)</span>. So, the right way to compute the resulting state after a measurement is given by:</p>
 <div class="math notranslate nohighlight">
 \[ |q'\rangle = \frac{\Pi_j |q\rangle}{\|\Pi_j |q\rangle \|} = \frac{\Pi_j |q\rangle}{\sqrt{\mathbb{P}_i}} = \frac{\Pi_j |q\rangle}{\sqrt{\langle q | \Pi_{j} | q \rangle}} .\]</div>
-<p>This seems like a ridiculous amount of math to simply show that after measuring <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> the outcome state is respectively <span class="math notranslate nohighlight">\(|0\rangle\)</span> or <span class="math notranslate nohighlight">\(|1\rangle\)</span>. However, the PVM formalism will come in handy when we discuss multi-qubit systems and are interested in finding the resulting state after measuring just a subset of qubits.</p>
+<p>This seems like a ridiculous amount of math to simply show that after measuring <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> the outcome state is respectively <span class="math notranslate nohighlight">\(|0\rangle\)</span> or <span class="math notranslate nohighlight">\(|1\rangle\)</span>. However, the PVM formalism will come in handy in the context of multi-qubit systems, where it is of interest to find the resulting state after measuring just a subset of qubits.</p>
 <p>It is also worth noting that we can generalize this to measuring in any other basis. For example, we can construct projectors for the Hadamard basis:</p>
 <div class="math notranslate nohighlight">
 \[\Pi_+ = |+\rangle \langle+|, \quad \text{and} \quad \Pi_- = |-\rangle \langle-|, \]</div>
 <p>and use them to compute the probabilities and outcome states resulting from measuring along the <span class="math notranslate nohighlight">\(x\)</span>-axis of the Bloch sphere. We will almost entirely focus on only measuring in the computational basis, so the details of this generalization are not that critical at this point, but it is at least worth knowing this can be done.</p>
 <p>So, in summary, given a state <span class="math notranslate nohighlight">\(|q\rangle\)</span>, and a PVM defined by the set of projection operators <span class="math notranslate nohighlight">\(\{\Pi_j\}\)</span> we have that:</p>
 <ol class="arabic simple">
-<li><p>The probability of obtaining outcome <span class="math notranslate nohighlight">\(|j\rangle\)</span> is given by <span class="math notranslate nohighlight">\(\mathbb{P}_j = \langle q | \Pi_j | q \rangle .\)</span></p></li>
-<li><p>The projection quantum state associated with outcome <span class="math notranslate nohighlight">\(j\)</span> is computed as: <span class="math notranslate nohighlight">\(|q'\rangle = \frac{1}{\sqrt{\mathbb{P}_i}} \Pi_j |q\rangle.\)</span></p></li>
+<li><p>Each projector <span class="math notranslate nohighlight">\(\Pi_j\)</span> has a corresponding classical outcome <span class="math notranslate nohighlight">\(j\)</span>.</p></li>
+<li><p>The probability of obtaining outcome <span class="math notranslate nohighlight">\(j\)</span> is given by <span class="math notranslate nohighlight">\(\mathbb{P}_j = \langle q | \Pi_j | q \rangle .\)</span></p></li>
+<li><p>The projected quantum state associated with outcome <span class="math notranslate nohighlight">\(j\)</span> is computed as: <span class="math notranslate nohighlight">\(|q'\rangle = \frac{1}{\sqrt{\mathbb{P}_i}} \Pi_j |q\rangle.\)</span></p></li>
 </ol>
 </section>
 <section id="post-selection-and-reset-operations">
@@ -1350,50 +1351,73 @@ RZ(\varphi) &amp;= \begin{bmatrix} e^{-i\varphi/2} &amp; 0 \\ 0 &amp; e^{i\varph
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>                           <span class="c1"># Initialize in superposition</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">save_statevector</span><span class="p">(</span><span class="s1">&#39;q_pre&#39;</span><span class="p">)</span>     <span class="c1"># Save statevector before reset</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>                   <span class="c1"># Measure state (should give 50/50 `0` or `1`)</span>
 <span class="k">with</span> <span class="n">qc</span><span class="o">.</span><span class="n">if_test</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)):</span> <span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>   <span class="c1"># Apply X gate if classical result is `1`</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">save_statevector</span><span class="p">()</span>             <span class="c1"># Save statevector after running simulation</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">save_statevector</span><span class="p">(</span><span class="s1">&#39;q_pst&#39;</span><span class="p">)</span>      <span class="c1"># Save statevector after reset</span>
 
 <span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/9717ebcb23436849ff73071119a456511b6cd9e4394a795a866cbfc6c2214880.png" src="../../_images/9717ebcb23436849ff73071119a456511b6cd9e4394a795a866cbfc6c2214880.png" />
+<img alt="../../_images/46070ae862953c7695f218d3e435ec2efcb778798ac679d126d9df20a072d832.png" src="../../_images/46070ae862953c7695f218d3e435ec2efcb778798ac679d126d9df20a072d832.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span> <span class="n">AerSimulator</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="p">()[</span><span class="s1">&#39;q_pre&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\frac{\sqrt{2}}{2} |0\rangle+\frac{\sqrt{2}}{2} |1\rangle\]</div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulate circuit above and extract statevector (it should always be |0⟩)</span>
-<span class="n">q</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">get_statevector</span><span class="p">()</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+
+<span class="n">q_pre</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">data</span><span class="p">()[</span><span class="s1">&#39;q_pre&#39;</span><span class="p">]</span>
+<span class="n">q_pst</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">data</span><span class="p">()[</span><span class="s1">&#39;q_pst&#39;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;State before reset: &#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">q_pre</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;|q</span><span class="se">\\</span><span class="s1">rangle_{</span><span class="se">\\</span><span class="s1">text</span><span class="si">{in}</span><span class="s1">} = &#39;</span><span class="p">))</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;State after reset: &#39;</span><span class="p">)</span>
-<span class="n">q</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">q_pst</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;|q</span><span class="se">\\</span><span class="s1">rangle_{</span><span class="se">\\</span><span class="s1">text</span><span class="si">{out}</span><span class="s1">} = &#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>State before reset: 
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[|q\rangle_{\text{in}} = \frac{\sqrt{2}}{2} |0\rangle+\frac{\sqrt{2}}{2} |1\rangle\]</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>State after reset: 
 </pre></div>
 </div>
 <div class="output text_latex math notranslate nohighlight">
-\[ |0\rangle\]</div>
+\[|q\rangle_{\text{out}} =  |0\rangle\]</div>
 </div>
 </div>
 </section>
 <section id="quantum-observables">
 <h3>3.3 Quantum Observables<a class="headerlink" href="#quantum-observables" title="Link to this heading">#</a></h3>
-<p>In quantum mechanics, <a class="reference external" href="https://en.wikipedia.org/wiki/Observable">observables</a> correspond to the physical properties of a quantum system that can be measured. For instance, particles such as electrons have multiple observables, including position, momentum, and, as we previously discussed, the orientation of their spin.</p>
-<p>For the specific case of a qubit, we introduced the concept of a measurement by associating the two possible outcomes of an electron’s spin along the <span class="math notranslate nohighlight">\(z\)</span> axis with the numerical values <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>. This choice was made for two important reasons:</p>
+<p>In quantum mechanics, <a class="reference external" href="https://en.wikipedia.org/wiki/Observable">observables</a> correspond to the properties of a quantum system that can be physically measured. For instance, particles such as electrons have multiple observables, including position, momentum, and, as we previously discussed, their spin.</p>
+<p>For the specific case of a qubit, we abstracted away the physics of electron spin, and associated the two possible outcomes of a measurement to be the numerical values of 0 and 1. This choice was made for two important reasons:</p>
 <ol class="arabic simple">
-<li><p>To abstract away the concept of a qubit from that of electron spin, allowing for qubits to represent other types of quantum systems (e.g., energy levels of atoms, polarization of photons, etc.).</p></li>
-<li><p>To align with the binary number system, which is the natural framework for quantum computation and quantum information.</p></li>
+<li><p>To allow for qubits to represent other types of quantum systems (e.g., energy levels of atoms, polarization of photons, etc.).</p></li>
+<li><p>To align our model with the binary number system, which is the natural framework for quantum computation and quantum information.</p></li>
 </ol>
 <p>However, the physical observable property associated with electron spin is actually the particle’s angular momentum, which can take values of:</p>
 <div class="math notranslate nohighlight">
 \[ S = \left\{ + \frac{\hbar}{2}, - \frac{\hbar}{2} \right\},\]</div>
 <p>where <span class="math notranslate nohighlight">\(\hbar\)</span> is the <a class="reference external" href="https://en.wikipedia.org/wiki/Planck_constant#Reduced_Planck_constant">reduced Planck constant</a>. Now, since <span class="math notranslate nohighlight">\(\hbar/2\)</span> is just a scaling factor, we could’ve equally <strong>defined</strong> the two possible outcomes of measuring a qubit to be <span class="math notranslate nohighlight">\(\{+1, -1 \}\)</span>, rather than <span class="math notranslate nohighlight">\(\{0, 1\} .\)</span> That way, the results for a qubit measurement would be directly in line with the physical quantity measured for electron spin. This is a useful thing to do when simulating physical systems on a quantum computer, which is something done quite frequently.</p>
-<p>Luckily, using the PVM formalism we described above, it is relatively straightforward to construct measurement operators whose measurable outcomes are different from <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>. For example, if we want our qubit states <span class="math notranslate nohighlight">\(|0\rangle\)</span> and <span class="math notranslate nohighlight">\(|1\rangle\)</span> to represent electron spin along the <span class="math notranslate nohighlight">\(z\)</span> axis, with corresponding measurement outcomes of <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(-1\)</span>, all we need to do is take the sum of the projection operators <span class="math notranslate nohighlight">\(\{\Pi_0, \Pi_1 \}\)</span>, weighted by the new measurement outcomes <span class="math notranslate nohighlight">\(\{1, -1\}\)</span>:</p>
+<p>Luckily, using the PVM formalism we described above, it is relatively straightforward to construct measurement operators whose classical outcomes are different from <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>. For example, if we want our qubit states <span class="math notranslate nohighlight">\(|0\rangle\)</span> and <span class="math notranslate nohighlight">\(|1\rangle\)</span> to represent electron spin along the <span class="math notranslate nohighlight">\(z\)</span> axis, with corresponding measurement outcomes of <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(-1\)</span>, all we need to do is take the sum of the projection operators <span class="math notranslate nohighlight">\(\{\Pi_0, \Pi_1 \}\)</span>, weighted by the new measurement outcomes <span class="math notranslate nohighlight">\(\{1, -1\}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} 
 \begin{aligned}
@@ -1412,7 +1436,7 @@ Z &amp;= \begin{bmatrix} 1 &amp; \phantom{-}0 \\ 0 &amp; -1 \end{bmatrix} .
 <p>The advantage of defining observables this way is that, since quantum mechanics is a probabilistic theory, we can use <span class="math notranslate nohighlight">\(\mathcal{O}\)</span> to directly compute the expectation value (average) of measuring that observable given some arbitrary state <span class="math notranslate nohighlight">\(|q\rangle\)</span>. For example, let’s say we want to calculate what is the average of measuring the <span class="math notranslate nohighlight">\(Z\)</span> observable for state:</p>
 <div class="math notranslate nohighlight">
 \[ |q\rangle = \alpha_0 |0\rangle +  \alpha_1 |1\rangle .\]</div>
-<p>Well, we know that we will measure either <span class="math notranslate nohighlight">\(1\)</span> or <span class="math notranslate nohighlight">\(-1\)</span> with probabilities of <span class="math notranslate nohighlight">\(|\alpha_0|^2\)</span> and <span class="math notranslate nohighlight">\(|\alpha_1|^2, \)</span> respectively. So to calculate the expectation value, take each possible outcome, multiply it by its corresponding probability of occurrence, and add them up:</p>
+<p>Well, we know that we will measure either <span class="math notranslate nohighlight">\(1\)</span> or <span class="math notranslate nohighlight">\(-1\)</span> with probabilities of <span class="math notranslate nohighlight">\(|\alpha_0|^2\)</span> and <span class="math notranslate nohighlight">\(|\alpha_1|^2, \)</span> respectively. So to calculate the expectation value, we take each possible outcome, multiply it by its corresponding probability of occurrence, and add them up:</p>
 <div class="math notranslate nohighlight">
 \[\langle Z \rangle_q = 1 |\alpha_0|^2 + (-1) |\alpha_1|^2 .\]</div>
 <p>Now recall that, from the PVM formalism, the probabilities <span class="math notranslate nohighlight">\(|\alpha_j|^2\)</span> can be computed from the projector operators as <span class="math notranslate nohighlight">\(\langle q | \Pi_j | q \rangle\)</span>, so we can replace in these in the expression above:</p>
@@ -1503,12 +1527,12 @@ Z &amp;= \begin{bmatrix} 1 &amp; \phantom{-}0 \\ 0 &amp; -1 \end{bmatrix} .
 </div>
 <div class="cell_output docutils container">
 <img alt="../../_images/4c7724c32626fd22c81705c0c1d8753d2bc8b86500c3b4b8e41b6daed0659199.png" src="../../_images/4c7724c32626fd22c81705c0c1d8753d2bc8b86500c3b4b8e41b6daed0659199.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>⟨X⟩q = 0.9399
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>⟨X⟩q = 0.9463
 </pre></div>
 </div>
 </div>
 </div>
-<p>The type of matrices associated with observables are known as <a class="reference external" href="https://en.wikipedia.org/wiki/Hermitian_matrix">Hermitian matrices</a>, and have several important properties that guarantee these operators do indeed correspond to a valid representation of quantifiable physical properties. We will not go into these details in this section, but we will slowly uncover some of the most important properties in future chapters where observables become important.</p>
+<p>The type of matrices associated with observables are known as <a class="reference external" href="https://en.wikipedia.org/wiki/Hermitian_matrix">Hermitian matrices</a>, and have several important features that guarantee these operators do indeed correspond to a valid representation of quantifiable physical properties. We will not go into these details in this section, but we will slowly uncover some of their most important aspects in future chapters where observables become important.</p>
 </section>
 </section>
 <section id="footnotes">
