@@ -451,7 +451,7 @@ document.write(`
 \[\begin{split} |q\rangle = \begin{bmatrix} \alpha_0 \\ \alpha_1 \end{bmatrix}, \text{ such that:} \; \alpha_j \in \mathbb{C}, \; \text{and} \; |\alpha_0|^2 + |\alpha_1|^2 = 1 ,\end{split}\]</div>
 <p>which is a generalization of our definition for the bit, where the only entries allowed were <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split} |b\rangle = \begin{bmatrix} \beta_0 \\ \beta_1 \end{bmatrix}, \text{ such that:} \; \beta_j \in \{0, 1\}, \; \text{and} \; |\beta_0|^2 + |\beta_1|^2 = 1 .\end{split}\]</div>
+\[\begin{split} |b\rangle = \begin{bmatrix} \beta_0 \\ \beta_1 \end{bmatrix}, \text{ such that:} \; \beta_j \in \{0, 1\}, \; \text{and} \; \beta_0^2 + \beta_1^2 = 1 .\end{split}\]</div>
 <p>So, let’s take a first step and see how we go from the few specific statevectors we’ve presented so far, to a more general (but partial) representation using real numbers. After that, we will find why we need to incorporate complex values as well in our definition. Lastly, we will combine these two steps to get a complete representation of a general qubit and its visual representation in the Bloch sphere.</p>
 <section id="real-probability-amplitudes">
 <h3>1.1 Real Probability Amplitudes<a class="headerlink" href="#real-probability-amplitudes" title="Link to this heading">#</a></h3>
@@ -567,7 +567,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(741), np.str_(&#39;1&#39;): np.int64(259)}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(747), np.str_(&#39;1&#39;): np.int64(253)}
 </pre></div>
 </div>
 </div>
@@ -732,7 +732,7 @@ document.write(`
 <h3>1.3 Putting it all Together (…and the Bloch Sphere)<a class="headerlink" href="#putting-it-all-together-and-the-bloch-sphere" title="Link to this heading">#</a></h3>
 <p>We can now combine the results from section 1.1 and 1.2 to get the following general definition for a qubit:</p>
 <div class="math notranslate nohighlight">
-\[ |q\rangle = \cos^2\left(\frac{\theta}{2}\right)|0\rangle + e^{i \varphi} \sin^2\left(\frac{\theta}{2}\right)|1\rangle, \]</div>
+\[ |q\rangle = \cos\left(\frac{\theta}{2}\right)|0\rangle + e^{i \varphi} \sin\left(\frac{\theta}{2}\right)|1\rangle, \]</div>
 <p>where the angles <span class="math notranslate nohighlight">\(\theta\)</span> and <span class="math notranslate nohighlight">\(\varphi\)</span> respectively define the spin orientation with respect to the <span class="math notranslate nohighlight">\(\texttt{+}z\)</span> and <span class="math notranslate nohighlight">\(\texttt{+}x\)</span> axes. This visual depiction of spin orientation is so helpful that we actually use it to represent any kind of qubit independent of its physical implementation. But, instead of calling it “spin”, we refer to it as a unit vector inside of what is known as the <a class="reference external" href="https://en.wikipedia.org/wiki/Bloch_sphere">Bloch sphere</a>. This vector, however, simply points in the same direction the spin of an electron would be oriented <em>if</em> the qubit was of this type:</p>
 <a class="reference internal image-reference" href="../../_images/02_03_06_bloch.png"><img alt="../../_images/02_03_06_bloch.png" class="align-center" src="../../_images/02_03_06_bloch.png" style="width: 300px;" />
 </a>
@@ -1527,7 +1527,7 @@ Z &amp;= \begin{bmatrix} 1 &amp; \phantom{-}0 \\ 0 &amp; -1 \end{bmatrix} .
 </div>
 <div class="cell_output docutils container">
 <img alt="../../_images/4c7724c32626fd22c81705c0c1d8753d2bc8b86500c3b4b8e41b6daed0659199.png" src="../../_images/4c7724c32626fd22c81705c0c1d8753d2bc8b86500c3b4b8e41b6daed0659199.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>⟨X⟩q = 0.9463
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>⟨X⟩q = 0.936
 </pre></div>
 </div>
 </div>
