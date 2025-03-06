@@ -567,7 +567,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(747), np.str_(&#39;1&#39;): np.int64(253)}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(746), np.str_(&#39;1&#39;): np.int64(254)}
 </pre></div>
 </div>
 </div>
@@ -757,7 +757,7 @@ document.write(`
 </div>
 <p>So this is all well and good, however, there seems to be a small discrepancy between what we had set to be our general definition of a qubit and the expression we derived above. If we look closely at the values of <span class="math notranslate nohighlight">\(\alpha_0\)</span> and <span class="math notranslate nohighlight">\(\alpha_1\)</span>, it seems that it suffices for <span class="math notranslate nohighlight">\(\alpha_0\)</span> to be purely real rather than complex:</p>
 <div class="math notranslate nohighlight">
-\[ |q\rangle = \underbrace{\cos^2\left(\frac{\theta}{2}\right)}_{\alpha_0 \in \mathbb{R}}|0\rangle + \underbrace{e^{i \varphi} \sin^2\left(\frac{\theta}{2}\right)}_{\alpha_1 \in \mathbb{C}}|1\rangle, \]</div>
+\[ |q\rangle = \underbrace{\cos\left(\frac{\theta}{2}\right)}_{\alpha_0 \in \mathbb{R}}|0\rangle + \underbrace{e^{i \varphi} \sin\left(\frac{\theta}{2}\right)}_{\alpha_1 \in \mathbb{C}}|1\rangle, \]</div>
 <p>On the other hand, our general definition of a qubit has both <span class="math notranslate nohighlight">\(\alpha_0\)</span> and <span class="math notranslate nohighlight">\(\alpha_1\)</span> being complex-valued. Luckily, it is not hard to show how to reconcile this difference. Let’s start by assuming <span class="math notranslate nohighlight">\(\alpha_0, \alpha_1 \in \mathbb{C}\)</span>, and expressing them in polar form:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -791,7 +791,7 @@ document.write(`
 \[\begin{split} |q\rangle = \begin{bmatrix} \alpha_0 \\ \alpha_1 \end{bmatrix} = \alpha_0 |0\rangle + \alpha_1 |1\rangle, \end{split}\]</div>
 <p>but where we can represent <span class="math notranslate nohighlight">\(\alpha_0, \alpha_1 \in \mathbb{C}\)</span> in polar form to factor out a global phase and express the qubit in terms of angles <span class="math notranslate nohighlight">\(\theta, \varphi\)</span>, which correspond to the direction of a unit vector in the Bloch sphere:</p>
 <div class="math notranslate nohighlight">
-\[ |q\rangle = \cos^2\left(\frac{\theta}{2}\right)|0\rangle + e^{i \varphi} \sin^2\left(\frac{\theta}{2}\right)|1\rangle. \]</div>
+\[ |q\rangle = \cos\left(\frac{\theta}{2}\right)|0\rangle + e^{i \varphi} \sin\left(\frac{\theta}{2}\right)|1\rangle. \]</div>
 </section>
 <section id="kets-bras-products-and-bases">
 <h3>1.4 Kets, Bras, Products, and Bases<a class="headerlink" href="#kets-bras-products-and-bases" title="Link to this heading">#</a></h3>
@@ -1527,7 +1527,7 @@ Z &amp;= \begin{bmatrix} 1 &amp; \phantom{-}0 \\ 0 &amp; -1 \end{bmatrix} .
 </div>
 <div class="cell_output docutils container">
 <img alt="../../_images/4c7724c32626fd22c81705c0c1d8753d2bc8b86500c3b4b8e41b6daed0659199.png" src="../../_images/4c7724c32626fd22c81705c0c1d8753d2bc8b86500c3b4b8e41b6daed0659199.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>⟨X⟩q = 0.936
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>⟨X⟩q = 0.9424
 </pre></div>
 </div>
 </div>
