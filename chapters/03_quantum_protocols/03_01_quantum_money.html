@@ -753,7 +753,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/1af45890c96b69ca8e970cbce618470109afa6a751ec3ceb37ffe777b92ca481.png" src="../../_images/1af45890c96b69ca8e970cbce618470109afa6a751ec3ceb37ffe777b92ca481.png" />
+<img alt="../../_images/bcb583c4895fcbedf61adfd611470d9827ac79d73e2c90ba164c34c8c3a41e50.png" src="../../_images/bcb583c4895fcbedf61adfd611470d9827ac79d73e2c90ba164c34c8c3a41e50.png" />
 </div>
 </div>
 <p>As can be seen, the results from the Estimator closely match the those from our calculations. Furthermore, these results hold true not only for the specific case of the <span class="math notranslate nohighlight">\(Z\)</span> and <span class="math notranslate nohighlight">\(X\)</span> observables we used, but for any other pair of observables. All we need to do is rely on the general uncertainty relation give by: <span class="math notranslate nohighlight">\( \Delta A \Delta B \geq \frac{1}{2} \big| \left \langle \left[ A, B \right ] \right \rangle \big| .\)</span></p>
@@ -781,11 +781,11 @@ document.write(`
 <p>In Weisner’s original scheme, the serial number and the quantum state are completely unrelated to each other; the bank simply uses <span class="math notranslate nohighlight">\(S\)</span> as a public identifier to keep track of which state a given coin <span class="math notranslate nohighlight">\(k\)</span> is in. The bank then holds an internal database with each serial number and the associated list of quantum gates necessary to generate the state of each coin:</p>
 <p>| Coin number | Serial Number <span class="math notranslate nohighlight">\(S\)</span> | Gates to generate <span class="math notranslate nohighlight">\(|\$\rangle\)</span> |
 | :-: | :-: | :-: |
-| $<span class="math notranslate nohighlight">\(1\)</span><span class="math notranslate nohighlight">\( | \)</span><span class="math notranslate nohighlight">\(1D062F3ABA\)</span><span class="math notranslate nohighlight">\( | \)</span><span class="math notranslate nohighlight">\( II \otimes \dots \otimes HI \otimes II \)</span><span class="math notranslate nohighlight">\( |
-| \)</span><span class="math notranslate nohighlight">\(2\)</span><span class="math notranslate nohighlight">\( | \)</span><span class="math notranslate nohighlight">\(9B5ACB3425\)</span><span class="math notranslate nohighlight">\( | \)</span><span class="math notranslate nohighlight">\(HX \otimes \dots \otimes IX \otimes HX \)</span><span class="math notranslate nohighlight">\( | 
-| \)</span><span class="math notranslate nohighlight">\(\vdots\)</span><span class="math notranslate nohighlight">\( | \)</span><span class="math notranslate nohighlight">\(\vdots\)</span><span class="math notranslate nohighlight">\( | \)</span><span class="math notranslate nohighlight">\(\vdots\)</span><span class="math notranslate nohighlight">\(                                 |
-| \)</span><span class="math notranslate nohighlight">\(k\)</span><span class="math notranslate nohighlight">\( | \)</span><span class="math notranslate nohighlight">\(E66F5516B3\)</span><span class="math notranslate nohighlight">\( | \)</span><span class="math notranslate nohighlight">\(IX \otimes \dots \otimes HX \otimes HI \)</span><span class="math notranslate nohighlight">\( |
-| \)</span><span class="math notranslate nohighlight">\(\vdots\)</span><span class="math notranslate nohighlight">\( | \)</span><span class="math notranslate nohighlight">\(\vdots\)</span><span class="math notranslate nohighlight">\( | \)</span><span class="math notranslate nohighlight">\(\vdots\)</span>$                                 |</p>
+| <span class="math notranslate nohighlight">\(1\)</span> | <span class="math notranslate nohighlight">\(1D062F3ABA\)</span> | <span class="math notranslate nohighlight">\(II \otimes \dots \otimes HI \otimes II\)</span> |
+| <span class="math notranslate nohighlight">\(2\)</span> | <span class="math notranslate nohighlight">\(9B5ACB3425\)</span> | <span class="math notranslate nohighlight">\(HX \otimes \dots \otimes IX \otimes HX\)</span> |
+| <span class="math notranslate nohighlight">\(\vdots\)</span> | <span class="math notranslate nohighlight">\(\vdots\)</span> | <span class="math notranslate nohighlight">\(\vdots\)</span> |
+| <span class="math notranslate nohighlight">\(k\)</span> | <span class="math notranslate nohighlight">\(E66F5516B3\)</span> | <span class="math notranslate nohighlight">\(IX \otimes \dots \otimes HX \otimes HI\)</span> |
+| <span class="math notranslate nohighlight">\(\vdots\)</span> | <span class="math notranslate nohighlight">\(\vdots\)</span> | <span class="math notranslate nohighlight">\(\vdots\)</span> |</p>
 <p>To avoid having to keep record of every single serial number and string of gates, protocols like <a class="reference external" href="https://static.aminer.org/pdf/PDF/000/120/546/quantum_cryptography_or_unforgeable_subway_tokens.pdf">BBBW</a> suggest that one could generate the quantum state directly from the serial number by using a pseudo-random key generator, but here we will skip this complication.</p>
 <p>Let’s use NumPy and Qiskit to create a function such as the one a bank would use to generate a valid coin state at random:</p>
 <div class="cell docutils container">
@@ -844,9 +844,9 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/4c1774013cb047e2985b2e784a375a2ef28c08adfaf6b4f53f123c8bc2ea1c0e.png" src="../../_images/4c1774013cb047e2985b2e784a375a2ef28c08adfaf6b4f53f123c8bc2ea1c0e.png" />
+<img alt="../../_images/f35f9b9ee5718a05588c36fa1f6694bc31341c918cb54d365f4e183502f6e138.png" src="../../_images/f35f9b9ee5718a05588c36fa1f6694bc31341c918cb54d365f4e183502f6e138.png" />
 <div class="output text_latex math notranslate nohighlight">
-\[\displaystyle |\$ \rangle = |1\rangle \otimes|+\rangle \otimes|1\rangle \otimes|0\rangle \otimes|0\rangle \otimes|-\rangle\]</div>
+\[\displaystyle |\$ \rangle = |0\rangle \otimes|0\rangle \otimes|1\rangle \otimes|1\rangle \otimes|-\rangle \otimes|-\rangle\]</div>
 </div>
 </div>
 <p>Once a coin is issued, a customer can return to one of the bank’s branches to verify if the coin is valid. The bank will check the coin’s serial number and pull out the sequence of gates associated with it. By applying the inverse of such circuit and measuring the state, a valid coin will <strong>always</strong> return an all-zeros string:</p>
@@ -859,7 +859,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/22f2b8677536d275843454e0e90bca7cc2b9e8057ecc920d7384e4464a29927e.png" src="../../_images/22f2b8677536d275843454e0e90bca7cc2b9e8057ecc920d7384e4464a29927e.png" />
+<img alt="../../_images/49efbcf56b629d1de6645cad7d053d783f88856a3e1d542e2dbbdd4f8abbd413.png" src="../../_images/49efbcf56b629d1de6645cad7d053d783f88856a3e1d542e2dbbdd4f8abbd413.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -887,7 +887,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/c3c29e96560b5262a527c69740b77311e8b6d697a3b94ae5efdc222a42f01648.png" src="../../_images/c3c29e96560b5262a527c69740b77311e8b6d697a3b94ae5efdc222a42f01648.png" />
+<img alt="../../_images/cb6d145ab44375a740e2cf17c2461420683158dbc9a6ccec86b305f9e9359451.png" src="../../_images/cb6d145ab44375a740e2cf17c2461420683158dbc9a6ccec86b305f9e9359451.png" />
 </div>
 </div>
 <p>On the other hand, if the criminal were to instead try to measure in the sign basis by first applying a circuit with Hadamard gates on all qubits, the other half of the qbuits will return a random outcome since they were initialized in the bit basis:</p>
@@ -907,7 +907,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/fe571c7d5dea0b48f3dbba10ff29096f4c0e91ea8f44a494e80563579e5757f1.png" src="../../_images/fe571c7d5dea0b48f3dbba10ff29096f4c0e91ea8f44a494e80563579e5757f1.png" />
+<img alt="../../_images/c1cb4fd385afce1fca1b4d0cbe1a0052e73ba4c02c21f1607df167fba12a6b24.png" src="../../_images/c1cb4fd385afce1fca1b4d0cbe1a0052e73ba4c02c21f1607df167fba12a6b24.png" />
 </div>
 </div>
 <p>Furthermore, after performing just one measurement, the coin’s state will get projected onto just one of the possible states, destroying its original value. This prevents the criminal from attempting to use different measurement bases until he discovers the true state’s value. This uncertainty in the state’s outcome is due to the fact that states <span class="math notranslate nohighlight">\(\big \{|+\rangle, |-\rangle \big \}\)</span> are prepared in a conjugate basis to that of states <span class="math notranslate nohighlight">\(\big \{|0\rangle, |1\rangle \big \}\)</span>.</p>
