@@ -11,6 +11,7 @@ jobs:
   deploy-book:
     runs-on: ubuntu-latest
     permissions:
+      content: write
       pages: write
       id-token: write
     steps:
