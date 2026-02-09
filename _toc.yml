@@ -35,12 +35,15 @@ parts:
       - file: chapters/03_quantum_protocols/03_04_teleportation
       - file: chapters/03_quantum_protocols/03_05_superdense_coding
 
-  - caption: Quantum Algorithms
+  - caption: Foundational Quantum Algorithms
     maxdepth: 3
     chapters:
       - file: chapters/04_quantum_algorithms/04_01_deutsch-jozsa
       - file: chapters/04_quantum_algorithms/04_02_bernstein-vazirani
       - file: chapters/04_quantum_algorithms/04_03_simons
       - file: chapters/04_quantum_algorithms/04_04_grover
-      - file: chapters/04_quantum_algorithms/04_05_amp_amp
-      - file: chapters/04_quantum_algorithms/04_06_qft
+
+  - caption:  Important Quantum Primitives
+    maxdepth: 3
+    chapters:
+      - file: chapters/05_quantum_primitives/05_01_qft
