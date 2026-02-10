@@ -32,7 +32,7 @@ parts:
     maxdepth: 3
     chapters:
       - file: chapters/03_quantum_protocols/03_01_quantum_money
-      - file: chapters/03_quantum_protocols/03_02_bb84_e91
+      - file: chapters/03_quantum_protocols/03_02_qkd
       - file: chapters/03_quantum_protocols/03_03_teleportation
       - file: chapters/03_quantum_protocols/03_04_superdense_coding
       - file: chapters/03_quantum_protocols/03_05_bell_chsh
