@@ -10,6 +10,7 @@ parts:
       - file: chapters/00_getting_started/00_00_welcome
       - file: chapters/00_getting_started/00_01_setting_env
       - file: chapters/00_getting_started/00_02_qiskit_config
+
   - caption: Classical Computing
     maxdepth: 3
     chapters:
@@ -17,6 +18,7 @@ parts:
       - file: chapters/01_classical_computing/01_02_reversible_computing
       - file: chapters/01_classical_computing/01_03_bits_to_vectors
       - file: chapters/01_classical_computing/01_04_probabilistic_circuits
+
   - caption: Quantum Computing
     maxdepth: 3
     chapters:
@@ -30,10 +32,10 @@ parts:
     maxdepth: 3
     chapters:
       - file: chapters/03_quantum_protocols/03_01_quantum_money
-      - file: chapters/03_quantum_protocols/03_02_bell_chsh
-      - file: chapters/03_quantum_protocols/03_03_bb84_e91
-      - file: chapters/03_quantum_protocols/03_04_teleportation
-      - file: chapters/03_quantum_protocols/03_05_superdense_coding
+      - file: chapters/03_quantum_protocols/03_02_bb84_e91
+      - file: chapters/03_quantum_protocols/03_03_teleportation
+      - file: chapters/03_quantum_protocols/03_04_superdense_coding
+      - file: chapters/03_quantum_protocols/03_05_bell_chsh
 
   - caption: Foundational Quantum Algorithms
     maxdepth: 3
@@ -43,7 +45,11 @@ parts:
       - file: chapters/04_quantum_algorithms/04_03_simons
       - file: chapters/04_quantum_algorithms/04_04_grover
 
-  - caption:  Important Quantum Primitives
+  - caption:  Practical Quantum Algorithms
     maxdepth: 3
     chapters:
-      - file: chapters/05_quantum_primitives/05_01_qft
+      - file: chapters/05_quantum_algorithms_2/05_01_qft
+      - file: chapters/05_quantum_algorithms_2/05_02_qpe
+      - file: chapters/05_quantum_algorithms_2/05_03_shor
+      - file: chapters/05_quantum_algorithms_2/05_04_amp_amp
+      - file: chapters/05_quantum_algorithms_2/05_05_ham_sim
