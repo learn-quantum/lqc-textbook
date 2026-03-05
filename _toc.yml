@@ -45,11 +45,16 @@ parts:
       - file: chapters/04_quantum_algorithms/04_03_simons
       - file: chapters/04_quantum_algorithms/04_04_grover
 
-  - caption:  Practical Quantum Algorithms
+  - caption:  Important Quantum Primitives
     maxdepth: 3
     chapters:
-      - file: chapters/05_quantum_algorithms_2/05_01_qft
-      - file: chapters/05_quantum_algorithms_2/05_02_qpe
-      - file: chapters/05_quantum_algorithms_2/05_03_shor
-      - file: chapters/05_quantum_algorithms_2/05_04_amp_amp
-      - file: chapters/05_quantum_algorithms_2/05_05_ham_sim
+      - file: chapters/05_quantum_primitives/05_01_qft
+      - file: chapters/05_quantum_primitives/05_02_qpe
+      - file: chapters/05_quantum_primitives/05_03_amp_amp
+
+  - caption:  Advanced Quantum Algorithms
+    maxdepth: 3
+    chapters:
+      - file: chapters/06_quantum_algorithms_2/06_01_qft
+      - file: chapters/06_quantum_algorithms_2/06_02_hhl
+      - file: chapters/06_quantum_algorithms_2/06_03_sim
